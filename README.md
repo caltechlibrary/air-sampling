@@ -32,16 +32,21 @@ This README file is in Markdown format, and is meant to provide a template for R
 Installation
 ------------
 
-Begin this section by mentioning any prerequisites that may be important for users to have before they can use your software.  Examples include hardware and operating system requirements.
+Create an Amazon Dynamo DB table called air-sampling with primary key time
+(type number). The default settings are fine. 
 
-Next, provide step-by-step instructions for installing the software, preferably with command examples that can be copy-pasted by readers into their software environments. For example:
+Then create an IAM role that allows access to the table. Click Add role, Select
+Lambda, Attach AWSLambdaBasicExecutionRole policy, and call the role
+air-sampling. Then select the role, click the small add inline policy box in
+the upper right hand corner, pick DynamoDB as the service, search for PutItem,
+and search for the ARN for the Dynamo DB table you just created. Click review
+policy and set AirSamplingWriteAccess as the name.
 
-```bash
-a command-line command here
-```
+Then go to Lambda, create a new function called add-air-values, and select the
+air-sampling role. Paste the add-air-values.py script into the editor save.
+Paste the example.json into the test event and try running your function.
 
-Sometimes, subsections may be needed for different operating systems or particularly complicated installations.
- 
+
 
 Usage
 -----
