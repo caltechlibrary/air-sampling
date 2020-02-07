@@ -46,7 +46,23 @@ Then go to Lambda, create a new function called add-air-values, and select the
 air-sampling role. Paste the add-air-values.py script into the editor save.
 Paste the example.json into the test event and try running your function.
 
+Go to API Gateway, Select New API, Select REST API, call it air-sampling, and
+select Edge optimized. Create a Resource with name submit and select API
+Gateway CORS. Pich /Submit and then Add Action, pick POST and click the check
+box. We're doing a Lambda integration with Lambda proxy integration and
+add-air-values as the function. Click the test option and paste input.json to
+see if data passes through lambda and into the database.
 
+In API Keys create a new key with name Testing. Go back to /submit, post,
+settings and check API key required. 
+
+Go to Actions, Deploy API, create a new stage called test. Then go to Usage
+Plans, Create a new plan called Air Sampling, set a rate of 10 requests per
+second and 100,000 requests per day, add air-sampling with stage test, and then
+attach the Testing API key we created earlier. If you go to the api stage you
+should see a Invoke URL. Use this with curl to test:
+
+`curl https://URL/test/submit -H "x-api-key: KEY" --request POST -d @input.json
 
 Usage
 -----
