@@ -5,11 +5,13 @@ import subprocess
 outDir = "site"
 stylesDir = "styles"
 scriptsDir = "scripts"
+imagesDir = "img"
 
 # Create output site directory
 if os.path.isdir(outDir):
     shutil.rmtree(outDir)
 os.makedirs(outDir)
+shutil.copytree(imagesDir, f"{outDir}/{imagesDir}")
 shutil.copytree(stylesDir, f"{outDir}/{stylesDir}")
 shutil.copytree(scriptsDir, f"{outDir}/{scriptsDir}")
 
