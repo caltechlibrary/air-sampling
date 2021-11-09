@@ -1,0 +1,64 @@
+body {
+    margin: 0;
+    padding: 5% 0;
+}
+
+@media (min-width: 900px) {
+    body {
+        padding: 2.5% 10%;
+    }
+}
+
+.header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: Arial;
+    color: #033C49;
+}
+
+@media (min-width: 900px) {
+    .header {
+        flex-direction: row;
+    }
+}
+
+.header__caltech-logo {
+    margin: 0 0 1rem;
+    width: 40%;
+    height: auto;
+}
+
+@media (min-width: 900px) {
+    .header__caltech-logo {
+        margin: 0 3rem 0 0;
+        width: 12em;
+    }
+}
+
+.header__title {
+    margin: 0 0 1.75rem;
+    font-size: 2em;
+    line-height: 1;
+}
+
+@media (min-width: 900px) {
+    .header__title {
+        margin: 0 4rem 0 0;
+        font-size: 3.25em;
+        font-weight: 100;
+    }
+}
+
+.header__date {
+    font-size: 1em;
+}
+
+@media (min-width: 900px) {
+    .header__date {
+        margin-left: auto;
+        font-size: 1.10em;
+        color: #7b7b7b;
+    }
+}
