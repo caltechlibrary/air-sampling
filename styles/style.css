@@ -208,3 +208,108 @@ body {
     font-size: 5vw;
     font-weight: 600;
 }
+
+.continued-reading-widget {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 102.5%;
+    color: #000;
+    font-family: Arial;
+}
+
+.continued-reading-widget__component-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.continued-reading-widget__content-container {
+    position: relative;
+    margin-bottom: 8px;
+    width: 100%;
+    height: 0;
+    padding-bottom: 85%;
+    border-radius: 3%;
+    background: #f2f2f2;
+}
+
+.continued-reading-widget__content {
+    position: absolute;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    padding: 7%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.continued-reading-widget__headlines-container {
+    flex: 0 0 auto;
+    width: 100%;
+    height: 50%;
+}
+
+.continued-reading-widget__headlines-title {
+    margin: 0 0 16px;
+    font-size: 3.25vw;
+    font-weight: 100;
+}
+
+.continued-reading-widget__headline-img {
+    margin-right: 16px;
+    width: 45%;
+    height: auto;
+    float: left;
+}
+
+.continued-reading-widget__headline-title {
+    font-size: 3.25vw;
+    line-height: 1.5em;
+}
+
+.continued-reading-widget__divider {
+    flex: 0 0 auto;
+    margin: 24px 0;
+    width: 100%;
+    height: 2px;
+    background: #d4d4d4;
+    
+}
+
+.continued-reading-widget__links-container {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.continued-reading-widget__links-title {
+    margin: 0 0 16px;
+    font-size: 3.25vw;
+    font-weight: 100;
+}
+
+.continued-reading-widget__link {
+    margin-bottom: 8px;
+    color: inherit;
+    font-size: 3.25vw;
+    text-decoration: none;
+}
+
+.continued-reading-widget__download-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.continued-reading-widget__download-text {
+    margin: 0;
+    font-size: 5vw;
+    font-weight: 600;
+}
