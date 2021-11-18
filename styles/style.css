@@ -99,6 +99,7 @@ body {
     height: 100%;
     border-radius: 3%;
     padding: 5%;
+    overflow: hidden;
 }
 
 .boxy-component__sub-component {
@@ -175,41 +176,19 @@ body {
 
 /* cam-widget */
 .cam-widget {
-    position: relative;
-    width: 100%;
-    height: 0;
-    padding-bottom: 102.5%;
     color: #033C49;
-    font-family: Arial;
-}
-
-.cam-widget__component-container {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
-.cam-widget__img-container {
-    position: relative;
-    margin-bottom: 8px;
-    width: 100%;
-    height: 0;
-    padding-bottom: 85%;
-    border-radius: 3%;
-    overflow: hidden;
 }
 
 .cam-widget__img {
     position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
 .cam-widget__title-container {
-    flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -221,6 +200,7 @@ body {
     font-weight: 600;
 }
 
+/* continue-reading-widget */
 .continued-reading-widget {
     position: relative;
     width: 100%;
