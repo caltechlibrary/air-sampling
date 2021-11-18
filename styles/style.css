@@ -66,17 +66,17 @@ body {
     }
 }
 
-.aqi-widget {
+/* boxy-component */
+.boxy-component {
     position: relative;
     margin-bottom: 24px;
     width: 100%;
     height: 0;
     padding-bottom: 102.5%;
-    color: #033C49;
     font-family: Arial;
 }
 
-.aqi-widget__component-container {
+.boxy-component__component-container {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -84,26 +84,38 @@ body {
     flex-direction: column;
 }
 
-.aqi-widget__display-component {
+.boxy-component__main-component {
     position: relative;
     margin-bottom: 8px;
     width: 100%;
     height: 0;
     padding-bottom: 85%;
-    border-radius: 3%;
-    background: #eceaaf;
 }
 
-.aqi-widget__display-content {
+.boxy-component__main-content-container {
     position: absolute;
     box-sizing: border-box;
     width: 100%;
     height: 100%;
-    padding-top: 5%;
+    border-radius: 3%;
+    padding: 5%;
+}
+
+.boxy-component__sub-component {
+    flex: 1;
+}
+
+/* aqi-widget */
+.aqi-widget {
+    color: #033C49;
+}
+
+.aqi-widget__main-content-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background: #eceaaf;
 }
 
 .aqi-widget__title {
@@ -131,7 +143,6 @@ body {
 }
 
 .aqi-widget__meter-component {
-    flex: 1;
     display: flex;
     flex-direction: column;
 }
@@ -162,6 +173,7 @@ body {
     font-size: 4vw;
 }
 
+/* cam-widget */
 .cam-widget {
     position: relative;
     width: 100%;
