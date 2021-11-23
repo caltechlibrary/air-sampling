@@ -3,6 +3,12 @@ body {
     padding: 28px 5%;
 }
 
+@media (min-width: 1440px) {
+    body {
+        padding: 44px 5%;
+    }
+}
+
 .header {
     margin-bottom: 16px;
     display: flex;
