@@ -1,12 +1,6 @@
 body {
     margin: 0;
-    padding: 7.5% 5%;
-}
-
-@media (min-width: 900px) {
-    body {
-        padding: 2.5% 10%;
-    }
+    padding: 28px 5%;
 }
 
 .header {
@@ -18,7 +12,7 @@ body {
     color: #033C49;
 }
 
-@media (min-width: 900px) {
+@media (min-width: 480px) {
     .header {
         flex-direction: row;
     }
@@ -26,43 +20,76 @@ body {
 
 .header__caltech-logo {
     margin-bottom: 24px;
-    width: 37.5%;
+    width: 7.875em;
     height: auto;
 }
 
-@media (min-width: 900px) {
+@media (min-width: 480px) {
     .header__caltech-logo {
-        margin: 0 3rem 0 0;
-        width: 12em;
+        margin: 0 2em 0 0;
+    }
+}
+
+@media (min-width: 768px) {
+    .header__caltech-logo {
+        width: 10em;
+    }
+}
+
+@media (min-width: 1440px) {
+    .header__caltech-logo {
+        margin: 0 3em 0 0;
+        width: 14em;
     }
 }
 
 .header__title {
     margin: 0 0 28px;
-    font-size: 8.5vw;
+    font-size: 2em;
     font-weight: 100;
     line-height: 1;
     white-space: nowrap;
 }
 
-@media (min-width: 900px) {
+@media (min-width: 480px) {
     .header__title {
-        margin: 0 4rem 0 0;
-        font-size: 3.25em;
-        font-weight: 100;
+        margin: 0 1em 0 0;
+    }
+}
+
+@media (min-width: 768px) {
+    .header__title {
+        font-size: 2.5em;
+    }
+}
+
+@media (min-width: 1440px) {
+    .header__title {
+        font-size: 4em;
     }
 }
 
 .header__date {
-    font-size: 3.75vw;
+    font-size: 0.875em;
     white-space: nowrap;
 }
 
-@media (min-width: 900px) {
+@media (min-width: 480px) {
     .header__date {
         margin-left: auto;
-        font-size: 1.10em;
         color: #7b7b7b;
+    }
+}
+
+@media (min-width: 768px) {
+    .header__date {
+        font-size: 1em;
+    }
+}
+
+@media (min-width: 1440px) {
+    .header__date {
+        font-size: 1.25em;
     }
 }
 
