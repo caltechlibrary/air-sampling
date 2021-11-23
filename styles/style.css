@@ -249,13 +249,15 @@ body {
     flex-direction: column;
 }
 
-.continued-reading-widget__download-text-container {
+.continued-reading-widget__download-link-container {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.continued-reading-widget__download-text {
+.continued-reading-widget__download-link {
     font-size: 5vw;
     font-weight: 600;
+    color: #033C49;
+    text-decoration: none;
 }
