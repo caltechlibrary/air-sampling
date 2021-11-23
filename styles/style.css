@@ -188,16 +188,17 @@ body {
     object-fit: cover;
 }
 
-.cam-widget__title-container {
+.cam-widget__link-container {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.cam-widget__title {
-    margin: 0;
+.cam-widget__link {
     font-size: 5vw;
     font-weight: 600;
+    color: #033C49;
+    text-decoration: none;
 }
 
 /* continue-reading-widget */
