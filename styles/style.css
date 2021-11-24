@@ -317,10 +317,22 @@ body {
 }
 
 .cam-widget__link {
-    font-size: 5vw;
+    font-size: 1.15em;
     font-weight: 600;
     color: #033C49;
     text-decoration: none;
+}
+
+@media (min-width: 768px) {
+    .cam-widget__link {
+        font-size: 1.375em;
+    }
+}
+
+@media (min-width: 1440px) {
+    .cam-widget__link {
+        font-size: 1.625em;
+    }
 }
 
 /* continue-reading-widget */
