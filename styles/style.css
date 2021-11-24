@@ -1,12 +1,12 @@
 body {
-    margin: 54px auto;
+    margin: 52px auto;
     max-width: 1495px;
     padding: 0 16px;
 }
 
 /* header */
 .header {
-    margin-bottom: 16px;
+    margin-bottom: 58px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -49,7 +49,7 @@ body {
 
 @media (min-width: 1440px) {
     .header__caltech-logo {
-        width: 14em;
+        width: 11.75em;
     }
 }
 
@@ -75,7 +75,7 @@ body {
 
 @media (min-width: 1440px) {
     .header__title {
-        font-size: 4em;
+        font-size: 3.25em;
     }
 }
 
@@ -99,7 +99,7 @@ body {
 
 @media (min-width: 1440px) {
     .header__date {
-        font-size: 1.25em;
+        font-size: 1.125em;
     }
 }
 
