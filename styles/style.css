@@ -190,6 +190,12 @@ body {
     font-weight: 100;
 }
 
+@media (min-width: 768px) {
+    .aqi-widget__title {
+        font-size: 1.25em;
+    }
+}
+
 @media (min-width: 1440px) {
     .aqi-widget__title {
         font-size: 2.5em;
@@ -199,6 +205,12 @@ body {
 .aqi-widget__value {
     font-size: 10.5em;
     font-weight: 600;
+}
+
+@media (min-width: 768px) {
+    .aqi-widget__value {
+        font-size: 7.5em;
+    }
 }
 
 @media (min-width: 1440px) {
@@ -212,6 +224,12 @@ body {
     font-size: 1em;
 }
 
+@media (min-width: 7680px) {
+    .aqi-widget__description-label {
+        font-size: 0.5em;
+    }
+}
+
 @media (min-width: 1440px) {
     .aqi-widget__description-label {
         font-size: 1em;
@@ -221,6 +239,12 @@ body {
 .aqi-widget__description-value {
     font-size: 1.15em;
     font-weight: 600;
+}
+
+@media (min-width: 768px) {
+    .aqi-widget__description-value {
+        font-size: 0.75em;
+    }
 }
 
 @media (min-width: 1440px) {
@@ -258,6 +282,18 @@ body {
     display: flex;
     justify-content: space-between;
     font-size: 1.125em;
+}
+
+@media (min-width: 768px) {
+    .aqi-widget__meter-labels {
+        font-size: 0.5625em;
+    }
+}
+
+@media (min-width: 1440px) {
+    .aqi-widget__meter-labels {
+        font-size: 1.125em;
+    }
 }
 
 /* cam-widget */
