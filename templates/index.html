@@ -10,9 +10,11 @@
 
 <body>
   ${header.html()}
-  ${aqi-widget.html()}
-  ${cam-widget.html()}
-  ${continued-reading-widget.html()}
+  <div class="widgets-container">
+    <div class="widgets-container__widget">${aqi-widget.html()}</div>
+    <div class="widgets-container__widget">${cam-widget.html()}</div>
+    <div class="widgets-container__widget">${continued-reading-widget.html()}</div>
+  </div>
 
   <script src="scripts/header.js"></script>
   <script src="scripts/main.js"></script>

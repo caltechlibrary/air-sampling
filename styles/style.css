@@ -1,12 +1,7 @@
 body {
-    margin: 0;
-    padding: 28px 5%;
-}
-
-@media (min-width: 1440px) {
-    body {
-        padding: 44px 5%;
-    }
+    margin: 54px auto;
+    max-width: 1495px;
+    padding: 0 16px;
 }
 
 /* header */
@@ -108,6 +103,31 @@ body {
     }
 }
 
+/* widgets-container */
+.widgets-container {
+    display: flex;
+    flex-direction: column;
+}
+
+@media (min-width: 768px) {
+    .widgets-container {
+        flex-direction: row;
+    }
+}
+
+.widgets-container__widget {
+    flex: 1;
+    margin: 0 2.5%;
+}
+
+.widgets-container__widget:first-child {
+    margin-left: 0;
+}
+
+.widgets-container__widget:last-child {
+    margin-right: 0;
+}
+
 /* boxy-component */
 .boxy-component {
     position: relative;
@@ -172,7 +192,7 @@ body {
 
 @media (min-width: 1440px) {
     .aqi-widget__title {
-        font-size: 4em;
+        font-size: 2.5em;
     }
 }
 
@@ -183,7 +203,7 @@ body {
 
 @media (min-width: 1440px) {
     .aqi-widget__value {
-        font-size: 15em;
+        font-size: 15.25em;
     }
 }
 
@@ -194,7 +214,7 @@ body {
 
 @media (min-width: 1440px) {
     .aqi-widget__description-label {
-        font-size: 1.125em;
+        font-size: 1em;
     }
 }
 
@@ -205,7 +225,7 @@ body {
 
 @media (min-width: 1440px) {
     .aqi-widget__description-value {
-        font-size: 1.625em;
+        font-size: 1.5em;
     }
 }
 
