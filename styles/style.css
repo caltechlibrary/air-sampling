@@ -166,23 +166,47 @@ body {
     top: 4%;
     right: 4%;
     margin: 0;
-    font-size: 8vw;
+    font-size: 1.875em;
     font-weight: 100;
 }
 
+@media (min-width: 1440px) {
+    .aqi-widget__title {
+        font-size: 4em;
+    }
+}
+
 .aqi-widget__value {
-    font-size: 45vw;
-    line-height: 1;
+    font-size: 10.5em;
+    font-weight: 600;
+}
+
+@media (min-width: 1440px) {
+    .aqi-widget__value {
+        font-size: 15em;
+    }
 }
 
 .aqi-widget__description-label {
     margin-bottom: 8px;
-    font-size: 4vw;
+    font-size: 1em;
+}
+
+@media (min-width: 1440px) {
+    .aqi-widget__description-label {
+        font-size: 1.125em;
+    }
 }
 
 .aqi-widget__description-value {
-    font-size: 5vw;
+    font-size: 1.15em;
     font-weight: 600;
+}
+
+@media (min-width: 1440px) {
+    .aqi-widget__description-value {
+        font-size: 1.625em;
+    }
 }
 
 .aqi-widget__meter-component {
