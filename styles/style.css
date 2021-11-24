@@ -344,7 +344,13 @@ body {
     display: flex;
     flex-direction: column;
     background: #f2f2f2;
-    font-size: 3.75vw;
+    font-size: 0.875em;
+}
+
+@media (min-width: 1440px) {
+    .continued-reading-widget__main-content-container {
+        font-size: 1em;
+    }
 }
 
 .continued-reading-widget__headlines-container {
@@ -391,8 +397,20 @@ body {
 }
 
 .continued-reading-widget__download-link {
-    font-size: 5vw;
+    font-size: 1.15em;
     font-weight: 600;
     color: #033C49;
     text-decoration: none;
+}
+
+@media (min-width: 768px) {
+    .continued-reading-widget__download-link {
+        font-size: 1.375em;
+    }
+}
+
+@media (min-width: 1440px) {
+    .continued-reading-widget__download-link {
+        font-size: 1.625em;
+    }
 }
