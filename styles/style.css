@@ -1,12 +1,18 @@
 body {
-    margin: 52px auto;
+    margin: 32px auto;
     max-width: 1495px;
     padding: 0 16px;
 }
 
+@media (min-width:480px) {
+    body {
+        margin: 52px auto;
+    }
+}
+
 /* header */
 .header {
-    margin-bottom: 58px;
+    margin-bottom: 12px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -16,12 +22,13 @@ body {
 
 @media (min-width: 480px) {
     .header {
+        margin-bottom: 58px;
         flex-direction: row;
     }
 }
 
 .header__homepage-link {
-    margin-bottom: 24px;
+    margin-bottom: 12px;
 }
 
 @media (min-width: 480px) {
