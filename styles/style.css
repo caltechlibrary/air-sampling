@@ -250,9 +250,15 @@ body {
 .aqi-widget__meter {
     flex: 1;
     position: relative;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
     border-radius: 8px;
     background: linear-gradient(to right, #B6E2AF, #F9E4AF, #C163D3, #8A353A);
+}
+
+@media (min-width:768px) {
+    .aqi-widget__meter {
+        margin-bottom: 12px;
+    }
 }
 
 .aqi-widget__meter-indicator {
@@ -270,7 +276,13 @@ body {
 .aqi-widget__meter-labels {
     display: flex;
     justify-content: space-between;
-    font-size: 1.125em;
+    font-size: 0.875em;
+}
+
+@media (min-width: 768px) {
+    .aqi-widget__meter-labels {
+        font-size: 1em;
+    }
 }
 
 @media (min-width: 1440px) {
