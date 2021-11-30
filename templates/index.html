@@ -15,6 +15,7 @@
     <div class="widgets-container__widget">${cam-widget.html()}</div>
     <div class="widgets-container__widget">${continued-reading-widget.html()}</div>
   </div>
+  ${for(metrics)}${it:metric-widget.html()}${endfor}
 
   <script src="scripts/header.js"></script>
   <script src="scripts/main.js"></script>
