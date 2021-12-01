@@ -443,9 +443,12 @@ body {
     fill: #262223;
 }
 
+.metric-widget__left-column {
+    flex: 1;
+    max-width: 512px;
+}
+
 .metric-widget__header-container {
-    width: 100%;
-    max-width: 674px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -459,6 +462,10 @@ body {
     margin: 0;
     font-size: 1.05em;
     font-weight: 100;
+}
+
+.metric-widget__description--hidden {
+    display: none;
 }
 
 .metric-widget__summary {
