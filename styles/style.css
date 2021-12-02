@@ -422,52 +422,110 @@ body {
 /* metric-widget */
 .metric-widget {
     box-sizing: border-box;
-    height: 80px;
+    height: 250px;
     margin-bottom: 12px;
     border-radius: 8px;
     padding: 0 24px;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     background: #efefef;
     color: #033C49;
     font-family: Arial;
+    transition: height 1s;
 }
 
-.metric-widget__expand-btn {
-    margin: 0 16px 0 0;
-    width: 1.5em;
-    height: 1.5em;
-    padding: 0;
-    border: none;
-    background: none;
-    fill: #262223;
+.metric-widget--collapsed {
+    height: 80px;
 }
 
-.metric-widget__left-column {
+.metric-widget__left-col {
     flex: 1;
-    max-width: 512px;
+    margin-right: 130px;
+    max-width: 400px;
 }
 
 .metric-widget__header-container {
+    height: 80px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    font-size: 1.075em;
 }
 
 .metric-widget__header-container > * {
     flex: 1;
 }
 
-.metric-widget__title {
+.metric-widget__header {
     margin: 0;
-    font-size: 1.05em;
+    font-size: inherit;
+}
+
+.metric-widget__toggle {
+    margin: 0;
+    width: 100%;
+    border: none;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    background: none;
+    color: inherit;
+    font-size: inherit;
+}
+
+.metric-widdget__toggle-icon {
+    margin: 0 16px 0 0;
+    width: 1.25em;
+    height: 1.25em;
+    fill: #262223;
+    transition: transform 1s;
+}
+
+.metric-widget__toggle[aria-expanded='true'] .metric-widdget__toggle-icon {
+    transform: rotate(90deg);
+}
+
+.metric-widget__header-title {
     font-weight: 100;
 }
 
+.metric-widget__label {
+    text-align: center;
+}
+
+.metric-widget__value {
+    text-align: right;
+}
+
+.metric-widget__description {
+    padding-left: 40px;
+    color: #000;
+    transition: opacity 0.25s 0.5s;
+}
+
+.metric-widget__description p {
+    margin-top: 0;
+}
+
 .metric-widget__description--hidden {
-    display: none;
+    height: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s, height 0s 0.25s, visibility 0s 0.25s;
 }
 
 .metric-widget__summary {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    font-size: 1.075em;
     white-space: nowrap;
+    transition: opacity 0.25s 0.5s;
+}
+
+.metric-widget__summary--hidden {
+    height: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s, height 0s 0.25s, visibility 0s 0.25s;
 }
