@@ -424,7 +424,7 @@ body {
     box-sizing: border-box;
     margin-bottom: 12px;
     border-radius: 8px;
-    padding: 12px;
+    padding: 8px 24px;
     background: #efefef;
     color: #033C49;
     font-family: Arial;
@@ -433,12 +433,13 @@ body {
 
 @media (min-width:768px) {
     .metric-widget {
-        padding: 12px 24px;
+        padding: 12px 16px;
     }
 }
 
 .metric-widget__header-container {
-    height: 60px;
+    height: 44px;
+    max-width: 730px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -447,7 +448,6 @@ body {
 @media (min-width:768px) {
     .metric-widget__header-container {
         height: 56px;
-        max-width: 730px;
     }
 }
 
@@ -490,12 +490,24 @@ body {
 }
 
 .metric-widget__quality-label, .metric-widget__value-label {
-    font-size: 1.075em;
+    font-size: 0.875em;
 }
 
 @media (min-width:768px) {
     .metric-widget__quality-label, .metric-widget__value-label {
         font-size: 1.075em;
+    }
+}
+
+@media (max-width:768px) {
+    .metric-widget__quality-label {
+        text-align: center;
+    }
+}
+
+@media (max-width:768px) {
+    .metric-widget__value-label {
+        text-align: right;
     }
 }
 
@@ -519,11 +531,17 @@ body {
 }
 
 .metric-widget__panel {
-    height: 158px;
-    padding-left: 44px;
+    height: 100px;
     display: flex;
     opacity: 1;
     transition: height 1s, opacity 0.25s 0.5s;
+}
+
+@media (min-width:768px) {
+    .metric-widget__panel {
+        height: 158px;
+        padding-left: 44px;
+    }
 }
 
 .metric-widget__panel--collapsed {
@@ -552,8 +570,13 @@ body {
 
 .metric-widget__graph-container {
     flex: 1;
-    margin-top: -56px;
     height: 100%;
-    height: calc(100% + 56px);
     background: #fff;
+}
+
+@media (min-width:768px) {
+    .metric-widget__graph-container {
+        margin-top: -56px;
+        height: calc(100% + 56px);
+    }
 }
