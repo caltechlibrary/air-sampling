@@ -1,24 +1,22 @@
 let MetricWidget = function(root) {
 
-    let expandToggle = root.querySelector(".metric-widget__toggle");
-    let summary = root.querySelector(".metric-widget__summary");
-    let description = root.querySelector(".metric-widget__description");
+    let toggleBtn = root.querySelector(".metric-widget__toggle-btn");
+    let previewSnippet = root.querySelector(".metric-widget__preview-snippet");
+    let contentPanel = root.querySelector(".metric-widget__panel");
 
-    let toggleWidgetExpansion = function() {
-        if(expandToggle.getAttribute("aria-expanded") == "false") {
-            root.classList.remove("metric-widget--collapsed");
-            summary.classList.add("metric-widget__summary--hidden");
-            description.classList.remove("metric-widget__description--hidden");
-            expandToggle.setAttribute("aria-expanded", "true");
+    let togglePanel = function() {
+        if(toggleBtn.getAttribute("aria-expanded") == "false") {
+            previewSnippet.classList.add("metric-widget__preview-snippet--hidden");
+            contentPanel.classList.remove("metric-widget__panel--collapsed");
+            toggleBtn.setAttribute("aria-expanded", "true");
         } else {
-            root.classList.add("metric-widget--collapsed");
-            summary.classList.remove("metric-widget__summary--hidden");
-            description.classList.add("metric-widget__description--hidden");
-            expandToggle.setAttribute("aria-expanded", "false");
+            previewSnippet.classList.remove("metric-widget__preview-snippet--hidden");
+            contentPanel.classList.add("metric-widget__panel--collapsed");
+            toggleBtn.setAttribute("aria-expanded", "false");
         }
     };
 
-    expandToggle.addEventListener("click", toggleWidgetExpansion);
+    toggleBtn.addEventListener("click", togglePanel);
 
     return {
         root

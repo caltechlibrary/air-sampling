@@ -422,12 +422,9 @@ body {
 /* metric-widget */
 .metric-widget {
     box-sizing: border-box;
-    height: 250px;
     margin-bottom: 12px;
     border-radius: 8px;
-    padding: 0 12px;
-    display: flex;
-    align-items: flex-start;
+    padding: 12px;
     background: #efefef;
     color: #033C49;
     font-family: Arial;
@@ -436,29 +433,7 @@ body {
 
 @media (min-width:768px) {
     .metric-widget {
-        height: 155px;
-        padding: 0 24px;
-    }
-}
-
-.metric-widget--collapsed {
-    height: 60px;
-}
-
-@media (min-width:768px) {
-    .metric-widget--collapsed {
-        height: 80px;
-    }
-}
-
-.metric-widget__left-col {
-    flex: 1;
-}
-
-@media (min-width:768px) {
-    .metric-widget__left-col {
-        margin-right: 130px;
-        max-width: 400px;
+        padding: 12px 24px;
     }
 }
 
@@ -467,28 +442,32 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-size: 0.875em;
 }
 
 @media (min-width:768px) {
     .metric-widget__header-container {
-        height: 80px;
-        font-size: 1.075em;
+        height: 56px;
+        max-width: 730px;
     }
 }
 
-.metric-widget__header-container > * {
+.metric-widget__header-container * {
     flex: 1;
 }
 
 .metric-widget__header {
     margin: 0;
-    font-size: inherit;
+    font-size: 0.875em;
 }
 
-.metric-widget__toggle {
+@media (min-width:768px) {
+    .metric-widget__header {
+        font-size: 1.075em;
+    }
+}
+
+.metric-widget__toggle-btn {
     margin: 0;
-    width: 100%;
     border: none;
     padding: 0;
     display: flex;
@@ -498,34 +477,67 @@ body {
     font-size: inherit;
 }
 
-.metric-widdget__toggle-icon {
-    margin: 0 16px 0 0;
+.metric-widget__toggle-icon {
+    margin: 0 20px 0 0;
     width: 1.25em;
     height: 1.25em;
     fill: #262223;
     transition: transform 1s;
 }
 
-.metric-widget__toggle[aria-expanded='true'] .metric-widdget__toggle-icon {
+.metric-widget__toggle-btn[aria-expanded='true'] .metric-widget__toggle-icon {
     transform: rotate(90deg);
 }
 
-.metric-widget__header-title {
-    font-weight: 100;
+.metric-widget__quality-label, .metric-widget__value-label {
+    font-size: 1.075em;
 }
 
-.metric-widget__label {
-    text-align: center;
+@media (min-width:768px) {
+    .metric-widget__quality-label, .metric-widget__value-label {
+        font-size: 1.075em;
+    }
 }
 
-.metric-widget__value {
-    text-align: right;
+.metric-widget__preview-snippet {
+    font-size: 1em;
+    white-space: nowrap;
+    opacity: 1;
+    transition: opacity 0.25s 0.5s;
+}
+
+@media (max-width:768px) {
+    .metric-widget__preview-snippet {
+        display: none;
+    }
+}
+
+.metric-widget__preview-snippet--hidden {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s, visibility 0s 1s;
+}
+
+.metric-widget__panel {
+    height: 158px;
+    padding-left: 44px;
+    display: flex;
+    opacity: 1;
+    transition: height 1s, opacity 0.25s 0.5s;
+}
+
+.metric-widget__panel--collapsed {
+    height: 0px;
+    opacity: 0;
+    visibility: hidden;
+    transition: height 1s, opacity 0.25s, visibility 0s 1s;
 }
 
 .metric-widget__description {
-    padding-left: 40px;
+    margin-right: 32px;
+    width: 25%;
+    padding-top: 16px;
     color: #000;
-    transition: opacity 0.25s 0.5s;
 }
 
 @media (max-width:768px) {
@@ -538,31 +550,10 @@ body {
     margin-top: 0;
 }
 
-.metric-widget__description--hidden {
-    height: 0;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.25s, height 0s 0.25s, visibility 0s 0.25s;
-}
-
-.metric-widget__summary {
-    height: 80px;
-    display: flex;
-    align-items: center;
-    font-size: 1.075em;
-    white-space: nowrap;
-    transition: opacity 0.25s 0.5s;
-}
-
-@media (max-width:768px) {
-    .metric-widget__summary {
-        display: none;
-    }
-}
-
-.metric-widget__summary--hidden {
-    height: 0;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.25s, height 0s 0.25s, visibility 0s 0.25s;
+.metric-widget__graph-container {
+    flex: 1;
+    margin-top: -56px;
+    height: 100%;
+    height: calc(100% + 56px);
+    background: #fff;
 }
