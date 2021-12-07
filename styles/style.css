@@ -540,6 +540,11 @@ body {
 @media (min-width:768px) {
     .metric-widget__panel {
         height: 158px;
+    }
+}
+
+@media (min-width:1440px) {
+    .metric-widget__panel {
         padding-left: 44px;
     }
 }
@@ -552,10 +557,16 @@ body {
 }
 
 .metric-widget__description {
-    margin-right: 32px;
+    margin-right: 16px;
     width: 25%;
     padding-top: 16px;
     color: #000;
+}
+
+@media (min-width:1440px) {
+    .metric-widget__description {
+        margin-right: 32px;
+    }    
 }
 
 @media (max-width:768px) {
@@ -574,7 +585,7 @@ body {
     background: #fff;
 }
 
-@media (min-width:768px) {
+@media (min-width:1440px) {
     .metric-widget__graph-container {
         margin-top: -56px;
         height: calc(100% + 56px);
