@@ -305,6 +305,24 @@ body {
     color: #033C49;
 }
 
+@media (max-width:768px) {
+    .cam-widget {
+        padding-bottom: 40%;
+    }
+}
+
+@media (max-width:768px) {
+    .cam-widget__img-component {
+        padding-bottom: 40%;
+    }
+}
+
+@media (max-width:768px) {
+    .cam-widget__img-container {
+        border-radius: 8px;
+    }
+}
+
 .cam-widget__img {
     position: absolute;
     top: 0;
@@ -318,6 +336,12 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+@media (max-width:768px) {
+    .cam-widget__link-container {
+        display: none;
+    }
 }
 
 .cam-widget__link {
