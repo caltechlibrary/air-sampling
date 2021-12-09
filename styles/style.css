@@ -374,6 +374,12 @@ body {
     color: #000;
 }
 
+@media (max-width:768px) {
+    .continued-reading-widget__main-component {
+        padding-bottom: 83%;
+    }
+}
+
 .continued-reading-widget__main-content-container {
     display: flex;
     flex-direction: column;
