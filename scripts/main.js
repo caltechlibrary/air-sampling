@@ -3,7 +3,6 @@
     let widgetsContainer = document.querySelector(".widgets-container");
     let metricWidgetEls = document.querySelectorAll(".metric-widget");
     let continuedReadingWidgetEl = document.querySelector(".continued-reading-widget");
-    let header = Header(headerEl);
 
     let mainController = (function() {
 
@@ -27,8 +26,10 @@
         
     })();
 
-    header.init();
+    // Initialize components
+    Header(headerEl);
     for(let metricWidgetEl of metricWidgetEls) MetricWidget(metricWidgetEl);
+
     mainController.onResize();
     window.addEventListener("resize", mainController.onResize);
 })();
