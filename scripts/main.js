@@ -8,15 +8,15 @@
 
         let onResize = function() {
             if(window.innerWidth >= 1100 && widgetsContainer.childElementCount == 2) {
-                let wrapperDiv = document.createElement("div");
-                wrapperDiv.classList.add("widgets-container__widget");
-                wrapperDiv.appendChild(continuedReadingWidgetEl);
-                widgetsContainer.appendChild(wrapperDiv);
+                let container = continuedReadingWidgetEl.parentElement;
+                while(container.classList.length > 0) container.classList.remove(container.classList.item(0));
+                container.classList.add("widgets-container__widget");
+                widgetsContainer.appendChild(container);
             } else if(window.innerWidth < 1100 && widgetsContainer.childElementCount == 3) {
-                let wrapperDiv = continuedReadingWidgetEl.parentElement;
-                let lastMetricWidget = metricWidgetEls[metricWidgetEls.length - 1];
-                lastMetricWidget.after(continuedReadingWidgetEl);
-                widgetsContainer.removeChild(wrapperDiv);
+                let container = continuedReadingWidgetEl.parentElement;
+                while(container.classList.length > 0) container.classList.remove(container.classList.item(0));
+                container.classList.add("continued-reading-widget-container");
+                metricWidgetEls[metricWidgetEls.length - 1].after(container);
             }
         };
 
