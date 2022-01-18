@@ -7,12 +7,12 @@
     let mainController = (function() {
 
         let onResize = function() {
-            if(window.innerWidth >= 768 && widgetsContainer.childElementCount == 2) {
+            if(window.innerWidth >= 1100 && widgetsContainer.childElementCount == 2) {
                 let wrapperDiv = document.createElement("div");
                 wrapperDiv.classList.add("widgets-container__widget");
                 wrapperDiv.appendChild(continuedReadingWidgetEl);
                 widgetsContainer.appendChild(wrapperDiv);
-            } else if(window.innerWidth < 768 && widgetsContainer.childElementCount == 3) {
+            } else if(window.innerWidth < 1100 && widgetsContainer.childElementCount == 3) {
                 let wrapperDiv = continuedReadingWidgetEl.parentElement;
                 let lastMetricWidget = metricWidgetEls[metricWidgetEls.length - 1];
                 lastMetricWidget.after(continuedReadingWidgetEl);

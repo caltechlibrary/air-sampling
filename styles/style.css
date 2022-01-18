@@ -1,10 +1,16 @@
+/* 
+- Single column mobile layout: 0px - 600px
+- Hybrid mobile/desktop layout: 600px - 1100px
+- Normal desktop layout: 1100px
+*/
+
 body {
     margin: 32px auto;
     max-width: 1495px;
     padding: 0 16px;
 }
 
-@media (min-width:480px) {
+@media (min-width:700px) {
     body {
         margin: 52px auto;
     }
@@ -20,7 +26,7 @@ body {
     color: #033C49;
 }
 
-@media (min-width: 480px) {
+@media (min-width: 700px) {
     .header {
         margin-bottom: 58px;
         flex-direction: row;
@@ -31,7 +37,7 @@ body {
     margin-bottom: 12px;
 }
 
-@media (min-width: 480px) {
+@media (min-width: 700px) {
     .header__homepage-link {
         margin: 0 2em 0 0;
     }
@@ -48,13 +54,13 @@ body {
     height: auto;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 800px) {
     .header__caltech-logo {
         width: 10em;
     }
 }
 
-@media (min-width: 1440px) {
+@media (min-width: 1100px) {
     .header__caltech-logo {
         width: 11.75em;
     }
@@ -68,19 +74,19 @@ body {
     white-space: nowrap;
 }
 
-@media (min-width: 480px) {
+@media (min-width: 700px) {
     .header__title {
         margin: 0 1em 0 0;
     }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 800px) {
     .header__title {
         font-size: 2.5em;
     }
 }
 
-@media (min-width: 1440px) {
+@media (min-width: 1100px) {
     .header__title {
         font-size: 3.25em;
     }
@@ -91,20 +97,20 @@ body {
     white-space: nowrap;
 }
 
-@media (min-width: 480px) {
+@media (min-width: 700px) {
     .header__date {
         margin-left: auto;
         color: #7b7b7b;
     }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 800px) {
     .header__date {
         font-size: 1em;
     }
 }
 
-@media (min-width: 1440px) {
+@media (min-width: 1100px) {
     .header__date {
         font-size: 1.125em;
     }
@@ -116,7 +122,7 @@ body {
     flex-direction: column;
 }
 
-@media (min-width: 768px) {
+@media (min-width:600px) {
     .widgets-container {
         flex-direction: row;
     }
@@ -126,7 +132,7 @@ body {
     flex: 1;
 }
 
-@media (min-width:768px) {
+@media (min-width:600px) {
     .widgets-container__widget {
         margin: 0 2%;
     }
@@ -203,9 +209,15 @@ body {
     font-weight: 100;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 600px) {
     .aqi-widget__title {
-        font-size: 1.25em;
+        font-size: 1.5em;
+    }
+}
+
+@media (min-width: 1100px) {
+    .aqi-widget__title {
+        font-size: 1.875em;
     }
 }
 
@@ -221,9 +233,15 @@ body {
     line-height: 1;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 600px) {
     .aqi-widget__value {
-        font-size: 5em;
+        font-size: 9em;
+    }
+}
+
+@media (min-width: 1100px) {
+    .aqi-widget__value {
+        font-size: 11.5em;
     }
 }
 
@@ -239,9 +257,8 @@ body {
     font-size: 0.8em;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 600px) {
     .aqi-widget__description-label {
-        margin-bottom: 8px;
         font-size: 1em;
     }
 }
@@ -249,6 +266,12 @@ body {
 .aqi-widget__description-value {
     font-size: 1.15em;
     font-weight: 600;
+}
+
+@media (min-width: 1100px) {
+    .aqi-widget__description-value {
+        font-size: 1.125em;
+    }
 }
 
 @media (min-width: 1440px) {
@@ -270,7 +293,7 @@ body {
     background: linear-gradient(to right, #B6E2AF, #F9E4AF, #C163D3, #8A353A);
 }
 
-@media (min-width:768px) {
+@media (min-width:1100px) {
     .aqi-widget__meter {
         margin-bottom: 12px;
     }
@@ -294,7 +317,7 @@ body {
     font-size: 0.875em;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 600px) {
     .aqi-widget__meter-labels {
         font-size: 1em;
     }
@@ -311,19 +334,19 @@ body {
     color: #033C49;
 }
 
-@media (max-width:768px) {
+@media (max-width:599px) {
     .cam-widget {
         padding-bottom: 40%;
     }
 }
 
-@media (max-width:768px) {
+@media (max-width:599px) {
     .cam-widget__img-component {
         padding-bottom: 40%;
     }
 }
 
-@media (max-width:768px) {
+@media (max-width:599px) {
     .cam-widget__img-container {
         border-radius: 8px;
     }
@@ -344,7 +367,7 @@ body {
     align-items: center;
 }
 
-@media (max-width:768px) {
+@media (max-width:599px) {
     .cam-widget__link-container {
         display: none;
     }
@@ -357,13 +380,7 @@ body {
     text-decoration: none;
 }
 
-@media (min-width: 768px) {
-    .cam-widget__link {
-        font-size: 1.375em;
-    }
-}
-
-@media (min-width: 1440px) {
+@media (min-width: 600px) {
     .cam-widget__link {
         font-size: 1.625em;
     }
@@ -386,7 +403,7 @@ body {
     font-size: 0.875em;
 }
 
-@media (min-width:768px) {
+@media (min-width:1100px) {
     .continued-reading-widget__main-content-container {
         background: #f2f2f2;
     }
@@ -454,13 +471,7 @@ body {
     text-decoration: none;
 }
 
-@media (min-width: 768px) {
-    .continued-reading-widget__download-link {
-        font-size: 1.375em;
-    }
-}
-
-@media (min-width: 1440px) {
+@media (min-width: 600px) {
     .continued-reading-widget__download-link {
         font-size: 1.625em;
     }
