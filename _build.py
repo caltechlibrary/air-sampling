@@ -14,6 +14,7 @@ os.makedirs(outDir)
 shutil.copytree(imagesDir, f"{outDir}/{imagesDir}")
 shutil.copytree(stylesDir, f"{outDir}/{stylesDir}")
 shutil.copytree(scriptsDir, f"{outDir}/{scriptsDir}")
+shutil.copyfile("google9c66b3b3d14f628e.html", f"{outDir}/google9c66b3b3d14f628e.html")
 
 # Create index page
 subprocess.run([
