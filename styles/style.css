@@ -100,7 +100,7 @@ body {
 @media (min-width: 700px) {
     .header__date {
         margin-left: auto;
-        color: #7b7b7b;
+        color: #595959;
     }
 }
 
