@@ -368,27 +368,27 @@ body {
     object-fit: cover;
 }
 
-.cam-widget__link-container {
+.cam-widget__header-container {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 @media (max-width:599px) {
-    .cam-widget__link-container {
+    .cam-widget__header-container {
         display: none;
     }
 }
 
-.cam-widget__link {
+.cam-widget__header {
+    margin: 0;
     font-size: 1.15em;
     font-weight: 600;
     color: #033C49;
-    text-decoration: none;
 }
 
 @media (min-width: 600px) {
-    .cam-widget__link {
+    .cam-widget__header {
         font-size: 1.625em;
     }
 }
