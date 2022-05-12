@@ -32,8 +32,8 @@ This README file is in Markdown format, and is meant to provide a template for R
 Installation
 ------------
 
-Create an Amazon Dynamo DB table called air-sampling with primary key time
-(type number). The default settings are fine. 
+Create an Amazon Dynamo DB table called air-sampling-table with primary key
+'date' with type string and sort key called `time` with type number. The default settings are fine. 
 
 Then create an IAM role that allows access to the table. Click Add role, Select
 Lambda, Attach AWSLambdaBasicExecutionRole policy, and call the role
@@ -63,6 +63,15 @@ attach the Testing API key we created earlier. If you go to the api stage you
 should see a Invoke URL. Use this with curl to test:
 
 `curl https://URL/test/submit -H "x-api-key: KEY" --request POST -d @input.json
+
+For the read portion, we need to add the python-aqi dependency to lambda. I
+created get-air-values directory, and then installed the dependency on
+your local machine type `pip install --target ./get-air-values python-aqi`.
+Once you're ready to deploy type `cd get-air-values ` and `zip -r ../deployment.zip .`. 
+In Lambda create a new function, making sure to add the air-sampling role.
+Under the code section select "Upload from" and upload the zip file. Then
+select API Gateway and select the existing air_sampling endpoint. You can then
+get the contents at the URL
 
 Usage
 -----

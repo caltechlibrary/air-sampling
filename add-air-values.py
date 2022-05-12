@@ -4,12 +4,13 @@ from decimal import *
 
 print('Loading function')
 dynamodb = boto3.resource('dynamodb')
-table = dynamodb.Table('air-sampling')
+table = dynamodb.Table('air-sampling-table')
 
 def lambda_handler(event, context):
     if event['resource'] =='/submit':
         body = json.loads(event['body'])
         item = {
+            'date': body['date'],
             'time': Decimal(body['time']),
             'temp': Decimal(body['temp']),
             'pressure': Decimal(body['pressure']),
