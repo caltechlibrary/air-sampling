@@ -2,6 +2,7 @@
     let headerEl = document.querySelector(".header");
     let widgetsContainer = document.querySelector(".widgets-container");
     let metricWidgetEls = document.querySelectorAll(".metric-widget");
+    let metricChartEls = document.querySelectorAll(".metric-chart");
     let continuedReadingWidgetEl = document.querySelector(".continued-reading-widget");
 
     let mainController = (function() {
@@ -29,6 +30,7 @@
     // Initialize components
     Header(headerEl);
     for(let metricWidgetEl of metricWidgetEls) MetricWidget(metricWidgetEl);
+    for(let metricChartEl of metricChartEls) MetricChart(metricChartEl);
 
     mainController.onResize();
     window.addEventListener("resize", mainController.onResize);

@@ -658,28 +658,31 @@ body {
     margin-top: 0;
 }
 
-.metric-widget__chart {
+.metric-widget__metric-chart {
     flex: 1;
     height: 100%;
-    background: #fff;
-    overflow: auto hidden;
 }
 
 @media (min-width:800px) {
-    .metric-widget__chart {
+    .metric-widget__metric-chart {
         margin-top: -56px;
         height: calc(100% + 56px);
     }
 }
 
-.metric-widget__chart svg {
+.metric-chart {
+    background: #fff;
+    overflow: auto hidden;
+}
+
+.metric-chart__svg {
     display: block;
     height: 100%;
     width: auto;
 }
 
 @media (min-width:800px) {
-    .metric-widget__chart svg {
+    .metric-chart__svg {
         min-width: 792px;
     }
 }
