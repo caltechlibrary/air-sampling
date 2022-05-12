@@ -19,6 +19,15 @@
         }
     };
 
+    let parseMetricData = function(text) {
+        let rows = d3.csvParse(text);
+    };
+
+    // Fetch metric data
+    fetch("citaqs.txt")
+        .then(function(res) { return res.text() })
+        .then(parseMetricData);
+
     // Initialize components
     Header(headerEl);
     for(let metricWidgetEl of metricWidgetEls) MetricWidget(metricWidgetEl);
