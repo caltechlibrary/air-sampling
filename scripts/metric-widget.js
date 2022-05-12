@@ -33,8 +33,4 @@ let MetricWidget = function(root) {
         .then(function(res) { return res.json() })
         .then(initChart);
 
-    return {
-        root
-    };
-
 };
