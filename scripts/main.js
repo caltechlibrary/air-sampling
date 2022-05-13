@@ -35,7 +35,7 @@
             for(let metric in rows[i]) {
                 metricTrimmed = metric.trim();
                 if(metricTrimmed != timeMetric) {
-                    let time = parseFloat( rows[i][timeMetric].trim() );
+                    let time = parseFloat( rows[i][timeMetric].trim() ) * 1000;
                     let value = parseFloat( rows[i][metric].trim() );
                     metricData[metricTrimmed].data.push({ time, value });
                 }
