@@ -21,6 +21,17 @@
 
     let parseMetricData = function(text) {
         let rows = d3.csvParse(text);
+        let metricData = {};
+
+        for(let column of rows.columns) {
+            if(column != "Start Time") metricData[column] = [];
+        }
+
+        for(let i = 1; i < rows.length; i++) {
+            for(let metric in rows[i]) {
+                if(metric != "Start Time") metricData[metric].push({ time: rows[i]["Start Time"].trim(), value: rows[i][metric].trim() });
+            }
+        }
     };
 
     // Fetch metric data
