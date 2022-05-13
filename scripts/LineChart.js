@@ -36,7 +36,8 @@ function LineChart(data, {
         // Construct a line generator.
         const line = d3.line()
             .x(d => xScale(d.time))
-            .y(d => yScale(d.value));
+            .y(d => yScale(d.value))
+            .defined(d => !isNaN(d.value));
 
         const svg = d3.create("svg")
             .attr("viewBox", [0, 0, width, height]);
