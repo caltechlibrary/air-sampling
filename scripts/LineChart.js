@@ -24,13 +24,10 @@ function LineChart(data, {
         const xRange = [marginLeft, width - marginRight];
         const yRange = [height - marginBottom, marginTop];
 
-        // Create x axis month labels.
-        const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-
         // Construct scales and axes.
-        const xScale = d3.scaleUtc(xDomain, xRange);
+        const xScale = d3.scaleTime(xDomain, xRange);
         const yScale = d3.scaleLinear(yDomain, yRange);
-        const xAxis = d3.axisBottom(xScale).tickFormat(t => `${months[t.getMonth()]} ${t.getDate()}`).ticks(5).tickSize(0);
+        const xAxis = d3.axisBottom(xScale).tickFormat(d3.timeFormat("%b %d %I %p"));
         const yAxis = d3.axisLeft(yScale).ticks(3).tickSize(0);
 
         // Construct a line generator.
