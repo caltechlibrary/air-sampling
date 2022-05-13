@@ -24,8 +24,11 @@
         let timeMetric = "Start Time";
 
         for(let metric of rows.columns) {
-            metric = metric.trim();
-            if(metric != timeMetric) metricData[metric] = [];
+            metricTrimmed = metric.trim();
+            if(metricTrimmed != timeMetric) {
+                let unit = rows[0][metric].trim();
+                metricData[metricTrimmed] = { unit, data: [] };
+            }
         }
 
         for(let i = 1; i < rows.length; i++) {
@@ -34,7 +37,7 @@
                 if(metricTrimmed != timeMetric) {
                     let time = parseFloat( rows[i][timeMetric].trim() );
                     let value = parseFloat( rows[i][metric].trim() );
-                    metricData[metricTrimmed].push({ time, value });
+                    metricData[metricTrimmed].data.push({ time, value });
                 }
             }
         }

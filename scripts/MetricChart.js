@@ -1,10 +1,10 @@
-let MetricChart = function(root, data) {
+let MetricChart = function(root, metricData) {
 
     let metric = root.getAttribute("data-metric");
-    let chartSVG = LineChart(data, {
+    let chartSVG = LineChart(metricData.data, {
         width: 1000,
         height: 270,
-        label: `${metric} ug m\u207B\u00B3`,
+        label: `${metric} ${metricData.unit}`,
         color: "black"
     });
     
