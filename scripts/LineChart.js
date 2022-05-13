@@ -13,7 +13,7 @@ function LineChart(data, {
     } = {}) {
 
         // Compute values.
-        const X = d3.map(data, d => d.date);
+        const X = d3.map(data, d => d.time);
         const Y = d3.map(data, d => d.value);
 
         // Compute default domains.
@@ -35,7 +35,7 @@ function LineChart(data, {
 
         // Construct a line generator.
         const line = d3.line()
-            .x(d => xScale(d.date))
+            .x(d => xScale(d.time))
             .y(d => yScale(d.value));
 
         const svg = d3.create("svg")

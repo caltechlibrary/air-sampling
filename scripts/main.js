@@ -2,7 +2,6 @@
     let headerEl = document.querySelector(".header");
     let widgetsContainer = document.querySelector(".widgets-container");
     let metricWidgetEls = document.querySelectorAll(".metric-widget");
-    let metricChartEls = document.querySelectorAll(".metric-chart");
     let continuedReadingWidgetEl = document.querySelector(".continued-reading-widget");
 
     let onResize = function() {
@@ -24,13 +23,18 @@
         let metricData = {};
 
         for(let column of rows.columns) {
-            if(column != "Start Time") metricData[column] = [];
+            if(column != "Start Time") metricData[column.trim()] = [];
         }
 
         for(let i = 1; i < rows.length; i++) {
             for(let metric in rows[i]) {
-                if(metric != "Start Time") metricData[metric].push({ time: rows[i]["Start Time"].trim(), value: rows[i][metric].trim() });
+                if(metric != "Start Time") metricData[metric.trim()].push({ time: parseFloat(rows[i]["Start Time"].trim()), value: parseFloat(rows[i][metric].trim()) });
             }
+        }
+
+        for(let metric in metricData) {
+            let metricChartEl = document.querySelector(`.metric-chart[data-metric='${metric}']`);
+            if(metricChartEl) MetricChart(metricChartEl, metricData[metric]);
         }
     };
 
@@ -42,7 +46,6 @@
     // Initialize components
     Header(headerEl);
     for(let metricWidgetEl of metricWidgetEls) MetricWidget(metricWidgetEl);
-    for(let metricChartEl of metricChartEls) MetricChart(metricChartEl);
 
     onResize();
     window.addEventListener("resize", onResize);
