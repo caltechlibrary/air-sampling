@@ -21,14 +21,21 @@
     let parseMetricData = function(text) {
         let rows = d3.csvParse(text);
         let metricData = {};
+        let timeMetric = "Start Time";
 
-        for(let column of rows.columns) {
-            if(column != "Start Time") metricData[column.trim()] = [];
+        for(let metric of rows.columns) {
+            metric = metric.trim();
+            if(metric != timeMetric) metricData[metric] = [];
         }
 
         for(let i = 1; i < rows.length; i++) {
             for(let metric in rows[i]) {
-                if(metric != "Start Time") metricData[metric.trim()].push({ time: parseFloat(rows[i]["Start Time"].trim()), value: parseFloat(rows[i][metric].trim()) });
+                metricTrimmed = metric.trim();
+                if(metricTrimmed != timeMetric) {
+                    let time = parseFloat( rows[i][timeMetric].trim() );
+                    let value = parseFloat( rows[i][metric].trim() );
+                    metricData[metricTrimmed].push({ time, value });
+                }
             }
         }
 
