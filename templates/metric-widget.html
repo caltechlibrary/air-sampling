@@ -2,9 +2,9 @@
     <div class="metric-widget__header-container">
         <div class="metric-widget__primary-header-subcontainer">
             <h2 class="metric-widget__header">
-                <button class="metric-widget__toggle-btn" aria-controls="${it}-panel" aria-expanded="false">
+                <button class="metric-widget__toggle-btn" aria-controls="${it.metric}-panel" aria-expanded="false">
                     <span class="metric-widget__toggle-icon" aria-label="Dropdown icon">${svg/triangle.svg()}</span>
-                    <span>${it}</span>
+                    <span>${it.label}</span>
                 </button>
             </h2>
             <span class="metric-widget__quality-label">Good</span>
@@ -12,10 +12,10 @@
         </div>
         <span class="metric-widget__preview-snippet">Enjoy your outdoor activities.</span>
     </div>
-    <div id="${it}-panel" class="metric-widget__panel metric-widget__panel--collapsed">
+    <div id="${it.metric}-panel" class="metric-widget__panel metric-widget__panel--collapsed">
         <div class="metric-widget__description">
             <p>If you are unusually sensitive to particle pollution, consider reducing your activity level or shorten the amount of time you are active outdoors</p>
         </div>
-        ${it:metric-chart.html()}
+        ${it.metric:metric-chart.html()}
     </div>
 </div>
