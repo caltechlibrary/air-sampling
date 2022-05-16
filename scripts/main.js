@@ -1,5 +1,6 @@
 (function() {
     let headerEl = document.querySelector(".header");
+    let aqiEl = document.querySelector(".aqi-widget");
     let widgetsContainer = document.querySelector(".widgets-container");
     let metricWidgetEls = document.querySelectorAll(".metric-widget");
     let continuedReadingWidgetEl = document.querySelector(".continued-reading-widget");
@@ -20,11 +21,12 @@
 
     let parseRealtimeMetricData = function(data) {
         for(let metric in data) {
+            let metricVal = parseFloat(data[metric]);
             if(metric == "aqi") {
-                // to do
+                AqiWidget(aqiEl, metricVal);
             } else {
                 let metricWidgetEl = document.querySelector(`.metric-widget[data-metric='${metric}']`);
-                if(metricWidgetEl) MetricWidget(metricWidgetEl, data[metric]);
+                if(metricWidgetEl) MetricWidget(metricWidgetEl, metricVal);
             }
         }
     };

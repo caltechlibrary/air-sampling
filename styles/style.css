@@ -309,7 +309,6 @@ body {
 .aqi-widget__meter-indicator {
     position: absolute;
     top: 0;
-    left: 14.6%;
     bottom: 0;
     margin: auto;
     width: 4px;
