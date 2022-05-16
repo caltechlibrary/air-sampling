@@ -7,20 +7,20 @@
                     <div class="continued-reading-widget__headline">
                         <img 
                             class="continued-reading-widget__headline-img" 
-                            src="https://caltech-prod.s3.amazonaws.com/main/images/2021-Campus-Aerials-00513-WE.336e18bc.fill-1600x810-c100.jpg" 
+                            src="${it.headline.img}" 
                             alt="Headline article picture" 
                             width="1600" 
                             height="811"
                         >
-                        <a class="continued-reading-widget__link" href="">Fifty Years of Clearing the Skies</a>
+                        <a class="continued-reading-widget__link" href="${it.headline.link}">${it.headline.title}</a>
                     </div>
                 </div>
                 <div class="continued-reading-widget__divider"></div>
                 <div class="continued-reading-widget__links-container">
                     <h2 class="continued-reading-widget__header">USEFUL LINKS</h2>
-                    <a class="continued-reading-widget__link" href="">link 1</a>
-                    <a class="continued-reading-widget__link" href="">link 2</a>
-                    <a class="continued-reading-widget__link" href="">nicelonglinkthatwillbeuseful.org</a>
+                    ${for(it.links)}
+                        <a class="continued-reading-widget__link" href="${it.link}">${it.title}</a>
+                    ${endfor}
                 </div>
             </div>
         </div>
