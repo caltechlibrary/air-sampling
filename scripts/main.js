@@ -61,14 +61,14 @@
         }
     };
 
+    Header(headerEl);
+
     parseRealtimeMetricData({"NO": 1.05, "PM2.5": 6.0, "O3": 10.9, "time": 1579996805.0, "CO": 1.0, "PM10": 19.6, "NO2": 33.5, "temp": 21.1, "date": "2022-05-16", "SO2": 1.13, "pressure": 740.7, "NOy": 38.5, "aqi": 31.0});
 
     // Fetch metric data
     fetch("citaqs.txt")
         .then(function(res) { return res.text() })
         .then(parseMetricData);
-
-    Header(headerEl);
 
     onResize();
     window.addEventListener("resize", onResize);
