@@ -1,6 +1,7 @@
-let MetricWidget = function(root) {
+let MetricWidget = function(root, value) {
 
     let toggleBtn = root.querySelector(".metric-widget__toggle-btn");
+    let valueLabel = root.querySelector(".metric-widget__value-label");
     let previewSnippet = root.querySelector(".metric-widget__preview-snippet");
     let contentPanel = root.querySelector(".metric-widget__panel");
 
@@ -16,6 +17,7 @@ let MetricWidget = function(root) {
         }
     };
 
+    valueLabel.textContent = value;
     toggleBtn.addEventListener("click", togglePanel);
 
 };
