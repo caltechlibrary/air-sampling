@@ -29,7 +29,7 @@
                 AqiWidget(aqiEl, metricVal, metricMapping);
             } else {
                 let metricWidgetEl = document.querySelector(`.metric-widget[data-metric='${metric}']`);
-                if(metricWidgetEl) MetricWidget(metricWidgetEl, metricVal);
+                if(metricWidgetEl) MetricWidget(metricWidgetEl, metricVal, metricMapping);
             }
         }
     };

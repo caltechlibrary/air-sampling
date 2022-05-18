@@ -7,88 +7,88 @@
         "Very Unhealthy": [201, 300],
         "Hazardous": [301]
     },
-    "ozone": {
+    "O3": {
         "Label 1": {
             "range": [0, 5],
-            "label": "Label for 0-5."
+            "snippet": "Label for 0-5."
         },
         "Label 2": {
             "range": [6, 15],
-            "label": "Label for 6-15."
+            "snippet": "Label for 6-15."
         },
         "Label 3": {
             "range": [16],
-            "label": "Label for 16 on."
+            "snippet": "Label for 16 on."
         }
     },
-    "pm2.5": {
+    "PM2.5": {
         "Label 1": {
             "range": [0, 5],
-            "label": "Label for 0-5."
+            "snippet": "Label for 0-5."
         },
         "Label 2": {
             "range": [6, 15],
-            "label": "Label for 6-15."
+            "snippet": "Label for 6-15."
         },
         "Label 3": {
             "range": [16],
-            "label": "Label for 16 on."
+            "snippet": "Label for 16 on."
         }
     },
-    "pm10": {
+    "PM10": {
         "Label 1": {
             "range": [0, 5],
-            "label": "Label for 0-5."
+            "snippet": "Label for 0-5."
         },
         "Label 2": {
             "range": [6, 15],
-            "label": "Label for 6-15."
+            "snippet": "Label for 6-15."
         },
         "Label 3": {
             "range": [16],
-            "label": "Label for 16 on."
+            "snippet": "Label for 16 on."
         }
     },
-    "co": {
+    "CO": {
         "Label 1": {
             "range": [0, 5],
-            "label": "Label for 0-5."
+            "snippet": "Label for 0-5."
         },
         "Label 2": {
             "range": [6, 15],
-            "label": "Label for 6-15."
+            "snippet": "Label for 6-15."
         },
         "Label 3": {
             "range": [16],
-            "label": "Label for 16 on."
+            "snippet": "Label for 16 on."
         }
     },
-    "no2": {
+    "NO2": {
         "Label 1": {
             "range": [0, 5],
-            "label": "Label for 0-5."
+            "snippet": "Label for 0-5."
         },
         "Label 2": {
             "range": [6, 15],
-            "label": "Label for 6-15."
+            "snippet": "Label for 6-15."
         },
         "Label 3": {
             "range": [16],
-            "label": "Label for 16 on."
+            "snippet": "Label for 16 on."
         }
     },
-    "so2": {
+    "SO2": {
         "Label 1": {
             "range": [0, 5],
-            "label": "Label for 0-5."
+            "snippet": "Label for 0-5."
         },
         "Label 2": {
             "range": [6, 15],
-            "label": "Label for 6-15."
+            "snippet": "Label for 6-15."
         },
         "Label 3": {
             "range": [16],
-            "label": "Label for 16 on."
+            "snippet": "Label for 16 on."
         }
     }
 }
