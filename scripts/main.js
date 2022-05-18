@@ -19,15 +19,14 @@
         }
     };
 
-    let parseMappingsData = function(data) {
-        console.log(data);
-    };
-
     let parseRealtimeMetricData = function(data) {
-        for(let metric in data) {
-            let metricVal = parseFloat(data[metric]);
+        let [values, mappings] = data;
+
+        for(let metric in values) {
+            let metricVal = parseFloat(values[metric]);
+            let metricMapping = mappings[metric];
             if(metric == "aqi") {
-                AqiWidget(aqiEl, metricVal);
+                AqiWidget(aqiEl, metricVal, metricMapping);
             } else {
                 let metricWidgetEl = document.querySelector(`.metric-widget[data-metric='${metric}']`);
                 if(metricWidgetEl) MetricWidget(metricWidgetEl, metricVal);
@@ -67,15 +66,18 @@
 
     Header(headerEl);
 
-    // Fetch aqi/metric value mappings
-    fetch("mappings.json")
-        .then(function(res) { return res.json() })
-        .then(parseMappingsData);
-
-    // Fetch real time aqi/metric values
-    fetch("https://z44g6g2rrl.execute-api.us-west-2.amazonaws.com/test/get_air")
-        .then(function(res) { return res.json() })
-        .then(parseRealtimeMetricData);
+    // Fetch aqi/metric value mappings and real time values.
+    // This method to wait on multiple fetches (mapping and real time data files) is taken from
+    // https://gomakethings.com/waiting-for-multiple-all-api-responses-to-complete-with-the-vanilla-js-promise.all-method/
+    Promise.all([
+        fetch("https://z44g6g2rrl.execute-api.us-west-2.amazonaws.com/test/get_air"),
+        fetch("mappings.json")
+    ]).then(function(responses) {
+        // Get a JSON object from each of the responses.
+        return Promise.all(responses.map(function (response) {
+            return response.json();
+        }));
+    }).then(parseRealtimeMetricData);
 
     // Fetch metric data
     fetch("citaqs.txt")
