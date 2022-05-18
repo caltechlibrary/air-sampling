@@ -19,6 +19,10 @@
         }
     };
 
+    let parseMappingsData = function(data) {
+        console.log(data);
+    };
+
     let parseRealtimeMetricData = function(data) {
         for(let metric in data) {
             let metricVal = parseFloat(data[metric]);
@@ -62,6 +66,11 @@
     };
 
     Header(headerEl);
+
+    // Fetch aqi/metric value mappings
+    fetch("mappings.json")
+        .then(function(res) { return res.json() })
+        .then(parseMappingsData);
 
     // Fetch real time aqi/metric values
     fetch("https://z44g6g2rrl.execute-api.us-west-2.amazonaws.com/test/get_air")
