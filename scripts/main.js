@@ -19,29 +19,21 @@
         }
     };
 
-    let parseRealtimeDataRes = function(res) {
-        if(res.ok) {
-            res.json().then(parseRealtimeMetricData);
-        } else {
-            onRealtimeMetricDataFail();
-        }
-    };
-
     let parseRealtimeMetricData = function(data) {
-        for(let metric in data) {
-            let metricVal = parseFloat(data[metric]);
-            if(metric == "aqi") {
-                AqiWidget(aqiEl, metricVal);
-            } else {
-                let metricWidgetEl = document.querySelector(`.metric-widget[data-metric='${metric}']`);
-                if(metricWidgetEl) MetricWidget(metricWidgetEl, metricVal);
+        if(data) {
+            for(let metric in data) {
+                let metricVal = parseFloat(data[metric]);
+                if(metric == "aqi") {
+                    AqiWidget(aqiEl, metricVal);
+                } else {
+                    let metricWidgetEl = document.querySelector(`.metric-widget[data-metric='${metric}']`);
+                    if(metricWidgetEl) MetricWidget(metricWidgetEl, metricVal);
+                }
             }
+        } else {
+            AqiWidget(aqiEl);
+            for(let metricWidgetEl of metricWidgetEls) MetricWidget(metricWidgetEl);
         }
-    };
-
-    let onRealtimeMetricDataFail = function() {
-        AqiWidget(aqiEl);
-        for(let metricWidgetEl of metricWidgetEls) MetricWidget(metricWidgetEl);
     };
 
     let parseMetricData = function(text) {
@@ -78,7 +70,8 @@
 
     // Fetch real time aqi/metric values
     fetch("https://z44g6g2rrl.execute-api.us-west-2.amazonaws.com/test/get_air")
-        .then(parseRealtimeDataRes);
+        .then(function(res) { if(res.ok) return res.json(); })
+        .then(parseRealtimeMetricData);
 
     // Fetch metric data
     fetch("citaqs.txt")
