@@ -17,7 +17,12 @@ let MetricWidget = function(root, value) {
         }
     };
 
-    valueLabel.textContent = value;
+    if(value) {
+        valueLabel.textContent = value;
+    } else {
+        valueLabel.textContent = "Not available";
+    }
+    
     toggleBtn.addEventListener("click", togglePanel);
 
 };
