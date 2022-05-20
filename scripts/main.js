@@ -19,6 +19,14 @@
         }
     };
 
+    let parseRealtimeDataRes = function(res) {
+        if(res.ok) {
+            res.json().then(parseRealtimeMetricData);
+        } else {
+            onRealtimeMetricDataFail();
+        }
+    };
+
     let parseRealtimeMetricData = function(data) {
         for(let metric in data) {
             let metricVal = parseFloat(data[metric]);
@@ -29,6 +37,11 @@
                 if(metricWidgetEl) MetricWidget(metricWidgetEl, metricVal);
             }
         }
+    };
+
+    let onRealtimeMetricDataFail = function() {
+        AqiWidget(aqiEl);
+        for(let metricWidgetEl of metricWidgetEls) MetricWidget(metricWidgetEl);
     };
 
     let parseMetricData = function(text) {
@@ -65,8 +78,7 @@
 
     // Fetch real time aqi/metric values
     fetch("https://z44g6g2rrl.execute-api.us-west-2.amazonaws.com/test/get_air")
-        .then(function(res) { return res.json() })
-        .then(parseRealtimeMetricData);
+        .then(parseRealtimeDataRes);
 
     // Fetch metric data
     fetch("citaqs.txt")
