@@ -237,12 +237,21 @@ body {
 .aqi-widget__value {
     font-size: 11.875em;
     font-weight: 600;
+    text-align: center;
     line-height: 1;
+}
+
+.aqi-widget--data-unavailble .aqi-widget__value {
+    font-size: 2.75em;
 }
 
 @media (min-width: 600px) {
     .aqi-widget__value {
         font-size: 9em;
+    }
+
+    .aqi-widget--data-unavailble .aqi-widget__value {
+        font-size: 2.5em;
     }
 }
 
@@ -250,12 +259,20 @@ body {
     .aqi-widget__value {
         font-size: 11.5em;
     }
+
+    .aqi-widget--data-unavailble .aqi-widget__value {
+        font-size: 3em;
+    }
 }
 
 @media (min-width: 1440px) {
     .aqi-widget__value {
         margin: 24px 0;
         font-size: 15.25em;
+    }
+
+    .aqi-widget--data-unavailble .aqi-widget__value {
+        font-size: 3.5em;
     }
 }
 
@@ -315,6 +332,10 @@ body {
     height: 110%;
     border: 1px solid #000;
     background: #fff;
+}
+
+.aqi-widget--data-unavailble .aqi-widget__meter-indicator {
+    display: none;
 }
 
 .aqi-widget__meter-labels {
