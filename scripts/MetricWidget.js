@@ -28,14 +28,6 @@ let MetricWidget = function(root, value, mapping) {
                 previewSnippet.textContent = level.snippet;
             }
         }
-
-        for(let label in mapping) {
-            let {range, snippet} = mapping[label];
-            if((range[0] <= value && value <= range[1]) || (range.length == 1 && range[0] <= value)) {
-                qualityLabel.textContent = label;
-                previewSnippet.textContent = snippet;
-            }
-        }
     } else {
         valueLabel.textContent = "Not available";
     }
