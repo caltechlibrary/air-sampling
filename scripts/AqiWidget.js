@@ -12,7 +12,7 @@ let AqiWidget = function(root, value, levelObj) {
         meterEl.setAttribute("aria-valuenow", value);
         inidicatorEl.style.left = `${(value / maxAqiValue) * 100}%`;
     } else {
-        root.classList.add("aqi-widget--data-unavailble");
+        root.classList.add("aqi-widget--data-unavailable");
         valueEl.textContent = "Not available";
         meterEl.setAttribute("aria-valuetext", "Not available");
     }

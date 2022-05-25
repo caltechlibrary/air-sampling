@@ -241,7 +241,7 @@ body {
     line-height: 1;
 }
 
-.aqi-widget--data-unavailble .aqi-widget__value {
+.aqi-widget--data-unavailable .aqi-widget__value {
     margin: 24px 0;
     font-size: 2.75em;
 }
@@ -251,7 +251,7 @@ body {
         font-size: 9em;
     }
 
-    .aqi-widget--data-unavailble .aqi-widget__value {
+    .aqi-widget--data-unavailable .aqi-widget__value {
         font-size: 2.5em;
     }
 }
@@ -261,7 +261,7 @@ body {
         font-size: 11.5em;
     }
 
-    .aqi-widget--data-unavailble .aqi-widget__value {
+    .aqi-widget--data-unavailable .aqi-widget__value {
         font-size: 3em;
     }
 }
@@ -272,7 +272,7 @@ body {
         font-size: 15.25em;
     }
 
-    .aqi-widget--data-unavailble .aqi-widget__value {
+    .aqi-widget--data-unavailable .aqi-widget__value {
         font-size: 3.5em;
     }
 }
@@ -335,7 +335,7 @@ body {
     background: #fff;
 }
 
-.aqi-widget--data-unavailble .aqi-widget__meter-indicator {
+.aqi-widget--data-unavailable .aqi-widget__meter-indicator {
     display: none;
 }
 
