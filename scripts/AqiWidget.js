@@ -6,16 +6,23 @@ let AqiWidget = function(root, value, mapping) {
     let inidicatorEl = root.querySelector(".aqi-widget__meter-indicator");
     let maxAqiValue = parseInt(meterEl.getAttribute("aria-valuemax"));
 
-    valueEl.textContent = value;
+    if(value) {
+        valueEl.textContent = value;
 
-    for(let label in mapping) {
-        let range = mapping[label];
-        if((range[0] <= value && value <= range[1]) || (range.length == 1 && range[0] <= value)) {
-            descriptionEl.textContent = label;
+        for(let label in mapping) {
+            let range = mapping[label];
+            if((range[0] <= value && value <= range[1]) || (range.length == 1 && range[0] <= value)) {
+                descriptionEl.textContent = label;
+            }
         }
-    }
 
-    meterEl.setAttribute("aria-valuenow", value);
-    inidicatorEl.style.left = `${(value / maxAqiValue) * 100}%`;
+        meterEl.setAttribute("aria-valuenow", value);
+        inidicatorEl.style.left = `${(value / maxAqiValue) * 100}%`;
+    } else {
+        root.classList.add("aqi-widget--data-unavailble");
+        valueEl.textContent = "Not available";
+        descriptionEl.textContent = "Not available";
+        meterEl.setAttribute("aria-valuetext", "Not available");
+    }
 
 };

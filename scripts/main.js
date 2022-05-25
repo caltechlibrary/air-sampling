@@ -22,15 +22,20 @@
     let parseRealtimeMetricData = function(data) {
         let [values, mappings] = data;
 
-        for(let metric in values) {
-            let metricVal = parseFloat(values[metric]);
-            let metricMapping = mappings[metric];
-            if(metric == "aqi") {
-                AqiWidget(aqiEl, metricVal, metricMapping);
-            } else {
-                let metricWidgetEl = document.querySelector(`.metric-widget[data-metric='${metric}']`);
-                if(metricWidgetEl) MetricWidget(metricWidgetEl, metricVal, metricMapping);
+        if(values) {
+            for(let metric in values) {
+                let metricVal = parseFloat(values[metric]);
+                let metricMap = mappings[metric];
+                if(metric == "aqi") {
+                    AqiWidget(aqiEl, metricVal, metricMap);
+                } else {
+                    let metricWidgetEl = document.querySelector(`.metric-widget[data-metric='${metric}']`);
+                    if(metricWidgetEl) MetricWidget(metricWidgetEl, metricVal, metricMap);
+                }
             }
+        } else {
+            AqiWidget(aqiEl);
+            for(let metricWidgetEl of metricWidgetEls) MetricWidget(metricWidgetEl);
         }
     };
 
@@ -75,7 +80,7 @@
     ]).then(function(responses) {
         // Get a JSON object from each of the responses.
         return Promise.all(responses.map(function (response) {
-            return response.json();
+            if(response.ok) return response.json();
         }));
     }).then(parseRealtimeMetricData);
 

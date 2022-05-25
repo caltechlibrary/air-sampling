@@ -18,15 +18,22 @@ let MetricWidget = function(root, value, mapping) {
         }
     };
 
-    for(let label in mapping) {
-        let {range, snippet} = mapping[label];
-        if((range[0] <= value && value <= range[1]) || (range.length == 1 && range[0] <= value)) {
-            qualityLabel.textContent = label;
-            previewSnippet.textContent = snippet;
-        }
-    }
+    if(value) {
+        valueLabel.textContent = value;
 
-    valueLabel.textContent = value;
+        for(let label in mapping) {
+            let {range, snippet} = mapping[label];
+            if((range[0] <= value && value <= range[1]) || (range.length == 1 && range[0] <= value)) {
+                qualityLabel.textContent = label;
+                previewSnippet.textContent = snippet;
+            }
+        }
+    } else {
+        valueLabel.textContent = "Not available";
+        qualityLabel.textContent = "Not available";
+        previewSnippet.textContent = "Not available";
+    }
+    
     toggleBtn.addEventListener("click", togglePanel);
 
 };
