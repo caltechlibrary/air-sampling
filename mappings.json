@@ -10,31 +10,31 @@
     "O3": [
         { "label": "Label 0-5", "max": 5, "snippet": "Snippet for value within 0-5." },
         { "label": "Label 6-15", "max": 15, "snippet": "Snippet for value within 6-15." },
-        { "label": "Label 16+", "snippet": "Snippet for value above 16.." }
+        { "label": "Label 16+", "snippet": "Snippet for value above 16." }
     ],
     "PM2.5": [
         { "label": "Label 0-5", "max": 5, "snippet": "Snippet for value within 0-5." },
         { "label": "Label 6-15", "max": 15, "snippet": "Snippet for value within 6-15." },
-        { "label": "Label 16+", "snippet": "Snippet for value above 16.." }
+        { "label": "Label 16+", "snippet": "Snippet for value above 16." }
     ],
     "PM10": [
         { "label": "Label 0-5", "max": 5, "snippet": "Snippet for value within 0-5." },
         { "label": "Label 6-15", "max": 15, "snippet": "Snippet for value within 6-15." },
-        { "label": "Label 16+", "snippet": "Snippet for value above 16.." }
+        { "label": "Label 16+", "snippet": "Snippet for value above 16." }
     ],
     "CO": [
         { "label": "Label 0-5", "max": 5, "snippet": "Snippet for value within 0-5." },
         { "label": "Label 6-15", "max": 15, "snippet": "Snippet for value within 6-15." },
-        { "label": "Label 16+", "snippet": "Snippet for value above 16.." }
+        { "label": "Label 16+", "snippet": "Snippet for value above 16." }
     ],
     "NO2": [
         { "label": "Label 0-5", "max": 5, "snippet": "Snippet for value within 0-5." },
         { "label": "Label 6-15", "max": 15, "snippet": "Snippet for value within 6-15." },
-        { "label": "Label 16+", "snippet": "Snippet for value above 16.." }
+        { "label": "Label 16+", "snippet": "Snippet for value above 16." }
     ],
     "SO2": [
         { "label": "Label 0-5", "max": 5, "snippet": "Snippet for value within 0-5." },
         { "label": "Label 6-15", "max": 15, "snippet": "Snippet for value within 6-15." },
-        { "label": "Label 16+", "snippet": "Snippet for value above 16.." }
+        { "label": "Label 16+", "snippet": "Snippet for value above 16." }
     ]
 }
