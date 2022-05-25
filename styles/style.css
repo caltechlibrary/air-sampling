@@ -242,6 +242,7 @@ body {
 }
 
 .aqi-widget--data-unavailble .aqi-widget__value {
+    margin: 24px 0;
     font-size: 2.75em;
 }
 
