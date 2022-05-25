@@ -21,7 +21,6 @@ let AqiWidget = function(root, value, mapping) {
     } else {
         root.classList.add("aqi-widget--data-unavailble");
         valueEl.textContent = "Not available";
-        descriptionEl.textContent = "Not available";
         meterEl.setAttribute("aria-valuetext", "Not available");
     }
 

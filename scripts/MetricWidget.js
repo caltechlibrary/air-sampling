@@ -38,8 +38,6 @@ let MetricWidget = function(root, value, mapping) {
         }
     } else {
         valueLabel.textContent = "Not available";
-        qualityLabel.textContent = "Not available";
-        previewSnippet.textContent = "Not available";
     }
     
     toggleBtn.addEventListener("click", togglePanel);
