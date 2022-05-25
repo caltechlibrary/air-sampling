@@ -26,6 +26,7 @@ let MetricWidget = function(root, value, mapping) {
             if(value < level.max || i == mapping.length - 1) {
                 qualityLabel.textContent = level.label;
                 previewSnippet.textContent = level.snippet;
+                break;
             }
         }
     } else {

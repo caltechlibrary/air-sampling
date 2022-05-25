@@ -13,6 +13,7 @@ let AqiWidget = function(root, value, mapping) {
             let level = mapping[i]
             if(value < level.max || i == mapping.length - 1) {
                 descriptionEl.textContent = level.label;
+                break;
             }
         }
 
