@@ -9,10 +9,10 @@ let AqiWidget = function(root, value, mapping) {
     if(value) {
         valueEl.textContent = value;
 
-        for(let label in mapping) {
-            let range = mapping[label];
-            if((range[0] <= value && value <= range[1]) || (range.length == 1 && range[0] <= value)) {
-                descriptionEl.textContent = label;
+        for(let i = 0; i < mapping.length; i++) {
+            let level = mapping[i]
+            if(value < level.max || i == mapping.length - 1) {
+                descriptionEl.textContent = level.label;
             }
         }
 

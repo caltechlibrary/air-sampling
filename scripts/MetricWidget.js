@@ -21,6 +21,14 @@ let MetricWidget = function(root, value, mapping) {
     if(value) {
         valueLabel.textContent = value;
 
+        for(let i = 0; i < mapping.length; i++) {
+            let level = mapping[i]
+            if(value < level.max || i == mapping.length - 1) {
+                qualityLabel.textContent = level.label;
+                previewSnippet.textContent = level.snippet;
+            }
+        }
+
         for(let label in mapping) {
             let {range, snippet} = mapping[label];
             if((range[0] <= value && value <= range[1]) || (range.length == 1 && range[0] <= value)) {
