@@ -26,11 +26,21 @@
             for(let metric in values) {
                 let metricVal = parseFloat(values[metric]);
                 let metricMap = mappings[metric];
+                let metricLvl;
+
+                for(let i = 0; i < metricMap.length; i++) {
+                    let level = metricMap[i]
+                    if(metricVal < level.max || i == metricMap.length - 1) {
+                        metricLvl = level;
+                        break;
+                    }
+                }
+
                 if(metric == "aqi") {
-                    AqiWidget(aqiEl, metricVal, metricMap);
+                    AqiWidget(aqiEl, metricVal, metricLvl);
                 } else {
                     let metricWidgetEl = document.querySelector(`.metric-widget[data-metric='${metric}']`);
-                    if(metricWidgetEl) MetricWidget(metricWidgetEl, metricVal, metricMap);
+                    if(metricWidgetEl) MetricWidget(metricWidgetEl, metricVal, metricLvl);
                 }
             }
         } else {

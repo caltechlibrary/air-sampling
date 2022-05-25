@@ -1,4 +1,4 @@
-let MetricWidget = function(root, value, mapping) {
+let MetricWidget = function(root, value, levelObj) {
 
     let toggleBtn = root.querySelector(".metric-widget__toggle-btn");
     let qualityLabel = root.querySelector(".metric-widget__quality-label");
@@ -20,15 +20,8 @@ let MetricWidget = function(root, value, mapping) {
 
     if(value) {
         valueLabel.textContent = value;
-
-        for(let i = 0; i < mapping.length; i++) {
-            let level = mapping[i]
-            if(value < level.max || i == mapping.length - 1) {
-                qualityLabel.textContent = level.label;
-                previewSnippet.textContent = level.snippet;
-                break;
-            }
-        }
+        qualityLabel.textContent = levelObj.label;
+        previewSnippet.textContent = levelObj.snippet;
     } else {
         valueLabel.textContent = "Not available";
     }

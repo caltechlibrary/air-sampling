@@ -1,4 +1,4 @@
-let AqiWidget = function(root, value, mapping) {
+let AqiWidget = function(root, value, levelObj) {
 
     let valueEl = root.querySelector(".aqi-widget__value");
     let descriptionEl = root.querySelector(".aqi-widget__description-value");
@@ -8,15 +8,7 @@ let AqiWidget = function(root, value, mapping) {
 
     if(value) {
         valueEl.textContent = value;
-
-        for(let i = 0; i < mapping.length; i++) {
-            let level = mapping[i]
-            if(value < level.max || i == mapping.length - 1) {
-                descriptionEl.textContent = level.label;
-                break;
-            }
-        }
-
+        descriptionEl.textContent = levelObj.label;
         meterEl.setAttribute("aria-valuenow", value);
         inidicatorEl.style.left = `${(value / maxAqiValue) * 100}%`;
     } else {
