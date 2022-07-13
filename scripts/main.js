@@ -1,9 +1,18 @@
 (function() {
-    let headerEl = document.querySelector(".header");
     let aqiEl = document.querySelector(".aqi-widget");
     let widgetsContainer = document.querySelector(".widgets-container");
     let metricWidgetEls = document.querySelectorAll(".metric-widget");
     let continuedReadingWidgetEl = document.querySelector(".continued-reading-widget");
+
+    let initializeHeader = function() {
+        let headerEl = document.querySelector(".header");
+        let dateEl = headerEl.querySelector(".header__date");
+        let date = new Date();
+        let time = date.toLocaleTimeString("en-US", { hour12: true, timeStyle: "short" });
+        let day = date.toLocaleDateString("en-US", { dateStyle: "medium" })
+        let dateTextNode = document.createTextNode(`${day} ${time}`);
+        dateEl.appendChild(dateTextNode);
+    };
 
     let onResize = function() {
         if(window.innerWidth >= 1100 && widgetsContainer.childElementCount == 2) {
@@ -79,7 +88,7 @@
         }
     };
 
-    Header(headerEl);
+    initializeHeader();
 
     // Fetch aqi/metric value mappings and real time values.
     // This method to wait on multiple fetches (mapping and real time data files) is taken from
