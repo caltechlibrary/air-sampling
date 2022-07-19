@@ -1,5 +1,4 @@
 (function() {
-    let aqiEl = document.querySelector(".aqi-widget");
     let widgetsContainer = document.querySelector(".widgets-container");
     let metricWidgetEls = document.querySelectorAll(".metric-widget");
     let continuedReadingWidgetEl = document.querySelector(".continued-reading-widget");
@@ -12,6 +11,26 @@
         let day = date.toLocaleDateString("en-US", { dateStyle: "medium" })
         let dateTextNode = document.createTextNode(`${day} ${time}`);
         dateEl.appendChild(dateTextNode);
+    };
+
+    let initializeAqiWidget = function(value, levelObj) {
+        let aqiEl = document.querySelector(".aqi-widget");
+        let valueEl = aqiEl.querySelector(".aqi-widget__value");
+        let descriptionEl = aqiEl.querySelector(".aqi-widget__description-value");
+        let meterEl = aqiEl.querySelector(".aqi-widget__meter");
+        let inidicatorEl = aqiEl.querySelector(".aqi-widget__meter-indicator");
+        let maxAqiValue = parseInt(meterEl.getAttribute("aria-valuemax"));
+
+        if(value) {
+            valueEl.textContent = value;
+            descriptionEl.textContent = levelObj.label;
+            meterEl.setAttribute("aria-valuenow", value);
+            inidicatorEl.style.left = `${(value / maxAqiValue) * 100}%`;
+        } else {
+            aqiEl.classList.add("aqi-widget--data-unavailable");
+            valueEl.textContent = "Not available";
+            meterEl.setAttribute("aria-valuetext", "Not available");
+        }
     };
 
     let onResize = function() {
@@ -46,14 +65,14 @@
                 }
 
                 if(metric == "aqi") {
-                    AqiWidget(aqiEl, metricVal, metricLvl);
+                    initializeAqiWidget(metricVal, metricLvl);
                 } else {
                     let metricWidgetEl = document.querySelector(`.metric-widget[data-metric='${metric}']`);
                     if(metricWidgetEl) MetricWidget(metricWidgetEl, metricVal, metricLvl);
                 }
             }
         } else {
-            AqiWidget(aqiEl);
+            initializeAqiWidget();
             for(let metricWidgetEl of metricWidgetEls) MetricWidget(metricWidgetEl);
         }
     };
