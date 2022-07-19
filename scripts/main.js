@@ -56,6 +56,17 @@
         }
     };
 
+    let initializeMetricWidget = function(metric, value, label, snippet) {
+        let metricWidgetEl = document.querySelector(`.metric-widget[data-metric='${metric}']`);
+        let valueLabel = metricWidgetEl.querySelector(".metric-widget__value-label");
+        let qualityLabel = metricWidgetEl.querySelector(".metric-widget__quality-label");
+        let previewSnippet = metricWidgetEl.querySelector(".metric-widget__preview-snippet");
+
+        valueLabel.textContent = value;
+        qualityLabel.textContent = label;
+        previewSnippet.textContent = snippet;
+    };
+
     let onResize = function() {
         if(window.innerWidth >= 1100 && widgetsContainer.childElementCount == 2) {
             let container = continuedReadingWidgetEl.parentElement;
@@ -107,6 +118,11 @@
     let valuesWithLabels = getValuesWithLabels(currValues, mappings);
     
     initializeAqiWidget(valuesWithLabels.aqi.value, valuesWithLabels.aqi.label);
+    for(let metricWidgetEl of metricWidgetEls) {
+        let metric = metricWidgetEl.getAttribute("data-metric");
+        valueWithLabel = valuesWithLabels[metric];
+        initializeMetricWidget(metric, valueWithLabel.value, valueWithLabel.label, valueWithLabel.snippet);
+    }
 
     // Fetch metric data
     fetch("citaqs.txt")
