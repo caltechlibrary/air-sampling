@@ -19,7 +19,24 @@
         return data;
     };
 
-    let initializeAqiWidget = function(value, levelObj) {
+    let getValuesWithLabels = function(values, mappings) {
+        let valuesWithLabels = {};
+        for(let metric in values) {
+            if(mappings.hasOwnProperty(metric)) {
+                let value = values[metric];
+                let mapping = mappings[metric];
+                for(let level of mapping) {
+                    if(value < level.max || !level.hasOwnProperty("max")) {
+                        valuesWithLabels[metric] = { value: values[metric], label: level.label, snippet: level.snippet };
+                        break;
+                    }
+                }
+            }
+        }
+        return valuesWithLabels;
+    };
+
+    let initializeAqiWidget = function(value, label) {
         let aqiEl = document.querySelector(".aqi-widget");
         let valueEl = aqiEl.querySelector(".aqi-widget__value");
         let descriptionEl = aqiEl.querySelector(".aqi-widget__description-value");
@@ -29,7 +46,7 @@
 
         if(value) {
             valueEl.textContent = value;
-            descriptionEl.textContent = levelObj.label;
+            descriptionEl.textContent = label;
             meterEl.setAttribute("aria-valuenow", value);
             inidicatorEl.style.left = `${(value / maxAqiValue) * 100}%`;
         } else {
@@ -50,36 +67,6 @@
             while(container.classList.length > 0) container.classList.remove(container.classList.item(0));
             container.classList.add("continued-reading-widget-container");
             metricWidgetEls[metricWidgetEls.length - 1].after(container);
-        }
-    };
-
-    let parseRealtimeMetricData = function(data) {
-        let [values, mappings] = data;
-
-        if(values) {
-            for(let metric in values) {
-                let metricVal = parseFloat(values[metric]);
-                let metricMap = mappings[metric];
-                let metricLvl;
-
-                for(let i = 0; i < metricMap.length; i++) {
-                    let level = metricMap[i]
-                    if(metricVal < level.max || i == metricMap.length - 1) {
-                        metricLvl = level;
-                        break;
-                    }
-                }
-
-                if(metric == "aqi") {
-                    initializeAqiWidget(metricVal, metricLvl);
-                } else {
-                    let metricWidgetEl = document.querySelector(`.metric-widget[data-metric='${metric}']`);
-                    if(metricWidgetEl) MetricWidget(metricWidgetEl, metricVal, metricLvl);
-                }
-            }
-        } else {
-            initializeAqiWidget();
-            for(let metricWidgetEl of metricWidgetEls) MetricWidget(metricWidgetEl);
         }
     };
 
@@ -117,7 +104,9 @@
 
     let currValues = await fetchData("https://z44g6g2rrl.execute-api.us-west-2.amazonaws.com/test/get_air");
     let mappings = await fetchData("mappings.json");
-    parseRealtimeMetricData([currValues, mappings]);
+    let valuesWithLabels = getValuesWithLabels(currValues, mappings);
+    
+    initializeAqiWidget(valuesWithLabels.aqi.value, valuesWithLabels.aqi.label);
 
     // Fetch metric data
     fetch("citaqs.txt")
