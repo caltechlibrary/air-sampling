@@ -1,4 +1,4 @@
-(function() {
+(async function() {
     let widgetsContainer = document.querySelector(".widgets-container");
     let metricWidgetEls = document.querySelectorAll(".metric-widget");
     let continuedReadingWidgetEl = document.querySelector(".continued-reading-widget");
@@ -11,6 +11,12 @@
         let day = date.toLocaleDateString("en-US", { dateStyle: "medium" })
         let dateTextNode = document.createTextNode(`${day} ${time}`);
         dateEl.appendChild(dateTextNode);
+    };
+
+    let fetchData = async function(endpoint) {
+        const res = await fetch(endpoint);
+        const data = await res.json();
+        return data;
     };
 
     let initializeAqiWidget = function(value, levelObj) {
@@ -109,18 +115,9 @@
 
     initializeHeader();
 
-    // Fetch aqi/metric value mappings and real time values.
-    // This method to wait on multiple fetches (mapping and real time data files) is taken from
-    // https://gomakethings.com/waiting-for-multiple-all-api-responses-to-complete-with-the-vanilla-js-promise.all-method/
-    Promise.all([
-        fetch("https://z44g6g2rrl.execute-api.us-west-2.amazonaws.com/test/get_air"),
-        fetch("mappings.json")
-    ]).then(function(responses) {
-        // Get a JSON object from each of the responses.
-        return Promise.all(responses.map(function (response) {
-            if(response.ok) return response.json();
-        }));
-    }).then(parseRealtimeMetricData);
+    let currValues = await fetchData("https://z44g6g2rrl.execute-api.us-west-2.amazonaws.com/test/get_air");
+    let mappings = await fetchData("mappings.json");
+    parseRealtimeMetricData([currValues, mappings]);
 
     // Fetch metric data
     fetch("citaqs.txt")
