@@ -58,6 +58,8 @@
 
     let initializeMetricWidget = function(metric, value, label, snippet) {
         let metricWidgetEl = document.querySelector(`.metric-widget[data-metric='${metric}']`);
+        let toggleBtn = metricWidgetEl.querySelector(".metric-widget__toggle-btn");
+        let contentPanel = metricWidgetEl.querySelector(".metric-widget__panel");
         let valueLabel = metricWidgetEl.querySelector(".metric-widget__value-label");
         let qualityLabel = metricWidgetEl.querySelector(".metric-widget__quality-label");
         let previewSnippet = metricWidgetEl.querySelector(".metric-widget__preview-snippet");
@@ -65,6 +67,18 @@
         valueLabel.textContent = value;
         qualityLabel.textContent = label;
         previewSnippet.textContent = snippet;
+
+        toggleBtn.addEventListener("click", function(){
+            if(toggleBtn.getAttribute("aria-expanded") == "false") {
+                previewSnippet.classList.add("metric-widget__preview-snippet--hidden");
+                contentPanel.classList.remove("metric-widget__panel--collapsed");
+                toggleBtn.setAttribute("aria-expanded", "true");
+            } else {
+                previewSnippet.classList.remove("metric-widget__preview-snippet--hidden");
+                contentPanel.classList.add("metric-widget__panel--collapsed");
+                toggleBtn.setAttribute("aria-expanded", "false");
+            }
+        });
     };
 
     let onResize = function() {
