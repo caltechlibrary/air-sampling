@@ -28,6 +28,8 @@
                 let metricMap = mappings[metric];
                 let metricLvl;
 
+                if(!metricMap) continue;
+
                 for(let i = 0; i < metricMap.length; i++) {
                     let level = metricMap[i]
                     if(metricVal < level.max || i == metricMap.length - 1) {
