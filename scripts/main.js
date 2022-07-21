@@ -13,10 +13,16 @@
         dateEl.appendChild(dateTextNode);
     };
 
-    let fetchData = async function(endpoint) {
-        const res = await fetch(endpoint);
-        const data = await res.json();
-        return data;
+    let fetchCurrentValuesAndMappings = async function() {
+        const [valuesRes, mappingsRes] = await Promise.all([
+            fetch("https://z44g6g2rrl.execute-api.us-west-2.amazonaws.com/test/get_air"),
+            fetch("mappings.json" )
+        ]);
+
+        return await Promise.all([
+            valuesRes.json(),
+            mappingsRes.json()
+        ]);
     };
 
     let getValuesWithLabels = function(values, mappings) {
@@ -127,8 +133,7 @@
 
     initializeHeader();
 
-    let currValues = await fetchData("https://z44g6g2rrl.execute-api.us-west-2.amazonaws.com/test/get_air");
-    let mappings = await fetchData("mappings.json");
+    let [currValues, mappings] = await fetchCurrentValuesAndMappings();
     let valuesWithLabels = getValuesWithLabels(currValues, mappings);
     
     initializeAqiWidget(valuesWithLabels.aqi.value, valuesWithLabels.aqi.label);
