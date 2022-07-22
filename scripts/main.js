@@ -152,6 +152,7 @@
     let initializeMetricChart = function(metric, data, unit) {
         let metricChartEl = document.querySelector(`.metric-chart[data-metric='${metric}']`);
         let chartSvg = LineChart(data, { label: `${metric} ${unit}` });
+        chartSvg.classList.add("metric-chart__svg");
         metricChartEl.append(chartSvg);
     };
 
