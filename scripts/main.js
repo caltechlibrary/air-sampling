@@ -43,11 +43,10 @@
     };
 
     let initializeAqiWidget = function(value, label) {
-        let aqiEl = document.querySelector(".aqi-widget");
-        let valueEl = aqiEl.querySelector(".aqi-widget__value");
-        let descriptionEl = aqiEl.querySelector(".aqi-widget__description-value");
-        let meterEl = aqiEl.querySelector(".aqi-widget__meter");
-        let inidicatorEl = aqiEl.querySelector(".aqi-widget__meter-indicator");
+        let valueEl = document.querySelector(".aqi-widget__value");
+        let descriptionEl = document.querySelector(".aqi-widget__description-value");
+        let meterEl = document.querySelector(".aqi-widget__meter");
+        let inidicatorEl = document.querySelector(".aqi-widget__meter-indicator");
         let maxAqiValue = parseInt(meterEl.getAttribute("aria-valuemax"));
 
         if(value) {
