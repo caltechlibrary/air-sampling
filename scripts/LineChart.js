@@ -6,10 +6,10 @@ function LineChart(data, {
     marginRight = 30, // right margin, in pixels
     marginBottom = 30, // bottom margin, in pixels
     marginLeft = 75, // left margin, in pixels
-    width, // outer width, in pixels
-    height, // outer height, in pixels`
-    label, // a label for the y-axis
-    color // stroke color of line
+    width = 1000, // outer width, in pixels
+    height = 270, // outer height, in pixels`
+    color = "black", // stroke color of line
+    label // a label for the y-axis
     } = {}) {
 
         // Compute values.

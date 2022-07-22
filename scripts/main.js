@@ -1,6 +1,7 @@
 (async function() {
     let widgetsContainer = document.querySelector(".widgets-container");
     let metricWidgetEls = document.querySelectorAll(".metric-widget");
+    let metricChartEls = document.querySelectorAll(".metric-chart");
     let continuedReadingWidgetEl = document.querySelector(".continued-reading-widget");
 
     let initializeHeader = function() {
@@ -109,34 +110,43 @@
         }
     };
 
-    let parseMetricData = function(text) {
-        let rows = d3.csvParse(text);
-        let metricData = {};
+    let fetchMetricData = async function() {
+        let res = await fetch("citaqs.txt");
+        return await res.text();
+    };
+
+    let getMetricChartData = function(data) {
+        let chartData = {};
+        let rows = d3.csvParse(data);
         let timeMetric = "Start Time";
 
         for(let metric of rows.columns) {
             metricTrimmed = metric.trim();
             if(metricTrimmed != timeMetric) {
                 let unit = rows[0][metric].trim();
-                metricData[metricTrimmed] = { unit, data: [] };
+                chartData[metricTrimmed] = { unit, data: [] };
             }
         }
 
         for(let i = 1; i < rows.length; i++) {
-            for(let metric in rows[i]) {
-                metricTrimmed = metric.trim();
+            let row = rows[i];
+            for(let metric in row) {
+                let metricTrimmed = metric.trim();
                 if(metricTrimmed != timeMetric) {
-                    let time = parseFloat( rows[i][timeMetric].trim() ) * 1000;
-                    let value = parseFloat( rows[i][metric].trim() );
-                    metricData[metricTrimmed].data.push({ time, value });
+                    let time = parseFloat(row[timeMetric].trim()) * 1000;
+                    let value = parseFloat(row[metric].trim());
+                    chartData[metricTrimmed].data.push({ time, value });
                 }
             }
         }
 
-        for(let metric in metricData) {
-            let metricChartEl = document.querySelector(`.metric-chart[data-metric='${metric}']`);
-            if(metricChartEl) MetricChart(metricChartEl, metricData[metric]);
-        }
+        return chartData;
+    };
+
+    let initializeMetricChart = function(metric, data, unit) {
+        let metricChartEl = document.querySelector(`.metric-chart[data-metric='${metric}']`);
+        let chartSvg = LineChart(data, { label: `${metric} ${unit}` });
+        metricChartEl.append(chartSvg);
     };
 
     initializeHeader();
@@ -153,10 +163,13 @@
         initializeMetricWidgetAccordion(metric);
     }
 
-    // Fetch metric data
-    fetch("citaqs.txt")
-        .then(function(res) { return res.text() })
-        .then(parseMetricData);
+    let metricData = await fetchMetricData();
+    let metricChartData = getMetricChartData(metricData);
+    for(let metricChartEl of metricChartEls) {
+        let metric = metricChartEl.getAttribute("data-metric");
+        let chartData = metricChartData[metric];
+        initializeMetricChart(metric, chartData.data, chartData.unit);
+    }
 
     onResize();
     window.addEventListener("resize", onResize);
