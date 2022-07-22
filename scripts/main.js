@@ -69,9 +69,13 @@
         let qualityLabel = metricWidgetEl.querySelector(".metric-widget__quality-label");
         let previewSnippet = metricWidgetEl.querySelector(".metric-widget__preview-snippet");
 
-        valueLabel.textContent = value;
-        qualityLabel.textContent = label;
-        previewSnippet.textContent = snippet;
+        if(value) {
+            valueLabel.textContent = value;
+            qualityLabel.textContent = label;
+            previewSnippet.textContent = snippet;
+        } else {
+            valueLabel.textContent = "Not available";
+        }
 
         toggleBtn.addEventListener("click", function(){
             if(toggleBtn.getAttribute("aria-expanded") == "false") {
@@ -136,6 +140,7 @@
     let valuesWithLabels = getValuesWithLabels(currValues, mappings);
     
     initializeAqiWidget(valuesWithLabels.aqi.value, valuesWithLabels.aqi.label);
+    
     for(let metricWidgetEl of metricWidgetEls) {
         let metric = metricWidgetEl.getAttribute("data-metric");
         valueWithLabel = valuesWithLabels[metric];
