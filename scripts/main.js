@@ -63,8 +63,6 @@
 
     let initializeMetricWidget = function(metric, value, label, snippet) {
         let metricWidgetEl = document.querySelector(`.metric-widget[data-metric='${metric}']`);
-        let toggleBtn = metricWidgetEl.querySelector(".metric-widget__toggle-btn");
-        let contentPanel = metricWidgetEl.querySelector(".metric-widget__panel");
         let valueLabel = metricWidgetEl.querySelector(".metric-widget__value-label");
         let qualityLabel = metricWidgetEl.querySelector(".metric-widget__quality-label");
         let previewSnippet = metricWidgetEl.querySelector(".metric-widget__preview-snippet");
@@ -76,6 +74,13 @@
         } else {
             valueLabel.textContent = "Not available";
         }
+    };
+
+    let initializeMetricWidgetAccordion = function(metric) {
+        let metricWidgetEl = document.querySelector(`.metric-widget[data-metric='${metric}']`);
+        let toggleBtn = metricWidgetEl.querySelector(".metric-widget__toggle-btn");
+        let contentPanel = metricWidgetEl.querySelector(".metric-widget__panel");
+        let previewSnippet = metricWidgetEl.querySelector(".metric-widget__preview-snippet");
 
         toggleBtn.addEventListener("click", function(){
             if(toggleBtn.getAttribute("aria-expanded") == "false") {
@@ -145,6 +150,7 @@
         let metric = metricWidgetEl.getAttribute("data-metric");
         valueWithLabel = valuesWithLabels[metric];
         initializeMetricWidget(metric, valueWithLabel.value, valueWithLabel.label, valueWithLabel.snippet);
+        initializeMetricWidgetAccordion(metric);
     }
 
     // Fetch metric data
