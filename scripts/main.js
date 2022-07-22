@@ -28,12 +28,12 @@
     let getValuesWithLabels = function(values, mappings) {
         let valuesWithLabels = {};
         for(let metric in values) {
+            valuesWithLabels[metric] = { value: values[metric] };
             if(mappings.hasOwnProperty(metric)) {
-                let value = values[metric];
-                let mapping = mappings[metric];
-                for(let level of mapping) {
-                    if(value < level.max || !level.hasOwnProperty("max")) {
-                        valuesWithLabels[metric] = { value: values[metric], label: level.label, snippet: level.snippet };
+                for(let level of mappings[metric]) {
+                    if(values[metric] < level.max || !level.hasOwnProperty("max")) {
+                        if(level.label) valuesWithLabels[metric].label = level.label;
+                        if(level.snippet) valuesWithLabels[metric].snippet = level.snippet;
                         break;
                     }
                 }
