@@ -4,8 +4,8 @@
 	//
     const WIDGETSCONTAINEREL = document.querySelector(".widgets-container");
     const CONTINUEDREADINGWIDGETEL = document.querySelector(".continued-reading-widget");
+    const METRICWIDGETELS = document.querySelectorAll(".metric-widget");
     const LAYOUTBREAKPOINT = 1100;
-    let metricWidgetEls = document.querySelectorAll(".metric-widget");
     let metricChartEls = document.querySelectorAll(".metric-chart");
 
     //
@@ -21,7 +21,7 @@
             let container = CONTINUEDREADINGWIDGETEL.parentElement;
             while(container.classList.length > 0) container.classList.remove(container.classList.item(0));
             container.classList.add("continued-reading-widget-container");
-            metricWidgetEls[metricWidgetEls.length - 1].after(container);
+            METRICWIDGETELS[METRICWIDGETELS.length - 1].after(container);
         }
     };
 
@@ -167,7 +167,7 @@
     
     initializeAqiWidget(valuesWithLabels.aqi.value, valuesWithLabels.aqi.label);
     
-    for(let metricWidgetEl of metricWidgetEls) {
+    for(let metricWidgetEl of METRICWIDGETELS) {
         let metric = metricWidgetEl.getAttribute("data-metric");
         valueWithLabel = valuesWithLabels[metric];
         initializeMetricWidget(metric, valueWithLabel.value, valueWithLabel.label, valueWithLabel.snippet);
