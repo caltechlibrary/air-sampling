@@ -51,13 +51,17 @@
     let getValuesWithLabels = function(values, mappings) {
         let valuesWithLabels = {};
         for(let metric in values) {
-            valuesWithLabels[metric] = { value: values[metric] };
-            if(mappings.hasOwnProperty(metric)) {
-                for(let level of mappings[metric]) {
-                    if(values[metric] < level.max || !level.hasOwnProperty("max")) {
-                        if(level.label) valuesWithLabels[metric].label = level.label;
-                        if(level.snippet) valuesWithLabels[metric].snippet = level.snippet;
-                        break;
+            if(metric == "date" || metric == "time") {
+                valuesWithLabels[metric] = values[metric];
+            } else {
+                valuesWithLabels[metric] = { value: values[metric], label: undefined, snippet: undefined };
+                if(mappings.hasOwnProperty(metric)) {
+                    for(let level of mappings[metric]) {
+                        if(values[metric] < level.max || !level.hasOwnProperty("max")) {
+                            if(level.label) valuesWithLabels[metric].label = level.label;
+                            if(level.snippet) valuesWithLabels[metric].snippet = level.snippet;
+                            break;
+                        }
                     }
                 }
             }
