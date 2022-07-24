@@ -56,17 +56,20 @@
             } else {
                 valuesWithLabels[metric] = { value: values[metric], label: undefined, snippet: undefined };
                 if(mappings.hasOwnProperty(metric)) {
-                    for(let level of mappings[metric]) {
-                        if(values[metric] < level.max || !level.hasOwnProperty("max")) {
-                            if(level.label) valuesWithLabels[metric].label = level.label;
-                            if(level.snippet) valuesWithLabels[metric].snippet = level.snippet;
-                            break;
-                        }
-                    }
+                    let level = getLevelFromMapping(values[metric], mappings[metric]);
+                    ({ label: valuesWithLabels[metric].label, snippet: valuesWithLabels[metric].snippet } = level);
                 }
             }
         }
         return valuesWithLabels;
+    };
+
+    let getLevelFromMapping = function(value, mapping) {
+        for(let level of mapping) {
+            if(value < level.max || !level.hasOwnProperty("max")) {
+                return level;
+            }
+        }
     };
 
     let initializeAqiWidget = function(value, label) {
