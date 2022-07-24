@@ -6,6 +6,8 @@
     const CONTINUEDREADINGWIDGETEL = document.querySelector(".continued-reading-widget");
     const METRICWIDGETELS = document.querySelectorAll(".metric-widget");
     const LAYOUTBREAKPOINT = 1100;
+    const AIRVALUESAPI = "https://z44g6g2rrl.execute-api.us-west-2.amazonaws.com/test/get_air";
+    const MAPPINGSENDPOINT = "mappings.json";
     let metricChartEls = document.querySelectorAll(".metric-chart");
 
     //
@@ -36,8 +38,8 @@
 
     let fetchCurrentValuesAndMappings = async function() {
         const [valuesRes, mappingsRes] = await Promise.all([
-            fetch("https://z44g6g2rrl.execute-api.us-west-2.amazonaws.com/test/get_air"),
-            fetch("mappings.json" )
+            fetch(AIRVALUESAPI),
+            fetch(MAPPINGSENDPOINT)
         ]);
 
         return await Promise.all([
@@ -163,9 +165,7 @@
 
     let [currValues, mappings] = await fetchCurrentValuesAndMappings();
     let valuesWithLabels = getValuesWithLabels(currValues, mappings);
-    
     initializeAqiWidget(valuesWithLabels.aqi.value, valuesWithLabels.aqi.label);
-    
     for(let metricWidgetEl of METRICWIDGETELS) {
         let metric = metricWidgetEl.getAttribute("data-metric");
         valueWithLabel = valuesWithLabels[metric];
