@@ -126,21 +126,21 @@
         });
     };
 
-    let fetchMetricData = async function() {
+    let fetchMetricCSV = async function() {
         let res = await fetch(CHARTDATAENDPOINT);
         return await res.text();
     };
 
-    let getMetricChartData = function(data) {
-        let chartData = {};
-        let rows = d3.csvParse(data);
+    let getMetricData = function(csvString) {
+        let metricData = {};
+        let rows = d3.csvParse(csvString);
         let timeMetric = "Start Time";
 
         for(let metric of rows.columns) {
             metricTrimmed = metric.trim();
             if(metricTrimmed != timeMetric) {
                 let unit = rows[0][metric].trim();
-                chartData[metricTrimmed] = { unit, data: [] };
+                metricData[metricTrimmed] = { unit, data: [] };
             }
         }
 
@@ -151,12 +151,12 @@
                 if(metricTrimmed != timeMetric) {
                     let time = parseFloat(row[timeMetric].trim()) * 1000;
                     let value = parseFloat(row[metric].trim());
-                    chartData[metricTrimmed].data.push({ time, value });
+                    metricData[metricTrimmed].data.push({ time, value });
                 }
             }
         }
 
-        return chartData;
+        return metricData;
     };
 
     let initializeMetricChart = function(metric, data, unit) {
@@ -182,11 +182,11 @@
 
     for(let metricWidgetEl of METRICWIDGETELS) initializeMetricWidgetAccordion(metricWidgetEl.getAttribute("data-metric"));
 
-    let metricData = await fetchMetricData();
-    let metricChartData = getMetricChartData(metricData);
+    let metricCSVString = await fetchMetricCSV();
+    let metricData = getMetricData(metricCSVString);
     for(let metricChartEl of metricChartEls) {
         let metric = metricChartEl.getAttribute("data-metric");
-        let chartData = metricChartData[metric];
-        initializeMetricChart(metric, chartData.data, chartData.unit);
+        let data = metricData[metric];
+        initializeMetricChart(metric, data.data, data.unit);
     }
 })();
