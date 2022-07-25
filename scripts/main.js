@@ -175,10 +175,11 @@
     initializeAqiWidget(valuesWithLabels.aqi.value, valuesWithLabels.aqi.label);
     for(let metricWidgetEl of METRICWIDGETELS) {
         let metric = metricWidgetEl.getAttribute("data-metric");
-        valueWithLabel = valuesWithLabels[metric];
+        let valueWithLabel = valuesWithLabels[metric];
         initializeMetricWidget(metric, valueWithLabel.value, valueWithLabel.label, valueWithLabel.snippet);
-        initializeMetricWidgetAccordion(metric);
     }
+
+    for(let metricWidgetEl of METRICWIDGETELS) initializeMetricWidgetAccordion(metricWidgetEl.getAttribute("data-metric"));
 
     let metricData = await fetchMetricData();
     let metricChartData = getMetricChartData(metricData);
