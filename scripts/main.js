@@ -8,6 +8,7 @@
     const LAYOUTBREAKPOINT = 1100;
     const AIRVALUESAPI = "https://z44g6g2rrl.execute-api.us-west-2.amazonaws.com/test/get_air";
     const MAPPINGSENDPOINT = "mappings.json";
+    const CHARTDATAENDPOINT = "citaqs.txt";
     let metricChartEls = document.querySelectorAll(".metric-chart");
 
     //
@@ -126,7 +127,7 @@
     };
 
     let fetchMetricData = async function() {
-        let res = await fetch("citaqs.txt");
+        let res = await fetch(CHARTDATAENDPOINT);
         return await res.text();
     };
 
