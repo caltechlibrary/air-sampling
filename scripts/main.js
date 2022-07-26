@@ -8,7 +8,7 @@
     const LAYOUTBREAKPOINT = 1100;
     const AIRVALUESAPI = "https://z44g6g2rrl.execute-api.us-west-2.amazonaws.com/test/get_air";
     const MAPPINGSENDPOINT = "mappings.json";
-    const CHARTDATAENDPOINT = "citaqs.txt";
+    const CHARTDATAENDPOINT = "air-data.txt";
     let metricChartEls = document.querySelectorAll(".metric-chart");
 
     //
@@ -134,24 +134,21 @@
     let getMetricData = function(csvString) {
         let metricData = {};
         let rows = d3.csvParse(csvString);
-        let timeMetric = "Start Time";
+        let timeField = rows.columns[0];
 
         for(let metric of rows.columns) {
-            metricTrimmed = metric.trim();
-            if(metricTrimmed != timeMetric) {
-                let unit = rows[0][metric].trim();
-                metricData[metricTrimmed] = { unit, data: [] };
+            if(metric != timeField) {
+                metricData[metric] = { unit: rows[0][metric], data: [] };
             }
         }
 
         for(let i = 1; i < rows.length; i++) {
             let row = rows[i];
+            let time = parseFloat(row[timeField]) * 1000;
             for(let metric in row) {
-                let metricTrimmed = metric.trim();
-                if(metricTrimmed != timeMetric) {
-                    let time = parseFloat(row[timeMetric].trim()) * 1000;
-                    let value = parseFloat(row[metric].trim());
-                    metricData[metricTrimmed].data.push({ time, value });
+                if(metric != timeField) {
+                    let value = parseFloat(row[metric]);
+                    metricData[metric].data.push({ time, value });
                 }
             }
         }
