@@ -147,8 +147,7 @@
             let time = row[timeField] * 1000;
             for(let metric in row) {
                 if(metric != timeField) {
-                    let value = row[metric];
-                    metricData[metric].data.push({ time, value });
+                    metricData[metric].data.push({ time, value: row[metric] });
                 }
             }
         }
