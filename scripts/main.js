@@ -9,7 +9,7 @@
     const AIRVALUESAPI = "https://z44g6g2rrl.execute-api.us-west-2.amazonaws.com/test/get_air";
     const MAPPINGSENDPOINT = "mappings.json";
     const CHARTDATAENDPOINT = "air-data.txt";
-    let metricChartEls = document.querySelectorAll(".metric-chart");
+    const METRICCHARTELS = document.querySelectorAll(".metric-chart");
 
     //
 	// Functions
@@ -180,7 +180,7 @@
 
     let metricCSVString = await fetchMetricCSV();
     let metricData = getMetricData(metricCSVString);
-    for(let metricChartEl of metricChartEls) {
+    for(let metricChartEl of METRICCHARTELS) {
         let metric = metricChartEl.getAttribute("data-metric");
         let data = metricData[metric];
         initializeMetricChart(metric, data.data, data.unit);
