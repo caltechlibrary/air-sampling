@@ -133,7 +133,7 @@
 
     let getMetricData = function(csvString) {
         let metricData = {};
-        let rows = d3.csvParse(csvString);
+        let rows = d3.csvParse(csvString, d3.autoType);
         let timeField = rows.columns[0];
 
         for(let metric of rows.columns) {
@@ -144,10 +144,10 @@
 
         for(let i = 1; i < rows.length; i++) {
             let row = rows[i];
-            let time = parseFloat(row[timeField]) * 1000;
+            let time = row[timeField] * 1000;
             for(let metric in row) {
                 if(metric != timeField) {
-                    let value = parseFloat(row[metric]);
+                    let value = row[metric];
                     metricData[metric].data.push({ time, value });
                 }
             }
