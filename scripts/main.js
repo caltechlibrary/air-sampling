@@ -76,13 +76,14 @@
     };
 
     let initializeAqiWidget = function(value, label) {
-        let valueEl = document.querySelector(".aqi-widget__value");
-        let descriptionEl = document.querySelector(".aqi-widget__description-value");
-        let meterEl = document.querySelector(".aqi-widget__meter");
-        let inidicatorEl = document.querySelector(".aqi-widget__meter-indicator");
+        let aqiEl = document.querySelector(".aqi-widget");
+        let valueEl = aqiEl.querySelector(".aqi-widget__value");
+        let descriptionEl = aqiEl.querySelector(".aqi-widget__description-value");
+        let meterEl = aqiEl.querySelector(".aqi-widget__meter");
+        let inidicatorEl = aqiEl.querySelector(".aqi-widget__meter-indicator");
         let maxAqiValue = parseInt(meterEl.getAttribute("aria-valuemax"));
 
-        if(value) {
+        if(value && label) {
             valueEl.textContent = value;
             descriptionEl.textContent = label;
             meterEl.setAttribute("aria-valuenow", value);
@@ -100,7 +101,7 @@
         let qualityLabel = metricWidgetEl.querySelector(".metric-widget__quality-label");
         let previewSnippet = metricWidgetEl.querySelector(".metric-widget__preview-snippet");
 
-        if(value) {
+        if(value && label && snippet) {
             valueLabel.textContent = value;
             qualityLabel.textContent = label;
             previewSnippet.textContent = snippet;
@@ -179,7 +180,11 @@
             initializeMetricWidget(metric, valueWithLabel.value, valueWithLabel.label, valueWithLabel.snippet);
         }
     } catch(error) {
-        console.log(error);
+        initializeAqiWidget();
+        for(let metricWidgetEl of METRICWIDGETELS) {
+            let metric = metricWidgetEl.getAttribute("data-metric");
+            initializeMetricWidget(metric);
+        }
     }
 
     for(let metricWidgetEl of METRICWIDGETELS) initializeMetricWidgetAccordion(metricWidgetEl.getAttribute("data-metric"));
