@@ -43,6 +43,8 @@
             fetch(MAPPINGSENDPOINT)
         ]);
 
+        if(!valuesRes.ok) throw new Error("Current air values response was not OK");
+        
         return await Promise.all([
             valuesRes.json(),
             mappingsRes.json()
@@ -167,13 +169,17 @@
 
     initializeHeader();
 
-    let [currValues, mappings] = await fetchCurrentValuesAndMappings();
-    let valuesWithLabels = getValuesWithLabels(currValues, mappings);
-    initializeAqiWidget(valuesWithLabels.aqi.value, valuesWithLabels.aqi.label);
-    for(let metricWidgetEl of METRICWIDGETELS) {
-        let metric = metricWidgetEl.getAttribute("data-metric");
-        let valueWithLabel = valuesWithLabels[metric];
-        initializeMetricWidget(metric, valueWithLabel.value, valueWithLabel.label, valueWithLabel.snippet);
+    try{
+        let [currValues, mappings] = await fetchCurrentValuesAndMappings();
+        let valuesWithLabels = getValuesWithLabels(currValues, mappings);
+        initializeAqiWidget(valuesWithLabels.aqi.value, valuesWithLabels.aqi.label);
+        for(let metricWidgetEl of METRICWIDGETELS) {
+            let metric = metricWidgetEl.getAttribute("data-metric");
+            let valueWithLabel = valuesWithLabels[metric];
+            initializeMetricWidget(metric, valueWithLabel.value, valueWithLabel.label, valueWithLabel.snippet);
+        }
+    } catch(error) {
+        console.log(error);
     }
 
     for(let metricWidgetEl of METRICWIDGETELS) initializeMetricWidgetAccordion(metricWidgetEl.getAttribute("data-metric"));
