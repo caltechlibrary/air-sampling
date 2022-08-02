@@ -9,21 +9,8 @@ Blocks
 - page: container used to wrap site.
 */
 
-.page {
-    margin: 32px auto;
-    max-width: 1495px;
-    padding: 0 16px;
-}
-
-@media (min-width:600px) {
-    .page {
-        margin: 52px auto;
-    }
-}
-
 /* header */
 .header {
-    margin-bottom: 12px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -32,7 +19,6 @@ Blocks
 
 @media (min-width: 600px) {
     .header {
-        margin-bottom: 58px;
         flex-direction: row;
     }
 }
@@ -711,5 +697,28 @@ Blocks
 @media (min-width:800px) {
     .metric-chart__svg {
         min-width: 792px;
+    }
+}
+
+/* page */
+.page {
+    margin: 32px auto;
+    max-width: 1495px;
+    padding: 0 16px;
+}
+
+@media (min-width:600px) {
+    .page {
+        margin: 52px auto;
+    }
+}
+
+.page__header {
+    margin-bottom: 12px;
+}
+
+@media (min-width:600px) {
+    .page__header {
+        margin-bottom: 58px;
     }
 }
