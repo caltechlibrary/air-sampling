@@ -5,6 +5,10 @@
 */
 
 /* 
+CSS is written using BEM methodology (https://en.bem.info/methodology/). Order of classes does matter. This is
+because BEM blocks can be redefined at different layers. For example: .header could be redefined at .page level as
+.page__header. 
+
 Blocks
 - header: banner at top of site.
 - page: container used to wrap site.
