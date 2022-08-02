@@ -4,14 +4,19 @@
 - Normal desktop layout: 1100px
 */
 
-body {
+/* 
+Blocks
+- page: container used to wrap site.
+*/
+
+.page {
     margin: 32px auto;
     max-width: 1495px;
     padding: 0 16px;
 }
 
 @media (min-width:700px) {
-    body {
+    .page {
         margin: 52px auto;
     }
 }
