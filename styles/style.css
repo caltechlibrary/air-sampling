@@ -15,7 +15,7 @@ Blocks
     padding: 0 16px;
 }
 
-@media (min-width:700px) {
+@media (min-width:600px) {
     .page {
         margin: 52px auto;
     }
@@ -28,10 +28,9 @@ Blocks
     flex-direction: column;
     align-items: center;
     font-family: Arial;
-    color: #033C49;
 }
 
-@media (min-width: 700px) {
+@media (min-width: 600px) {
     .header {
         margin-bottom: 58px;
         flex-direction: row;
@@ -42,13 +41,13 @@ Blocks
     margin-bottom: 12px;
 }
 
-@media (min-width: 700px) {
+@media (min-width: 600px) {
     .header__homepage-link {
         margin: 0 2em 0 0;
     }
 }
 
-@media (min-width: 1440px) {
+@media (min-width: 1100px) {
     .header__homepage-link {
         margin: 0 3em 0 0;
     }
@@ -77,11 +76,12 @@ Blocks
     font-weight: 100;
     line-height: 1;
     white-space: nowrap;
+    color: #033C49;
 }
 
-@media (min-width: 700px) {
+@media (min-width: 600px) {
     .header__title {
-        margin: 0 1em 0 0;
+        margin: 0;
     }
 }
 
@@ -100,9 +100,10 @@ Blocks
 .header__date {
     font-size: 0.875em;
     white-space: nowrap;
+    color: #033C49;
 }
 
-@media (min-width: 700px) {
+@media (min-width: 600px) {
     .header__date {
         margin-left: auto;
         color: #595959;
