@@ -2,7 +2,7 @@
     //
 	// Variables
 	//
-    const WIDGETSCONTAINEREL = document.querySelector(".widgets-container");
+    const WIDGETSCONTAINEREL = document.querySelector(".top-container");
     const CONTINUEDREADINGWIDGETEL = document.querySelector(".continued-reading-widget");
     const METRICWIDGETELS = document.querySelectorAll(".metric-widget");
     const LAYOUTBREAKPOINT = 1100;
@@ -18,7 +18,7 @@
         if(window.innerWidth >= LAYOUTBREAKPOINT && WIDGETSCONTAINEREL.childElementCount == 2) {
             let container = CONTINUEDREADINGWIDGETEL.parentElement;
             while(container.classList.length > 0) container.classList.remove(container.classList.item(0));
-            container.classList.add("widgets-container__widget");
+            container.classList.add("top-container__item");
             WIDGETSCONTAINEREL.appendChild(container);
         } else if(window.innerWidth < LAYOUTBREAKPOINT && WIDGETSCONTAINEREL.childElementCount == 3) {
             let container = CONTINUEDREADINGWIDGETEL.parentElement;

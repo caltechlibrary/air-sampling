@@ -11,9 +11,9 @@
 
 <body class="page">
   ${header.html()}
-  <div class="widgets-container">
-    <div class="widgets-container__widget">${aqi-widget.html()}</div>
-    <div class="widgets-container__widget">${cam-widget.html()}</div>
+  <div class="top-container">
+    <div class="top-container__item">${aqi-widget.html()}</div>
+    <div class="top-container__item">${cam-widget.html()}</div>
   </div>
   ${for(metrics)}${it:metric-widget.html()}${endfor}
   <div class="continued-reading-widget-container">${resources:continued-reading-widget.html()}</div>
