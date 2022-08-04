@@ -23,7 +23,7 @@
         } else if(window.innerWidth < LAYOUTBREAKPOINT && WIDGETSCONTAINEREL.childElementCount == 3) {
             let container = CONTINUEDREADINGWIDGETEL.parentElement;
             while(container.classList.length > 0) container.classList.remove(container.classList.item(0));
-            container.classList.add("continued-reading-widget-container");
+            container.classList.add("page__continued-reading-widget-container");
             METRICWIDGETELS[METRICWIDGETELS.length - 1].after(container);
         }
     };
