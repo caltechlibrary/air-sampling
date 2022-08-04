@@ -11,6 +11,7 @@ because BEM blocks can be redefined at different layers. For example: .header co
 
 Blocks
 - header: banner at top of site.
+- widgets-container: container that wraps aqi, live cam, and (on desktop screen sizes) links widgets.
 - page: container used to wrap site.
 */
 
@@ -117,49 +118,48 @@ Blocks
 
 /* widgets-container */
 .widgets-container {
+    margin-bottom: 24px;
     display: flex;
     flex-direction: column;
 }
 
 @media (min-width:600px) {
     .widgets-container {
-        flex-direction: row;
         margin-bottom: 36px;
+        flex-direction: row;
     }
 }
 
 .widgets-container__widget {
     flex: 1;
+    margin: 0 0 24px;
+}
+
+.widgets-container__widget:last-child {
+    margin-bottom: 0;
 }
 
 @media (min-width:600px) {
     .widgets-container__widget {
         margin: 0 2%;
     }
-}
 
-.widgets-container__widget:first-child {
-    margin-left: 0;
-}
-
-.widgets-container__widget:last-child {
-    margin-right: 0;
+    .widgets-container__widget:first-child {
+        margin-left: 0;
+    }
+    
+    .widgets-container__widget:last-child {
+        margin-right: 0;
+    }
 }
 
 /* boxy-component */
 .boxy-component {
     position: relative;
-    margin-bottom: 24px;
     width: 100%;
     height: 0;
     padding-bottom: 102.5%;
     font-family: Arial;
-}
-
-@media (min-width:600px) {
-    .boxy-component {
-        margin-bottom: 0;
-    }
 }
 
 .boxy-component__component-container {
