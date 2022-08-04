@@ -1,27 +1,25 @@
 <div class="boxy-component continued-reading-widget">
     <div class="boxy-component__component-container">
-        <div class="boxy-component__main-component continued-reading-widget__main-component">
-            <div class="boxy-component__main-content-container continued-reading-widget__main-content-container">
-                <div class="continued-reading-widget__headlines-container">
-                    <h2 class="continued-reading-widget__header">HEADLINES</h2>
-                    <div class="continued-reading-widget__headline">
-                        <img 
-                            class="continued-reading-widget__headline-img" 
-                            src="${it.headline.img}" 
-                            alt="Headline article picture" 
-                            width="1600" 
-                            height="811"
-                        >
-                        <a class="continued-reading-widget__link" href="${it.headline.link}">${it.headline.title}</a>
-                    </div>
+        <div class="boxy-component__main-component continued-reading-widget__main-content-container">
+            <div class="continued-reading-widget__headlines-container">
+                <h2 class="continued-reading-widget__header">HEADLINES</h2>
+                <div class="continued-reading-widget__headline">
+                    <img 
+                        class="continued-reading-widget__headline-img" 
+                        src="${it.headline.img}" 
+                        alt="Headline article picture" 
+                        width="1600" 
+                        height="811"
+                    >
+                    <a class="continued-reading-widget__link" href="${it.headline.link}">${it.headline.title}</a>
                 </div>
-                <div class="continued-reading-widget__divider"></div>
-                <div class="continued-reading-widget__links-container">
-                    <h2 class="continued-reading-widget__header">USEFUL LINKS</h2>
-                    ${for(it.links)}
-                        <a class="continued-reading-widget__link" href="${it.link}">${it.title}</a>
-                    ${endfor}
-                </div>
+            </div>
+            <div class="continued-reading-widget__divider"></div>
+            <div class="continued-reading-widget__links-container">
+                <h2 class="continued-reading-widget__header">USEFUL LINKS</h2>
+                ${for(it.links)}
+                    <a class="continued-reading-widget__link" href="${it.link}">${it.title}</a>
+                ${endfor}
             </div>
         </div>
         <div class="boxy-component__sub-component continued-reading-widget__download-link-container">
