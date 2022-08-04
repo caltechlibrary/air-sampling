@@ -12,6 +12,7 @@ because BEM blocks can be redefined at different layers. For example: .header co
 Blocks
 - header: banner at top of site.
 - top-container: container that wraps aqi, live cam, and (on desktop screen sizes) links widgets.
+- card: component used to display aqi widget, live cam, and links widget.
 - page: container used to wrap site.
 */
 
@@ -151,8 +152,8 @@ Blocks
     }
 }
 
-/* boxy-component */
-.boxy-component {
+/* card */
+.card {
     position: relative;
     width: 100%;
     height: 0;
@@ -160,7 +161,7 @@ Blocks
     font-family: Arial;
 }
 
-.boxy-component__component-container {
+.card__component-container {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -168,7 +169,7 @@ Blocks
     flex-direction: column;
 }
 
-.boxy-component__main-component {
+.card__main-component {
     flex: 0 0 85%;
     position: relative;
     margin-bottom: 8px;
@@ -177,7 +178,7 @@ Blocks
     overflow: hidden;
 }
 
-.boxy-component__sub-component {
+.card__sub-component {
     flex: 1;
     border-radius: 8px;
 }
