@@ -118,14 +118,12 @@ Blocks
 
 /* top-container */
 .top-container {
-    margin-bottom: 24px;
     display: flex;
     flex-direction: column;
 }
 
 @media (min-width:600px) {
     .top-container {
-        margin-bottom: 36px;
         flex-direction: row;
     }
 }
@@ -727,5 +725,15 @@ Blocks
 @media (min-width:600px) {
     .page__header {
         margin-bottom: 58px;
+    }
+}
+
+.page__top-container {
+    margin-bottom: 24px;
+}
+
+@media (min-width:600px) {
+    .page__top-container {
+        margin-bottom: 36px;
     }
 }
