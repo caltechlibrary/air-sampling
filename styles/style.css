@@ -161,6 +161,12 @@ Blocks
     font-family: Arial;
 }
 
+@media (max-width:599px) {
+    .card--min-mobile {
+        padding-bottom: 40%;
+    } 
+}
+
 .card__component-container {
     position: absolute;
     width: 100%;
@@ -178,9 +184,22 @@ Blocks
     overflow: hidden;
 }
 
+@media (max-width:599px) {
+    .card--min-mobile .card__main-component {
+        flex: 0 0 100%;
+        margin: 0;
+    }
+}
+
 .card__sub-component {
     flex: 1;
     border-radius: 8px;
+}
+
+@media (max-width:599px) {
+    .card--min-mobile .card__sub-component {
+        display: none;
+    }
 }
 
 /* aqi-widget */
