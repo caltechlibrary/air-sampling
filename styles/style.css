@@ -185,6 +185,12 @@ Blocks
 }
 
 @media (max-width:599px) {
+    .card--sub-component-lg-mobile .card__main-component {
+        flex: 0 0 81%;
+    }
+}
+
+@media (max-width:599px) {
     .card--min-mobile .card__main-component {
         flex: 0 0 100%;
         margin: 0;
