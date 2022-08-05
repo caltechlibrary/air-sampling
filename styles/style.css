@@ -11,8 +11,8 @@ because BEM blocks can be redefined at different layers. For example: .header co
 
 Blocks
 - header: banner at top of site.
-- top-container: container that wraps aqi, live cam, and (on desktop screen sizes) links widgets.
-- card: component used to display aqi widget, live cam, and links widget.
+- top-container: container that wraps aqi, live cam, and (on desktop screen sizes) resources widgets.
+- card: component used to display aqi widget, live cam, and resources widget.
 - page: container used to wrap site.
 */
 
@@ -391,8 +391,8 @@ Blocks
     }
 }
 
-/* continue-reading-widget */
-.continued-reading-widget__main-content-container {
+/* resources-widget */
+.resources-widget__main-content-container {
     padding: 5%;
     display: flex;
     flex-direction: column;
@@ -400,41 +400,41 @@ Blocks
 }
 
 @media (min-width:600px) {
-    .continued-reading-widget__main-content-container {
+    .resources-widget__main-content-container {
         background: #f2f2f2;
     }
 }
 
 @media (min-width: 1100px) {
-    .continued-reading-widget__main-content-container {
+    .resources-widget__main-content-container {
         font-size: 1em;
     }
 }
 
-.continued-reading-widget__headlines-container {
+.resources-widget__headlines-container {
     flex: 1;
 }
 
-.continued-reading-widget__header {
+.resources-widget__header {
     margin: 0 0 12px;
     font-size: inherit;
     font-weight: 100;
 }
 
-.continued-reading-widget__headline-img {
+.resources-widget__headline-img {
     margin-right: 16px;
     width: 45%;
     height: auto;
     float: left;
 }
 
-.continued-reading-widget__link {
+.resources-widget__link {
     color: inherit;
     text-decoration: none;
     line-height: 1.5;
 }
 
-.continued-reading-widget__divider {
+.resources-widget__divider {
     flex: 0 0 auto;
     margin: 16px 0;
     width: 100%;
@@ -442,25 +442,25 @@ Blocks
     background: #d4d4d4;
 }
 
-.continued-reading-widget__links-container {
+.resources-widget__links-container {
     flex: 1;
     display: flex;
     flex-direction: column;
 }
 
-.continued-reading-widget__download-link-container {
+.resources-widget__download-link-container {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 @media (max-width:599px) {
-    .continued-reading-widget__download-link-container {
+    .resources-widget__download-link-container {
         background: #f2f2f2;
     }
 }
 
-.continued-reading-widget__download-link {
+.resources-widget__download-link {
     font-size: 1.15em;
     font-weight: 600;
     color: #033c49;
@@ -468,7 +468,7 @@ Blocks
 }
 
 @media (min-width: 600px) {
-    .continued-reading-widget__download-link {
+    .resources-widget__download-link {
         font-size: 1.625em;
     }
 }
@@ -702,7 +702,7 @@ Blocks
 }
 
 @media (min-width:600px) and (max-width:1099px) {
-    .page__continued-reading-widget-container {
+    .page__resources-widget-container {
         margin: auto;
         max-width: 48%;
     }

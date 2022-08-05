@@ -1,29 +1,29 @@
-<div class="card continued-reading-widget">
+<div class="card resources-widget">
     <div class="card__component-container">
-        <div class="card__main-component continued-reading-widget__main-content-container">
-            <div class="continued-reading-widget__headlines-container">
-                <h2 class="continued-reading-widget__header">HEADLINES</h2>
-                <div class="continued-reading-widget__headline">
+        <div class="card__main-component resources-widget__main-content-container">
+            <div class="resources-widget__headlines-container">
+                <h2 class="resources-widget__header">HEADLINES</h2>
+                <div class="resources-widget__headline">
                     <img 
-                        class="continued-reading-widget__headline-img" 
+                        class="resources-widget__headline-img" 
                         src="${it.headline.img}" 
                         alt="Headline article picture" 
                         width="1600" 
                         height="811"
                     >
-                    <a class="continued-reading-widget__link" href="${it.headline.link}">${it.headline.title}</a>
+                    <a class="resources-widget__link" href="${it.headline.link}">${it.headline.title}</a>
                 </div>
             </div>
-            <div class="continued-reading-widget__divider"></div>
-            <div class="continued-reading-widget__links-container">
-                <h2 class="continued-reading-widget__header">USEFUL LINKS</h2>
+            <div class="resources-widget__divider"></div>
+            <div class="resources-widget__links-container">
+                <h2 class="resources-widget__header">USEFUL LINKS</h2>
                 ${for(it.links)}
-                    <a class="continued-reading-widget__link" href="${it.link}">${it.title}</a>
+                    <a class="resources-widget__link" href="${it.link}">${it.title}</a>
                 ${endfor}
             </div>
         </div>
-        <div class="card__sub-component continued-reading-widget__download-link-container">
-            <a class="continued-reading-widget__download-link" href="">DOWNLOAD DATA</a>
+        <div class="card__sub-component resources-widget__download-link-container">
+            <a class="resources-widget__download-link" href="">DOWNLOAD DATA</a>
         </div>
     </div>
 </div>
