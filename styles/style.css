@@ -350,7 +350,6 @@ Blocks
 
 .aqi-widget__meter-labels {
     display: flex;
-    justify-content: space-between;
     font-size: 0.875em;
 }
 
@@ -364,6 +363,19 @@ Blocks
     .aqi-widget__meter-labels {
         font-size: 1.125em;
     }
+}
+
+.aqi-widget__meter-label {
+    flex: 1;
+    text-align: center;
+}
+
+.aqi-widget__meter-label:first-child {
+    text-align: left;
+}
+
+.aqi-widget__meter-label:last-child {
+    text-align: right;
 }
 
 /* cam-widget */
