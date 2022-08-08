@@ -327,7 +327,7 @@ Blocks
 .aqi-widget__meter {
     flex: 1;
     position: relative;
-    margin-bottom: 2%;
+    margin-bottom: 2.15%;
     border-radius: 8px;
     background: linear-gradient(to right, #B6E2AF, #F9E4AF, #C163D3, #8A353A);
 }
