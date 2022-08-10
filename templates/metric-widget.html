@@ -1,14 +1,14 @@
 <div class="metric-widget page__metric-widget" data-metric="${it.metric}">
     <div class="metric-widget__top-container">
         <div class="metric-widget__labels-container">
-            <h2 class="metric-widget__header">
+            <h2 class="metric-widget__header metric-widget__label">
                 <button class="metric-widget__toggle-btn" aria-controls="${it.metric}-panel" aria-expanded="false">
                     <span class="metric-widget__toggle-icon" aria-label="Dropdown icon">${svg/triangle.svg()}</span>
                     <span>${it.label}</span>
                 </button>
             </h2>
-            <span class="metric-widget__quality-label"></span>
-            <span class="metric-widget__value-label"></span>
+            <span class="metric-widget__quality-label metric-widget__label"></span>
+            <span class="metric-widget__value-label metric-widget__label"></span>
         </div>
         <span class="metric-widget__preview-snippet"></span>
     </div>
