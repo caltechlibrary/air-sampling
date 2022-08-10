@@ -11,8 +11,6 @@ metrics:
       label: CO
     - metric: NO2
       label: NO2
-    - metric: SO2
-      label: SO2
 resources:
   headline:
       img: https://caltech-prod.s3.amazonaws.com/main/images/2021-Campus-Aerials-00513-WE.336e18bc.fill-1600x810-c100.jpg
