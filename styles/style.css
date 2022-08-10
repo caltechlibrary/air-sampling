@@ -505,7 +505,7 @@ Blocks
     }
 }
 
-.metric-widget__header-container {
+.metric-widget__top-container {
     height: 44px;
     padding: 0px 10px;
     display: flex;
@@ -513,13 +513,13 @@ Blocks
 }
 
 @media (min-width:800px) {
-    .metric-widget__header-container {
+    .metric-widget__top-container {
         height: 56px;
         padding: 0px;
     }
 }
 
-.metric-widget__primary-header-subcontainer {
+.metric-widget__labels-container {
     flex: 0 0 auto;
     width: 100%;
     display: flex;
@@ -527,12 +527,12 @@ Blocks
 }
 
 @media (min-width:800px) {
-    .metric-widget__primary-header-subcontainer {
+    .metric-widget__labels-container {
         width: 435px;
     }
 }
 
-.metric-widget__primary-header-subcontainer * {
+.metric-widget__labels-container * {
     flex: 1;
     text-align: center;
 }
