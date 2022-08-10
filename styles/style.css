@@ -492,13 +492,11 @@ Blocks
 
 /* metric-widget */
 .metric-widget {
-    box-sizing: border-box;
     border-radius: 8px;
     padding: 8px 14px;
     background: #efefef;
     color: #033C49;
     font-family: Arial;
-    transition: height 1s;
 }
 
 @media (min-width:800px) {
