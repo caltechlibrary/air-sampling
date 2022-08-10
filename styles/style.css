@@ -16,6 +16,7 @@ Blocks
 - resources-widget: widget used to display headlines/useful links.
 - card: component used to display aqi widget, live cam, and resources widget.
 - top-container: container that wraps aqi, live cam, and (on desktop screen sizes) resources cards.
+- metric-widget: accordion widget used to display individual metric values.
 - page: container used to wrap site.
 */
 
