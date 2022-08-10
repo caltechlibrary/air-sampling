@@ -493,7 +493,6 @@ Blocks
 /* metric-widget */
 .metric-widget {
     box-sizing: border-box;
-    margin-bottom: 12px;
     border-radius: 8px;
     padding: 8px 14px;
     background: #efefef;
@@ -716,6 +715,10 @@ Blocks
     .page__top-container {
         margin-bottom: 36px;
     }
+}
+
+.page__metric-widget {
+    margin-bottom: 12px;
 }
 
 @media (min-width:600px) and (max-width:1099px) {
