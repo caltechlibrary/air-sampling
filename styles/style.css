@@ -11,8 +11,11 @@ because BEM blocks can be redefined at different layers. For example: .header co
 
 Blocks
 - header: banner at top of site.
-- top-container: container that wraps aqi, live cam, and (on desktop screen sizes) resources widgets.
+- aqi-widget: widget used to display current aqi value.
+- cam-widget: widget used to display live cam feed.
+- resources-widget: widget used to display headlines/useful links.
 - card: component used to display aqi widget, live cam, and resources widget.
+- top-container: container that wraps aqi, live cam, and (on desktop screen sizes) resources cards.
 - page: container used to wrap site.
 */
 
@@ -114,96 +117,6 @@ Blocks
 @media (min-width: 1100px) {
     .header__date {
         font-size: 1.125em;
-    }
-}
-
-/* top-container */
-.top-container {
-    display: flex;
-    flex-direction: column;
-}
-
-@media (min-width:600px) {
-    .top-container {
-        flex-direction: row;
-    }
-}
-
-.top-container__item {
-    flex: 1;
-    margin: 0 0 24px;
-}
-
-.top-container__item:last-child {
-    margin-bottom: 0;
-}
-
-@media (min-width:600px) {
-    .top-container__item {
-        margin: 0 2%;
-    }
-
-    .top-container__item:first-child {
-        margin-left: 0;
-    }
-    
-    .top-container__item:last-child {
-        margin-right: 0;
-    }
-}
-
-/* card */
-.card {
-    position: relative;
-    width: 100%;
-    height: 0;
-    padding-bottom: 102.5%;
-    font-family: Arial;
-}
-
-@media (max-width:599px) {
-    .card--min-mobile {
-        padding-bottom: 40%;
-    } 
-}
-
-.card__component-container {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
-.card__main-component {
-    flex: 0 0 85%;
-    margin-bottom: 8px;
-    box-sizing: border-box;
-    border-radius: 3%;
-    overflow: hidden;
-}
-
-@media (max-width:599px) {
-    .card--sub-component-lg-mobile .card__main-component {
-        flex: 0 0 81%;
-    }
-}
-
-@media (max-width:599px) {
-    .card--min-mobile .card__main-component {
-        flex: 0 0 100%;
-        margin: 0;
-    }
-}
-
-.card__sub-component {
-    flex: 1;
-    border-radius: 8px;
-}
-
-@media (max-width:599px) {
-    .card--min-mobile .card__sub-component {
-        display: none;
     }
 }
 
@@ -483,6 +396,96 @@ Blocks
 @media (min-width: 600px) {
     .resources-widget__download-link {
         font-size: 1.625em;
+    }
+}
+
+/* card */
+.card {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 102.5%;
+    font-family: Arial;
+}
+
+@media (max-width:599px) {
+    .card--min-mobile {
+        padding-bottom: 40%;
+    } 
+}
+
+.card__component-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.card__main-component {
+    flex: 0 0 85%;
+    margin-bottom: 8px;
+    box-sizing: border-box;
+    border-radius: 3%;
+    overflow: hidden;
+}
+
+@media (max-width:599px) {
+    .card--sub-component-lg-mobile .card__main-component {
+        flex: 0 0 81%;
+    }
+}
+
+@media (max-width:599px) {
+    .card--min-mobile .card__main-component {
+        flex: 0 0 100%;
+        margin: 0;
+    }
+}
+
+.card__sub-component {
+    flex: 1;
+    border-radius: 8px;
+}
+
+@media (max-width:599px) {
+    .card--min-mobile .card__sub-component {
+        display: none;
+    }
+}
+
+/* top-container */
+.top-container {
+    display: flex;
+    flex-direction: column;
+}
+
+@media (min-width:600px) {
+    .top-container {
+        flex-direction: row;
+    }
+}
+
+.top-container__item {
+    flex: 1;
+    margin: 0 0 24px;
+}
+
+.top-container__item:last-child {
+    margin-bottom: 0;
+}
+
+@media (min-width:600px) {
+    .top-container__item {
+        margin: 0 2%;
+    }
+
+    .top-container__item:first-child {
+        margin-left: 0;
+    }
+    
+    .top-container__item:last-child {
+        margin-right: 0;
     }
 }
 
