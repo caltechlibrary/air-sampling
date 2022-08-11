@@ -626,7 +626,7 @@ Blocks
     flex: 0 0 auto;
     box-sizing: border-box;
     width: 435px;
-    padding: 16px 44px 0px;
+    padding: 0px 44px;
     color: #000;
 }
 
@@ -634,10 +634,6 @@ Blocks
     .metric-widget__description {
         display: none;
     }    
-}
-
-.metric-widget__description p {
-    margin-top: 0;
 }
 
 .metric-widget__metric-chart {
