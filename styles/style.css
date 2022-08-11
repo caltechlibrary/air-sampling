@@ -524,11 +524,13 @@ Blocks
     width: 100%;
     display: flex;
     align-items: center;
+    font-size: 0.875em;
 }
 
 @media (min-width:800px) {
     .metric-widget__labels-container {
         width: 435px;
+        font-size: 1.075em;
     }
 }
 
@@ -539,13 +541,7 @@ Blocks
 
 .metric-widget__header {
     margin: 0;
-    font-size: 0.875em;
-}
-
-@media (min-width:800px) {
-    .metric-widget__header {
-        font-size: 1.075em;
-    }
+    font-size: inherit;
 }
 
 .metric-widget__toggle-btn {
@@ -575,16 +571,6 @@ Blocks
 
 .metric-widget__toggle-btn[aria-expanded='true'] .metric-widget__toggle-icon {
     transform: rotate(90deg);
-}
-
-.metric-widget__quality-label, .metric-widget__value-label {
-    font-size: 0.875em;
-}
-
-@media (min-width:800px) {
-    .metric-widget__quality-label, .metric-widget__value-label {
-        font-size: 1.075em;
-    }
 }
 
 @media (max-width:799px) {
