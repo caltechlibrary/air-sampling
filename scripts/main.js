@@ -113,17 +113,13 @@
     let initializeMetricWidgetAccordion = function(metric) {
         let metricWidgetEl = document.querySelector(`.metric-widget[data-metric='${metric}']`);
         let toggleBtn = metricWidgetEl.querySelector(".metric-widget__toggle-btn");
-        let contentPanel = metricWidgetEl.querySelector(".metric-widget__panel");
-        let previewSnippet = metricWidgetEl.querySelector(".metric-widget__preview-snippet");
 
         toggleBtn.addEventListener("click", function(){
             if(toggleBtn.getAttribute("aria-expanded") == "false") {
-                previewSnippet.classList.add("metric-widget__preview-snippet--hidden");
-                contentPanel.classList.remove("metric-widget__panel--collapsed");
+                metricWidgetEl.classList.add("metric-widget--expanded");
                 toggleBtn.setAttribute("aria-expanded", "true");
             } else {
-                previewSnippet.classList.remove("metric-widget__preview-snippet--hidden");
-                contentPanel.classList.add("metric-widget__panel--collapsed");
+                metricWidgetEl.classList.remove("metric-widget--expanded");
                 toggleBtn.setAttribute("aria-expanded", "false");
             }
         });
