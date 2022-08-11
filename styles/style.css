@@ -643,7 +643,8 @@ Blocks
 
 @media (min-width:800px) {
     .metric-widget__metric-chart {
-        margin-top: -56px;
+        position: relative;
+        top: -56px;
         height: calc(100% + 56px);
     }
 }
