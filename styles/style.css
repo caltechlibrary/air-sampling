@@ -520,8 +520,7 @@ Blocks
 }
 
 .metric-widget__labels-container {
-    flex: 0 0 auto;
-    width: 100%;
+    flex: 1;
     display: flex;
     align-items: center;
     font-size: 0.875em;
@@ -529,6 +528,7 @@ Blocks
 
 @media (min-width:800px) {
     .metric-widget__labels-container {
+        flex: 0 0 auto;
         width: 435px;
         font-size: 1.075em;
     }
@@ -580,8 +580,8 @@ Blocks
 }
 
 .metric-widget__preview-snippet {
-    flex: 1;
-    max-width: 300px;
+    flex: 0 1 auto;
+    width: 300px;
     font-size: 1em;
     text-align: center;
     white-space: nowrap;
