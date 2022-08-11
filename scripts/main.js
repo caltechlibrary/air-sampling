@@ -9,7 +9,6 @@
     const AIRVALUESAPI = "air-values.json";
     const MAPPINGSENDPOINT = "mappings.json";
     const CHARTDATAENDPOINT = "air-data.txt";
-    const METRICCHARTELS = document.querySelectorAll(".metric-chart");
 
     //
 	// Functions
@@ -154,11 +153,12 @@
         return metricData;
     };
 
-    let initializeMetricChart = function(metric, data, unit) {
-        let metricChartEl = document.querySelector(`.metric-chart[data-metric='${metric}']`);
+    let initializeMetricWidgetChart = function(metric, data, unit) {
+        let metricWidget = document.querySelector(`.metric-widget[data-metric='${metric}']`);
+        let chartContainer = metricWidget.querySelector(".metric-widget__chart-container");
         let chartSvg = LineChart(data, { label: `${metric} ${unit}` });
-        chartSvg.classList.add("metric-chart__svg");
-        metricChartEl.append(chartSvg);
+        chartSvg.classList.add("metric-widget__chart");
+        chartContainer.append(chartSvg);
     };
 
     onResize();
@@ -187,9 +187,10 @@
 
     let metricCSVString = await fetchMetricCSV();
     let metricData = getMetricData(metricCSVString);
-    for(let metricChartEl of METRICCHARTELS) {
-        let metric = metricChartEl.getAttribute("data-metric");
+
+    for(let metricWidgetEl of METRICWIDGETELS) {
+        let metric = metricWidgetEl.getAttribute("data-metric");
         let data = metricData[metric];
-        initializeMetricChart(metric, data.data, data.unit);
+        initializeMetricWidgetChart(metric, data.data, data.unit);
     }
 })();

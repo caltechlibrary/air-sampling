@@ -636,32 +636,29 @@ Blocks
     }    
 }
 
-.metric-widget__metric-chart {
+.metric-widget__chart-container {
     flex: 1;
     height: 100%;
+    background: #fff;
+    overflow: auto hidden;
 }
 
 @media (min-width:800px) {
-    .metric-widget__metric-chart {
+    .metric-widget__chart-container {
         position: relative;
         top: -56px;
         height: calc(100% + 56px);
     }
 }
 
-.metric-chart {
-    background: #fff;
-    overflow: auto hidden;
-}
-
-.metric-chart__svg {
+.metric-widget__chart {
     display: block;
     height: 100%;
     width: auto;
 }
 
 @media (min-width:800px) {
-    .metric-chart__svg {
+    .metric-widget__chart {
         min-width: 792px;
     }
 }
