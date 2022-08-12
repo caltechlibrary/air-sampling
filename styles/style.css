@@ -506,7 +506,7 @@ Blocks
 }
 
 .metric-widget__top-container {
-    height: 44px;
+    height: 2.75rem;
     padding: 0px 10px;
     display: flex;
     align-items: center;
@@ -514,7 +514,7 @@ Blocks
 
 @media (min-width:800px) {
     .metric-widget__top-container {
-        height: 56px;
+        height: 3.5rem;
         padding: 0px;
     }
 }
@@ -529,7 +529,7 @@ Blocks
 @media (min-width:800px) {
     .metric-widget__labels-container {
         flex: 0 0 auto;
-        width: 435px;
+        width: 27.1875rem;
         font-size: 1.075em;
     }
 }
@@ -610,7 +610,7 @@ Blocks
 }
 
 .metric-widget--expanded .metric-widget__panel {
-    height: 100px;
+    height: 6.25rem;
     opacity: 1;
     visibility: visible;
     transition: height 1s, opacity 0.25s 0.5s;
@@ -618,14 +618,14 @@ Blocks
 
 @media (min-width:800px) {
     .metric-widget--expanded .metric-widget__panel {
-        height: 158px;
+        height: 9.875rem;
     }
 }
 
 .metric-widget__description {
     flex: 0 0 auto;
     box-sizing: border-box;
-    width: 435px;
+    width: 27.1875rem;
     padding: 0px 44px;
     color: #000;
 }
@@ -646,8 +646,8 @@ Blocks
 @media (min-width:800px) {
     .metric-widget__chart-container {
         position: relative;
-        top: -56px;
-        height: calc(100% + 56px);
+        top: -3.5rem;
+        height: calc(100% + 3.5rem);
     }
 }
 
