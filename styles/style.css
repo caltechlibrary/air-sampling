@@ -528,7 +528,7 @@ Blocks
 
 @media (min-width:800px) {
     .metric-widget__labels-container {
-        flex: 0 1 auto;
+        flex: 0 0 auto;
         width: 27.1875rem;
         font-size: 1.075em;
     }
@@ -624,7 +624,7 @@ Blocks
 }
 
 .metric-widget__description {
-    flex: 0 1 auto;
+    flex: 0 0 auto;
     box-sizing: border-box;
     width: 27.1875rem;
     padding: 0px 44px;
