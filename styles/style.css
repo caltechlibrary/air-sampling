@@ -641,7 +641,7 @@ Blocks
     flex: 1;
     height: 100%;
     background: #fff;
-    overflow: auto hidden;
+    overflow: auto;
 }
 
 @media (min-width:800px) {
@@ -656,12 +656,6 @@ Blocks
     display: block;
     height: 100%;
     width: auto;
-}
-
-@media (min-width:800px) {
-    .metric-widget__chart {
-        min-width: 792px;
-    }
 }
 
 /* page */
