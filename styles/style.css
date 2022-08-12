@@ -628,6 +628,7 @@ Blocks
     width: 27.1875rem;
     padding: 0px 44px;
     color: #000;
+    overflow: auto;
 }
 
 @media (max-width:799px) {
