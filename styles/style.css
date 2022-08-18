@@ -459,34 +459,33 @@ Blocks
 .top-container {
     display: flex;
     flex-direction: column;
+    gap: 24px;
 }
 
 @media (min-width:600px) {
     .top-container {
         flex-direction: row;
+        flex-wrap: wrap;
+        gap: 24px 4%;
     }
 }
 
 .top-container__item {
     flex: 1;
-    margin: 0 0 24px;
-}
-
-.top-container__item:last-child {
-    margin-bottom: 0;
 }
 
 @media (min-width:600px) {
     .top-container__item {
-        margin: 0 2%;
+        flex: 0 0 48%;
+        margin: auto;
+        min-width: 16rem;
     }
+}
 
-    .top-container__item:first-child {
-        margin-left: 0;
-    }
-    
-    .top-container__item:last-child {
-        margin-right: 0;
+@media (min-width:1100px) {
+    .top-container__item {
+        flex: 0 0 30.66%;
+        min-width: 20rem;
     }
 }
 
