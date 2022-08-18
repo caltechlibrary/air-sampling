@@ -698,6 +698,7 @@ Blocks
 @media (min-width:600px) and (max-width:1099px) {
     .page__resources-widget-container {
         margin: auto;
+        min-width: 16rem;
         max-width: 48%;
     }
 }
