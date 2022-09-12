@@ -6,18 +6,18 @@
                 <div class="resources-widget__headline">
                     <img 
                         class="resources-widget__headline-img" 
-                        src="${it.headline.img}" 
+                        src="${headline.img}" 
                         alt="Headline article picture" 
                         width="1600" 
                         height="811"
                     >
-                    <a class="resources-widget__link" href="${it.headline.link}">${it.headline.title}</a>
+                    <a class="resources-widget__link" href="${headline.link}">${headline.title}</a>
                 </div>
             </div>
             <div class="resources-widget__divider"></div>
             <div class="resources-widget__links-container">
                 <h2 class="resources-widget__header">USEFUL LINKS</h2>
-                ${for(it.links)}
+                ${for(useful-links)}
                     <a class="resources-widget__link" href="${it.link}">${it.title}</a>
                 ${endfor}
             </div>
