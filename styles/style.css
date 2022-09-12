@@ -16,7 +16,7 @@ Blocks
 - resources-widget: widget used to display headlines/useful links.
 - card: component used to display aqi widget, live cam, and resources widget.
 - top-container: container that wraps aqi, live cam, and (on desktop screen sizes) resources cards.
-- metric-widget: accordion widget used to display individual metric values.
+- pollutant-widget: accordion widget used to display individual pollutant values.
 - page: container used to wrap site.
 */
 
@@ -489,8 +489,8 @@ Blocks
     }
 }
 
-/* metric-widget */
-.metric-widget {
+/* pollutant-widget */
+.pollutant-widget {
     border-radius: 8px;
     padding: 8px 14px;
     background: #efefef;
@@ -499,12 +499,12 @@ Blocks
 }
 
 @media (min-width:800px) {
-    .metric-widget {
+    .pollutant-widget {
         padding: 12px 16px;
     }
 }
 
-.metric-widget__top-container {
+.pollutant-widget__top-container {
     height: 2.75rem;
     padding: 0px 10px;
     display: flex;
@@ -512,13 +512,13 @@ Blocks
 }
 
 @media (min-width:800px) {
-    .metric-widget__top-container {
+    .pollutant-widget__top-container {
         height: 3.5rem;
         padding: 0px;
     }
 }
 
-.metric-widget__labels-container {
+.pollutant-widget__labels-container {
     flex: 1;
     display: flex;
     align-items: center;
@@ -526,25 +526,25 @@ Blocks
 }
 
 @media (min-width:800px) {
-    .metric-widget__labels-container {
+    .pollutant-widget__labels-container {
         flex: 0 0 auto;
         width: 27.1875rem;
         font-size: 1.075em;
     }
 }
 
-.metric-widget__label {
+.pollutant-widget__label {
     flex: 1;
     text-align: center;
     white-space: nowrap;
 }
 
-.metric-widget__header {
+.pollutant-widget__header {
     margin: 0;
     font-size: inherit;
 }
 
-.metric-widget__toggle-btn {
+.pollutant-widget__toggle-btn {
     margin: 0;
     border: none;
     padding: 0;
@@ -555,7 +555,7 @@ Blocks
     font-size: inherit;
 }
 
-.metric-widget__toggle-icon {
+.pollutant-widget__toggle-icon {
     margin: 0 16px 0 0;
     width: 1.25em;
     height: 1.25em;
@@ -564,22 +564,22 @@ Blocks
 }
 
 @media (min-width:800px) {
-    .metric-widget__toggle-icon {
+    .pollutant-widget__toggle-icon {
         margin: 0 20px 0 0;
     }
 }
 
-.metric-widget__toggle-btn[aria-expanded='true'] .metric-widget__toggle-icon {
+.pollutant-widget__toggle-btn[aria-expanded='true'] .pollutant-widget__toggle-icon {
     transform: rotate(90deg);
 }
 
 @media (max-width:799px) {
-    .metric-widget__value-label {
+    .pollutant-widget__value-label {
         text-align: right;
     }
 }
 
-.metric-widget__preview-snippet {
+.pollutant-widget__preview-snippet {
     flex: 0 1 auto;
     width: 18.75rem;
     font-size: 1em;
@@ -590,18 +590,18 @@ Blocks
 }
 
 @media (max-width:799px) {
-    .metric-widget__preview-snippet {
+    .pollutant-widget__preview-snippet {
         display: none;
     }
 }
 
-.metric-widget--expanded .metric-widget__preview-snippet {
+.pollutant-widget--expanded .pollutant-widget__preview-snippet {
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.25s, visibility 0s 1s;
 }
 
-.metric-widget__panel {
+.pollutant-widget__panel {
     height: 0px;
     display: flex;
     opacity: 0;
@@ -609,7 +609,7 @@ Blocks
     transition: height 1s, opacity 0.25s, visibility 0s 1s;
 }
 
-.metric-widget--expanded .metric-widget__panel {
+.pollutant-widget--expanded .pollutant-widget__panel {
     height: 6.25rem;
     opacity: 1;
     visibility: visible;
@@ -617,12 +617,12 @@ Blocks
 }
 
 @media (min-width:800px) {
-    .metric-widget--expanded .metric-widget__panel {
+    .pollutant-widget--expanded .pollutant-widget__panel {
         height: 9.875rem;
     }
 }
 
-.metric-widget__description {
+.pollutant-widget__description {
     flex: 0 0 auto;
     box-sizing: border-box;
     width: 27.1875rem;
@@ -632,12 +632,12 @@ Blocks
 }
 
 @media (max-width:799px) {
-    .metric-widget__description {
+    .pollutant-widget__description {
         display: none;
     }    
 }
 
-.metric-widget__chart-container {
+.pollutant-widget__chart-container {
     flex: 1;
     height: 100%;
     background: #fff;
@@ -645,14 +645,14 @@ Blocks
 }
 
 @media (min-width:800px) {
-    .metric-widget__chart-container {
+    .pollutant-widget__chart-container {
         position: relative;
         top: -3.5rem;
         height: calc(100% + 3.5rem);
     }
 }
 
-.metric-widget__chart {
+.pollutant-widget__chart {
     display: block;
     height: 100%;
     width: auto;
@@ -691,7 +691,7 @@ Blocks
     }
 }
 
-.page__metric-widget {
+.page__pollutant-widget {
     margin-bottom: 12px;
 }
 

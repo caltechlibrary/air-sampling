@@ -4,7 +4,7 @@
 	//
     const WIDGETSCONTAINEREL = document.querySelector(".top-container");
     const RESOURCESWIDGETEL = document.querySelector(".resources-widget");
-    const METRICWIDGETELS = document.querySelectorAll(".metric-widget");
+    const POLLUTANTWIDGETELS = document.querySelectorAll(".pollutant-widget");
     const LAYOUTBREAKPOINT = 1100;
     const AIRVALUESAPI = "air-values.json";
     const MAPPINGSENDPOINT = "mappings.json";
@@ -23,7 +23,7 @@
             let container = RESOURCESWIDGETEL.parentElement;
             while(container.classList.length > 0) container.classList.remove(container.classList.item(0));
             container.classList.add("page__resources-widget-container");
-            METRICWIDGETELS[METRICWIDGETELS.length - 1].after(container);
+            POLLUTANTWIDGETELS[POLLUTANTWIDGETELS.length - 1].after(container);
         }
     };
 
@@ -94,11 +94,11 @@
         }
     };
 
-    let initializeMetricWidget = function(metric, value, label, snippet) {
-        let metricWidgetEl = document.querySelector(`.metric-widget[data-metric='${metric}']`);
-        let valueLabel = metricWidgetEl.querySelector(".metric-widget__value-label");
-        let qualityLabel = metricWidgetEl.querySelector(".metric-widget__quality-label");
-        let previewSnippet = metricWidgetEl.querySelector(".metric-widget__preview-snippet");
+    let initializePollutantWidget = function(pollutant, value, label, snippet) {
+        let pollutantWidgetEl = document.querySelector(`.pollutant-widget[data-pollutant='${pollutant}']`);
+        let valueLabel = pollutantWidgetEl.querySelector(".pollutant-widget__value-label");
+        let qualityLabel = pollutantWidgetEl.querySelector(".pollutant-widget__quality-label");
+        let previewSnippet = pollutantWidgetEl.querySelector(".pollutant-widget__preview-snippet");
 
         if(value && label && snippet) {
             valueLabel.textContent = value;
@@ -109,55 +109,55 @@
         }
     };
 
-    let initializeMetricWidgetAccordion = function(metric) {
-        let metricWidgetEl = document.querySelector(`.metric-widget[data-metric='${metric}']`);
-        let toggleBtn = metricWidgetEl.querySelector(".metric-widget__toggle-btn");
+    let initializePollutantWidgetAccordion = function(pollutant) {
+        let pollutantWidgetEl = document.querySelector(`.pollutant-widget[data-pollutant='${pollutant}']`);
+        let toggleBtn = pollutantWidgetEl.querySelector(".pollutant-widget__toggle-btn");
 
         toggleBtn.addEventListener("click", function(){
             if(toggleBtn.getAttribute("aria-expanded") == "false") {
-                metricWidgetEl.classList.add("metric-widget--expanded");
+                pollutantWidgetEl.classList.add("pollutant-widget--expanded");
                 toggleBtn.setAttribute("aria-expanded", "true");
             } else {
-                metricWidgetEl.classList.remove("metric-widget--expanded");
+                pollutantWidgetEl.classList.remove("pollutant-widget--expanded");
                 toggleBtn.setAttribute("aria-expanded", "false");
             }
         });
     };
 
-    let fetchMetricCSV = async function() {
+    let fetchPollutantCSV = async function() {
         let res = await fetch(CHARTDATAENDPOINT);
         return await res.text();
     };
 
-    let getMetricData = function(csvString) {
-        let metricData = {};
+    let getPollutantData = function(csvString) {
+        let pollutantData = {};
         let rows = d3.csvParse(csvString, d3.autoType);
         let timeField = rows.columns[0];
 
-        for(let metric of rows.columns) {
-            if(metric != timeField) {
-                metricData[metric] = { unit: rows[0][metric], data: [] };
+        for(let pollutant of rows.columns) {
+            if(pollutant != timeField) {
+                pollutantData[pollutant] = { unit: rows[0][pollutant], data: [] };
             }
         }
 
         for(let i = 1; i < rows.length; i++) {
             let row = rows[i];
             let time = row[timeField] * 1000;
-            for(let metric in row) {
-                if(metric != timeField) {
-                    metricData[metric].data.push({ time, value: row[metric] });
+            for(let pollutant in row) {
+                if(pollutant != timeField) {
+                    pollutantData[pollutant].data.push({ time, value: row[pollutant] });
                 }
             }
         }
 
-        return metricData;
+        return pollutantData;
     };
 
-    let initializeMetricWidgetChart = function(metric, data, unit) {
-        let metricWidget = document.querySelector(`.metric-widget[data-metric='${metric}']`);
-        let chartContainer = metricWidget.querySelector(".metric-widget__chart-container");
-        let chartSvg = LineChart(data, { label: `${metric} ${unit}` });
-        chartSvg.classList.add("metric-widget__chart");
+    let initializePollutantWidgetChart = function(pollutant, data, unit) {
+        let pollutantWidget = document.querySelector(`.pollutant-widget[data-pollutant='${pollutant}']`);
+        let chartContainer = pollutantWidget.querySelector(".pollutant-widget__chart-container");
+        let chartSvg = LineChart(data, { label: `${pollutant} ${unit}` });
+        chartSvg.classList.add("pollutant-widget__chart");
         chartContainer.append(chartSvg);
     };
 
@@ -170,27 +170,27 @@
         let [currValues, mappings] = await fetchCurrentValuesAndMappings();
         let valuesWithLabels = getValuesWithLabels(currValues, mappings);
         initializeAqiWidget(valuesWithLabels.aqi.value, valuesWithLabels.aqi.label);
-        for(let metricWidgetEl of METRICWIDGETELS) {
-            let metric = metricWidgetEl.getAttribute("data-metric");
-            let valueWithLabel = valuesWithLabels[metric];
-            initializeMetricWidget(metric, valueWithLabel.value, valueWithLabel.label, valueWithLabel.snippet);
+        for(let pollutantWidgetEl of POLLUTANTWIDGETELS) {
+            let pollutant = pollutantWidgetEl.getAttribute("data-pollutant");
+            let valueWithLabel = valuesWithLabels[pollutant];
+            initializePollutantWidget(pollutant, valueWithLabel.value, valueWithLabel.label, valueWithLabel.snippet);
         }
     } catch(error) {
         initializeAqiWidget();
-        for(let metricWidgetEl of METRICWIDGETELS) {
-            let metric = metricWidgetEl.getAttribute("data-metric");
-            initializeMetricWidget(metric);
+        for(let pollutantWidgetEl of POLLUTANTWIDGETELS) {
+            let pollutant = pollutantWidgetEl.getAttribute("data-pollutant");
+            initializePollutantWidget(pollutant);
         }
     }
 
-    for(let metricWidgetEl of METRICWIDGETELS) initializeMetricWidgetAccordion(metricWidgetEl.getAttribute("data-metric"));
+    for(let pollutantWidgetEl of POLLUTANTWIDGETELS) initializePollutantWidgetAccordion(pollutantWidgetEl.getAttribute("data-pollutant"));
 
-    let metricCSVString = await fetchMetricCSV();
-    let metricData = getMetricData(metricCSVString);
+    let pollutantCSVString = await fetchPollutantCSV();
+    let pollutantData = getPollutantData(pollutantCSVString);
 
-    for(let metricWidgetEl of METRICWIDGETELS) {
-        let metric = metricWidgetEl.getAttribute("data-metric");
-        let data = metricData[metric];
-        initializeMetricWidgetChart(metric, data.data, data.unit);
+    for(let pollutantWidgetEl of POLLUTANTWIDGETELS) {
+        let pollutant = pollutantWidgetEl.getAttribute("data-pollutant");
+        let data = pollutantData[pollutant];
+        initializePollutantWidgetChart(pollutant, data.data, data.unit);
     }
 })();
