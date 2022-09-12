@@ -1,8 +1,8 @@
-<div class="metric-widget page__metric-widget" data-metric="${it.metric}">
+<div class="metric-widget page__metric-widget" data-metric="${it.pollutant}">
     <div class="metric-widget__top-container">
         <div class="metric-widget__labels-container">
             <h2 class="metric-widget__header metric-widget__label">
-                <button class="metric-widget__toggle-btn" aria-controls="${it.metric}-panel" aria-expanded="false">
+                <button class="metric-widget__toggle-btn" aria-controls="${it.pollutant}-panel" aria-expanded="false">
                     <span class="metric-widget__toggle-icon" aria-label="Dropdown icon">${svg/triangle.svg()}</span>
                     <span>${it.label}</span>
                 </button>
@@ -12,7 +12,7 @@
         </div>
         <span class="metric-widget__preview-snippet"></span>
     </div>
-    <div id="${it.metric}-panel" class="metric-widget__panel">
+    <div id="${it.pollutant}-panel" class="metric-widget__panel">
         <div class="metric-widget__description">
             <p>If you are unusually sensitive to particle pollution, consider reducing your activity level or shorten the amount of time you are active outdoors</p>
         </div>

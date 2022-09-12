@@ -15,7 +15,7 @@
     <div class="top-container__item">${aqi-widget.html()}</div>
     <div class="top-container__item">${cam-widget.html()}</div>
   </div>
-  ${for(metrics)}${it:metric-widget.html()}${endfor}
+  ${for(pollutants)}${it:metric-widget.html()}${endfor}
   <div class="page__resources-widget-container">${resources-widget.html()}</div>
 
   <script src="https://d3js.org/d3.v7.min.js"></script>
