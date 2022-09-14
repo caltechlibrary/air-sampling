@@ -14,18 +14,19 @@
 	// Functions
 	//
     let onResize = function() {
-        let container = RESOURCESWIDGETEL.parentElement;
         let shiftToDesktop = window.innerWidth >= LAYOUTBREAKPOINT && TOPCONTAINEREL.childElementCount == 2;
         let shiftToMobile = window.innerWidth < LAYOUTBREAKPOINT && TOPCONTAINEREL.childElementCount == 3;
         
-        if(shiftToDesktop) {
+        if(shiftToDesktop || shiftToMobile) {
+            let container = RESOURCESWIDGETEL.parentElement;
             while(container.classList.length > 0) container.classList.remove(container.classList.item(0));
-            container.classList.add("top-container__item");
-            TOPCONTAINEREL.appendChild(container);
-        } else if(shiftToMobile) {
-            while(container.classList.length > 0) container.classList.remove(container.classList.item(0));
-            container.classList.add("page__resources-widget-container");
-            POLLUTANTWIDGETELS[POLLUTANTWIDGETELS.length - 1].after(container);
+            if(shiftToDesktop) {
+                container.classList.add("top-container__item");
+                TOPCONTAINEREL.appendChild(container);
+            } else if(shiftToMobile) {
+                container.classList.add("page__resources-widget-container");
+                POLLUTANTWIDGETELS[POLLUTANTWIDGETELS.length - 1].after(container);
+            }
         }
     };
 
