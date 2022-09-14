@@ -15,11 +15,14 @@
 	//
     let onResize = function() {
         let container = RESOURCESWIDGETEL.parentElement;
-        if(window.innerWidth >= LAYOUTBREAKPOINT && TOPCONTAINEREL.childElementCount == 2) {
+        let shiftToDesktop = window.innerWidth >= LAYOUTBREAKPOINT && TOPCONTAINEREL.childElementCount == 2;
+        let shiftToMobile = window.innerWidth < LAYOUTBREAKPOINT && TOPCONTAINEREL.childElementCount == 3;
+        
+        if(shiftToDesktop) {
             while(container.classList.length > 0) container.classList.remove(container.classList.item(0));
             container.classList.add("top-container__item");
             TOPCONTAINEREL.appendChild(container);
-        } else if(window.innerWidth < LAYOUTBREAKPOINT && TOPCONTAINEREL.childElementCount == 3) {
+        } else if(shiftToMobile) {
             while(container.classList.length > 0) container.classList.remove(container.classList.item(0));
             container.classList.add("page__resources-widget-container");
             POLLUTANTWIDGETELS[POLLUTANTWIDGETELS.length - 1].after(container);
