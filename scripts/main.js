@@ -106,13 +106,15 @@
         let qualityLabel = pollutantWidgetEl.querySelector(".pollutant-widget__quality-label");
         let previewSnippet = pollutantWidgetEl.querySelector(".pollutant-widget__preview-snippet");
 
-        if(value && label && snippet) {
-            valueLabel.textContent = value;
-            qualityLabel.textContent = label;
-            previewSnippet.textContent = snippet;
-        } else {
-            valueLabel.textContent = "Not available";
-        }
+        valueLabel.textContent = value;
+        qualityLabel.textContent = label;
+        previewSnippet.textContent = snippet;
+    };
+
+    let initializeFailedPollutantWidget = function(pollutant) {
+        let pollutantWidgetEl = document.querySelector(`.pollutant-widget[data-pollutant='${pollutant}']`);
+        let valueLabel = pollutantWidgetEl.querySelector(".pollutant-widget__value-label");
+        valueLabel.textContent = "Not available";
     };
 
     let initializePollutantWidgetAccordion = function(pollutant) {
@@ -186,10 +188,7 @@
         }
     } catch(error) {
         initializeFailedAqiWidget();
-        for(let pollutantWidgetEl of POLLUTANTWIDGETELS) {
-            let pollutant = pollutantWidgetEl.getAttribute("data-pollutant");
-            initializePollutantWidget(pollutant);
-        }
+        for(let pollutantWidgetEl of POLLUTANTWIDGETELS) initializeFailedPollutantWidget(pollutantWidgetEl.getAttribute("data-pollutant"));
     }
 
     for(let pollutantWidgetEl of POLLUTANTWIDGETELS) initializePollutantWidgetAccordion(pollutantWidgetEl.getAttribute("data-pollutant"));
