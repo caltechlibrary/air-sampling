@@ -78,23 +78,26 @@
     };
 
     let initializeAqiWidget = function(value, label) {
-        let aqiEl = document.querySelector(".aqi-widget");
-        let valueEl = aqiEl.querySelector(".aqi-widget__value");
-        let descriptionEl = aqiEl.querySelector(".aqi-widget__description-value");
-        let meterEl = aqiEl.querySelector(".aqi-widget__meter");
-        let inidicatorEl = aqiEl.querySelector(".aqi-widget__meter-indicator");
+        let valueEl = document.querySelector(".aqi-widget__value");
+        let descriptionEl = document.querySelector(".aqi-widget__description-value");
+        let meterEl = document.querySelector(".aqi-widget__meter");
+        let inidicatorEl = document.querySelector(".aqi-widget__meter-indicator");
         let maxAqiValue = parseInt(meterEl.getAttribute("aria-valuemax"));
 
-        if(value && label) {
-            valueEl.textContent = value;
-            descriptionEl.textContent = label;
-            meterEl.setAttribute("aria-valuenow", value);
-            inidicatorEl.style.left = `${(value / maxAqiValue) * 100}%`;
-        } else {
-            aqiEl.classList.add("aqi-widget--data-unavailable");
-            valueEl.textContent = "Not available";
-            meterEl.setAttribute("aria-valuetext", "Not available");
-        }
+        valueEl.textContent = value;
+        descriptionEl.textContent = label;
+        meterEl.setAttribute("aria-valuenow", value);
+        inidicatorEl.style.left = `${(value / maxAqiValue) * 100}%`;
+    };
+
+    let initializeFailedAqiWidget = function() {
+        let aqiEl = document.querySelector(".aqi-widget");
+        let valueEl = document.querySelector(".aqi-widget__value");
+        let meterEl = document.querySelector(".aqi-widget__meter");
+
+        aqiEl.classList.add("aqi-widget--data-unavailable");
+        valueEl.textContent = "Not available";
+        meterEl.setAttribute("aria-valuetext", "Not available");
     };
 
     let initializePollutantWidget = function(pollutant, value, label, snippet) {
@@ -182,7 +185,7 @@
             initializePollutantWidget(pollutant, valueWithLabel.value, valueWithLabel.label, valueWithLabel.snippet);
         }
     } catch(error) {
-        initializeAqiWidget();
+        initializeFailedAqiWidget();
         for(let pollutantWidgetEl of POLLUTANTWIDGETELS) {
             let pollutant = pollutantWidgetEl.getAttribute("data-pollutant");
             initializePollutantWidget(pollutant);
