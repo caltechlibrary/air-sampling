@@ -2,7 +2,7 @@
     //
 	// Variables
 	//
-    const WIDGETSCONTAINEREL = document.querySelector(".top-container");
+    const TOPCONTAINEREL = document.querySelector(".top-container");
     const RESOURCESWIDGETEL = document.querySelector(".resources-widget");
     const POLLUTANTWIDGETELS = document.querySelectorAll(".pollutant-widget");
     const LAYOUTBREAKPOINT = 1100;
@@ -14,12 +14,12 @@
 	// Functions
 	//
     let onResize = function() {
-        if(window.innerWidth >= LAYOUTBREAKPOINT && WIDGETSCONTAINEREL.childElementCount == 2) {
+        if(window.innerWidth >= LAYOUTBREAKPOINT && TOPCONTAINEREL.childElementCount == 2) {
             let container = RESOURCESWIDGETEL.parentElement;
             while(container.classList.length > 0) container.classList.remove(container.classList.item(0));
             container.classList.add("top-container__item");
-            WIDGETSCONTAINEREL.appendChild(container);
-        } else if(window.innerWidth < LAYOUTBREAKPOINT && WIDGETSCONTAINEREL.childElementCount == 3) {
+            TOPCONTAINEREL.appendChild(container);
+        } else if(window.innerWidth < LAYOUTBREAKPOINT && TOPCONTAINEREL.childElementCount == 3) {
             let container = RESOURCESWIDGETEL.parentElement;
             while(container.classList.length > 0) container.classList.remove(container.classList.item(0));
             container.classList.add("page__resources-widget-container");
