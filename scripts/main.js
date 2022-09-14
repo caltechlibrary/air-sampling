@@ -164,6 +164,9 @@
         chartContainer.append(chartSvg);
     };
 
+    //
+	// Inits and Event Listeners
+	//
     onResize();
     window.addEventListener("resize", onResize);
 
