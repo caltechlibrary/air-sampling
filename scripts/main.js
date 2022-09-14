@@ -77,7 +77,7 @@
         }
     };
 
-    let initializeAqiWidget = function(value, label) {
+    let displayAqiWidgetData = function(value, label) {
         let valueEl = document.querySelector(".aqi-widget__value");
         let descriptionEl = document.querySelector(".aqi-widget__description-value");
         let meterEl = document.querySelector(".aqi-widget__meter");
@@ -90,7 +90,7 @@
         inidicatorEl.style.left = `${(value / maxAqiValue) * 100}%`;
     };
 
-    let initializeFailedAqiWidget = function() {
+    let displayFailedAqiWidget = function() {
         let aqiEl = document.querySelector(".aqi-widget");
         let valueEl = document.querySelector(".aqi-widget__value");
         let meterEl = document.querySelector(".aqi-widget__meter");
@@ -100,7 +100,7 @@
         meterEl.setAttribute("aria-valuetext", "Not available");
     };
 
-    let initializePollutantWidget = function(pollutant, value, label, snippet) {
+    let displayPollutantWidgetData = function(pollutant, value, label, snippet) {
         let pollutantWidgetEl = document.querySelector(`.pollutant-widget[data-pollutant='${pollutant}']`);
         let valueLabel = pollutantWidgetEl.querySelector(".pollutant-widget__value-label");
         let qualityLabel = pollutantWidgetEl.querySelector(".pollutant-widget__quality-label");
@@ -111,7 +111,7 @@
         previewSnippet.textContent = snippet;
     };
 
-    let initializeFailedPollutantWidget = function(pollutant) {
+    let displayFailedPollutantWidget = function(pollutant) {
         let pollutantWidgetEl = document.querySelector(`.pollutant-widget[data-pollutant='${pollutant}']`);
         let valueLabel = pollutantWidgetEl.querySelector(".pollutant-widget__value-label");
         valueLabel.textContent = "Not available";
@@ -180,15 +180,15 @@
     try{
         let [currValues, mappings] = await fetchCurrentValuesAndMappings();
         let valuesWithLabels = getValuesWithLabels(currValues, mappings);
-        initializeAqiWidget(valuesWithLabels.aqi.value, valuesWithLabels.aqi.label);
+        displayAqiWidgetData(valuesWithLabels.aqi.value, valuesWithLabels.aqi.label);
         for(let pollutantWidgetEl of POLLUTANTWIDGETELS) {
             let pollutant = pollutantWidgetEl.getAttribute("data-pollutant");
             let valueWithLabel = valuesWithLabels[pollutant];
-            initializePollutantWidget(pollutant, valueWithLabel.value, valueWithLabel.label, valueWithLabel.snippet);
+            displayPollutantWidgetData(pollutant, valueWithLabel.value, valueWithLabel.label, valueWithLabel.snippet);
         }
     } catch(error) {
-        initializeFailedAqiWidget();
-        for(let pollutantWidgetEl of POLLUTANTWIDGETELS) initializeFailedPollutantWidget(pollutantWidgetEl.getAttribute("data-pollutant"));
+        displayFailedAqiWidget();
+        for(let pollutantWidgetEl of POLLUTANTWIDGETELS) displayFailedPollutantWidget(pollutantWidgetEl.getAttribute("data-pollutant"));
     }
 
     for(let pollutantWidgetEl of POLLUTANTWIDGETELS) initializePollutantWidgetAccordion(pollutantWidgetEl.getAttribute("data-pollutant"));
