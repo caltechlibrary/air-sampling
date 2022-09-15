@@ -56,25 +56,21 @@
     let getValuesWithLabels = function(values, mappings) {
         let valuesWithLabels = {};
         for(let metric in values) {
+
+            let value = values[metric];
+            let mapping = mappings[metric];
+
             if(metric == "date" || metric == "time") {
-                valuesWithLabels[metric] = values[metric];
+                valuesWithLabels[metric] = value;
+            } else if (mapping) {
+                let level = mapping.find((level) => value < level.max || !level.hasOwnProperty("max"));
+                valuesWithLabels[metric] = { value, label: level.label, snippet: level.snippet };
             } else {
-                valuesWithLabels[metric] = { value: values[metric], label: undefined, snippet: undefined };
-                if(mappings.hasOwnProperty(metric)) {
-                    let level = getLevelFromMapping(values[metric], mappings[metric]);
-                    ({ label: valuesWithLabels[metric].label, snippet: valuesWithLabels[metric].snippet } = level);
-                }
+                valuesWithLabels[metric] = { value, label: undefined, snippet: undefined };
             }
+
         }
         return valuesWithLabels;
-    };
-
-    let getLevelFromMapping = function(value, mapping) {
-        for(let level of mapping) {
-            if(value < level.max || !level.hasOwnProperty("max")) {
-                return level;
-            }
-        }
     };
 
     let displayAqiWidgetData = function(value, label) {
