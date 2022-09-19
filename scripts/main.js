@@ -183,8 +183,10 @@
             displayPollutantWidgetData(pollutant, valueWithLabel.value, valueWithLabel.label, valueWithLabel.snippet);
         }
     } catch(error) {
+        if(error.message != "Current air values response was not OK") throw error;
         displayFailedAqiWidget();
         for(let pollutantWidgetEl of POLLUTANTWIDGETELS) displayFailedPollutantWidget(pollutantWidgetEl.getAttribute("data-pollutant"));
+        console.log(error);
     }
 
     for(let pollutantWidgetEl of POLLUTANTWIDGETELS) initializePollutantWidgetAccordion(pollutantWidgetEl.getAttribute("data-pollutant"));
