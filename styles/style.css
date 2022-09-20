@@ -421,11 +421,12 @@ Blocks
     height: 100%;
     display: flex;
     flex-direction: column;
+    gap: 8px;
 }
 
 .card__main-component {
     flex: 0 0 85%;
-    margin-bottom: 8px;
+    order: 0;
     box-sizing: border-box;
     border-radius: 3%;
     overflow: hidden;
@@ -440,12 +441,12 @@ Blocks
 @media (max-width:599px) {
     .card--min-mobile .card__main-component {
         flex: 0 0 100%;
-        margin: 0;
     }
 }
 
 .card__sub-component {
     flex: 1;
+    order: 1;
     border-radius: 8px;
 }
 
