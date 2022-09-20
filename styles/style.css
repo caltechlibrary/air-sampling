@@ -348,17 +348,17 @@ Blocks
     font-weight: 100;
 }
 
+.resources-widget__link {
+    color: inherit;
+    text-decoration: none;
+    line-height: 1.5;
+}
+
 .resources-widget__headline-img {
     margin-right: 16px;
     width: 45%;
     height: auto;
     float: left;
-}
-
-.resources-widget__link {
-    color: inherit;
-    text-decoration: none;
-    line-height: 1.5;
 }
 
 .resources-widget__divider {

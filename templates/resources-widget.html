@@ -3,7 +3,7 @@
         <div class="card__main-component resources-widget__main-content-container">
             <div class="resources-widget__headlines-container">
                 <h2 class="resources-widget__header">HEADLINES</h2>
-                <div class="resources-widget__headline">
+                <a class="resources-widget__link" href="${headline.link}">
                     <img 
                         class="resources-widget__headline-img" 
                         src="${headline.img}" 
@@ -11,8 +11,8 @@
                         width="1600" 
                         height="811"
                     >
-                    <a class="resources-widget__link" href="${headline.link}">${headline.title}</a>
-                </div>
+                    ${headline.title}
+                </a>
             </div>
             <div class="resources-widget__divider"></div>
             <div class="resources-widget__links-container">
