@@ -490,6 +490,12 @@ Blocks
     }
 }
 
+@media (min-width:1440px) {
+    .top-container__item {
+        min-width: 25rem;;
+    }
+}
+
 /* pollutant-widget */
 .pollutant-widget {
     border-radius: 8px;
