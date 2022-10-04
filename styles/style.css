@@ -542,6 +542,7 @@ Blocks
 
 .pollutant-widget__label {
     flex: 1;
+    margin: 0;
     text-align: center;
     white-space: nowrap;
 }
@@ -588,6 +589,7 @@ Blocks
 
 .pollutant-widget__preview-snippet {
     flex: 0 1 auto;
+    margin: 0;
     width: 18.75rem;
     font-size: 1em;
     text-align: center;
