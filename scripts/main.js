@@ -98,7 +98,7 @@
 
     let displayPollutantWidgetData = function(pollutant, value, label, snippet) {
         let pollutantWidgetEl = document.querySelector(`.pollutant-widget[data-pollutant='${pollutant}']`);
-        let valueLabel = pollutantWidgetEl.querySelector(".pollutant-widget__value-label");
+        let valueLabel = pollutantWidgetEl.querySelector(".pollutant-widget__value");
         let qualityLabel = pollutantWidgetEl.querySelector(".pollutant-widget__quality-label");
         let previewSnippet = pollutantWidgetEl.querySelector(".pollutant-widget__preview-snippet");
 
@@ -109,7 +109,7 @@
 
     let displayFailedPollutantWidget = function(pollutant) {
         let pollutantWidgetEl = document.querySelector(`.pollutant-widget[data-pollutant='${pollutant}']`);
-        let valueLabel = pollutantWidgetEl.querySelector(".pollutant-widget__value-label");
+        let valueLabel = pollutantWidgetEl.querySelector(".pollutant-widget__value");
         valueLabel.textContent = "Not available";
     };
 
