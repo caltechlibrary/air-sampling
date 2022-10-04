@@ -260,7 +260,7 @@ Blocks
     position: relative;
     margin-bottom: 2.15%;
     border-radius: 8px;
-    background: linear-gradient(to right, #B6E2AF, #F9E4AF, #C163D3, #8A353A);
+    background: linear-gradient(to right, #bbdfac 0%, #e7ebb5 10%, #f6b09a 20%, #e1729a 30%, #c264d5 40%, #8a353a 60%);
 }
 
 .aqi-widget__meter-indicator {
