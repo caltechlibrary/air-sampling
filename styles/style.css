@@ -216,12 +216,19 @@ Blocks
 }
 
 .aqi-widget__description-label {
-    margin-bottom: 8px;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.aqi-widget__description-caption {
     font-size: 0.8em;
 }
 
 @media (min-width: 600px) {
-    .aqi-widget__description-label {
+    .aqi-widget__description-caption {
         font-size: 1em;
     }
 }
