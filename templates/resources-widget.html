@@ -17,9 +17,11 @@
             <div class="resources-widget__divider"></div>
             <div class="resources-widget__links-container">
                 <h2 class="resources-widget__header">USEFUL LINKS</h2>
-                ${for(useful-links)}
-                    <a class="resources-widget__link" href="${it.link}">${it.title}</a>
-                ${endfor}
+                <ul class="resources-widget__links-list">
+                    ${for(useful-links)}
+                        <li><a class="resources-widget__link" href="${it.link}">${it.title}</a></li>
+                    ${endfor}
+                </ul>
             </div>
         </div>
         <div class="card__sub-component resources-widget__download-link-container">

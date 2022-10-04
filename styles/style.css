@@ -348,6 +348,12 @@ Blocks
     font-weight: 100;
 }
 
+.resources-widget__links-list {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
 .resources-widget__link {
     color: inherit;
     text-decoration: none;
