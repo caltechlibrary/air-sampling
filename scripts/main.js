@@ -77,13 +77,13 @@
         let valueEl = document.querySelector(".aqi-widget__value");
         let descriptionEl = document.querySelector(".aqi-widget__description-value");
         let meterEl = document.querySelector(".aqi-widget__meter");
-        let inidicatorEl = document.querySelector(".aqi-widget__meter-indicator");
+        let inidicatorEl = document.getElementById("aqi-widget__meter-indicator");
         let maxAqiValue = parseInt(meterEl.getAttribute("aria-valuemax"));
 
         valueEl.textContent = value;
         descriptionEl.textContent = label;
         meterEl.setAttribute("aria-valuenow", value);
-        inidicatorEl.style.left = `${(value / maxAqiValue) * 100}%`;
+        inidicatorEl.setAttribute("x", `${(value / maxAqiValue) * 100}%`);
     };
 
     let displayFailedAqiWidget = function() {

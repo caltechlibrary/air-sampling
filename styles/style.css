@@ -257,56 +257,6 @@ Blocks
 
 .aqi-widget__meter {
     flex: 1;
-    position: relative;
-    margin-bottom: 2.15%;
-    border-radius: 8px;
-    background: linear-gradient(to right, #bbdfac 0%, #e7ebb5 10%, #f6b09a 20%, #e1729a 30%, #c264d5 40%, #8a353a 60%);
-}
-
-.aqi-widget__meter-indicator {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    transform: translateX(-50%);
-    margin: auto;
-    width: 4px;
-    height: 110%;
-    border: 1px solid #000;
-    background: #fff;
-}
-
-.aqi-widget--data-unavailable .aqi-widget__meter-indicator {
-    display: none;
-}
-
-.aqi-widget__meter-labels {
-    display: flex;
-    font-size: 0.875em;
-}
-
-@media (min-width: 600px) {
-    .aqi-widget__meter-labels {
-        font-size: 1em;
-    }
-}
-
-@media (min-width: 1440px) {
-    .aqi-widget__meter-labels {
-        font-size: 1.125em;
-    }
-}
-
-.aqi-widget__meter-label {
-    flex: 1;
-    text-align: center;
-}
-
-.aqi-widget__meter-label:first-child {
-    text-align: left;
-}
-
-.aqi-widget__meter-label:last-child {
-    text-align: right;
 }
 
 /* cam-widget */
