@@ -84,6 +84,7 @@
         descriptionEl.textContent = label;
         meterEl.setAttribute("aria-valuenow", value);
         inidicatorEl.setAttribute("x", `${(value / maxAqiValue) * 100}%`);
+        inidicatorEl.setAttribute("visibility", "visible");
     };
 
     let displayFailedAqiWidget = function() {
