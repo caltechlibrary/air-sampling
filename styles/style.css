@@ -250,15 +250,6 @@ Blocks
     }
 }
 
-.aqi-widget__meter-component {
-    display: flex;
-    flex-direction: column;
-}
-
-.aqi-widget__meter {
-    flex: 1;
-}
-
 /* cam-widget */
 .cam-widget__img {
     width: 100%;
