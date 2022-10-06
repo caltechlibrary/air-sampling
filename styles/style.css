@@ -224,6 +224,10 @@ Blocks
     gap: 8px;
 }
 
+.aqi-widget--data-unavailable .aqi-widget__description-label {
+    display: none;
+}
+
 .aqi-widget__description-caption {
     font-size: 0.8em;
 }
