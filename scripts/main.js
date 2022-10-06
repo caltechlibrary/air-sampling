@@ -99,7 +99,7 @@
     let displayPollutantWidgetData = function(pollutant, value, label, snippet) {
         let pollutantWidgetEl = document.querySelector(`.pollutant-widget[data-pollutant='${pollutant}']`);
         let valueLabel = pollutantWidgetEl.querySelector(".pollutant-widget__value");
-        let qualityLabel = pollutantWidgetEl.querySelector(".pollutant-widget__quality-label");
+        let qualityLabel = pollutantWidgetEl.querySelector(".pollutant-widget__quality");
         let previewSnippet = pollutantWidgetEl.querySelector(".pollutant-widget__preview-snippet");
 
         valueLabel.textContent = value;

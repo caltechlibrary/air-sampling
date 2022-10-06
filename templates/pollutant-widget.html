@@ -7,9 +7,12 @@
                     <span>${it.label}</span>
                 </button>
             </h2>
-            <p class="pollutant-widget__quality-label pollutant-widget__label"></p>
+            <p class="pollutant-widget__quality-label pollutant-widget__label">
+                <span class="pollutant-widget__label-sr-text">Current ${it.label}</span>
+                <span class="pollutant-widget__quality"></span>
+            </p>
             <p class="pollutant-widget__value-label pollutant-widget__label">
-                <span class="pollutant-widget__value-sr-text">Current value:</span> 
+                <span class="pollutant-widget__label-sr-text">Current value:</span> 
                 <span class="pollutant-widget__value"></span>
             </p>
         </div>

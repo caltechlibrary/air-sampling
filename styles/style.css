@@ -546,19 +546,19 @@ Blocks
     transform: rotate(90deg);
 }
 
-@media (max-width:799px) {
-    .pollutant-widget__value-label {
-        text-align: right;
-    }
-}
-
-.pollutant-widget__value-sr-text {
+.pollutant-widget__label-sr-text {
     position:absolute;
     left:-10000px;
     top:auto;
     width:1px;
     height:1px;
     overflow:hidden;
+}
+
+@media (max-width:799px) {
+    .pollutant-widget__value-label {
+        text-align: right;
+    }
 }
 
 .pollutant-widget__preview-snippet {
