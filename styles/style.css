@@ -550,6 +550,10 @@ Blocks
     transform: rotate(90deg);
 }
 
+.pollutant-widget--data-unavailable .pollutant-widget__quality-label {
+    display: none;
+}
+
 .pollutant-widget__label-sr-text {
     position:absolute;
     left:-10000px;

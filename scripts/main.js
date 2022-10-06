@@ -110,6 +110,8 @@
     let displayFailedPollutantWidget = function(pollutant) {
         let pollutantWidgetEl = document.querySelector(`.pollutant-widget[data-pollutant='${pollutant}']`);
         let valueEl = pollutantWidgetEl.querySelector(".pollutant-widget__value");
+
+        pollutantWidgetEl.classList.add("pollutant-widget--data-unavailable");
         valueEl.textContent = "Not available";
     };
 
