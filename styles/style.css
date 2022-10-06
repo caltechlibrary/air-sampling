@@ -97,6 +97,7 @@ Blocks
 }
 
 .header__date {
+    margin: 0;
     font-size: 0.875em;
     white-space: nowrap;
     color: #033C49;
