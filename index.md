@@ -13,7 +13,7 @@ pollutants:
     label: NO2
 headline:
   img: https://caltech-prod.s3.amazonaws.com/main/images/2021-Campus-Aerials-00513-WE.336e18bc.fill-1600x810-c100.jpg
-  alt: ""
+  alt: "Aerial view of Caltech campus."
   link: ""
   title: "Fifty Years of Clearing the Skies"
 useful-links:
