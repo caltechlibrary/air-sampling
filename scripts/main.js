@@ -116,16 +116,13 @@
     let initializePollutantWidgetAccordion = function(pollutant) {
         let pollutantWidgetEl = document.querySelector(`.pollutant-widget[data-pollutant='${pollutant}']`);
         let toggleBtn = pollutantWidgetEl.querySelector(".pollutant-widget__toggle-btn");
-        let panel = pollutantWidgetEl.querySelector(".pollutant-widget__panel");
 
         toggleBtn.addEventListener("click", function(){
             if(toggleBtn.getAttribute("aria-expanded") == "false") {
                 pollutantWidgetEl.classList.add("pollutant-widget--expanded");
-                panel.removeAttribute("hidden");
                 toggleBtn.setAttribute("aria-expanded", "true");
             } else {
                 pollutantWidgetEl.classList.remove("pollutant-widget--expanded");
-                panel.setAttribute("hidden", "");
                 toggleBtn.setAttribute("aria-expanded", "false");
             }
         });
