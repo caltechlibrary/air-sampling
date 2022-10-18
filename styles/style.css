@@ -471,6 +471,7 @@ Blocks
     padding: 0px 10px;
     display: flex;
     align-items: center;
+    overflow: auto;
 }
 
 @media (min-width:800px) {
@@ -484,6 +485,7 @@ Blocks
     flex: 1;
     display: flex;
     align-items: center;
+    gap: 32px;
     font-size: 0.875em;
 }
 
