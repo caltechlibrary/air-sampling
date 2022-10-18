@@ -26,6 +26,7 @@ Blocks
     flex-direction: column;
     align-items: center;
     font-family: Arial;
+    gap: 12px;
 }
 
 @media (min-width: 600px) {
@@ -33,23 +34,13 @@ Blocks
         flex-direction: row;
         justify-content: center;
         flex-wrap: wrap;
-        gap: 32px;
+        gap: 26px;
     }
 }
 
 @media (min-width: 1100px) {
     .header {
         gap: 48px;
-    }
-}
-
-.header__homepage-link {
-    margin: 0 0 12px 0;
-}
-
-@media (min-width: 600px) {
-    .header__homepage-link {
-        margin: 0;
     }
 }
 
@@ -71,18 +62,12 @@ Blocks
 }
 
 .header__title {
-    margin: 0 0 28px;
+    margin: 0;
     font-size: 2em;
     font-weight: 100;
     line-height: 1;
     color: #033C49;
     text-align: center;
-}
-
-@media (min-width: 600px) {
-    .header__title {
-        margin: 0;
-    }
 }
 
 @media (min-width: 800px) {
@@ -98,7 +83,7 @@ Blocks
 }
 
 .header__date {
-    margin: 0;
+    margin: 16px 0 0 0;
     font-size: 0.875em;
     white-space: nowrap;
     color: #033C49;
@@ -106,7 +91,7 @@ Blocks
 
 @media (min-width: 600px) {
     .header__date {
-        margin-left: auto;
+        margin: 0 0 0 auto;
         color: #595959;
     }
 }
