@@ -24,7 +24,6 @@ Blocks
 .header {
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
     align-items: center;
     font-family: Arial;
 }
@@ -33,6 +32,7 @@ Blocks
     .header {
         flex-direction: row;
         justify-content: center;
+        flex-wrap: wrap;
     }
 }
 
@@ -74,8 +74,8 @@ Blocks
     font-size: 2em;
     font-weight: 100;
     line-height: 1;
-    white-space: nowrap;
     color: #033C49;
+    text-align: center;
 }
 
 @media (min-width: 600px) {
