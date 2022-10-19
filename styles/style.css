@@ -636,6 +636,10 @@ Blocks
         top: -3.5rem;
         height: calc(100% + 3.5rem);
     }
+
+    .pollutant-widget--expanded .pollutant-widget__chart-container {
+        min-width: 16rem;
+    }
 }
 
 .pollutant-widget__chart {
