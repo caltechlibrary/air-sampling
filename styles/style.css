@@ -362,7 +362,7 @@ Blocks
     position: relative;
     width: 100%;
     height: 0;
-    padding-bottom: 102.5%;
+    padding-bottom: max(102.5%, 21rem);
     font-family: Arial;
 }
 
@@ -370,6 +370,12 @@ Blocks
     .card--min-mobile {
         padding-bottom: 40%;
     } 
+}
+
+@media (min-width:600px) {
+    .card {
+        padding-bottom: 102.5%;
+    }
 }
 
 .card__component-container {
