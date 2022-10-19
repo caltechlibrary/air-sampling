@@ -577,6 +577,7 @@ Blocks
 .pollutant-widget--expanded .pollutant-widget__preview-snippet {
     opacity: 0;
     visibility: hidden;
+    overflow: hidden;
     transition: opacity 0.25s, visibility 0s 1s;
 }
 
