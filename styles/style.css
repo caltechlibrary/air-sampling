@@ -150,56 +150,9 @@ Blocks
 }
 
 .aqi-widget__value-label {
-    margin: 0;
-    font-size: 11.875em;
+    width: 63%;
+    fill: #033c49;
     font-weight: 600;
-    text-align: center;
-    line-height: 1;
-}
-
-.aqi-widget--data-unavailable .aqi-widget__value-label {
-    margin: 24px 0;
-    font-size: 2.75em;
-}
-
-@media (min-width: 600px) {
-    .aqi-widget__value-label {
-        font-size: 9em;
-    }
-
-    .aqi-widget--data-unavailable .aqi-widget__value-label {
-        font-size: 2.5em;
-    }
-}
-
-@media (min-width: 1100px) {
-    .aqi-widget__value-label {
-        font-size: 11.5em;
-    }
-
-    .aqi-widget--data-unavailable .aqi-widget__value-label {
-        font-size: 3em;
-    }
-}
-
-@media (min-width: 1440px) {
-    .aqi-widget__value-label {
-        margin: 24px 0;
-        font-size: 15.25em;
-    }
-
-    .aqi-widget--data-unavailable .aqi-widget__value-label {
-        font-size: 3.5em;
-    }
-}
-
-.aqi-widget__value-sr-text {
-    position:absolute;
-    left:-10000px;
-    top:auto;
-    width:1px;
-    height:1px;
-    overflow:hidden;
 }
 
 .aqi-widget__description-label {
