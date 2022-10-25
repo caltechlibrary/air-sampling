@@ -161,6 +161,10 @@ Blocks
     font-size: 50px;
 }
 
+.aqi-widget--data-unavailable .aqi-widget__value {
+    font-size: 12px;
+}
+
 .aqi-widget__description-label {
     margin: 0;
     display: flex;
