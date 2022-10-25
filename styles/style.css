@@ -150,9 +150,15 @@ Blocks
 }
 
 .aqi-widget__value-label {
-    width: 63%;
+    width: 80%;
     fill: #033c49;
     font-weight: 600;
+}
+
+.aqi-widget__value {
+    text-anchor: middle;
+    dominant-baseline: central;
+    font-size: 50px;
 }
 
 .aqi-widget__description-label {
