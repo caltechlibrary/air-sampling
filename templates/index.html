@@ -11,12 +11,14 @@
 
 <body class="page">
   ${header.html()}
-  <div class="top-container page__top-container">
-    <div class="top-container__item">${aqi-widget.html()}</div>
-    <div class="top-container__item">${cam-widget.html()}</div>
-  </div>
-  ${for(pollutants)}${it:pollutant-widget.html()}${endfor}
-  <div class="page__resources-widget-container">${resources-widget.html()}</div>
+  <main role="main">
+    <div class="top-container page__top-container">
+      <div class="top-container__item">${aqi-widget.html()}</div>
+      <div class="top-container__item">${cam-widget.html()}</div>
+    </div>
+    ${for(pollutants)}${it:pollutant-widget.html()}${endfor}
+    <div class="page__resources-widget-container">${resources-widget.html()}</div>
+  </main>
 
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <script src="scripts/LineChart.js"></script>
