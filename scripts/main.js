@@ -161,7 +161,7 @@
     let initializePollutantWidgetChart = function(pollutant, data, unit) {
         let pollutantWidget = document.querySelector(`.pollutant-widget[data-pollutant='${pollutant}']`);
         let chartContainer = pollutantWidget.querySelector(".pollutant-widget__chart-container");
-        let chartSvg = LineChart(data, { label: `${pollutant} ${unit}` });
+        let chartSvg = LineChart(data, { label: `${pollutant} ${unit}`, description: `Chart of recent ${pollutant} values.` });
         chartSvg.classList.add("pollutant-widget__chart");
         chartContainer.append(chartSvg);
     };

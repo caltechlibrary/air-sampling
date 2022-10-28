@@ -9,7 +9,8 @@ function LineChart(data, {
     width = 1000, // outer width, in pixels
     height = 270, // outer height, in pixels`
     color = "black", // stroke color of line
-    label // a label for the y-axis
+    label, // a label for the y-axis
+    description // a description of the chart
     } = {}) {
 
         // Compute values.
@@ -37,7 +38,9 @@ function LineChart(data, {
             .defined(d => !isNaN(d.value));
 
         const svg = d3.create("svg")
-            .attr("viewBox", [0, 0, width, height]);
+            .attr("viewBox", [0, 0, width, height])
+            .attr("role", "img")
+            .attr("aria-label", description);
         
         // Render x axis.
         svg.append("g")
