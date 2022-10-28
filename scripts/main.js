@@ -77,12 +77,11 @@
         let descriptionEl = document.querySelector(".aqi-widget__description-value");
         let meterEl = document.querySelector(".aqi-widget__meter");
         let inidicatorEl = document.getElementById("aqi-widget__meter-indicator");
-        let maxAqiValue = parseInt(meterEl.getAttribute("aria-valuemax"));
 
         valueEl.textContent = value;
         descriptionEl.textContent = label;
-        meterEl.setAttribute("aria-valuenow", value);
-        inidicatorEl.setAttribute("x", `${(value / maxAqiValue) * 100}%`);
+        meterEl.setAttribute("aria-label", `AQI meter ${value} out of 500.`);
+        inidicatorEl.setAttribute("x", `${(value / 500) * 100}%`);
         inidicatorEl.setAttribute("visibility", "visible");
     };
 
@@ -93,7 +92,7 @@
 
         aqiEl.classList.add("aqi-widget--data-unavailable");
         valueEl.textContent = "Not available";
-        meterEl.setAttribute("aria-valuetext", "Not available");
+        meterEl.setAttribute("aria-label", `AQI meter not available.`);
     };
 
     let displayPollutantWidgetData = function(pollutant, value, label, snippet) {
