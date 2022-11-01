@@ -1,4 +1,4 @@
-<svg version="1.1" viewBox="0 0 345 48.098" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" role="img" class="aqi-widget__meter" aria-label="">
+<svg version="1.1" viewBox="0 0 345 48.098" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" role="img" class="aqi-widget__meter" aria-labelledby="aqi-widget-description">
 	<defs>
 		<linearGradient id="linearGradient6550" x2="345" gradientUnits="userSpaceOnUse">
 			<stop stop-color="#bbdfac" offset="0"/>
