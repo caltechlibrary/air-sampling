@@ -1,0 +1,3 @@
+condition: Unhealthy
+range: [0.086, 0.105]
+warning: People with lung disease (such as asthma), children, older adults, people who are active outdoors (including outdoor workers), people with certain genetic variants, and people with diets limited in certain nutrients should avoid prolonged or heavy outdoor exertion; everyone else should reduce prolonged or heavy outdoor exertion.

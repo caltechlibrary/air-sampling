@@ -1,0 +1,3 @@
+condition: Unhealthy
+range: [55.5, 150.4]
+warning: People with heart or lung disease, older adults, children, and people of lower socioeconomic status should avoid prolonged or heavy exertion; everyone else should reduce prolonged or heavy exertion.

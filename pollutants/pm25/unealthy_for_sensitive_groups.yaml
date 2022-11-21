@@ -1,0 +1,3 @@
+condition: Unhealthy for Sensitive Groups
+range: [35.5, 55.4]
+warning: People with heart or lung disease, older adults, children, and people of lower socioeconomic status should reduce prolonged or heavy exertion.
