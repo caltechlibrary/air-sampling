@@ -531,34 +531,6 @@ Blocks
     }
 }
 
-.pollutant-widget__preview-snippet {
-    flex: 0 1 auto;
-    margin: 0;
-    width: 18.75rem;
-    font-size: 1em;
-    text-align: center;
-    white-space: nowrap;
-    opacity: 1;
-    transition: opacity 0.25s 0.5s;
-}
-
-@media (max-width:799px) {
-    .pollutant-widget__preview-snippet {
-        display: none;
-    }
-}
-
-.pollutant-widget--expanded .pollutant-widget__preview-snippet {
-    opacity: 0;
-    visibility: hidden;
-    overflow: hidden;
-    transition: opacity 0.25s, visibility 0s 1s;
-}
-
-.pollutant-widget--data-unavailable .pollutant-widget__preview-snippet {
-    display: none;
-}
-
 .pollutant-widget__panel {
     height: 0px;
     display: flex;

@@ -97,11 +97,9 @@
         let pollutantWidgetEl = document.querySelector(`.pollutant-widget[data-pollutant='${pollutant}']`);
         let valueEl = pollutantWidgetEl.querySelector(".pollutant-widget__value");
         let qualityEl = pollutantWidgetEl.querySelector(".pollutant-widget__quality");
-        let previewSnippet = pollutantWidgetEl.querySelector(".pollutant-widget__preview-snippet");
 
         valueEl.textContent = value;
         qualityEl.textContent = label;
-        previewSnippet.textContent = snippet;
     };
 
     let displayFailedPollutantWidget = function(pollutant) {
