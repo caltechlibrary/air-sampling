@@ -6,7 +6,7 @@
     const RESOURCESWIDGETEL = document.querySelector(".resources-widget");
     const POLLUTANTWIDGETELS = document.querySelectorAll(".pollutant-widget");
     const LAYOUTBREAKPOINT = 1100;
-    const AIRVALUESAPI = "air-values.json";
+    const AIRVALUESAPI = "https://z44g6g2rrl.execute-api.us-west-2.amazonaws.com/test/get_air";
     const MAPPINGSENDPOINT = "mappings.json";
     const CHARTDATAENDPOINT = "air-data.txt";
 
@@ -97,11 +97,9 @@
         let pollutantWidgetEl = document.querySelector(`.pollutant-widget[data-pollutant='${pollutant}']`);
         let valueEl = pollutantWidgetEl.querySelector(".pollutant-widget__value");
         let qualityEl = pollutantWidgetEl.querySelector(".pollutant-widget__quality");
-        let previewSnippet = pollutantWidgetEl.querySelector(".pollutant-widget__preview-snippet");
 
         valueEl.textContent = value;
         qualityEl.textContent = label;
-        previewSnippet.textContent = snippet;
     };
 
     let displayFailedPollutantWidget = function(pollutant) {

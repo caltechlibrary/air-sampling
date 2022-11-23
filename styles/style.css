@@ -444,30 +444,18 @@ Blocks
     padding: 0px 10px;
     display: flex;
     align-items: center;
+    gap: 32px;
+    font-size: 0.875em;
     overflow: auto;
 }
 
 @media (min-width:800px) {
     .pollutant-widget__top-container {
         height: 3.5rem;
-        padding: 0px;
-        overflow: initial;
-    }
-}
-
-.pollutant-widget__labels-container {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    gap: 32px;
-    font-size: 0.875em;
-}
-
-@media (min-width:800px) {
-    .pollutant-widget__labels-container {
-        flex: 0 0 auto;
         width: 27.1875rem;
+        padding: 0px;
         font-size: 1.075em;
+        overflow: initial;
     }
 }
 
@@ -529,34 +517,6 @@ Blocks
     .pollutant-widget__value-label {
         text-align: right;
     }
-}
-
-.pollutant-widget__preview-snippet {
-    flex: 0 1 auto;
-    margin: 0;
-    width: 18.75rem;
-    font-size: 1em;
-    text-align: center;
-    white-space: nowrap;
-    opacity: 1;
-    transition: opacity 0.25s 0.5s;
-}
-
-@media (max-width:799px) {
-    .pollutant-widget__preview-snippet {
-        display: none;
-    }
-}
-
-.pollutant-widget--expanded .pollutant-widget__preview-snippet {
-    opacity: 0;
-    visibility: hidden;
-    overflow: hidden;
-    transition: opacity 0.25s, visibility 0s 1s;
-}
-
-.pollutant-widget--data-unavailable .pollutant-widget__preview-snippet {
-    display: none;
 }
 
 .pollutant-widget__panel {
