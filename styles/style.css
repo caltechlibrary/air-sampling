@@ -444,30 +444,18 @@ Blocks
     padding: 0px 10px;
     display: flex;
     align-items: center;
+    gap: 32px;
+    font-size: 0.875em;
     overflow: auto;
 }
 
 @media (min-width:800px) {
     .pollutant-widget__top-container {
         height: 3.5rem;
-        padding: 0px;
-        overflow: initial;
-    }
-}
-
-.pollutant-widget__labels-container {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    gap: 32px;
-    font-size: 0.875em;
-}
-
-@media (min-width:800px) {
-    .pollutant-widget__labels-container {
-        flex: 0 0 auto;
         width: 27.1875rem;
+        padding: 0px;
         font-size: 1.075em;
+        overflow: initial;
     }
 }
 
