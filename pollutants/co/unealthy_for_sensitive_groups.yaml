@@ -1,3 +1,0 @@
-condition: Unhealthy for Sensitive Groups
-range: [9.5, 12.4]
-warning: People with heart disease, such as angina, should limit heavy exertion and avoid sources of CO, such as heavy traffic.
