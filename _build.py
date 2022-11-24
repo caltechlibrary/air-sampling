@@ -9,7 +9,7 @@ outDir = "site"
 stylesDir = "styles"
 scriptsDir = "scripts"
 imagesDir = "img"
-pollutantsDir = "pollutants"
+mappingsDir = "mappings"
 
 # Create output site directory
 if os.path.isdir(outDir): shutil.rmtree(outDir)
@@ -23,11 +23,11 @@ shutil.copyfile("google9c66b3b3d14f628e.html", f"{outDir}/google9c66b3b3d14f628e
 
 # Build pollutant mappings
 mappingsDict = {}
-for pollutantFilename in os.scandir(pollutantsDir):
-        pollutantName = pathlib.Path(pollutantFilename.name).stem
-        with open(pollutantFilename, "r", encoding="utf-8") as pollutantFile:          
-            mappingsDict[pollutantName] = yaml.safe_load(pollutantFile)
-            
+for mappingFileName in os.scandir(mappingsDir):
+        mappingName = pathlib.Path(mappingFileName.name).stem
+        with open(mappingFileName, "r", encoding="utf-8") as mappingFile:          
+            mappingsDict[mappingName] = yaml.safe_load(mappingFile)
+
 with open(f"{outDir}/mappings.json", "w", encoding="utf-8") as mappingsFile: 
     json.dump(mappingsDict, mappingsFile)
 
