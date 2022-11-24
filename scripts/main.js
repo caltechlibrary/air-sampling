@@ -53,22 +53,32 @@
     };
 
     let getValuesWithLabels = function(values, mappings) {
-        let valuesWithLabels = {};
-        for(let metric in values) {
+        
+        const { aqi } = mappings;
+        const valuesWithLabels = {};
 
-            let value = values[metric];
-            let mapping = mappings[metric];
+        for(const [metric, value] of Object.entries(values)) {
 
             if(metric == "date" || metric == "time") {
                 valuesWithLabels[metric] = value;
-            } else if (mapping) {
-                let level = mapping.find((level) => value < level.max || !level.hasOwnProperty("max"));
-                valuesWithLabels[metric] = { value, label: level.label, snippet: level.snippet };
             } else {
-                valuesWithLabels[metric] = { value, label: undefined, snippet: undefined };
+                valuesWithLabels[metric] = { value };
+
+                for(const [condition, conditionObj] of Object.entries(aqi)) {
+                    if(value >= conditionObj.range[0] && value <= conditionObj.range[1]) {
+                        valuesWithLabels[metric].label = conditionObj.label;
+                        if(metric != "aqi") {
+                            const warningMapping = mappings[metric.replace(/\./g, "").toLocaleLowerCase()];
+                            if(warningMapping) valuesWithLabels[metric].snippet = warningMapping[condition];
+                        }
+                    }
+                }
             }
 
         }
+
+        console.log(valuesWithLabels);
+
         return valuesWithLabels;
     };
 
