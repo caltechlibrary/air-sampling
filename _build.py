@@ -17,11 +17,10 @@ shutil.copytree(imagesDir, f"{outDir}/{imagesDir}")
 shutil.copytree(stylesDir, f"{outDir}/{stylesDir}")
 shutil.copytree(scriptsDir, f"{outDir}/{scriptsDir}")
 shutil.copyfile("air-data.txt", f"{outDir}/air-data.txt")
-shutil.copyfile("mappings.json", f"{outDir}/mappings.json")
 shutil.copyfile("google9c66b3b3d14f628e.html", f"{outDir}/google9c66b3b3d14f628e.html")
 
 # Build pollutant mappings
-with open(f"{outDir}/pollutants.json", "w", encoding="utf-8") as mappingsFile: 
+with open(f"{outDir}/mappings.json", "w", encoding="utf-8") as mappingsFile: 
     mappingsDict = {}
 
     for pollutantDir in os.scandir(pollutantsDir):
