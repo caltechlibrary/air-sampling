@@ -500,7 +500,7 @@ Blocks
     transform: rotate(90deg);
 }
 
-.pollutant-widget--data-unavailable .pollutant-widget__quality-label {
+.pollutant-widget--data-unavailable .pollutant-widget__condition-label {
     display: none;
 }
 
@@ -540,7 +540,7 @@ Blocks
     }
 }
 
-.pollutant-widget__description {
+.pollutant-widget__warning {
     flex: 0 0 auto;
     box-sizing: border-box;
     width: 27.1875rem;
@@ -550,7 +550,7 @@ Blocks
 }
 
 @media (max-width:799px) {
-    .pollutant-widget__description {
+    .pollutant-widget__warning {
         display: none;
     }    
 }

@@ -84,8 +84,8 @@
     let displayPollutantWidgetData = function(pollutant, value, condition, warning) {
         let pollutantWidgetEl = document.querySelector(`.pollutant-widget[data-pollutant='${pollutant}']`);
         let valueEl = pollutantWidgetEl.querySelector(".pollutant-widget__value");
-        let qualityEl = pollutantWidgetEl.querySelector(".pollutant-widget__quality");
-        let warningTextEl = pollutantWidgetEl.querySelector(".pollutant-widget__description-text");
+        let qualityEl = pollutantWidgetEl.querySelector(".pollutant-widget__condition");
+        let warningTextEl = pollutantWidgetEl.querySelector(".pollutant-widget__warning-text");
 
         valueEl.textContent = value;
         qualityEl.textContent = condition;
