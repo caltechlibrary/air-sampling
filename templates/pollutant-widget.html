@@ -1,13 +1,13 @@
-<div class="pollutant-widget page__pollutant-widget" data-pollutant="${it.pollutant}">
+<div class="pollutant-widget page__pollutant-widget" data-pollutant="${it}">
     <div class="pollutant-widget__top-container">
         <h2 class="pollutant-widget__header pollutant-widget__label">
-            <button class="pollutant-widget__toggle-btn" aria-controls="${it.pollutant}-panel" aria-expanded="false">
+            <button class="pollutant-widget__toggle-btn" aria-controls="${it}-panel" aria-expanded="false">
                 <span class="pollutant-widget__toggle-icon">${svg/triangle.svg()}</span>
-                <span>${it.label}</span>
+                <span>${it}</span>
             </button>
         </h2>
         <p class="pollutant-widget__condition-label pollutant-widget__label">
-            <span class="pollutant-widget__label-sr-text">Current ${it.label}</span>
+            <span class="pollutant-widget__label-sr-text">Current ${it}</span>
             <span class="pollutant-widget__condition"></span>
         </p>
         <p class="pollutant-widget__value-label pollutant-widget__label">
@@ -15,7 +15,7 @@
             <span class="pollutant-widget__value"></span>
         </p>
     </div>
-    <div id="${it.pollutant}-panel" class="pollutant-widget__panel">
+    <div id="${it}-panel" class="pollutant-widget__panel">
         <div class="pollutant-widget__warning">
             <p class="pollutant-widget__warning-text"></p>
         </div>

@@ -9,6 +9,13 @@
     const AIRVALUESAPI = "https://z44g6g2rrl.execute-api.us-west-2.amazonaws.com/test/get_air";
     const MAPPINGSENDPOINT = "mappings.json";
     const CHARTDATAENDPOINT = "air-data.txt";
+    const POLLUTANTIDDICT = {
+        "OZONE": "O3",
+        "PM2.5": "PM2.5",
+        "PM10": "PM10",
+        "CO": "CO",
+        "NO2": "NO2"
+    }
 
     //
 	// Functions
@@ -168,9 +175,10 @@
 
         for(let pollutantWidgetEl of POLLUTANTWIDGETELS) {
             let pollutant = pollutantWidgetEl.getAttribute("data-pollutant");
-            let value = currValues[pollutant]
+            let pollutantId = POLLUTANTIDDICT[pollutant];
+            let value = currValues[pollutantId];
             let condition = getConditionFromAQIMapping(value, mappings.aqi);
-            let warning = mappings[pollutant][condition];
+            let warning = mappings[pollutantId][condition];
             displayPollutantWidgetData(pollutant, value, condition, warning);
         }
     } catch(error) {
@@ -187,7 +195,8 @@
 
     for(let pollutantWidgetEl of POLLUTANTWIDGETELS) {
         let pollutant = pollutantWidgetEl.getAttribute("data-pollutant");
-        let data = pollutantData[pollutant];
+        let pollutantId = POLLUTANTIDDICT[pollutant]
+        let data = pollutantData[pollutantId];
         initializePollutantWidgetChart(pollutant, data.data, data.unit);
     }
 })();
