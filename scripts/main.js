@@ -52,33 +52,13 @@
         ]);
     };
 
-    let getValuesWithLabels = function(values, mappings) {
-        
-        const { aqi } = mappings;
-        const valuesWithLabels = {};
-
-        for(const [metric, value] of Object.entries(values)) {
-
-            if(metric == "date" || metric == "time") {
-                valuesWithLabels[metric] = value;
-            } else {
-                valuesWithLabels[metric] = { value };
-
-                for(const [condition, range] of Object.entries(aqi)) {
-                    if(value >= range[0] && value <= range[1]) {
-                        valuesWithLabels[metric].label = condition;
-                        if(metric != "aqi") {
-                            const warningMapping = mappings[metric.replace(/\./g, "").toLocaleLowerCase()];
-                            if(warningMapping) valuesWithLabels[metric].snippet = warningMapping[condition];
-                        }
-                    }
-                }
+    let getConditionFromAQIMapping = function(value, mapping) {
+        for(const [condition, range] of Object.entries(mapping)) {
+            if(value >= range[0] && value <= range[1]) {
+                return condition;
             }
-
         }
-
-        return valuesWithLabels;
-    };
+    }
 
     let displayAqiWidgetData = function(value, label) {
         let valueEl = document.querySelector(".aqi-widget__value");
@@ -182,12 +162,12 @@
 
     try{
         let [currValues, mappings] = await fetchCurrentValuesAndMappings();
-        let valuesWithLabels = getValuesWithLabels(currValues, mappings);
-        displayAqiWidgetData(valuesWithLabels.aqi.value, valuesWithLabels.aqi.label);
+        displayAqiWidgetData(currValues.aqi, getConditionFromAQIMapping(currValues.aqi, mappings.aqi));
         for(let pollutantWidgetEl of POLLUTANTWIDGETELS) {
             let pollutant = pollutantWidgetEl.getAttribute("data-pollutant");
-            let valueWithLabel = valuesWithLabels[pollutant];
-            displayPollutantWidgetData(pollutant, valueWithLabel.value, valueWithLabel.label, valueWithLabel.snippet);
+            let condition = getConditionFromAQIMapping(currValues[pollutant], mappings.aqi);
+            let warning = mappings[pollutant.replace(/\./g, "").toLocaleLowerCase()][condition];
+            displayPollutantWidgetData(pollutant, currValues[pollutant], condition, warning);
         }
     } catch(error) {
         if(error.message != "Current air values response was not OK") throw error;
