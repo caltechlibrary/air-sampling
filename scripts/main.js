@@ -103,13 +103,15 @@
         descriptionEl.textContent = "Not available";
     };
 
-    let displayPollutantWidgetData = function(pollutant, value, label, snippet) {
+    let displayPollutantWidgetData = function(pollutant, value, label, warning) {
         let pollutantWidgetEl = document.querySelector(`.pollutant-widget[data-pollutant='${pollutant}']`);
         let valueEl = pollutantWidgetEl.querySelector(".pollutant-widget__value");
         let qualityEl = pollutantWidgetEl.querySelector(".pollutant-widget__quality");
+        let descriptionTextEl = pollutantWidgetEl.querySelector(".pollutant-widget__description-text");
 
         valueEl.textContent = value;
         qualityEl.textContent = label;
+        descriptionTextEl.textContent = warning;
     };
 
     let displayFailedPollutantWidget = function(pollutant) {
