@@ -166,7 +166,7 @@
         for(let pollutantWidgetEl of POLLUTANTWIDGETELS) {
             let pollutant = pollutantWidgetEl.getAttribute("data-pollutant");
             let condition = getConditionFromAQIMapping(currValues[pollutant], mappings.aqi);
-            let warning = mappings[pollutant.replace(/\./g, "").toLocaleLowerCase()][condition];
+            let warning = mappings[pollutant][condition];
             displayPollutantWidgetData(pollutant, currValues[pollutant], condition, warning);
         }
     } catch(error) {
