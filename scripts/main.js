@@ -64,9 +64,9 @@
             } else {
                 valuesWithLabels[metric] = { value };
 
-                for(const [condition, conditionObj] of Object.entries(aqi)) {
-                    if(value >= conditionObj.range[0] && value <= conditionObj.range[1]) {
-                        valuesWithLabels[metric].label = conditionObj.label;
+                for(const [condition, range] of Object.entries(aqi)) {
+                    if(value >= range[0] && value <= range[1]) {
+                        valuesWithLabels[metric].label = condition;
                         if(metric != "aqi") {
                             const warningMapping = mappings[metric.replace(/\./g, "").toLocaleLowerCase()];
                             if(warningMapping) valuesWithLabels[metric].snippet = warningMapping[condition];
@@ -76,8 +76,6 @@
             }
 
         }
-
-        console.log(valuesWithLabels);
 
         return valuesWithLabels;
     };

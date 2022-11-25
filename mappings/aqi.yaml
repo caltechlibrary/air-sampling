@@ -1,18 +1,6 @@
-good: 
-  label: Good
-  range: [0, 50]
-moderate:
-  label: Moderate
-  range: [51, 100]
-unhealthy_for_sensitive_groups: 
-  label: Unhealtyh for Sensitive Groups
-  range: [101, 150]
-unhealthy: 
-  label: Unhealthy
-  range: [151, 200]
-very_unhealthy: 
-  label: Very Unhealthy
-  range: [201, 300]
-hazardous: 
-  label: Hazardous
-  range: [301, 500]
+Good: [0, 50]
+Moderate: [51, 100]
+Unhealthy for Sensitive Groups: [101, 150]
+Unhealthy: [151, 200]
+Very Unhealthy: [201, 300]
+Hazardous: [301, 500]

@@ -1,4 +1,4 @@
-unhealthy_for_sensitive_groups: People with heart disease, such as angina, should limit heavy exertion and avoid sources of CO, such as heavy traffic.
-unhealthy: People with heart disease, such as angina, should limit moderate exertion and avoid sources of CO, such as heavy traffic.
-very_unhealthy: People with heart disease, such as angina, should avoid exertion and sources of CO, such as heavy traffic.
-hazardous: People with heart disease, such as angina, should avoid exertion and sources of CO, such as heavy traffic; everyone else should limit heavy exertion.
+Unhealthy for Sensitive Groups: People with heart disease, such as angina, should limit heavy exertion and avoid sources of CO, such as heavy traffic.
+Unhealthy: People with heart disease, such as angina, should limit Moderate exertion and avoid sources of CO, such as heavy traffic.
+Very Unhealthy: People with heart disease, such as angina, should avoid exertion and sources of CO, such as heavy traffic.
+Hazardous: People with heart disease, such as angina, should avoid exertion and sources of CO, such as heavy traffic; everyone else should limit heavy exertion.
