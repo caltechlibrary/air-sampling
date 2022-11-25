@@ -165,7 +165,7 @@ Blocks
     font-size: 12px;
 }
 
-.aqi-widget__description-label {
+.aqi-widget__condition-label {
     margin: 0;
     display: flex;
     flex-direction: column;
@@ -173,33 +173,33 @@ Blocks
     gap: 8px;
 }
 
-.aqi-widget--data-unavailable .aqi-widget__description-label {
+.aqi-widget--data-unavailable .aqi-widget__condition-label {
     display: none;
 }
 
-.aqi-widget__description-caption {
+.aqi-widget__condition-caption {
     font-size: 0.8em;
 }
 
 @media (min-width: 600px) {
-    .aqi-widget__description-caption {
+    .aqi-widget__condition-caption {
         font-size: 1em;
     }
 }
 
-.aqi-widget__description-value {
+.aqi-widget__condition-value {
     font-size: 1.15em;
     font-weight: 600;
 }
 
 @media (min-width: 1100px) {
-    .aqi-widget__description-value {
+    .aqi-widget__condition-value {
         font-size: 1.125em;
     }
 }
 
 @media (min-width: 1440px) {
-    .aqi-widget__description-value {
+    .aqi-widget__condition-value {
         font-size: 1.5em;
     }
 }

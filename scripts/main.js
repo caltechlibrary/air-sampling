@@ -62,7 +62,7 @@
 
     let displayAqiWidgetData = function(value, condition) {
         let valueEl = document.querySelector(".aqi-widget__value");
-        let descriptionEl = document.querySelector(".aqi-widget__description-value");
+        let descriptionEl = document.querySelector(".aqi-widget__condition-value");
         let inidicatorEl = document.getElementById("aqi-widget__meter-indicator");
 
         valueEl.textContent = value;
@@ -74,7 +74,7 @@
     let displayFailedAqiWidget = function() {
         let aqiEl = document.querySelector(".aqi-widget");
         let valueEl = document.querySelector(".aqi-widget__value");
-        let conditionEl = document.querySelector(".aqi-widget__description-value");
+        let conditionEl = document.querySelector(".aqi-widget__condition-value");
 
         aqiEl.classList.add("aqi-widget--data-unavailable");
         valueEl.textContent = "Not available";
