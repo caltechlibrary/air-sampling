@@ -60,13 +60,13 @@
         }
     }
 
-    let displayAqiWidgetData = function(value, label) {
+    let displayAqiWidgetData = function(value, condition) {
         let valueEl = document.querySelector(".aqi-widget__value");
         let descriptionEl = document.querySelector(".aqi-widget__description-value");
         let inidicatorEl = document.getElementById("aqi-widget__meter-indicator");
 
         valueEl.textContent = value;
-        descriptionEl.textContent = label;
+        descriptionEl.textContent = condition;
         inidicatorEl.setAttribute("x", `${(value / 500) * 100}%`);
         inidicatorEl.setAttribute("visibility", "visible");
     };
@@ -74,22 +74,22 @@
     let displayFailedAqiWidget = function() {
         let aqiEl = document.querySelector(".aqi-widget");
         let valueEl = document.querySelector(".aqi-widget__value");
-        let descriptionEl = document.querySelector(".aqi-widget__description-value");
+        let conditionEl = document.querySelector(".aqi-widget__description-value");
 
         aqiEl.classList.add("aqi-widget--data-unavailable");
         valueEl.textContent = "Not available";
-        descriptionEl.textContent = "Not available";
+        conditionEl.textContent = "Not available";
     };
 
-    let displayPollutantWidgetData = function(pollutant, value, label, warning) {
+    let displayPollutantWidgetData = function(pollutant, value, condition, warning) {
         let pollutantWidgetEl = document.querySelector(`.pollutant-widget[data-pollutant='${pollutant}']`);
         let valueEl = pollutantWidgetEl.querySelector(".pollutant-widget__value");
         let qualityEl = pollutantWidgetEl.querySelector(".pollutant-widget__quality");
-        let descriptionTextEl = pollutantWidgetEl.querySelector(".pollutant-widget__description-text");
+        let warningTextEl = pollutantWidgetEl.querySelector(".pollutant-widget__description-text");
 
         valueEl.textContent = value;
-        qualityEl.textContent = label;
-        descriptionTextEl.textContent = warning;
+        qualityEl.textContent = condition;
+        warningTextEl.textContent = warning;
     };
 
     let displayFailedPollutantWidget = function(pollutant) {
@@ -166,9 +166,10 @@
         displayAqiWidgetData(currValues.aqi, aqiCondition);
         for(let pollutantWidgetEl of POLLUTANTWIDGETELS) {
             let pollutant = pollutantWidgetEl.getAttribute("data-pollutant");
-            let condition = getConditionFromAQIMapping(currValues[pollutant], mappings.aqi);
+            let value = currValues[pollutant]
+            let condition = getConditionFromAQIMapping(value, mappings.aqi);
             let warning = mappings[pollutant][condition];
-            displayPollutantWidgetData(pollutant, currValues[pollutant], condition, warning);
+            displayPollutantWidgetData(pollutant, value, condition, warning);
         }
     } catch(error) {
         if(error.message != "Current air values response was not OK") throw error;
