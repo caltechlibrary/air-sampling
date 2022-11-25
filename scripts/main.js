@@ -162,7 +162,8 @@
 
     try{
         let [currValues, mappings] = await fetchCurrentValuesAndMappings();
-        displayAqiWidgetData(currValues.aqi, getConditionFromAQIMapping(currValues.aqi, mappings.aqi));
+        let aqiCondition = getConditionFromAQIMapping(currValues.aqi, mappings.aqi)
+        displayAqiWidgetData(currValues.aqi, aqiCondition);
         for(let pollutantWidgetEl of POLLUTANTWIDGETELS) {
             let pollutant = pollutantWidgetEl.getAttribute("data-pollutant");
             let condition = getConditionFromAQIMapping(currValues[pollutant], mappings.aqi);
