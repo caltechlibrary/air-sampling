@@ -37,9 +37,9 @@
         }
     };
 
-    let initializeHeader = function() {
+    let initializeHeader = function(timestamp) {
         let dateEl = document.querySelector(".header__date");
-        let date = new Date();
+        let date = new Date(timestamp * 1000);
         let time = date.toLocaleTimeString("en-US", { hour12: true, timeStyle: "short" });
         let day = date.toLocaleDateString("en-US", { dateStyle: "medium" });
         dateEl.textContent = `${day} ${time}`;
@@ -165,10 +165,10 @@
     onResize();
     window.addEventListener("resize", onResize);
 
-    initializeHeader();
-
     try{
         let [currValues, mappings] = await fetchCurrentValuesAndMappings();
+
+        initializeHeader(currValues.time);
 
         let aqiCondition = getConditionFromAQIMapping(currValues.aqi, mappings.aqi)
         displayAqiWidgetData(currValues.aqi, aqiCondition);
