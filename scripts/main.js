@@ -6,7 +6,7 @@
     const RESOURCESWIDGETEL = document.querySelector(".resources-widget");
     const POLLUTANTWIDGETELS = document.querySelectorAll(".pollutant-widget");
     const LAYOUTBREAKPOINT = 1100;
-    const AIRVALUESAPI = "https://z44g6g2rrl.execute-api.us-west-2.amazonaws.com/test/get_air";
+    const AIRVALUESAPI = "air-values.json";
     const MAPPINGSENDPOINT = "mappings.json";
     const CHARTDATAENDPOINT = "air-data.txt";
     const POLLUTANTIDDICT = {
