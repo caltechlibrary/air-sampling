@@ -170,8 +170,10 @@
 
         initializeHeader(currValues.time);
 
-        let aqiCondition = getConditionFromAQIMapping(currValues.aqi, mappings.aqi)
-        displayAqiWidgetData(currValues.aqi, aqiCondition);
+        displayAqiWidgetData(
+            currValues.aqi, 
+            getConditionFromAQIMapping(currValues.aqi, mappings.aqi)
+        );
 
         for(let pollutantWidgetEl of POLLUTANTWIDGETELS) {
             let pollutant = pollutantWidgetEl.getAttribute("data-pollutant");
