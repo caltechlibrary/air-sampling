@@ -41,6 +41,17 @@ function PollutantChart(data, {
             .attr("viewBox", [0, 0, width, height])
             .attr("role", "img")
             .attr("aria-label", `Chart of recent ${pollutant} values.`);
+
+        // Construct chart label
+        const label = d3.create("svg:text")
+            .attr("text-anchor", "middle")
+            .attr("fill", "currentColor")
+            .attr("font-size", "1.75em")
+            .call(t => t.append("tspan")
+                .text(pollutant))
+            .call(t => t.append("tspan")
+                .attr("dx", "8px")
+                .text(`(${unit})`));
         
         // Render x axis.
         svg.append("g")
@@ -65,11 +76,7 @@ function PollutantChart(data, {
                 .attr("stroke-opacity", 0.1))
             .call(g => g.append("g")
                 .attr("transform", `translate(${-marginLeft / 2}, ${height / 2}), rotate(270)`)
-                    .append("text")
-                        .attr("text-anchor", "middle")
-                        .attr("fill", "currentColor")
-                        .attr("font-size", "1.75em")
-                        .text(`${pollutant} ${unit}`));
+                    .append(() => label.node()));
 
         // Render graph data.
         svg.append("path")
