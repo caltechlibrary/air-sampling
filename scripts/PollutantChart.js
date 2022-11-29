@@ -1,7 +1,7 @@
 // Copyright 2021 Observable, Inc.
 // Released under the ISC license.
 // https://observablehq.com/@d3/line-chart
-function LineChart(data, {
+function PollutantChart(data, {
     marginTop = 20, // top margin, in pixels
     marginRight = 30, // right margin, in pixels
     marginBottom = 30, // bottom margin, in pixels
@@ -9,8 +9,8 @@ function LineChart(data, {
     width = 1000, // outer width, in pixels
     height = 270, // outer height, in pixels`
     color = "black", // stroke color of line
-    label, // a label for the y-axis
-    description // a description of the chart
+    pollutant, // chart pollutant
+    unit, // chart unit
     } = {}) {
 
         // Compute values.
@@ -40,7 +40,7 @@ function LineChart(data, {
         const svg = d3.create("svg")
             .attr("viewBox", [0, 0, width, height])
             .attr("role", "img")
-            .attr("aria-label", description);
+            .attr("aria-label", `Chart of recent ${pollutant} values.`);
         
         // Render x axis.
         svg.append("g")
@@ -69,7 +69,7 @@ function LineChart(data, {
                         .attr("text-anchor", "middle")
                         .attr("fill", "currentColor")
                         .attr("font-size", "1.75em")
-                        .text(label));
+                        .text(`${pollutant} ${unit}`));
 
         // Render graph data.
         svg.append("path")
