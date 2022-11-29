@@ -31,6 +31,9 @@ function PollutantChart(data, {
         const xAxis = d3.axisBottom(xScale).tickFormat(d3.timeFormat("%b %d %I %p"));
         const yAxis = d3.axisLeft(yScale).ticks(3).tickSize(0);
 
+        // Extract pollutant checmical and subscript
+        const [pollutantChem, pollutantSub] = pollutant.split(/(\d.*)/, 2);
+
         // Construct a line generator.
         const line = d3.line()
             .x(d => xScale(d.time))
@@ -47,8 +50,10 @@ function PollutantChart(data, {
             .attr("text-anchor", "middle")
             .attr("fill", "currentColor")
             .attr("font-size", "1.75em")
+            .text(pollutantChem)
             .call(t => t.append("tspan")
-                .text(pollutant))
+                .attr("baseline-shift", "sub")
+                .text(pollutantSub))
             .call(t => t.append("tspan")
                 .attr("dx", "8px")
                 .text(`(${unit})`));
