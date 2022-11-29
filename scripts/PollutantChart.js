@@ -25,10 +25,13 @@ function PollutantChart(data, {
         const xRange = [marginLeft, width - marginRight];
         const yRange = [height - marginBottom, marginTop];
 
+        // Construct time formatter
+        const customTimeFormat = d3.timeFormat("%b %_d %_I %p");
+
         // Construct scales and axes.
         const xScale = d3.scaleTime(xDomain, xRange);
         const yScale = d3.scaleLinear(yDomain, yRange);
-        const xAxis = d3.axisBottom(xScale).tickFormat(d3.timeFormat("%b %d %I %p"));
+        const xAxis = d3.axisBottom(xScale).tickFormat((xTick, i) => i % 2 == 0 ? customTimeFormat(xTick) : "");
         const yAxis = d3.axisLeft(yScale).ticks(3).tickSize(0);
 
         // Extract pollutant checmical and subscript
@@ -65,6 +68,8 @@ function PollutantChart(data, {
             .call(g => g.select(".domain").remove())
             .call(g => g.selectAll(".tick text")
                 .attr("font-size", "1.5em"))
+            .call(g => g.selectAll(".tick:nth-child(even) line")
+                .attr("y2", 0))
             .call(g => g.selectAll(".tick line").clone()
                 .attr("y2", marginTop + marginBottom - height)
                 .attr("stroke-opacity", 0.1));
