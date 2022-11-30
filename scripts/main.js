@@ -90,23 +90,23 @@
         conditionEl.textContent = "Not available";
     };
 
-    let displayPollutantWidgetData = function(pollutant, value, condition, warning) {
+    let displayPollutantWidgetData = function(pollutant, concentration, aqi, warning) {
         let pollutantWidgetEl = document.querySelector(`.pollutant-widget[data-pollutant='${pollutant}']`);
-        let valueEl = pollutantWidgetEl.querySelector(".pollutant-widget__value");
-        let qualityEl = pollutantWidgetEl.querySelector(".pollutant-widget__condition");
+        let aqiEl = pollutantWidgetEl.querySelector(".pollutant-widget__aqi");
+        let concentrationEl = pollutantWidgetEl.querySelector(".pollutant-widget__concentration");
         let warningTextEl = pollutantWidgetEl.querySelector(".pollutant-widget__warning-text");
 
-        valueEl.textContent = value;
-        qualityEl.textContent = condition;
+        concentrationEl.textContent = concentration;
+        aqiEl.textContent = aqi;
         warningTextEl.textContent = warning;
     };
 
     let displayFailedPollutantWidget = function(pollutant) {
         let pollutantWidgetEl = document.querySelector(`.pollutant-widget[data-pollutant='${pollutant}']`);
-        let valueEl = pollutantWidgetEl.querySelector(".pollutant-widget__value");
+        let aqiEl = pollutantWidgetEl.querySelector(".pollutant-widget__aqi");
 
         pollutantWidgetEl.classList.add("pollutant-widget--data-unavailable");
-        valueEl.textContent = "Not available";
+        aqiEl.textContent = "Not available";
     };
 
     let initializePollutantWidgetAccordion = function(pollutant) {
@@ -180,10 +180,11 @@
         for(let pollutantWidgetEl of POLLUTANTWIDGETELS) {
             let pollutant = pollutantWidgetEl.getAttribute("data-pollutant");
             let pollutantId = POLLUTANTIDDICT[pollutant];
-            let value = currValues[pollutantId];
-            let condition = getConditionFromAQIMapping(value, mappings.aqi);
+            let concentration = currValues[pollutantId].concentration;
+            let aqi = currValues[pollutantId].aqi;
+            let condition = getConditionFromAQIMapping(aqi, mappings.aqi);
             let warning = mappings[pollutantId][condition];
-            displayPollutantWidgetData(pollutant, value, condition, warning);
+            displayPollutantWidgetData(pollutant, concentration, aqi, warning);
         }
     } catch(error) {
         if(error.message != "Current air values response was not OK") throw error;

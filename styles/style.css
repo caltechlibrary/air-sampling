@@ -523,7 +523,7 @@ Blocks
     transform: rotate(90deg);
 }
 
-.pollutant-widget--data-unavailable .pollutant-widget__condition-label {
+.pollutant-widget--data-unavailable .pollutant-widget__concentration-label {
     display: none;
 }
 
@@ -537,7 +537,7 @@ Blocks
 }
 
 @media (max-width:799px) {
-    .pollutant-widget__value-label {
+    .pollutant-widget__aqi-label {
         text-align: right;
     }
 }
