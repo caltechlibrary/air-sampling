@@ -68,10 +68,12 @@
     }
 
     let displayAqiWidgetData = function(value, condition) {
+        let aqiWidgetEl = document.querySelector(".aqi-widget");
         let valueEl = document.querySelector(".aqi-widget__value");
         let descriptionEl = document.querySelector(".aqi-widget__condition-value");
         let inidicatorEl = document.getElementById("aqi-widget__meter-indicator");
 
+        aqiWidgetEl.classList.add(`aqi-widget--${condition.toLowerCase().split(" ").join("-")}`);
         valueEl.textContent = value;
         descriptionEl.textContent = condition;
         inidicatorEl.setAttribute("x", `${(value / 500) * 100}%`);

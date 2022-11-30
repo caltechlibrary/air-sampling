@@ -119,7 +119,30 @@ Blocks
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: #eceaaf;
+}
+
+.aqi-widget--good .aqi-widget__main-content-container {
+    background: #bbdfac;
+}
+
+.aqi-widget--moderate .aqi-widget__main-content-container {
+    background: #e7ebb5;
+}
+
+.aqi-widget--unhealthy-for-sensitive-groups .aqi-widget__main-content-container {
+    background: #f6b09a;
+}
+
+.aqi-widget--unhealthy .aqi-widget__main-content-container {
+    background: #e1729a;
+}
+
+.aqi-widget--very-unhealthy .aqi-widget__main-content-container {
+    background: #c264d5;
+}
+
+.aqi-widget--hazardous .aqi-widget__main-content-container {
+    background: #8a353a;
 }
 
 .aqi-widget__title {
