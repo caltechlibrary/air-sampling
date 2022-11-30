@@ -116,8 +116,8 @@
         });
     };
 
-    let fetchPollutantCSV = async function() {
-        let res = await fetch(CHARTDATAENDPOINT);
+    let fetchPollutantCSV = async function(pollutantCsvEndpoint) {
+        let res = await fetch(pollutantCsvEndpoint);
         return await res.text();
     };
 
@@ -190,7 +190,7 @@
 
     for(let pollutantWidgetEl of POLLUTANTWIDGETELS) initializePollutantWidgetAccordion(pollutantWidgetEl.getAttribute("data-pollutant"));
 
-    let pollutantCSVString = await fetchPollutantCSV();
+    let pollutantCSVString = await fetchPollutantCSV(CHARTDATAENDPOINT);
     let pollutantData = getPollutantData(pollutantCSVString);
 
     for(let pollutantWidgetEl of POLLUTANTWIDGETELS) {
