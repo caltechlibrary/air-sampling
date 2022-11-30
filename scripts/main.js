@@ -9,13 +9,6 @@
     const AIRVALUESAPI = "air-values.json";
     const MAPPINGSENDPOINT = "mappings.json";
     const CHARTDATAENDPOINT = "air-data.txt";
-    const POLLUTANTIDDICT = {
-        "OZONE": "O3",
-        "PM2.5": "PM2.5",
-        "PM10": "PM10",
-        "CO": "CO",
-        "NO2": "NO2"
-    }
 
     //
 	// Functions
@@ -45,18 +38,17 @@
         dateEl.textContent = `${day} ${time}`;
     };
 
-    let fetchCurrentValuesAndMappings = async function() {
-        const [valuesRes, mappingsRes] = await Promise.all([
-            fetch(AIRVALUESAPI),
-            fetch(MAPPINGSENDPOINT)
-        ]);
+    let fetchMappings = async function(mappingsEndpoint) {
+        const mappingsRes = await fetch(mappingsEndpoint);
+        const mappingsJSON = await mappingsRes.json();
+        return mappingsJSON;
+    };
 
+    let fetchCurrentValues = async function(currentValuesEndpoint) {
+        const valuesRes = await fetch(currentValuesEndpoint);
         if(!valuesRes.ok) throw new Error("Current air values response was not OK");
-        
-        return await Promise.all([
-            valuesRes.json(),
-            mappingsRes.json()
-        ]);
+        const valuesJSON = await valuesRes.json();
+        return valuesJSON;
     };
 
     let getConditionFromAQIMapping = function(value, mapping) {
@@ -167,8 +159,10 @@
     onResize();
     window.addEventListener("resize", onResize);
 
+    const mappings = await fetchMappings(MAPPINGSENDPOINT);
+
     try{
-        let [currValues, mappings] = await fetchCurrentValuesAndMappings();
+        let currValues = await fetchCurrentValues(AIRVALUESAPI);
 
         initializeHeader(currValues.time);
 
@@ -179,7 +173,7 @@
 
         for(let pollutantWidgetEl of POLLUTANTWIDGETELS) {
             let pollutant = pollutantWidgetEl.getAttribute("data-pollutant");
-            let pollutantId = POLLUTANTIDDICT[pollutant];
+            let pollutantId = mappings.api[pollutant];
             let concentration = currValues[pollutantId].concentration;
             let unit = mappings.units[pollutantId];
             let aqi = currValues[pollutantId].aqi;
@@ -201,7 +195,7 @@
 
     for(let pollutantWidgetEl of POLLUTANTWIDGETELS) {
         let pollutant = pollutantWidgetEl.getAttribute("data-pollutant");
-        let pollutantId = POLLUTANTIDDICT[pollutant]
+        let pollutantId = mappings.api[pollutant]
         let data = pollutantData[pollutantId];
         initializePollutantWidgetChart(pollutant, data.data, data.unit);
     }
