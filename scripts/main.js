@@ -170,7 +170,7 @@
 
         for(let pollutantWidgetEl of pollutantWidgetEls) {
             let pollutant = pollutantWidgetEl.getAttribute("data-pollutant");
-            let pollutantId = mappings.api[pollutant];
+            let pollutantId = mappings.formulas[pollutant];
             let concentration = currValues[pollutantId].concentration;
             let unit = mappings.units[pollutantId];
             let aqi = currValues[pollutantId].aqi;
@@ -192,7 +192,7 @@
 
     for(let pollutantWidgetEl of pollutantWidgetEls) {
         let pollutant = pollutantWidgetEl.getAttribute("data-pollutant");
-        let pollutantId = mappings.api[pollutant]
+        let pollutantId = mappings.formulas[pollutant]
         let data = pollutantData[pollutantId];
         initializePollutantWidgetChart(pollutant, data.data, data.unit);
     }
