@@ -1,13 +1,13 @@
-<div class="pollutant-widget page__pollutant-widget" data-pollutant="${it}">
+<div class="pollutant-widget page__pollutant-widget" data-pollutant="${it.formula}">
     <div class="pollutant-widget__top-container">
         <h2 class="pollutant-widget__header pollutant-widget__label">
-            <button class="pollutant-widget__toggle-btn" aria-controls="${it}-panel" aria-expanded="false">
+            <button class="pollutant-widget__toggle-btn" aria-controls="${it.formula}-panel" aria-expanded="false">
                 <span class="pollutant-widget__toggle-icon">${svg/triangle.svg()}</span>
-                <span>${it}</span>
+                <span>${it.name}</span>
             </button>
         </h2>
         <p class="pollutant-widget__concentration-label pollutant-widget__label">
-            <span class="pollutant-widget__label-sr-text">Current ${it} concentration</span>
+            <span class="pollutant-widget__label-sr-text">Current ${it.name} concentration</span>
             <span class="pollutant-widget__concentration"></span>
         </p>
         <p class="pollutant-widget__aqi-label pollutant-widget__label">
@@ -15,7 +15,7 @@
             AQI
         </p>
     </div>
-    <div id="${it}-panel" class="pollutant-widget__panel">
+    <div id="${it.formula}-panel" class="pollutant-widget__panel">
         <div class="pollutant-widget__warning">
             <p class="pollutant-widget__warning-text"></p>
         </div>
