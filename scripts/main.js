@@ -3,9 +3,6 @@
 	// Variables
 	//
     const POLLUTANTWIDGETELS = document.querySelectorAll(".pollutant-widget");
-    const AIRVALUESAPI = "air-values.json";
-    const MAPPINGSENDPOINT = "mappings.json";
-    const CHARTDATAENDPOINT = "air-data.txt";
 
     //
 	// Functions
@@ -161,10 +158,10 @@
     onResize();
     window.addEventListener("resize", onResize);
 
-    const mappings = await fetchMappings(MAPPINGSENDPOINT);
+    const mappings = await fetchMappings("mappings.json");
 
     try{
-        let currValues = await fetchCurrentValues(AIRVALUESAPI);
+        let currValues = await fetchCurrentValues("air-values.json");
 
         initializeHeader(currValues.time);
 
@@ -192,7 +189,7 @@
 
     for(let pollutantWidgetEl of POLLUTANTWIDGETELS) initializePollutantWidgetAccordion(pollutantWidgetEl.getAttribute("data-pollutant"));
 
-    let pollutantCSVString = await fetchPollutantCSV(CHARTDATAENDPOINT);
+    let pollutantCSVString = await fetchPollutantCSV("air-data.txt");
     let pollutantData = getPollutantData(pollutantCSVString);
 
     for(let pollutantWidgetEl of POLLUTANTWIDGETELS) {
