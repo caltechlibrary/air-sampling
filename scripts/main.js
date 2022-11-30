@@ -1,8 +1,4 @@
 (async function() {
-    //
-	// Variables
-	//
-    const POLLUTANTWIDGETELS = document.querySelectorAll(".pollutant-widget");
 
     //
 	// Functions
@@ -159,6 +155,8 @@
     window.addEventListener("resize", onResize);
 
     const mappings = await fetchMappings("mappings.json");
+    
+    const pollutantWidgetEls = document.querySelectorAll(".pollutant-widget");
 
     try{
         let currValues = await fetchCurrentValues("air-values.json");
@@ -170,7 +168,7 @@
             getConditionFromAQIMapping(currValues.aqi, mappings.aqi)
         );
 
-        for(let pollutantWidgetEl of POLLUTANTWIDGETELS) {
+        for(let pollutantWidgetEl of pollutantWidgetEls) {
             let pollutant = pollutantWidgetEl.getAttribute("data-pollutant");
             let pollutantId = mappings.api[pollutant];
             let concentration = currValues[pollutantId].concentration;
@@ -183,16 +181,16 @@
     } catch(error) {
         if(error.message != "Current air values response was not OK") throw error;
         displayFailedAqiWidget();
-        for(let pollutantWidgetEl of POLLUTANTWIDGETELS) displayFailedPollutantWidget(pollutantWidgetEl.getAttribute("data-pollutant"));
+        for(let pollutantWidgetEl of pollutantWidgetEls) displayFailedPollutantWidget(pollutantWidgetEl.getAttribute("data-pollutant"));
         console.log(error);
     }
 
-    for(let pollutantWidgetEl of POLLUTANTWIDGETELS) initializePollutantWidgetAccordion(pollutantWidgetEl.getAttribute("data-pollutant"));
+    for(let pollutantWidgetEl of pollutantWidgetEls) initializePollutantWidgetAccordion(pollutantWidgetEl.getAttribute("data-pollutant"));
 
     let pollutantCSVString = await fetchPollutantCSV("air-data.txt");
     let pollutantData = getPollutantData(pollutantCSVString);
 
-    for(let pollutantWidgetEl of POLLUTANTWIDGETELS) {
+    for(let pollutantWidgetEl of pollutantWidgetEls) {
         let pollutant = pollutantWidgetEl.getAttribute("data-pollutant");
         let pollutantId = mappings.api[pollutant]
         let data = pollutantData[pollutantId];
