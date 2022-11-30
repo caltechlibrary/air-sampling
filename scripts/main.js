@@ -2,10 +2,7 @@
     //
 	// Variables
 	//
-    const TOPCONTAINEREL = document.querySelector(".top-container");
-    const RESOURCESWIDGETEL = document.querySelector(".resources-widget");
     const POLLUTANTWIDGETELS = document.querySelectorAll(".pollutant-widget");
-    const LAYOUTBREAKPOINT = 1100;
     const AIRVALUESAPI = "air-values.json";
     const MAPPINGSENDPOINT = "mappings.json";
     const CHARTDATAENDPOINT = "air-data.txt";
@@ -14,18 +11,23 @@
 	// Functions
 	//
     let onResize = function() {
-        let shiftToDesktop = window.innerWidth >= LAYOUTBREAKPOINT && TOPCONTAINEREL.childElementCount == 2;
-        let shiftToMobile = window.innerWidth < LAYOUTBREAKPOINT && TOPCONTAINEREL.childElementCount == 3;
+        const topContainerEl = document.querySelector(".top-container");
+        const resourceWidgetEl = document.querySelector(".resources-widget");
+        const pollutantWidgetEls = document.querySelectorAll(".pollutant-widget");
+        const layoutBreakpoint = 1100;
+
+        let shiftToDesktop = window.innerWidth >= layoutBreakpoint && topContainerEl.childElementCount == 2;
+        let shiftToMobile = window.innerWidth < layoutBreakpoint && topContainerEl.childElementCount == 3;
         
         if(shiftToDesktop || shiftToMobile) {
-            let container = RESOURCESWIDGETEL.parentElement;
+            let container = resourceWidgetEl.parentElement;
             while(container.classList.length > 0) container.classList.remove(container.classList.item(0));
             if(shiftToDesktop) {
                 container.classList.add("top-container__item");
-                TOPCONTAINEREL.appendChild(container);
+                topContainerEl.appendChild(container);
             } else if(shiftToMobile) {
                 container.classList.add("page__resources-widget-container");
-                POLLUTANTWIDGETELS[POLLUTANTWIDGETELS.length - 1].after(container);
+                pollutantWidgetEls[pollutantWidgetEls.length - 1].after(container);
             }
         }
     };
