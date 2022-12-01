@@ -1,13 +1,18 @@
 <svg version="1.1" viewBox="0 0 345 48.098" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" role="img" class="aqi-widget__meter" aria-labelledby="aqi-widget-condition">
 	<defs>
 		<linearGradient id="linearGradient6550" x2="345" gradientUnits="userSpaceOnUse">
-			<stop stop-color="#bbdfac" offset="0"/>
-			<stop stop-color="#e7ebb5" offset=".1"/>
-			<stop stop-color="#f6b09a" offset=".2"/>
-			<stop stop-color="#e1729a" offset=".3"/>
-			<stop stop-color="#c264d5" offset=".4"/>
-			<stop stop-color="#8a353a" offset=".6"/>
-			<stop stop-color="#8a353a" offset="1"/>
+			<stop stop-color="#00e400" offset="0"/>
+			<stop stop-color="#00e400" offset=".0999"/>
+			<stop stop-color="#ffff00" offset=".1"/>
+			<stop stop-color="#ffff00" offset=".1999"/>
+			<stop stop-color="#ff7e00" offset=".2"/>
+			<stop stop-color="#ff7e00" offset=".2999"/>
+			<stop stop-color="#ff0000" offset=".3"/>
+			<stop stop-color="#ff0000" offset=".3999"/>
+			<stop stop-color="#8f3f97" offset=".4"/>
+			<stop stop-color="#8f3f97" offset=".5999"/>
+			<stop stop-color="#7e0023" offset=".6"/>
+			<stop stop-color="#7e0023" offset="1"/>
 		</linearGradient>
 	</defs>
 	<g>
