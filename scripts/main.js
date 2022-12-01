@@ -77,12 +77,13 @@
         conditionEl.textContent = "Not available";
     };
 
-    let displayPollutantWidgetData = function(pollutant, concentration, unit, aqi, warning) {
+    let displayPollutantWidgetData = function(pollutant, concentration, unit, aqi, condition, warning) {
         let pollutantWidgetEl = document.querySelector(`.pollutant-widget[data-pollutant='${pollutant}']`);
         let aqiEl = pollutantWidgetEl.querySelector(".pollutant-widget__aqi");
         let concentrationEl = pollutantWidgetEl.querySelector(".pollutant-widget__concentration");
         let warningTextEl = pollutantWidgetEl.querySelector(".pollutant-widget__warning-text");
 
+        pollutantWidgetEl.classList.add(`pollutant-widget--${condition.toLowerCase().split(" ").join("-")}`);
         concentrationEl.textContent = `${concentration} ${unit}`;
         aqiEl.textContent = aqi;
         warningTextEl.textContent = warning;
@@ -174,7 +175,7 @@
             let unit = mappings.units[pollutant];
             let condition = getConditionFromAQIMapping(aqi, mappings.aqi);
             let warning = mappings[pollutant][condition];
-            displayPollutantWidgetData(pollutant, concentration, unit, aqi, warning);
+            displayPollutantWidgetData(pollutant, concentration, unit, aqi, condition, warning);
         }
     } catch(error) {
         if(error.message != "Current air values response was not OK") throw error;

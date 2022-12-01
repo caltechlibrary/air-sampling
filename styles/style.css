@@ -532,6 +532,42 @@ Blocks
     transform: rotate(90deg);
 }
 
+.pollutant-widget__aqi {
+    margin: 8px;
+    height: 2.5em;
+    width: 2.5em;
+    border-radius: 8px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    background: #7ff17f;
+}
+
+.pollutant-widget--good .pollutant-widget__aqi {
+    background: #7ff17f;
+}
+
+.pollutant-widget--moderate .pollutant-widget__aqi {
+    background: #ffff7f;
+}
+
+.pollutant-widget--unhealthy-for-sensitive-groups .pollutant-widget__aqi {
+    background: #ffbe7f;
+}
+
+.pollutant-widget--unhealthy .pollutant-widget__aqi {
+    background: #ff7f7f;
+}
+
+.pollutant-widget--very-unhealthy .pollutant-widget__aqi {
+    background: #c296c6;
+}
+
+.pollutant-widget--hazardous .pollutant-widget__aqi {
+    background: #9e405a;
+    color: #fff;
+}
+
 @media (max-width:799px) {
     .pollutant-widget__concentration-label {
         text-align: right;
