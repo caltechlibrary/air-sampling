@@ -476,7 +476,7 @@ Blocks
     padding: 0px 10px;
     display: flex;
     align-items: center;
-    gap: 64px;
+    gap: 16px;
     font-size: 0.875em;
     overflow: auto;
 }
@@ -486,6 +486,7 @@ Blocks
         height: 3.5rem;
         width: 27.1875rem;
         padding: 0px;
+        gap: 64px;
         font-size: 1.075em;
         overflow: initial;
     }
@@ -532,7 +533,7 @@ Blocks
 }
 
 .pollutant-widget__aqi {
-    margin: 8px;
+    margin: 0 8px;
     height: 2.5em;
     width: 2.5em;
     border-radius: 8px;
