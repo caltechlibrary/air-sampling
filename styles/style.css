@@ -476,7 +476,7 @@ Blocks
     padding: 0px 10px;
     display: flex;
     align-items: center;
-    gap: 32px;
+    gap: 64px;
     font-size: 0.875em;
     overflow: auto;
 }
@@ -494,7 +494,6 @@ Blocks
 .pollutant-widget__label {
     flex: 1;
     margin: 0;
-    text-align: center;
     white-space: nowrap;
 }
 
