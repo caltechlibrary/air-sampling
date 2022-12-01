@@ -109,10 +109,6 @@ Blocks
 }
 
 /* aqi-widget */
-.aqi-widget {
-    color: #033C49;
-}
-
 .aqi-widget__main-content-container {
     position: relative;
     display: flex;
@@ -122,27 +118,33 @@ Blocks
 }
 
 .aqi-widget--good .aqi-widget__main-content-container {
-    background: #bbdfac;
+    background: #7ff17f;
+    color: #033c49;
 }
 
 .aqi-widget--moderate .aqi-widget__main-content-container {
-    background: #e7ebb5;
+    background: #ffff7f;
+    color: #033c49;
 }
 
 .aqi-widget--unhealthy-for-sensitive-groups .aqi-widget__main-content-container {
-    background: #f6b09a;
+    background: #ffbe7f;
+    color: #033c49;
 }
 
 .aqi-widget--unhealthy .aqi-widget__main-content-container {
-    background: #e1729a;
+    background: #ff7f7f;
+    color: #033c49;
 }
 
 .aqi-widget--very-unhealthy .aqi-widget__main-content-container {
-    background: #c264d5;
+    background: #c296c6;
+    color: #033c49;
 }
 
 .aqi-widget--hazardous .aqi-widget__main-content-container {
-    background: #8a353a;
+    background: #9e405a;
+    color: #fff;
 }
 
 .aqi-widget__title {
@@ -174,8 +176,15 @@ Blocks
 
 .aqi-widget__value-label {
     width: 80%;
-    fill: #033c49;
     font-weight: 600;
+}
+
+.aqi-widget--good .aqi-widget__value-label, .aqi-widget--moderate .aqi-widget__value-label, .aqi-widget--unhealthy-for-sensitive-groups .aqi-widget__value-label, .aqi-widget--unhealthy .aqi-widget__value-label, .aqi-widget--very-unhealthy .aqi-widget__value-label {
+    fill: #033c49;
+}
+
+.aqi-widget--hazardous .aqi-widget__value-label {
+    fill: #fff;
 }
 
 .aqi-widget__value {
