@@ -532,6 +532,12 @@ Blocks
     transform: rotate(90deg);
 }
 
+@media (max-width:799px) {
+    .pollutant-widget__concentration-label {
+        text-align: right;
+    }
+}
+
 .pollutant-widget--data-unavailable .pollutant-widget__concentration-label {
     display: none;
 }
@@ -543,12 +549,6 @@ Blocks
     width:1px;
     height:1px;
     overflow:hidden;
-}
-
-@media (max-width:799px) {
-    .pollutant-widget__aqi-label {
-        text-align: right;
-    }
 }
 
 .pollutant-widget__panel {
