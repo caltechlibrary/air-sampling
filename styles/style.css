@@ -389,6 +389,7 @@ Blocks
     box-sizing: border-box;
     border-radius: 3%;
     overflow: auto;
+    box-shadow: 0px 0px 10px #00000033;
 }
 
 @media (max-width:599px) {
@@ -462,6 +463,7 @@ Blocks
     background: #efefef;
     color: #033C49;
     font-family: Arial;
+    box-shadow: 0px 0px 10px #00000033;
 }
 
 @media (min-width:800px) {
@@ -686,7 +688,7 @@ Blocks
 }
 
 .page__pollutant-widget {
-    margin-bottom: 12px;
+    margin-bottom: 16px;
 }
 
 @media (min-width:600px) and (max-width:1099px) {
