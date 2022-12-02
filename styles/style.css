@@ -405,6 +405,12 @@ Blocks
     }
 }
 
+@media (max-width:599px) {
+    .card--no-shadow-mobile .card__main-component {
+        box-shadow: none;
+    }    
+}
+
 .card__sub-component {
     flex: 1;
     order: 1;
