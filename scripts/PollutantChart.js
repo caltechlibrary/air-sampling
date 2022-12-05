@@ -1,6 +1,7 @@
 // Copyright 2021 Observable, Inc.
 // Released under the ISC license.
 // https://observablehq.com/@d3/line-chart
+
 function PollutantChart(data, {
     marginTop = 20, // top margin, in pixels
     marginRight = 30, // right margin, in pixels
@@ -100,3 +101,5 @@ function PollutantChart(data, {
 
         return svg.node();
 }
+
+export default PollutantChart;
