@@ -4,4 +4,12 @@ async function fetchJSON(resource) {
     return await res.json();
 }
 
-export default fetchJSON;
+async function fetchCSV(resource) {
+    const res = await fetch(resource);
+    return await res.text();
+}
+
+export { 
+    fetchJSON, 
+    fetchCSV 
+};

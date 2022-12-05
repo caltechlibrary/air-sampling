@@ -1,4 +1,4 @@
-import fetchJSON from "./fetchJSON.js";
+import { fetchJSON, fetchCSV } from "./fetchHelpers.js";
 import pollutantChart from "./pollutantChart.js";
 import getPollutantDataFromCSV from "./getPollutantDataFromCSV.js";
 
@@ -98,11 +98,6 @@ let initializePollutantWidgetAccordion = function(pollutant) {
     });
 };
 
-let fetchPollutantCSV = async function(pollutantCsvEndpoint) {
-    let res = await fetch(pollutantCsvEndpoint);
-    return await res.text();
-};
-
 let initializePollutantWidgetChart = function(pollutant, data, unit) {
     let pollutantWidget = document.querySelector(`.pollutant-widget[data-pollutant='${pollutant}']`);
     let chartContainer = pollutantWidget.querySelector(".pollutant-widget__chart-container");
@@ -143,7 +138,7 @@ try{
 
 for(let pollutantWidgetEl of pollutantWidgetEls) initializePollutantWidgetAccordion(pollutantWidgetEl.getAttribute("data-pollutant"));
 
-let pollutantCSVString = await fetchPollutantCSV("air-data.txt");
+let pollutantCSVString = await fetchCSV("air-data.txt");
 let pollutantData = getPollutantDataFromCSV(pollutantCSVString);
 
 for(let pollutantWidgetEl of pollutantWidgetEls) {
