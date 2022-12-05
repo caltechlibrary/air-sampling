@@ -1,3 +1,4 @@
+import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7.7.0/+esm";
 import PollutantChart from "./PollutantChart.js";
 
 let onResize = function() {

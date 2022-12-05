@@ -2,6 +2,8 @@
 // Released under the ISC license.
 // https://observablehq.com/@d3/line-chart
 
+import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7.7.0/+esm";
+
 function PollutantChart(data, {
     marginTop = 20, // top margin, in pixels
     marginRight = 30, // right margin, in pixels
