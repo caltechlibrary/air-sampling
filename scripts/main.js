@@ -1,6 +1,6 @@
 import { fetchJSON, fetchCSV } from "./fetchHelpers.js";
-import pollutantChart from "./pollutantChart.js";
 import getPollutantDataFromCSV from "./getPollutantDataFromCSV.js";
+import pollutantChart from "./pollutantChart.js";
 
 let onResize = function() {
     const topContainerEl = document.querySelector(".top-container");
