@@ -1,4 +1,4 @@
-import PollutantChart from "./PollutantChart.js";
+import pollutantChart from "./pollutantChart.js";
 import getPollutantDataFromCSV from "./getPollutantDataFromCSV.js";
 
 let onResize = function() {
@@ -118,7 +118,7 @@ let fetchPollutantCSV = async function(pollutantCsvEndpoint) {
 let initializePollutantWidgetChart = function(pollutant, data, unit) {
     let pollutantWidget = document.querySelector(`.pollutant-widget[data-pollutant='${pollutant}']`);
     let chartContainer = pollutantWidget.querySelector(".pollutant-widget__chart-container");
-    let chartSvg = PollutantChart(data, { pollutant, unit });
+    let chartSvg = pollutantChart(data, { pollutant, unit });
     chartSvg.classList.add("pollutant-widget__chart");
     chartContainer.append(chartSvg);
 };

@@ -4,7 +4,7 @@
 
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7.7.0/+esm";
 
-function PollutantChart(data, {
+function pollutantChart(data, {
     marginTop = 20, // top margin, in pixels
     marginRight = 30, // right margin, in pixels
     marginBottom = 30, // bottom margin, in pixels
@@ -104,4 +104,4 @@ function PollutantChart(data, {
         return svg.node();
 }
 
-export default PollutantChart;
+export default pollutantChart;
