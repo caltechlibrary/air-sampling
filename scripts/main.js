@@ -1,3 +1,4 @@
+import fetchJSON from "./fetchJSON.js";
 import pollutantChart from "./pollutantChart.js";
 import getPollutantDataFromCSV from "./getPollutantDataFromCSV.js";
 
@@ -29,19 +30,6 @@ let initializeHeader = function(timestamp) {
     let time = date.toLocaleTimeString("en-US", { hour12: true, timeStyle: "short" });
     let day = date.toLocaleDateString("en-US", { dateStyle: "medium" });
     dateEl.textContent = `${day} ${time}`;
-};
-
-let fetchMappings = async function(mappingsEndpoint) {
-    const mappingsRes = await fetch(mappingsEndpoint);
-    const mappingsJSON = await mappingsRes.json();
-    return mappingsJSON;
-};
-
-let fetchCurrentValues = async function(currentValuesEndpoint) {
-    const valuesRes = await fetch(currentValuesEndpoint);
-    if(!valuesRes.ok) throw new Error("Current air values response was not OK");
-    const valuesJSON = await valuesRes.json();
-    return valuesJSON;
 };
 
 let getConditionFromAQIMapping = function(value, mapping) {
@@ -126,12 +114,10 @@ let initializePollutantWidgetChart = function(pollutant, data, unit) {
 onResize();
 window.addEventListener("resize", onResize);
 
-const mappings = await fetchMappings("mappings.json");
-
 const pollutantWidgetEls = document.querySelectorAll(".pollutant-widget");
 
 try{
-    let currValues = await fetchCurrentValues("air-values.json");
+    const [currValues, mappings] = await Promise.all([fetchJSON("air-values.json"), fetchJSON("mappings.json")]);
 
     initializeHeader(currValues.time);
 
