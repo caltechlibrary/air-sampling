@@ -130,7 +130,7 @@ try{
         displayPollutantWidgetData(pollutant, concentration, unit, aqi, condition, warning);
     }
 } catch(error) {
-    if(error.message != "Current air values response was not OK") throw error;
+    if(error.message != "Network response was not OK") throw error;
     displayFailedAqiWidget();
     for(let pollutantWidgetEl of pollutantWidgetEls) displayFailedPollutantWidget(pollutantWidgetEl.getAttribute("data-pollutant"));
     console.log(error);
