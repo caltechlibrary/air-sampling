@@ -1,4 +1,5 @@
 import { fetchJSON, fetchCSV } from "./fetchHelpers.js";
+import getConditionFromAQIMapping from "./getConditionFromAQIMapping.js";
 import getPollutantDataFromCSV from "./getPollutantDataFromCSV.js";
 import pollutantChart from "./pollutantChart.js";
 
@@ -31,14 +32,6 @@ let initializeHeader = function(timestamp) {
     let day = date.toLocaleDateString("en-US", { dateStyle: "medium" });
     dateEl.textContent = `${day} ${time}`;
 };
-
-let getConditionFromAQIMapping = function(value, mapping) {
-    for(const [condition, range] of Object.entries(mapping)) {
-        if(value >= range[0] && value <= range[1]) {
-            return condition;
-        }
-    }
-}
 
 let displayAqiWidgetData = function(value, condition) {
     let aqiWidgetEl = document.querySelector(".aqi-widget");
