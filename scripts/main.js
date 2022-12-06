@@ -56,14 +56,14 @@ let displayFailedAqiWidget = function() {
     conditionEl.textContent = "Not available";
 };
 
-let displayPollutantWidgetData = function(pollutant, concentration, unit, aqi, condition, warning) {
+let displayPollutantWidgetData = function(pollutant, concentration, aqi, condition, warning) {
     let pollutantWidgetEl = document.querySelector(`.pollutant-widget[data-pollutant='${pollutant}']`);
     let aqiEl = pollutantWidgetEl.querySelector(".pollutant-widget__aqi");
     let concentrationEl = pollutantWidgetEl.querySelector(".pollutant-widget__concentration");
     let warningTextEl = pollutantWidgetEl.querySelector(".pollutant-widget__warning-text");
 
     pollutantWidgetEl.classList.add(`pollutant-widget--${condition.toLowerCase().split(" ").join("-")}`);
-    concentrationEl.textContent = `${concentration} ${unit}`;
+    concentrationEl.textContent = concentration;
     aqiEl.textContent = aqi;
     warningTextEl.textContent = warning;
 };
@@ -117,10 +117,9 @@ try{
     for(let pollutantWidgetEl of pollutantWidgetEls) {
         let pollutant = pollutantWidgetEl.getAttribute("data-pollutant");
         let { concentration, aqi } = currValues[pollutant];
-        let unit = mappings.units[pollutant];
         let condition = getConditionFromAQIMapping(aqi, mappings.aqi);
         let warning = mappings[pollutant][condition];
-        displayPollutantWidgetData(pollutant, concentration, unit, aqi, condition, warning);
+        displayPollutantWidgetData(pollutant, concentration, aqi, condition, warning);
     }
 } catch(error) {
     if(error.message != "Network response was not OK") throw error;
