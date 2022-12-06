@@ -1,7 +1,7 @@
-import { fetchJSON, fetchCSV } from "./fetchHelpers.js";
-import getConditionFromAQIMapping from "./getConditionFromAQIMapping.js";
-import getPollutantDataFromCSV from "./getPollutantDataFromCSV.js";
-import pollutantChart from "./pollutantChart.js";
+import { fetchJSON, fetchCSV } from "./modules/fetchHelpers.js";
+import getConditionFromAQIMapping from "./modules/getConditionFromAQIMapping.js";
+import getPollutantDataFromCSV from "./modules/getPollutantDataFromCSV.js";
+import pollutantChart from "./modules/pollutantChart.js";
 
 let onResize = function() {
     const topContainerEl = document.querySelector(".top-container");
