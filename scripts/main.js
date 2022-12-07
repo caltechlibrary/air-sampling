@@ -91,14 +91,6 @@ let initializePollutantWidgetAccordion = function(pollutant) {
     });
 };
 
-let initializePollutantWidgetChart = function(pollutant, data, unit) {
-    let pollutantWidget = document.querySelector(`.pollutant-widget[data-pollutant='${pollutant}']`);
-    let chartContainer = pollutantWidget.querySelector(".pollutant-widget__chart-container");
-    let chartSvg = pollutantChart(data, { pollutant, unit });
-    chartSvg.classList.add("pollutant-widget__chart");
-    chartContainer.append(chartSvg);
-};
-
 onResize();
 window.addEventListener("resize", onResize);
 
@@ -135,6 +127,9 @@ let pollutantData = getPollutantDataFromCSV(pollutantCSVString);
 
 for(let pollutantWidgetEl of pollutantWidgetEls) {
     let pollutant = pollutantWidgetEl.getAttribute("data-pollutant");
-    let data = pollutantData[pollutant];
-    initializePollutantWidgetChart(pollutant, data.data, data.unit);
+    let chartContainer = pollutantWidgetEl.querySelector(".pollutant-widget__chart-container");
+    let {data, unit} = pollutantData[pollutant];
+    let chartSvg = pollutantChart(data, { pollutant, unit });
+    chartSvg.classList.add("pollutant-widget__chart");
+    chartContainer.append(chartSvg);
 }
