@@ -1,1 +1,1 @@
-{"NO":3.15,"PM2.5":{"aqi":51,"concentration":12.1},"O3":{"aqi":0,"concentration":0},"time":1669825473,"CO":{"aqi":151,"concentration":12.5},"PM10":{"aqi":101,"concentration":155},"NO2":{"aqi":201,"concentration":650},"temp":13.5,"date":"2022-11-30","SO2":0.82,"pressure":981.3,"NOy":15,"aqi":39}
+{"PM2.5_aqi": 25.0, "NO": 1.05, "PM2.5": 6.0, "O3": 10.9, "PM10_aqi": 18.0, "CO_aqi": 0.0, "NO2_aqi": 31.0, "time": 1659392533.0, "CO": 1.0, "PM10": 19.6, "O3_aqi": 8.0, "NO2": 33.5, "temp": 21.1, "date": "2022-08-01", "SO2": 1.13, "pressure": 740.7, "NOy": 38.5, "aqi": 31.0}
