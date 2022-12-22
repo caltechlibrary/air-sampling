@@ -97,7 +97,10 @@ window.addEventListener("resize", onResize);
 const pollutantWidgetEls = document.querySelectorAll(".pollutant-widget");
 
 try{
-    const [currValues, mappings] = await Promise.all([fetchJSON("air-values.json"), fetchJSON("mappings.json")]);
+    const [currValues, mappings] = await Promise.all([
+        fetchJSON("https://z44g6g2rrl.execute-api.us-west-2.amazonaws.com/test/get_air"), 
+        fetchJSON("mappings.json")
+    ]);
 
     initializeHeader(currValues.time);
 
@@ -108,7 +111,8 @@ try{
 
     for(let pollutantWidgetEl of pollutantWidgetEls) {
         let pollutant = pollutantWidgetEl.getAttribute("data-pollutant");
-        let { concentration, aqi } = currValues[pollutant];
+        let concentration = currValues[pollutant];
+        let aqi = currValues[`${pollutant}_aqi`];
         let condition = getConditionFromAQIMapping(aqi, mappings.aqi);
         let warning = mappings[pollutant][condition];
         displayPollutantWidgetData(pollutant, concentration, aqi, condition, warning);
