@@ -28,8 +28,12 @@ def process_value(value, item, body):
         if value in conversion:
             measurement = measurement / conversion[value]
 
+        aqiv = None
         if value in mapping:
             item[value + "_aqi"] = aqi.to_iaqi(mapping[value], measurement)
+            aqiv = (mapping[value], measurement)
+
+        return aqiv
 
 
 values = [
@@ -51,8 +55,12 @@ def lambda_handler(event, context):
     if event["resource"] == "/submit":
         body = json.loads(event["body"])
         item = {"date": body["date"]}
+        to_aqi = []
         for value in values:
-            process_value(value, item, body)
+            aqiv = process_value(value, item, body)
+            if aqiv:
+                to_aqi.append(aqiv)
+        item["aqi"] = aqi.to_aqi(to_aqi)
         table.put_item(Item=item)
         return {"statusCode": 200, "body": json.dumps("Data accepted!")}
 
