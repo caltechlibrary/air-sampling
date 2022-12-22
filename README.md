@@ -27,7 +27,7 @@ Introduction
 Installation
 ------------
 
-*Real-time data infrastructure*
+## Real-time data infrastructure
 
 Create an Amazon Dynamo DB table called air-sampling-table with primary key
 'date' with type string and sort key called `time` with type number. The default settings are fine. 
@@ -39,18 +39,29 @@ the upper right hand corner, pick DynamoDB as the service, search for PutItem,
 and search for the ARN for the Dynamo DB table you just created. Click review
 policy and set AirSamplingWriteAccess as the name.
 
-Then go to Lambda, create a new function called add-air-values, and select the
-air-sampling role. Paste the add-air-values.py script into the editor save.
-Paste the example.json into the test event and try running your function.
+Then go to Lambda, create a new function called get-air-values, and select the
+air-sampling role. Paste the get-air-values.py script into the editor save.
+
+For the write portion, we need to add the python-aqi dependency to lambda. I
+created add-air-values directory, and then installed the dependency on
+your local machine type `pip install --target ./add-air-values python-aqi`.
+Once you're ready to deploy type `cd add-air-values ` and `zip -r ../deployment.zip .`.
+In Lambda create a new function, making sure to add the air-sampling role.
+Under the code section select "Upload from" and upload the zip file. 
 
 Go to API Gateway, Select New API, Select REST API, call it air-sampling, and
-select Edge optimized. Create a Resource with name submit and select API
-Gateway CORS. Pich /Submit and then Add Action, pick POST and click the check
+select Edge optimized. Create a Resource with name `submit` and select API
+Gateway CORS. Pick /Submit and then Add Action, pick POST and click the check
 box. We're doing a Lambda integration with Lambda proxy integration and
-add-air-values as the function. Click the test option and paste input.json to
-see if data passes through lambda and into the database.
+add-air-values as the function. Click the Test button, paste the contents of 
+`air-values.json` into the body field, and see if data passes through lambda and into the database.
 
-In API Keys create a new key with name Testing. Go back to /submit, post,
+Then create a new resource with name `get_air`, add a GET action with a Lambda
+proxy integration with get-air-values as the function. Click the test buttin
+and you should see the date you entered returned. If you add a query parameter
+`graph=O3`, you should see data returned in a csv format.
+
+To deploy, in API Keys create a new key with name Testing. Go back to /submit, post,
 settings and check API key required. 
 
 Go to Actions, Deploy API, create a new stage called test. Then go to Usage
@@ -60,15 +71,6 @@ attach the Testing API key we created earlier. If you go to the api stage you
 should see a Invoke URL. Use this with curl to test:
 
 `curl https://URL/test/submit -H "x-api-key: KEY" --request POST -d @input.json
-
-For the read portion, we need to add the python-aqi dependency to lambda. I
-created get-air-values directory, and then installed the dependency on
-your local machine type `pip install --target ./get-air-values python-aqi`.
-Once you're ready to deploy type `cd get-air-values ` and `zip -r ../deployment.zip .`. 
-In Lambda create a new function, making sure to add the air-sampling role.
-Under the code section select "Upload from" and upload the zip file. Then
-select API Gateway and select the existing air_sampling endpoint. You can then
-get the contents at the URL
 
 Usage
 -----
