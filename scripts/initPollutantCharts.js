@@ -5,7 +5,7 @@ import pollutantChart from "./modules/pollutantChart.js";
 
 const pollutantWidgetEls = document.querySelectorAll(".pollutant-widget");
 
-pollutantWidgetEls.forEach(async pollutantWidgetEl => {
+for(const pollutantWidgetEl of pollutantWidgetEls) {
     const pollutant = pollutantWidgetEl.getAttribute("data-pollutant");
     const unit = pollutantWidgetEl.getAttribute("data-unit");
     const chartContainer = pollutantWidgetEl.querySelector(".pollutant-widget__chart-container");
@@ -18,4 +18,4 @@ pollutantWidgetEls.forEach(async pollutantWidgetEl => {
     chartSvg.classList.add("pollutant-widget__chart");
 
     chartContainer.append(chartSvg);
-});
+}
