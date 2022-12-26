@@ -29,7 +29,7 @@ function pollutantChart(data, {
         const yRange = [height - marginBottom, marginTop];
 
         // Construct time formatter
-        const customTimeFormat = d3.timeFormat("%b %_d %_I %p");
+        const customTimeFormat = d3.timeFormat("%-I:%M %p");
 
         // Construct scales and axes.
         const xScale = d3.scaleTime(xDomain, xRange);
