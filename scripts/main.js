@@ -1,6 +1,7 @@
 import { fetchJSON, fetchCSV } from "./modules/fetchHelpers.js";
 import getConditionFromAQIMapping from "./modules/getConditionFromAQIMapping.js";
 import getPollutantDataFromCSV from "./modules/getPollutantDataFromCSV.js";
+import timeElementToDate from "./modules/timeElementToDate.js";
 import pollutantChart from "./modules/pollutantChart.js";
 
 let onResize = function() {
@@ -126,14 +127,17 @@ try{
 
 for(let pollutantWidgetEl of pollutantWidgetEls) initializePollutantWidgetAccordion(pollutantWidgetEl.getAttribute("data-pollutant"));
 
-let pollutantCSVString = await fetchCSV("air-data.txt");
-let pollutantData = getPollutantDataFromCSV(pollutantCSVString);
-
 for(let pollutantWidgetEl of pollutantWidgetEls) {
-    let pollutant = pollutantWidgetEl.getAttribute("data-pollutant");
-    let chartContainer = pollutantWidgetEl.querySelector(".pollutant-widget__chart-container");
-    let {data, unit} = pollutantData[pollutant];
-    let chartSvg = pollutantChart(data, { pollutant, unit });
+    const pollutant = pollutantWidgetEl.getAttribute("data-pollutant");
+    const unit = pollutantWidgetEl.getAttribute("data-unit");
+    const chartContainer = pollutantWidgetEl.querySelector(".pollutant-widget__chart-container");
+
+    const pollutantDataCSVString = await fetchCSV(`https://z44g6g2rrl.execute-api.us-west-2.amazonaws.com/test/get_air?graph=${pollutant}`);
+    const pollutantData = getPollutantDataFromCSV(pollutantDataCSVString);
+    const pollutantDataFormatted = pollutantData.map(datum => ({ ...datum, time: timeElementToDate(datum.time) }));
+
+    const chartSvg = pollutantChart(pollutantDataFormatted, { pollutant, unit });
     chartSvg.classList.add("pollutant-widget__chart");
+
     chartContainer.append(chartSvg);
 }
