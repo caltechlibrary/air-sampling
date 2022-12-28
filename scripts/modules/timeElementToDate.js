@@ -1,7 +1,8 @@
 function timeElementToDate(timeElement) {
     const date = new Date();
-    const isoDate = date.toISOString().split("T")[0];
-    return new Date(`${isoDate}T${timeElement}`);
+    const [hh, mm, ss] = timeElement.split(":");
+    date.setHours(hh, mm, ss, 0);
+    return new Date(date);
 }
 
 export default timeElementToDate;
