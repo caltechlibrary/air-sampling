@@ -16,12 +16,14 @@
       <div class="top-container__item">${aqi-widget.html()}</div>
       <div class="top-container__item">${cam-widget.html()}</div>
     </div>
+    <div class="aqi-chart page__aqi-chart"></div>
     ${for(pollutants)}${it:pollutant-widget.html()}${endfor}
     <div class="page__resources-widget-container">${resources-widget.html()}</div>
   </main>
 
   <script type="module" src="scripts/initResize.js"></script>
   <script type="module" src="scripts/initCurrValues.js"></script>
+  <script type="module" src="scripts/initAqiChart.js"></script>
   <script type="module" src="scripts/initAccordions.js"></script>
   <script type="module" src="scripts/initPollutantCharts.js"></script>
 </body>
