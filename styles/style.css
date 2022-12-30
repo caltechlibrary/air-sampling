@@ -694,6 +694,16 @@ Blocks
     }
 }
 
+.page__aqi-chart {
+    margin-bottom: 24px;
+}
+
+@media (min-width:600px) {
+    .page__aqi-chart {
+        margin-bottom: 36px;
+    }
+}
+
 .page__pollutant-widget {
     margin-bottom: 16px;
 }
