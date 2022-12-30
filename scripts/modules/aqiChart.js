@@ -51,6 +51,20 @@ function aqiChart(aqiData, tempData, {
             .attr("role", "img")
             .attr("aria-label", "Chart of AQI and Temperature values over the past 24 hours.");
 
+        // Construct AQI label.
+        const aqiLabel = d3.create("svg:text")
+            .attr("text-anchor", "middle")
+            .attr("fill", "currentColor")
+            .attr("font-size", "1.75em")
+            .text("AQI");
+
+        // Construct AQI label.
+        const tempLabel = d3.create("svg:text")
+            .attr("text-anchor", "middle")
+            .attr("fill", "currentColor")
+            .attr("font-size", "1.75em")
+            .text("Temperature (C)");
+
         // Render x axis.
         svg.append("g")
             .attr("transform", `translate(0,${height - marginBottom})`)
@@ -71,7 +85,10 @@ function aqiChart(aqiData, tempData, {
                 .attr("font-size", "1.5em"))
             .call(g => g.selectAll(".tick line").clone()
                 .attr("x2", width - marginLeft - marginRight)
-                .attr("stroke-opacity", 0.1));
+                .attr("stroke-opacity", 0.1))
+            .call(g => g.append("g")
+                .attr("transform", `translate(${-marginLeft / 2}, ${height / 2}), rotate(270)`)
+                .append(() => aqiLabel.node()));
 
         // Render Temp Y axis.
         svg.append("g")
@@ -83,7 +100,10 @@ function aqiChart(aqiData, tempData, {
             .call(g => g.selectAll(".tick line").clone()
                 .attr("transform", `translate(${marginRight - width + marginLeft},0)`)
                 .attr("x2", width - marginLeft - marginRight)
-                .attr("stroke-opacity", 0.1));
+                .attr("stroke-opacity", 0.1))
+            .call(g => g.append("g")
+                .attr("transform", `translate(${marginRight / 2}, ${height / 2}), rotate(270)`)
+                .append(() => tempLabel.node()));
 
         // Render AQI graph data.
         svg.append("path")
