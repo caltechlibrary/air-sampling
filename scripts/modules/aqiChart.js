@@ -72,6 +72,7 @@ function aqiChart(aqiData, tempData, {
             .attr("aria-label", "Chart of AQI and Temperature values over the past 24 hours.");
 
         // Construct labels.
+        const xLabel = constructLabel("Local Time of Day (hrs)");
         const aqiLabel = constructLabel("AQI");
         const tempLabel = constructLabel("Temperature (C)");
 
@@ -84,7 +85,10 @@ function aqiChart(aqiData, tempData, {
                 .attr("font-size", "1.5em"))
             .call(g => g.selectAll(".tick line").clone()
                 .attr("y2", marginTop + marginBottom - height)
-                .attr("stroke-opacity", 0.1));
+                .attr("stroke-opacity", 0.1))
+            .call(g => g.append("g")
+                .attr("transform", `translate(${width / 2},${marginBottom})`)
+                .append(() => xLabel.node()));
 
         // Render AQI Y axis.
         svg.append("g")
