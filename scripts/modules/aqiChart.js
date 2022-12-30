@@ -19,6 +19,17 @@ function constructLabel(title) {
         .text(title);
 }
 
+function constructLine(stroke, lineGenerator, data) {
+    return d3.create("svg:path")
+        .attr("fill", "none")
+        .attr("stroke", stroke)
+        .attr("stroke-width", 1.5)
+        .attr("stroke-linecap", "round")
+        .attr("stroke-linejoin", "round")
+        .attr("stroke-opacity", 1)
+        .attr("d", lineGenerator(data));
+}
+
 function aqiChart(aqiData, tempData, {
     marginTop = 20, // top margin, in pixels
     marginRight = 30, // right margin, in pixels
@@ -104,25 +115,9 @@ function aqiChart(aqiData, tempData, {
                 .attr("transform", `translate(${marginRight / 2}, ${height / 2}), rotate(270)`)
                 .append(() => tempLabel.node()));
 
-        // Render AQI graph data.
-        svg.append("path")
-            .attr("fill", "none")
-            .attr("stroke", "red")
-            .attr("stroke-width", 1.5)
-            .attr("stroke-linecap", "round")
-            .attr("stroke-linejoin", "round")
-            .attr("stroke-opacity", 1)
-            .attr("d", aqiLine(aqiData));
-
-        // Render Temperature graph data.
-        svg.append("path")
-            .attr("fill", "none")
-            .attr("stroke", "blue")
-            .attr("stroke-width", 1.5)
-            .attr("stroke-linecap", "round")
-            .attr("stroke-linejoin", "round")
-            .attr("stroke-opacity", 1)
-            .attr("d", tempLine(tempData));
+        // Render graph data.
+        svg.append(() => constructLine("red", aqiLine, aqiData).node());
+        svg.append(() => constructLine("blue", tempLine, tempData).node());
 
         return svg.node();
 }
