@@ -32,7 +32,7 @@ function constructLine(stroke, lineGenerator, data) {
 
 function aqiChart(aqiData, tempData, {
     marginTop = 20, // top margin, in pixels
-    marginRight = 30, // right margin, in pixels
+    marginRight = 75, // right margin, in pixels
     marginBottom = 30, // bottom margin, in pixels
     marginLeft = 75, // left margin, in pixels
     width = 1000, // outer width, in pixels
