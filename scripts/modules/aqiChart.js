@@ -107,10 +107,6 @@ function aqiChart(aqiData, tempData, {
             .call(g => g.select(".domain").remove())
             .call(g => g.selectAll(".tick text")
                 .attr("font-size", "1.5em"))
-            .call(g => g.selectAll(".tick line").clone()
-                .attr("transform", `translate(${marginRight - width + marginLeft},0)`)
-                .attr("x2", width - marginLeft - marginRight)
-                .attr("stroke-opacity", 0.1))
             .call(g => g.append("g")
                 .attr("transform", `translate(${marginRight / 2}, ${height / 2}), rotate(270)`)
                 .append(() => tempLabel.node()));
