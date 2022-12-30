@@ -16,6 +16,7 @@ Blocks
 - resources-widget: widget used to display headlines/useful links.
 - card: component used to display aqi widget, live cam, and resources widget.
 - top-container: container that wraps aqi, live cam, and (on desktop screen sizes) resources cards.
+- aqi-chart: chart that contains aqi/temperature history.
 - pollutant-widget: accordion widget used to display individual pollutant values.
 - page: container used to wrap site.
 */
@@ -461,6 +462,11 @@ Blocks
     .top-container__item {
         min-width: 25rem;;
     }
+}
+
+/* aqi-chart */
+.aqi-chart__svg {
+    display: block;
 }
 
 /* pollutant-widget */

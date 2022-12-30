@@ -15,4 +15,6 @@ const [aqiData, tempData] = csvData
 const chartSVG = aqiChart(aqiData, tempData);
 const chartContainer = document.querySelector(".aqi-chart");
 
+chartSVG.classList.add("aqi-chart__svg");
+
 chartContainer.append(chartSVG);
