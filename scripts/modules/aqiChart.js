@@ -4,13 +4,6 @@
 
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7.7.0/+esm";
 
-function lineGenerator(xScale, yScale) {
-    return d3.line()
-        .x(d => xScale(d.time))
-        .y(d => yScale(d.value))
-        .defined(d => !isNaN(d.value));
-}
-
 function aqiChart(aqiData, tempData, {
     marginTop = 20, // top margin, in pixels
     marginRight = 30, // right margin, in pixels
@@ -43,8 +36,14 @@ function aqiChart(aqiData, tempData, {
         const tempYAxis = d3.axisRight(tempYScale).ticks(5);
 
         // Construct line generators.
-        const aqiLine = lineGenerator(xScale, aqiYScale);
-        const tempLine = lineGenerator(xScale, tempYScale);
+        const aqiLine = d3.line()
+            .x(d => xScale(d.time))
+            .y(d => aqiYScale(d.value))
+            .defined(d => !isNaN(d.value));
+        const tempLine = d3.line()
+            .x(d => xScale(d.time))
+            .y(d => tempYScale(d.value))
+            .defined(d => !isNaN(d.value));
 
         // Construct chart svg.
         const svg = d3.create("svg")
