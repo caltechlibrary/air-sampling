@@ -4,6 +4,14 @@
 
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7.7.0/+esm";
 
+function constructLabel(title) {
+    return d3.create("svg:text")
+        .attr("text-anchor", "middle")
+        .attr("fill", "currentColor")
+        .attr("font-size", "1.75em")
+        .text(title);
+}
+
 function aqiChart(aqiData, tempData, {
     marginTop = 20, // top margin, in pixels
     marginRight = 30, // right margin, in pixels
@@ -51,19 +59,9 @@ function aqiChart(aqiData, tempData, {
             .attr("role", "img")
             .attr("aria-label", "Chart of AQI and Temperature values over the past 24 hours.");
 
-        // Construct AQI label.
-        const aqiLabel = d3.create("svg:text")
-            .attr("text-anchor", "middle")
-            .attr("fill", "currentColor")
-            .attr("font-size", "1.75em")
-            .text("AQI");
-
-        // Construct AQI label.
-        const tempLabel = d3.create("svg:text")
-            .attr("text-anchor", "middle")
-            .attr("fill", "currentColor")
-            .attr("font-size", "1.75em")
-            .text("Temperature (C)");
+        // Construct labels.
+        const aqiLabel = constructLabel("AQI");
+        const tempLabel = constructLabel("Temperature (C)");
 
         // Render x axis.
         svg.append("g")
