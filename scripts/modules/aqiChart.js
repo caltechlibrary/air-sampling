@@ -50,8 +50,8 @@ function aqiChart(aqiData, tempData, {
 
         // Compute default ranges.
         const xRange = [marginLeft, width - marginRight];
-        const aqiYRange = [height - marginBottom, marginTop + (height / 3)];
-        const tempYRange = [(height * 0.66) - marginBottom, marginTop];
+        const aqiYRange = [height - marginBottom, marginTop + ((height - marginBottom - marginTop) / 3)];
+        const tempYRange = [marginTop + ((height - marginBottom - marginTop) / 1.5), marginTop];
 
         // Construct scales and axes.
         const xScale = d3.scaleTime(xDomain, xRange);
