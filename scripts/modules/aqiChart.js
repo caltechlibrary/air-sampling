@@ -45,8 +45,8 @@ function aqiChart(aqiData, tempData, {
 
         // Compute default domains.
         const xDomain = [new Date().setHours(0,0,0,0), new Date().setHours(24,0,0,0)];
-        const aqiYDomain = [d3.min(aqiY), d3.max(aqiY)];
-        const tempYDomain = [d3.min(tempY), d3.max(tempY)];
+        const aqiYDomain = [d3.min(aqiY), d3.max(aqiY) + 10];
+        const tempYDomain = [d3.min(tempY) - 10, d3.max(tempY) + 5];
 
         // Compute default ranges.
         const xRange = [marginLeft, width - marginRight];
