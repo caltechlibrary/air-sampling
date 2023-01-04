@@ -33,7 +33,7 @@ function constructLine(stroke, lineGenerator, data) {
 function aqiChart(aqiData, tempData, {
     marginTop = 20, // top margin, in pixels
     marginRight = 75, // right margin, in pixels
-    marginBottom = 30, // bottom margin, in pixels
+    marginBottom = 60, // bottom margin, in pixels
     marginLeft = 75, // left margin, in pixels
     width = 1000, // outer width, in pixels
     height = 270, // outer height, in pixels`
@@ -87,7 +87,7 @@ function aqiChart(aqiData, tempData, {
                 .attr("y2", marginTop + marginBottom - height)
                 .attr("stroke-opacity", 0.1))
             .call(g => g.append("g")
-                .attr("transform", `translate(${width / 2},${marginBottom})`)
+                .attr("transform", `translate(${width / 2},${marginBottom / 1.33})`)
                 .append(() => xLabel.node()));
 
         // Render AQI Y axis.
