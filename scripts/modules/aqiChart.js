@@ -101,7 +101,7 @@ function aqiChart(aqiData, tempData, {
                 .attr("x2", width - marginLeft - marginRight)
                 .attr("stroke-opacity", 0.1))
             .call(g => g.append("g")
-                .attr("transform", `translate(${-marginLeft / 2}, ${height / 2}), rotate(270)`)
+                .attr("transform", `translate(${-marginLeft / 2}, ${marginTop + ((height - marginBottom - marginTop) / 2)}), rotate(270)`)
                 .append(() => aqiLabel.node()));
 
         // Render Temp Y axis.
@@ -112,7 +112,7 @@ function aqiChart(aqiData, tempData, {
             .call(g => g.selectAll(".tick text")
                 .attr("font-size", "1.5em"))
             .call(g => g.append("g")
-                .attr("transform", `translate(${marginRight / 2}, ${height / 2}), rotate(270)`)
+                .attr("transform", `translate(${marginRight / 1.5}, ${marginTop + ((height - marginBottom - marginTop) / 2)}), rotate(270)`)
                 .append(() => tempLabel.node()));
 
         // Render graph data.
