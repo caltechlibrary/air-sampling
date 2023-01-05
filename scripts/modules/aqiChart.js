@@ -36,7 +36,9 @@ function aqiChart(aqiData, tempData, {
     marginBottom = 60, // bottom margin, in pixels
     marginLeft = 75, // left margin, in pixels
     width = 1000, // outer width, in pixels
-    height = 270, // outer height, in pixels`
+    height = 270, // outer height, in pixels
+    aqiColor = "#eb0000", // color of aqi data line
+    tempColor = "#0000ff" // color of temp data line
     } = {}) {
 
         // Compute values.
@@ -96,13 +98,17 @@ function aqiChart(aqiData, tempData, {
             .call(aqiYAxis)
             .call(g => g.select(".domain").remove())
             .call(g => g.selectAll(".tick text")
+                .attr("fill", aqiColor)
                 .attr("font-size", "1.5em"))
+            .call(g => g.selectAll(".tick line")
+                .attr("stroke", aqiColor))
             .call(g => g.selectAll(".tick line").clone()
                 .attr("x2", width - marginLeft - marginRight)
                 .attr("stroke-opacity", 0.1))
             .call(g => g.append("g")
                 .attr("transform", `translate(${-marginLeft / 2}, ${marginTop + ((height - marginBottom - marginTop) / 2)}), rotate(270)`)
-                .append(() => aqiLabel.node()));
+                .append(() => aqiLabel.node())
+                    .attr("fill", aqiColor));
 
         // Render Temp Y axis.
         svg.append("g")
@@ -110,10 +116,14 @@ function aqiChart(aqiData, tempData, {
             .call(tempYAxis)
             .call(g => g.select(".domain").remove())
             .call(g => g.selectAll(".tick text")
+                .attr("fill", tempColor)
                 .attr("font-size", "1.5em"))
+            .call(g => g.selectAll(".tick line")
+                .attr("stroke", tempColor))
             .call(g => g.append("g")
                 .attr("transform", `translate(${marginRight / 1.5}, ${marginTop + ((height - marginBottom - marginTop) / 2)}), rotate(270)`)
-                .append(() => tempLabel.node()));
+                .append(() => tempLabel.node())
+                    .attr("fill", tempColor));
 
         // Render graph data.
         svg.append(() => constructLine("red", aqiLine, aqiData).node());
