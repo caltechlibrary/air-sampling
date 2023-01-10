@@ -11,6 +11,14 @@ function constructLineGenerator(xScale, yScale) {
         .defined(d => !isNaN(d.value));
 }
 
+function constructAreaGenerator(xScale, yScale) {
+    return d3.area()
+        .x(d => xScale(d.time))
+        .y0(d => yScale(d.lower))
+        .y1(d => yScale(d.upper))
+        .defined(d => !isNaN(d.lower) && !isNaN(d.upper));
+}
+
 function constructLabel(title) {
     return d3.create("svg:text")
         .attr("text-anchor", "middle")
@@ -30,7 +38,20 @@ function constructLine(stroke, lineGenerator, data) {
         .attr("d", lineGenerator(data));
 }
 
-function aqiChart(aqiData, tempData, {
+function constructArea(color, areaGenerator, lowerData, upperData) {
+    const data = lowerData.map((d, i) => ({
+        time: d.time,
+        lower: d.value,
+        upper: upperData[i].value
+    }));
+
+    return d3.create("svg:path")
+        .attr("fill", color)
+        .attr("opacity", 0.2)
+        .attr("d", areaGenerator(data));
+}
+
+function aqiChart(aqiData, aqiDataLower, aqiDataUpper, tempData, tempDataLower, tempDataUpper, {
     marginTop = 20, // top margin, in pixels
     marginRight = 75, // right margin, in pixels
     marginBottom = 60, // bottom margin, in pixels
@@ -66,6 +87,10 @@ function aqiChart(aqiData, tempData, {
         // Construct line generators.
         const aqiLine = constructLineGenerator(xScale, aqiYScale);
         const tempLine = constructLineGenerator(xScale, tempYScale);
+
+        // Construct area graph generators.
+        const aqiArea = constructAreaGenerator(xScale, aqiYScale);
+        const tempArea = constructAreaGenerator(xScale, tempYScale);
 
         // Construct chart svg.
         const svg = d3.create("svg")
@@ -128,6 +153,10 @@ function aqiChart(aqiData, tempData, {
         // Render graph data.
         svg.append(() => constructLine("red", aqiLine, aqiData).node());
         svg.append(() => constructLine("blue", tempLine, tempData).node());
+
+        // Render area graph data.
+        svg.append(() => constructArea("red", aqiArea, aqiDataLower, aqiDataUpper).node());
+        svg.append(() => constructArea("blue", tempArea, tempDataLower, tempDataUpper).node());
 
         return svg.node();
 }
