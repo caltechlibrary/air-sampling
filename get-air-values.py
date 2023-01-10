@@ -9,29 +9,26 @@ table = dynamodb.Table("air-sampling-table")
 
 def lambda_handler(event, context):
     today = datetime.date.today().isoformat()
-    today = "2022-08-01"
-    scan = table.query(
-        KeyConditionExpression=Key("date").eq(today),
-        ConsistentRead=True,
-        ScanIndexForward=False,
-    )
+
     try:
         if event["queryStringParameters"]:
             metric = event["queryStringParameters"]["graph"]
+            scan = table.query(
+                KeyConditionExpression=Key("date").eq(today),
+                # ConsistentRead=True,
+                ScanIndexForward=False,
+                ProjectionExpression="#t,#m",
+                ExpressionAttributeNames={"#t": "time", "#m": metric},
+            )
             data = ""
             for line in scan["Items"]:
                 if metric not in line:
-                    return {
-                        "statusCode": 503,
-                        "headers": {
-                            "Access-Control-Allow-Headers": "Content-Type",
-                            "Access-Control-Allow-Origin": "*",
-                            "Access-Control-Allow-Methods": "OPTIONS,GET",
-                        },
-                    }
+                    value = "NaN"
+                else:
+                    value = line[metric]
                 time = line["time"]
                 time = datetime.datetime.fromtimestamp(time).time()
-                data = data + f"{time},{line[metric]}\n"
+                data = data + f"{time},{value}\n"
             return {
                 "headers": {"Content-Type": "text/csv"},
                 "statusCode": 200,
@@ -43,6 +40,11 @@ def lambda_handler(event, context):
                 "body": data,
             }
         else:
+            scan = table.query(
+                KeyConditionExpression=Key("date").eq(today),
+                # ConsistentRead=True,
+                ScanIndexForward=False,
+            )
             data = scan["Items"][0]
             export = {}
             for value in data:
