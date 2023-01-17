@@ -1,5 +1,5 @@
 import { fetchJSON } from "./modules/fetchHelpers.js";
-import getConditionFromAQIMapping from "./modules/getConditionFromAQIMapping.js";
+import getAqiCondition from "./modules/getAqiCondition.js";
 
 function initializeHeader(timestamp) {
     let dateEl = document.querySelector(".header__date");
@@ -64,14 +64,14 @@ try{
 
     displayAqiWidgetData(
         currValues.aqi, 
-        getConditionFromAQIMapping(currValues.aqi, mappings.aqi)
+        getAqiCondition(currValues.aqi)
     );
 
     for(let pollutantWidgetEl of pollutantWidgetEls) {
         let pollutant = pollutantWidgetEl.getAttribute("data-pollutant");
         let concentration = currValues[pollutant];
         let aqi = currValues[`${pollutant}_aqi`];
-        let condition = getConditionFromAQIMapping(aqi, mappings.aqi);
+        let condition = getAqiCondition(aqi);
         let warning = mappings[pollutant][condition];
         displayPollutantWidgetData(pollutant, concentration, aqi, condition, warning);
     }
