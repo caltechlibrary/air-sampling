@@ -9,7 +9,7 @@ outDir = "site"
 stylesDir = "styles"
 scriptsDir = "scripts"
 imagesDir = "img"
-mappingsDir = "mappings"
+conditionsDir = "conditions"
 
 # Create output site directory
 if os.path.isdir(outDir): shutil.rmtree(outDir)
@@ -21,15 +21,15 @@ shutil.copyfile("air-values.json", f"{outDir}/air-values.json")
 shutil.copyfile("air-data.txt", f"{outDir}/air-data.txt")
 shutil.copyfile("google9c66b3b3d14f628e.html", f"{outDir}/google9c66b3b3d14f628e.html")
 
-# Build pollutant mappings
-mappingsDict = {}
-for mappingFileName in os.scandir(mappingsDir):
-        mappingName = pathlib.Path(mappingFileName.name).stem
-        with open(mappingFileName, "r", encoding="utf-8") as mappingFile:          
-            mappingsDict[mappingName] = yaml.safe_load(mappingFile)
+# Build pollutant condition mapping
+conditions = {}
+for conditionFileName in os.scandir(conditionsDir):
+        condition = pathlib.Path(conditionFileName.name).stem
+        with open(conditionFileName, "r", encoding="utf-8") as conditionFile:          
+            conditions[condition] = yaml.safe_load(conditionFile)
 
-with open(f"{outDir}/mappings.json", "w", encoding="utf-8") as mappingsFile: 
-    json.dump(mappingsDict, mappingsFile)
+with open(f"{outDir}/conditions.json", "w", encoding="utf-8") as conditionFile: 
+    json.dump(conditions, conditionFile)
 
 # Create index page
 subprocess.run(["pandoc", "--from=markdown", "--to=html", f"--output={outDir}/index.html", "--template=templates/index.html", "index.md"])

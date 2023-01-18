@@ -55,9 +55,9 @@ function displayFailedPollutantWidget(pollutant) {
 const pollutantWidgetEls = document.querySelectorAll(".pollutant-widget");
 
 try{
-    const [currValues, mappings] = await Promise.all([
+    const [currValues, conditions] = await Promise.all([
         fetchJSON("https://z44g6g2rrl.execute-api.us-west-2.amazonaws.com/test/get_air"), 
-        fetchJSON("mappings.json")
+        fetchJSON("conditions.json")
     ]);
 
     initializeHeader(currValues.time);
@@ -72,7 +72,7 @@ try{
         let concentration = currValues[pollutant];
         let aqi = currValues[`${pollutant}_aqi`];
         let condition = getAqiCondition(aqi);
-        let warning = mappings[pollutant][condition];
+        let warning = conditions[pollutant][condition];
         displayPollutantWidgetData(pollutant, concentration, aqi, condition, warning);
     }
 } catch(error) {
