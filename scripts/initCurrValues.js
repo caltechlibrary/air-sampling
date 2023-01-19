@@ -52,32 +52,36 @@ function displayFailedPollutantWidget(pollutant) {
     aqiEl.textContent = "Not available";
 };
 
-const pollutantWidgetEls = document.querySelectorAll(".pollutant-widget");
 
-try{
-    const [currValues, conditions] = await Promise.all([
+let response;
+
+try {
+    response = await Promise.all([
         fetchJSON("https://z44g6g2rrl.execute-api.us-west-2.amazonaws.com/test/get_air"), 
         fetchJSON("conditions.json")
     ]);
+} catch(error) {
+    console.log(error);
+}
+
+const pollutantWidgetEls = document.querySelectorAll(".pollutant-widget");
+
+if(response) {
+    const [currValues, conditions] = response; 
 
     initializeHeader(currValues.time);
 
-    displayAqiWidgetData(
-        currValues.aqi, 
-        getAqiCondition(currValues.aqi)
-    );
+    displayAqiWidgetData(currValues.aqi, getAqiCondition(currValues.aqi));
 
     for(let pollutantWidgetEl of pollutantWidgetEls) {
-        let pollutant = pollutantWidgetEl.getAttribute("data-pollutant");
-        let concentration = currValues[pollutant];
-        let aqi = currValues[`${pollutant}_aqi`];
-        let condition = getAqiCondition(aqi);
-        let warning = conditions[pollutant][condition];
+        const pollutant = pollutantWidgetEl.getAttribute("data-pollutant");
+        const concentration = currValues[pollutant];
+        const aqi = currValues[`${pollutant}_aqi`];
+        const condition = getAqiCondition(aqi);
+        const warning = conditions[pollutant][condition];
         displayPollutantWidgetData(pollutant, concentration, aqi, condition, warning);
     }
-} catch(error) {
-    if(error.message != "Network response was not OK") throw error;
+} else {
     displayFailedAqiWidget();
     for(let pollutantWidgetEl of pollutantWidgetEls) displayFailedPollutantWidget(pollutantWidgetEl.getAttribute("data-pollutant"));
-    console.log(error);
 }
