@@ -1,24 +1,24 @@
-function resize() {
-    const topContainerEl = document.querySelector(".top-container");
+function onResize() {
     const resourceWidgetEl = document.querySelector(".resources-widget");
-    const pollutantWidgetEls = document.querySelectorAll(".pollutant-widget");
+    const resourceWidgetContainerEl = resourceWidgetEl.parentElement;
     const layoutBreakpoint = 1100;
 
-    let shiftToDesktop = window.innerWidth >= layoutBreakpoint && topContainerEl.childElementCount == 2;
-    let shiftToMobile = window.innerWidth < layoutBreakpoint && topContainerEl.childElementCount == 3;
+    const shiftToDesktop = window.innerWidth >= layoutBreakpoint && resourceWidgetContainerEl.classList.contains("page__resources-widget-container");
+    const shiftToMobile = window.innerWidth < layoutBreakpoint && resourceWidgetContainerEl.classList.contains("top-container__item");
     
-    if(shiftToDesktop || shiftToMobile) {
-        let container = resourceWidgetEl.parentElement;
-        while(container.classList.length > 0) container.classList.remove(container.classList.item(0));
-        if(shiftToDesktop) {
-            container.classList.add("top-container__item");
-            topContainerEl.appendChild(container);
-        } else if(shiftToMobile) {
-            container.classList.add("page__resources-widget-container");
-            pollutantWidgetEls[pollutantWidgetEls.length - 1].after(container);
-        }
+    if(shiftToDesktop) {
+        const topContainerEl = document.querySelector(".top-container");
+        resourceWidgetContainerEl.classList.remove("page__resources-widget-container");
+        resourceWidgetContainerEl.classList.add("top-container__item");
+        topContainerEl.appendChild(resourceWidgetContainerEl);
+    } else if(shiftToMobile) {
+        const mainContainerEl = document.querySelector("main");
+        resourceWidgetContainerEl.classList.remove("top-container__item");
+        resourceWidgetContainerEl.classList.add("page__resources-widget-container");
+        mainContainerEl.appendChild(resourceWidgetContainerEl);
     }
 }
 
-resize();
-window.addEventListener("resize", resize);
+onResize();
+
+window.addEventListener("resize", onResize);
