@@ -71,15 +71,21 @@ function aqiChart(aqiData, aqiDataLower, aqiDataUpper, tempData, tempDataLower, 
         const aqiYDomain = [d3.min(aqiY), d3.max(aqiY) + 10];
         const tempYDomain = [d3.min(tempY) - 10, d3.max(tempY) + 5];
 
+        // Compute dimensions of graph area
+        const graphWidth = width - marginLeft - marginRight;
+        const graphHeight = height - marginBottom - marginTop;
+
         // Compute default ranges.
         const xRange = [marginLeft, width - marginRight];
-        const aqiYRange = [height - marginBottom, marginTop + ((height - marginBottom - marginTop) / 3)];
-        const tempYRange = [marginTop + ((height - marginBottom - marginTop) / 1.5), marginTop];
+        const aqiYRange = [height - marginBottom, marginTop + (graphHeight / 3)];
+        const tempYRange = [marginTop + (graphHeight / 1.5), marginTop];
 
-        // Construct scales and axes.
+        // Construct scales.
         const xScale = d3.scaleTime(xDomain, xRange);
         const aqiYScale = d3.scaleLinear(aqiYDomain, aqiYRange);
         const tempYScale = d3.scaleLinear(tempYDomain, tempYRange);
+
+        // Construct axes.
         const xAxis = d3.axisBottom(xScale).tickFormat(d3.timeFormat("%-H"));
         const aqiYAxis = d3.axisLeft(aqiYScale).ticks(5);
         const tempYAxis = d3.axisRight(tempYScale).ticks(5);
@@ -111,7 +117,7 @@ function aqiChart(aqiData, aqiDataLower, aqiDataUpper, tempData, tempDataLower, 
             .call(g => g.selectAll(".tick text")
                 .attr("font-size", "1.5em"))
             .call(g => g.selectAll(".tick line").clone()
-                .attr("y2", marginTop + marginBottom - height)
+                .attr("y2", -graphHeight)
                 .attr("stroke-opacity", 0.1))
             .call(g => g.append("g")
                 .attr("transform", `translate(${width / 2},${marginBottom / 1.33})`)
@@ -128,10 +134,10 @@ function aqiChart(aqiData, aqiDataLower, aqiDataUpper, tempData, tempDataLower, 
             .call(g => g.selectAll(".tick line")
                 .attr("stroke", aqiColor))
             .call(g => g.selectAll(".tick line").clone()
-                .attr("x2", width - marginLeft - marginRight)
+                .attr("x2", graphWidth)
                 .attr("stroke-opacity", 0.1))
             .call(g => g.append("g")
-                .attr("transform", `translate(${-marginLeft / 2}, ${marginTop + ((height - marginBottom - marginTop) / 2)}), rotate(270)`)
+                .attr("transform", `translate(${-marginLeft / 2}, ${marginTop + (graphHeight / 2)}), rotate(270)`)
                 .append(() => aqiLabel.node())
                     .attr("fill", aqiColor));
 
@@ -146,17 +152,17 @@ function aqiChart(aqiData, aqiDataLower, aqiDataUpper, tempData, tempDataLower, 
             .call(g => g.selectAll(".tick line")
                 .attr("stroke", tempColor))
             .call(g => g.append("g")
-                .attr("transform", `translate(${marginRight / 1.5}, ${marginTop + ((height - marginBottom - marginTop) / 2)}), rotate(270)`)
+                .attr("transform", `translate(${marginRight / 1.5}, ${marginTop + (graphHeight / 2)}), rotate(270)`)
                 .append(() => tempLabel.node())
                     .attr("fill", tempColor));
 
         // Render graph data.
-        svg.append(() => constructLine("red", aqiLine, aqiData).node());
-        svg.append(() => constructLine("blue", tempLine, tempData).node());
+        svg.append(() => constructLine(aqiColor, aqiLine, aqiData).node());
+        svg.append(() => constructLine(tempColor, tempLine, tempData).node());
 
         // Render area graph data.
-        svg.append(() => constructArea("red", aqiArea, aqiDataLower, aqiDataUpper).node());
-        svg.append(() => constructArea("blue", tempArea, tempDataLower, tempDataUpper).node());
+        svg.append(() => constructArea(aqiColor, aqiArea, aqiDataLower, aqiDataUpper).node());
+        svg.append(() => constructArea(tempColor, tempArea, tempDataLower, tempDataUpper).node());
 
         return svg.node();
 }
