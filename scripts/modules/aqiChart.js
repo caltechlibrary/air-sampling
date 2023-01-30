@@ -27,6 +27,23 @@ function constructLabel(title) {
         .text(title);
 }
 
+function constructLegendSquare(x, y, height, width, fill) {
+    return d3.create("svg:rect")
+        .attr("x", x)
+        .attr("y", y)
+        .attr("height", height)
+        .attr("width", width)
+        .attr("fill", fill);
+}
+
+function constructLegendText(x, y, text) {
+    return d3.create("svg:text")
+        .attr("x", x)
+        .attr("y", y)
+        .attr("alignment-baseline", "middle")
+        .text(text);
+}
+
 function constructLine(stroke, lineGenerator, data) {
     return d3.create("svg:path")
         .attr("fill", "none")
@@ -166,50 +183,14 @@ function aqiChart(aqiData, aqiDataLower, aqiDataUpper, tempData, tempDataLower, 
                 .attr("width", graphWidth / 1.33)
                 .attr("fill", "#fff")
                 .attr("stroke", "#000"))
-            .call(g => g.append("rect")
-                .attr("x", 5)
-                .attr("y", 3.5)
-                .attr("height", 13)
-                .attr("width", "40")
-                .attr("fill", aqiColor))
-            .call(g => g.append("text")
-                .attr("x", 50)
-                .attr("y", 10)
-                .attr("alignment-baseline", "middle")
-                .text("Previous 7 day AQI"))
-            .call(g => g.append("rect")
-                .attr("x", 165)
-                .attr("y", 9)
-                .attr("height", 2)
-                .attr("width", "40")
-                .attr("fill", aqiColor))
-            .call(g => g.append("text")
-                .attr("x", 210)
-                .attr("y", 10)
-                .attr("alignment-baseline", "middle")
-                .text("Current day AQI"))
-            .call(g => g.append("rect")
-                .attr("x", 310)
-                .attr("y", 3.5)
-                .attr("height", 13)
-                .attr("width", "40")
-                .attr("fill", tempColor))
-            .call(g => g.append("text")
-                .attr("x", 355)
-                .attr("y", 10)
-                .attr("alignment-baseline", "middle")
-                .text("Previous 7 day Temp"))
-            .call(g => g.append("rect")
-                .attr("x", 480)
-                .attr("y", 9)
-                .attr("height", 2)
-                .attr("width", "40")
-                .attr("fill", tempColor))
-            .call(g => g.append("text")
-                .attr("x", 525)
-                .attr("y", 10)
-                .attr("alignment-baseline", "middle")
-                .text("Current day Temp"))
+            .call(g => g.append(() => constructLegendSquare(5, 3.5, 13, 40, aqiColor).node()))
+            .call(g => g.append(() => constructLegendText(50, 10, "Previous 7 day AQI").node()))
+            .call(g => g.append(() => constructLegendSquare(165, 9, 2, 40, aqiColor).node()))
+            .call(g => g.append(() => constructLegendText(210, 10, "Current day AQI").node()))
+            .call(g => g.append(() => constructLegendSquare(310, 3.5, 13, 40, tempColor).node()))
+            .call(g => g.append(() => constructLegendText(355, 10, "Previous 7 day Temp").node()))
+            .call(g => g.append(() => constructLegendSquare(480, 9, 2, 40, tempColor).node()))
+            .call(g => g.append(() => constructLegendText(525, 10, "Current day Temp").node()));
         
 
         // Render graph data.
