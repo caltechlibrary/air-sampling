@@ -1,6 +1,6 @@
 import { fetchCSV } from "./modules/fetchHelpers.js";
 import getPollutantDataFromCSV from "./modules/getPollutantDataFromCSV.js";
-import timeElementToDate from "./modules/timeElementToDate.js";
+import hourStringToDateObject from "./modules/hourStringToDateObject.js";
 import pollutantChart from "./modules/pollutantChart.js";
 
 const pollutantWidgetEls = document.querySelectorAll(".pollutant-widget");
@@ -12,7 +12,7 @@ for(const pollutantWidgetEl of pollutantWidgetEls) {
 
     const pollutantDataCSVString = await fetchCSV(`https://z44g6g2rrl.execute-api.us-west-2.amazonaws.com/test/get_air?graph=${pollutant}`);
     const pollutantData = getPollutantDataFromCSV(pollutantDataCSVString);
-    const pollutantDataFormatted = pollutantData.map(datum => ({ ...datum, time: timeElementToDate(datum.time) }));
+    const pollutantDataFormatted = pollutantData.map(datum => ({ ...datum, time: hourStringToDateObject(datum.time) }));
 
     const chartSvg = pollutantChart(pollutantDataFormatted, { pollutant, unit });
     chartSvg.classList.add("pollutant-widget__chart");

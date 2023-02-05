@@ -1,6 +1,6 @@
 import { fetchCSV } from "./modules/fetchHelpers.js";
 import getPollutantDataFromCSV from "./modules/getPollutantDataFromCSV.js";
-import timeElementToDate from "./modules/timeElementToDate.js";
+import hourStringToDateObject from "./modules/hourStringToDateObject.js";
 import aqiChart from "./modules/aqiChart.js";
 
 const res = await Promise.all([
@@ -15,7 +15,7 @@ const res = await Promise.all([
 const csvData = res.map(getPollutantDataFromCSV);
 
 const csvDataTimeFormatted = csvData.map(data => {
-    return data.map(entry => ({ ...entry, time: timeElementToDate(entry.time) }))
+    return data.map(entry => ({ ...entry, time: hourStringToDateObject(entry.time) }))
 });
 
 const [aqiData, aqiDataLower, aqiDataUpper, tempData, tempDataLower, tempDataUpper] = csvDataTimeFormatted;
