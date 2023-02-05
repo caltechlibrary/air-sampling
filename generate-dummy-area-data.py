@@ -11,7 +11,7 @@ def generateDummyAreaData(file, value):
 
 if os.path.isdir('dummy-area-data'): shutil.rmtree('dummy-area-data')
 os.makedirs('dummy-area-data')
-generateDummyAreaData('dummy-area-data/aqi_upper.csv', 35)
-generateDummyAreaData('dummy-area-data/aqi_lower.csv', 30)
+generateDummyAreaData('dummy-area-data/aqi_upper.csv', 45)
+generateDummyAreaData('dummy-area-data/aqi_lower.csv', 40)
 generateDummyAreaData('dummy-area-data/temp_upper.csv', 15)
 generateDummyAreaData('dummy-area-data/temp_lower.csv', 10)
