@@ -14,6 +14,7 @@ Blocks
 - aqi-widget: widget used to display current aqi value.
 - cam-widget: widget used to display live cam feed.
 - resources-widget: widget used to display headlines/useful links.
+- footer: footer at bottom of site.
 - card: component used to display aqi widget, live cam, and resources widget.
 - top-container: container that wraps aqi, live cam, and (on desktop screen sizes) resources cards.
 - aqi-chart: chart that contains aqi/temperature history.
@@ -355,6 +356,43 @@ Blocks
     }
 }
 
+/* footer */
+.footer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+@media (min-width: 800px) {
+    .footer {
+        justify-content: center;
+        gap: 128px;
+    }
+}
+
+.footer_img {
+    width: 8em;
+}
+
+@media (min-width: 600px) {
+    .footer_img {
+        width: 13em;
+    }
+}
+
+@media (min-width: 800px) {
+    .footer_img {
+        width: 15em;
+    }
+}
+
+@media (min-width: 1440px) {
+    .footer_img {
+        width: 17em;
+    }
+}
+
 /* card */
 .card {
     position: relative;
@@ -688,6 +726,10 @@ Blocks
     .page__header {
         margin-bottom: 58px;
     }
+}
+
+.page__main {
+    margin-bottom: 32px;
 }
 
 .page__top-container {
