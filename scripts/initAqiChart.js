@@ -1,5 +1,5 @@
 import { fetchCSV } from "./modules/fetchHelpers.js";
-import getPollutantDataFromCSV from "./modules/getPollutantDataFromCSV.js";
+import parseTimeValueCSV from "./modules/parseTimeValueCSV.js";
 import hourStringToDateObject from "./modules/hourStringToDateObject.js";
 import aqiChart from "./modules/aqiChart.js";
 
@@ -12,7 +12,7 @@ const res = await Promise.all([
     fetchCSV("https://z44g6g2rrl.execute-api.us-west-2.amazonaws.com/test/get_air?graph=temp_upper")
 ]);
 
-const csvData = res.map(getPollutantDataFromCSV);
+const csvData = res.map(parseTimeValueCSV);
 
 const csvDataTimeFormatted = csvData.map(data => {
     return data.map(entry => ({ ...entry, time: hourStringToDateObject(entry.time) }))
