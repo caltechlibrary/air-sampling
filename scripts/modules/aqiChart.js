@@ -3,6 +3,7 @@
 // https://observablehq.com/@d3/line-chart
 
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7.7.0/+esm";
+import * as luxon from "https://cdn.jsdelivr.net/npm/luxon@3.2.1/+esm"
 
 function constructLineGenerator(xScale, yScale) {
     return d3.line()
@@ -84,7 +85,10 @@ function aqiChart(aqiData, aqiDataLower, aqiDataUpper, tempData, tempDataLower, 
         const tempY = d3.map(tempData, d => d.value);
 
         // Compute default domains.
-        const xDomain = [new Date().setHours(0,0,0,0), new Date().setHours(24,0,0,0)];
+        const xDomain = [
+            luxon.DateTime.fromObject({hour: 0}, { zone: "America/Los_Angeles" }).toJSDate(), 
+            luxon.DateTime.fromObject({hour: 24}, { zone: "America/Los_Angeles" }).toJSDate()
+        ];
         const aqiYDomain = [d3.min(aqiY), d3.max(aqiY) + 10];
         const tempYDomain = [d3.min(tempY) - 10, d3.max(tempY) + 5];
 
@@ -102,8 +106,11 @@ function aqiChart(aqiData, aqiDataLower, aqiDataUpper, tempData, tempDataLower, 
         const aqiYScale = d3.scaleLinear(aqiYDomain, aqiYRange);
         const tempYScale = d3.scaleLinear(tempYDomain, tempYRange);
 
+        // Construct custom time format.
+        const customTimeFormat = date => date.toLocaleString("en-US", { timeZone: "America/Los_Angeles", hour12: false, hour: "numeric" });
+
         // Construct axes.
-        const xAxis = d3.axisBottom(xScale).tickFormat(d3.timeFormat("%-H"));
+        const xAxis = d3.axisBottom(xScale).tickFormat(customTimeFormat);
         const aqiYAxis = d3.axisLeft(aqiYScale).ticks(5);
         const tempYAxis = d3.axisRight(tempYScale).ticks(5);
 
