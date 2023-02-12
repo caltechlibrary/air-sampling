@@ -28,8 +28,7 @@ function pollutantChart(data, {
         const xRange = [marginLeft, width - marginRight];
         const yRange = [height - marginBottom, marginTop];
 
-        // Construct time formatter
-        const customTimeFormat = d3.timeFormat("%-I:%M %p");
+        const customTimeFormat = (date) => date.toLocaleString("en-US", { timeZone: "America/Los_Angeles", timeStyle: "short" })
 
         // Construct scales and axes.
         const xScale = d3.scaleTime(xDomain, xRange);
