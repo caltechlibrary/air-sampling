@@ -7,7 +7,7 @@ import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7.7.0/+esm";
 function pollutantChart(data, {
     marginTop = 20, // top margin, in pixels
     marginRight = 30, // right margin, in pixels
-    marginBottom = 30, // bottom margin, in pixels
+    marginBottom = 60, // bottom margin, in pixels
     marginLeft = 75, // left margin, in pixels
     width = 1000, // outer width, in pixels
     height = 270, // outer height, in pixels`
@@ -50,8 +50,8 @@ function pollutantChart(data, {
             .attr("role", "img")
             .attr("aria-label", `Chart of recent ${pollutant} values.`);
 
-        // Construct chart label
-        const label = d3.create("svg:text")
+        // Construct chart labels
+        const labelY = d3.create("svg:text")
             .attr("text-anchor", "middle")
             .attr("fill", "currentColor")
             .attr("font-size", "1.75em")
@@ -62,6 +62,12 @@ function pollutantChart(data, {
             .call(t => t.append("tspan")
                 .attr("dx", "8px")
                 .text(`(${unit})`));
+
+        const labelX = d3.create("svg:text")
+            .attr("text-anchor", "middle")
+            .attr("fill", "currentColor")
+            .attr("font-size", "1.75em")
+            .text("Local time Los Angeles")
         
         // Render x axis.
         svg.append("g")
@@ -74,7 +80,10 @@ function pollutantChart(data, {
                 .attr("y2", 0))
             .call(g => g.selectAll(".tick line").clone()
                 .attr("y2", marginTop + marginBottom - height)
-                .attr("stroke-opacity", 0.1));
+                .attr("stroke-opacity", 0.1))
+            .call(g => g.append("g")
+                .attr("transform", `translate(${width / 2}, ${marginBottom / 1.33})`)
+                    .append(() => labelX.node()));
 
         // Render y axis.
         svg.append("g")
@@ -88,7 +97,7 @@ function pollutantChart(data, {
                 .attr("stroke-opacity", 0.1))
             .call(g => g.append("g")
                 .attr("transform", `translate(${-marginLeft / 2}, ${height / 2}), rotate(270)`)
-                    .append(() => label.node()));
+                    .append(() => labelY.node()));
 
         // Render graph data.
         svg.append("path")
