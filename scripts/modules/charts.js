@@ -103,7 +103,7 @@ export function pollutantChart(data, {
         const xDomain = d3.extent(X);
         const yDomain = [d3.min(Y) - 0.5, d3.max(Y) + 0.5];
 
-        // Computer dimensions of graph area
+        // Compute dimensions of graph area
         const { graphWidth, graphHeight } = computeGraphAreaDimensions(height, width, marginTop, marginRight, marginBottom, marginLeft);
 
         // Compute default ranges.
@@ -171,15 +171,6 @@ export function pollutantChart(data, {
                     .append(() => labelY.node()));
 
         // Render graph data.
-        svg.append("path")
-            .attr("fill", "none")
-            .attr("stroke", color)
-            .attr("stroke-width", 1.5)
-            .attr("stroke-linecap", "round")
-            .attr("stroke-linejoin", "round")
-            .attr("stroke-opacity", 1)
-            .attr("d", line(data));
-
         svg.append(() => constructLine(color, line, data).node());
 
         return svg.node();
