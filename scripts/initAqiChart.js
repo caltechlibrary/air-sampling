@@ -1,7 +1,7 @@
 import { fetchCSV } from "./modules/fetchHelpers.js";
 import parseTimeValueCSV from "./modules/parseTimeValueCSV.js";
 import hourStringToDateObject from "./modules/hourStringToDateObject.js";
-import aqiChart from "./modules/aqiChart.js";
+import { aqiChart }  from "./modules/charts.js";
 
 const res = await Promise.all([
     fetchCSV("https://z44g6g2rrl.execute-api.us-west-2.amazonaws.com/test/get_air?graph=aqi"),

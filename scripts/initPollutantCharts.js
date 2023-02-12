@@ -1,7 +1,7 @@
 import { fetchCSV } from "./modules/fetchHelpers.js";
 import parseTimeValueCSV from "./modules/parseTimeValueCSV.js";
 import hourStringToDateObject from "./modules/hourStringToDateObject.js";
-import pollutantChart from "./modules/pollutantChart.js";
+import { pollutantChart } from "./modules/charts.js";
 
 const pollutantWidgetEls = document.querySelectorAll(".pollutant-widget");
 

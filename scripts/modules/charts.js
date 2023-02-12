@@ -5,6 +5,13 @@
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7.7.0/+esm";
 import * as luxon from "https://cdn.jsdelivr.net/npm/luxon@3.2.1/+esm"
 
+function computeGraphAreaDimensions(height, width, marginTop, marginRight, marginBottom, marginLeft) {
+    const graphWidth = width - marginLeft - marginRight;
+    const graphHeight = height - marginBottom - marginTop;
+
+    return { graphWidth, graphHeight }
+}
+
 function constructLineGenerator(xScale, yScale) {
     return d3.line()
         .x(d => xScale(d.time))
@@ -18,6 +25,13 @@ function constructAreaGenerator(xScale, yScale) {
         .y0(d => yScale(d.lower))
         .y1(d => yScale(d.upper))
         .defined(d => !isNaN(d.lower) && !isNaN(d.upper));
+}
+
+function constructChartSvg(height, width, label) {
+    return d3.create("svg")
+            .attr("viewBox", [0, 0, width, height])
+            .attr("role", "img")
+            .attr("aria-label", label);
 }
 
 function constructLabel(title) {
@@ -69,7 +83,109 @@ function constructArea(color, areaGenerator, lowerData, upperData) {
         .attr("d", areaGenerator(data));
 }
 
-function aqiChart(aqiData, aqiDataLower, aqiDataUpper, tempData, tempDataLower, tempDataUpper, {
+export function pollutantChart(data, {
+    marginTop = 20, // top margin, in pixels
+    marginRight = 30, // right margin, in pixels
+    marginBottom = 60, // bottom margin, in pixels
+    marginLeft = 75, // left margin, in pixels
+    width = 1000, // outer width, in pixels
+    height = 270, // outer height, in pixels`
+    color = "black", // stroke color of line
+    pollutant, // chart pollutant
+    unit, // chart unit
+    } = {}) {
+
+        // Compute values.
+        const X = d3.map(data, d => d.time);
+        const Y = d3.map(data, d => d.value);
+
+        // Compute default domains.
+        const xDomain = d3.extent(X);
+        const yDomain = [d3.min(Y) - 0.5, d3.max(Y) + 0.5];
+
+        // Computer dimensions of graph area
+        const { graphWidth, graphHeight } = computeGraphAreaDimensions(height, width, marginTop, marginRight, marginBottom, marginLeft);
+
+        // Compute default ranges.
+        const xRange = [marginLeft, width - marginRight];
+        const yRange = [height - marginBottom, marginTop];
+
+        // Construct scales.
+        const xScale = d3.scaleTime(xDomain, xRange);
+        const yScale = d3.scaleLinear(yDomain, yRange);
+
+        // Construct custom time format.
+        const customTimeFormat = date => date.toLocaleString("en-US", { timeZone: "America/Los_Angeles", timeStyle: "short" });
+
+        // Construct axes.
+        const xAxis = d3.axisBottom(xScale).tickFormat((xTick, i) => i % 2 == 0 ? customTimeFormat(xTick) : "");
+        const yAxis = d3.axisLeft(yScale).ticks(3).tickSize(0);
+
+        // Construct a line generator.
+        const line = constructLineGenerator(xScale, yScale);
+
+        // Construct chart svg
+        const svg = constructChartSvg(height, width, `Chart of recent ${pollutant} values.`);
+
+        // Extract pollutant checmical and subscript
+        const [pollutantChem, pollutantSub] = pollutant.split(/(\d.*)/, 2);
+        
+        // Construct chart labels
+        const labelX = constructLabel("Local time Los Angeles")
+        const labelY = constructLabel(pollutantChem)
+            .call(t => t.append("tspan")
+                .attr("baseline-shift", "sub")
+                .text(pollutantSub))
+            .call(t => t.append("tspan")
+                .attr("dx", "8px")
+                .text(`(${unit})`));
+        
+        // Render x axis.
+        svg.append("g")
+            .attr("transform", `translate(0,${height - marginBottom})`)
+            .call(xAxis)
+            .call(g => g.select(".domain").remove())
+            .call(g => g.selectAll(".tick text")
+                .attr("font-size", "1.5em"))
+            .call(g => g.selectAll(".tick:nth-child(even) line")
+                .attr("y2", 0))
+            .call(g => g.selectAll(".tick line").clone()
+                .attr("y2", -graphHeight)
+                .attr("stroke-opacity", 0.1))
+            .call(g => g.append("g")
+                .attr("transform", `translate(${width / 2}, ${marginBottom / 1.33})`)
+                    .append(() => labelX.node()));
+
+        // Render y axis.
+        svg.append("g")
+            .attr("transform", `translate(${marginLeft},0)`)
+            .call(yAxis)
+            .call(g => g.select(".domain").remove())
+            .call(g => g.selectAll(".tick text")
+                .attr("font-size", "1.5em"))
+            .call(g => g.selectAll(".tick line").clone()
+                .attr("x2", graphWidth)
+                .attr("stroke-opacity", 0.1))
+            .call(g => g.append("g")
+                .attr("transform", `translate(${-marginLeft / 2}, ${height / 2}), rotate(270)`)
+                    .append(() => labelY.node()));
+
+        // Render graph data.
+        svg.append("path")
+            .attr("fill", "none")
+            .attr("stroke", color)
+            .attr("stroke-width", 1.5)
+            .attr("stroke-linecap", "round")
+            .attr("stroke-linejoin", "round")
+            .attr("stroke-opacity", 1)
+            .attr("d", line(data));
+
+        svg.append(() => constructLine(color, line, data).node());
+
+        return svg.node();
+}
+
+export function aqiChart(aqiData, aqiDataLower, aqiDataUpper, tempData, tempDataLower, tempDataUpper, {
     marginTop = 20, // top margin, in pixels
     marginRight = 75, // right margin, in pixels
     marginBottom = 60, // bottom margin, in pixels
@@ -93,8 +209,7 @@ function aqiChart(aqiData, aqiDataLower, aqiDataUpper, tempData, tempDataLower, 
         const tempYDomain = [d3.min(tempY) - 10, d3.max(tempY) + 5];
 
         // Compute dimensions of graph area
-        const graphWidth = width - marginLeft - marginRight;
-        const graphHeight = height - marginBottom - marginTop;
+        const { graphWidth, graphHeight } = computeGraphAreaDimensions(height, width, marginTop, marginRight, marginBottom, marginLeft);
 
         // Compute default ranges.
         const xRange = [marginLeft, width - marginRight];
@@ -123,10 +238,7 @@ function aqiChart(aqiData, aqiDataLower, aqiDataUpper, tempData, tempDataLower, 
         const tempArea = constructAreaGenerator(xScale, tempYScale);
 
         // Construct chart svg.
-        const svg = d3.create("svg")
-            .attr("viewBox", [0, 0, width, height])
-            .attr("role", "img")
-            .attr("aria-label", "Chart of AQI and Temperature values over the past 24 hours.");
+        const svg = constructChartSvg(height, width, "Chart of AQI and Temperature values over the past 24 hours.");
 
         // Construct labels.
         const xLabel = constructLabel("Local Time of Day (hrs)");
@@ -210,5 +322,3 @@ function aqiChart(aqiData, aqiDataLower, aqiDataUpper, tempData, tempDataLower, 
 
         return svg.node();
 }
-
-export default aqiChart;
