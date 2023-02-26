@@ -34,11 +34,11 @@ function constructChartSvg(height, width, label) {
             .attr("aria-label", label);
 }
 
-function constructLabel(title) {
+function constructLabel(title, fontSize) {
     return d3.create("svg:text")
         .attr("text-anchor", "middle")
         .attr("fill", "currentColor")
-        .attr("font-size", "1.75em")
+        .attr("font-size", fontSize)
         .text(title);
 }
 
@@ -131,8 +131,8 @@ export function pollutantChart(data, {
         const [pollutantChem, pollutantSub] = pollutant.split(/(\d.*)/, 2);
         
         // Construct chart labels
-        const labelX = constructLabel("Local time Los Angeles")
-        const labelY = constructLabel(pollutantChem)
+        const labelX = constructLabel("Local time Los Angeles", "1.75em")
+        const labelY = constructLabel(pollutantChem, "1.75em")
             .call(t => t.append("tspan")
                 .attr("baseline-shift", "sub")
                 .text(pollutantSub))
@@ -177,10 +177,6 @@ export function pollutantChart(data, {
 }
 
 export function aqiChart(aqiData, aqiDataLower, aqiDataUpper, tempData, tempDataLower, tempDataUpper, {
-    marginTop = 20, // top margin, in pixels
-    marginRight = 75, // right margin, in pixels
-    marginBottom = 60, // bottom margin, in pixels
-    marginLeft = 75, // left margin, in pixels
     width = 1000, // outer width, in pixels
     height = 270, // outer height, in pixels
     aqiColor = "#eb0000", // color of aqi data line
@@ -199,6 +195,12 @@ export function aqiChart(aqiData, aqiDataLower, aqiDataUpper, tempData, tempData
         const aqiYDomain = [d3.min(aqiY), d3.max(aqiY) + 10];
         const tempYDomain = [d3.min(tempY) - 10, d3.max(tempY) + 5];
 
+        // Compute graph boundaries
+        const marginLeft = width > 600 ? 75 : 50;
+        const marginRight = width > 600 ? 75 : 50;
+        const marginTop = 20
+        const marginBottom = width > 600 ? 60 : 40
+
         // Compute dimensions of graph area
         const { graphWidth, graphHeight } = computeGraphAreaDimensions(height, width, marginTop, marginRight, marginBottom, marginLeft);
 
@@ -206,6 +208,15 @@ export function aqiChart(aqiData, aqiDataLower, aqiDataUpper, tempData, tempData
         const xRange = [marginLeft, width - marginRight];
         const aqiYRange = [height - marginBottom, marginTop + (graphHeight / 3)];
         const tempYRange = [marginTop + (graphHeight / 1.5), marginTop];
+
+        // Compute number of x axis ticks
+        const xTicks = Math.min(width / 100, 6)
+
+        // Compute axis font size
+        const axisFontSize = width > 600 ? "1.5em" : "1em"
+
+        // Compute label font size
+        const labelFontSize = width > 600 ? "1.75em" : "1em"
 
         // Construct scales.
         const xScale = d3.scaleTime(xDomain, xRange);
@@ -216,7 +227,7 @@ export function aqiChart(aqiData, aqiDataLower, aqiDataUpper, tempData, tempData
         const customTimeFormat = date => date.toLocaleString("en-US", { timeZone: "America/Los_Angeles", hour12: false, hour: "numeric" });
 
         // Construct axes.
-        const xAxis = d3.axisBottom(xScale).tickFormat(customTimeFormat);
+        const xAxis = d3.axisBottom(xScale).tickFormat(customTimeFormat).ticks(xTicks);
         const aqiYAxis = d3.axisLeft(aqiYScale).ticks(5);
         const tempYAxis = d3.axisRight(tempYScale).ticks(5);
 
@@ -232,9 +243,9 @@ export function aqiChart(aqiData, aqiDataLower, aqiDataUpper, tempData, tempData
         const svg = constructChartSvg(height, width, "Chart of AQI and Temperature values over the past 24 hours.");
 
         // Construct labels.
-        const xLabel = constructLabel("Local Time of Day (hrs)");
-        const aqiLabel = constructLabel("AQI");
-        const tempLabel = constructLabel("Temperature (C)");
+        const xLabel = constructLabel("Local Time of Day (hrs)", labelFontSize);
+        const aqiLabel = constructLabel("AQI", labelFontSize);
+        const tempLabel = constructLabel("Temperature (C)", labelFontSize);
 
         // Render x axis.
         svg.append("g")
@@ -242,7 +253,7 @@ export function aqiChart(aqiData, aqiDataLower, aqiDataUpper, tempData, tempData
             .call(xAxis)
             .call(g => g.select(".domain").remove())
             .call(g => g.selectAll(".tick text")
-                .attr("font-size", "1.5em"))
+                .attr("font-size", axisFontSize))
             .call(g => g.selectAll(".tick line").clone()
                 .attr("y2", -graphHeight)
                 .attr("stroke-opacity", 0.1))
@@ -257,7 +268,7 @@ export function aqiChart(aqiData, aqiDataLower, aqiDataUpper, tempData, tempData
             .call(g => g.select(".domain").remove())
             .call(g => g.selectAll(".tick text")
                 .attr("fill", aqiColor)
-                .attr("font-size", "1.5em"))
+                .attr("font-size", axisFontSize))
             .call(g => g.selectAll(".tick line")
                 .attr("stroke", aqiColor))
             .call(g => g.selectAll(".tick line").clone()
@@ -275,7 +286,7 @@ export function aqiChart(aqiData, aqiDataLower, aqiDataUpper, tempData, tempData
             .call(g => g.select(".domain").remove())
             .call(g => g.selectAll(".tick text")
                 .attr("fill", tempColor)
-                .attr("font-size", "1.5em"))
+                .attr("font-size", axisFontSize))
             .call(g => g.selectAll(".tick line")
                 .attr("stroke", tempColor))
             .call(g => g.append("g")

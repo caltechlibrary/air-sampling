@@ -3,6 +3,20 @@ import parseTimeValueCSV from "./modules/parseTimeValueCSV.js";
 import hourStringToDateObject from "./modules/hourStringToDateObject.js";
 import { aqiChart }  from "./modules/charts.js";
 
+const generateAqiChart = (aqiData, aqiDataLower, aqiDataUpper, tempData, tempDataLower, tempDataUpper) => {
+    const chartContainer = document.querySelector(".aqi-chart");
+    const chartWidth = chartContainer.offsetWidth
+
+    const chartSVG = aqiChart(aqiData, aqiDataLower, aqiDataUpper, tempData, tempDataLower, tempDataUpper, {
+        height: 400,
+        width: chartWidth
+    });
+
+    chartSVG.classList.add("aqi-chart__svg");
+
+    chartContainer.replaceChildren(chartSVG);
+}
+
 const res = await Promise.all([
     fetchCSV("https://z44g6g2rrl.execute-api.us-west-2.amazonaws.com/test/get_air?graph=aqi"),
     fetchCSV("https://z44g6g2rrl.execute-api.us-west-2.amazonaws.com/test/get_air?graph=aqi_lower"),
@@ -20,9 +34,8 @@ const csvDataTimeFormatted = csvData.map(data => {
 
 const [aqiData, aqiDataLower, aqiDataUpper, tempData, tempDataLower, tempDataUpper] = csvDataTimeFormatted;
 
-const chartSVG = aqiChart(aqiData, aqiDataLower, aqiDataUpper, tempData, tempDataLower, tempDataUpper);
-const chartContainer = document.querySelector(".aqi-chart");
+generateAqiChart(aqiData, aqiDataLower, aqiDataUpper, tempData, tempDataLower, tempDataUpper)
 
-chartSVG.classList.add("aqi-chart__svg");
-
-chartContainer.append(chartSVG);
+window.addEventListener('resize', () => {
+    generateAqiChart(aqiData, aqiDataLower, aqiDataUpper, tempData, tempDataLower, tempDataUpper)
+})
