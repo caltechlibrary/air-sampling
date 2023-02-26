@@ -324,9 +324,6 @@ export function aqiChart(aqiData, aqiDataLower, aqiDataUpper, tempData, tempData
 
 export function aqiLegend() {
     const legendEl = document.createElement("div");
-
-    legendEl.classList.add("aqi-chart__legend");
-
     const prevAqiLabelEl = constructLegendLabel("Previous 7 day AQI", "#eb0000", "swatch");
     const currAqiLabelEl = constructLegendLabel("Current day AQI", "#eb0000", "line");
     const prevTempLabelEl = constructLegendLabel("Previous 7 day Temp", "#0000ff", "swatch");

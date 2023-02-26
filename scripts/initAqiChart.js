@@ -15,6 +15,8 @@ const generateAqiChart = (aqiData, aqiDataLower, aqiDataUpper, tempData, tempDat
         width: chartWidth
     });
 
+    chartLegend.classList.add("aqi-chart__legend");
+
     chartSVG.classList.add("aqi-chart__svg");
 
     chartContainer.replaceChildren(chartLegend, chartSVG);
