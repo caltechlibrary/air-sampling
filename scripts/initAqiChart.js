@@ -5,10 +5,10 @@ import { aqiChart, aqiLegend }  from "./modules/charts.js";
 
 const generateAqiChart = (aqiData, aqiDataLower, aqiDataUpper, tempData, tempDataLower, tempDataUpper) => {
     const chartContainer = document.querySelector(".aqi-chart");
-    const chartHeight = window.innerWidth > 600 ? 400 : 300
-    const chartWidth = chartContainer.offsetWidth
+    const chartHeight = window.innerWidth > 600 ? 400 : 300;
+    const chartWidth = chartContainer.offsetWidth;
 
-    const chartLegend = aqiLegend()
+    const chartLegend = aqiLegend();
 
     const chartSVG = aqiChart(aqiData, aqiDataLower, aqiDataUpper, tempData, tempDataLower, tempDataUpper, {
         height: chartHeight,
@@ -32,13 +32,13 @@ const res = await Promise.all([
 const csvData = res.map(parseTimeValueCSV);
 
 const csvDataTimeFormatted = csvData.map(data => {
-    return data.map(entry => ({ ...entry, time: hourStringToDateObject(entry.time) }))
+    return data.map(entry => ({ ...entry, time: hourStringToDateObject(entry.time) }));
 });
 
 const [aqiData, aqiDataLower, aqiDataUpper, tempData, tempDataLower, tempDataUpper] = csvDataTimeFormatted;
 
-generateAqiChart(aqiData, aqiDataLower, aqiDataUpper, tempData, tempDataLower, tempDataUpper)
+generateAqiChart(aqiData, aqiDataLower, aqiDataUpper, tempData, tempDataLower, tempDataUpper);
 
 window.addEventListener('resize', () => {
-    generateAqiChart(aqiData, aqiDataLower, aqiDataUpper, tempData, tempDataLower, tempDataUpper)
-})
+    generateAqiChart(aqiData, aqiDataLower, aqiDataUpper, tempData, tempDataLower, tempDataUpper);
+});

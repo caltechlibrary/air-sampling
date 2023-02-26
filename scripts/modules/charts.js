@@ -77,11 +77,11 @@ function constructLegendLabel(title, iconColor, iconType) {
 
     switch(iconType) {
         case "swatch":
-            iconEl.classList.add("aqi-chart__legend-swatch")
-            break
+            iconEl.classList.add("aqi-chart__legend-swatch");
+            break;
         case "line":
-            iconEl.classList.add("aqi-chart__legend-line")
-            break
+            iconEl.classList.add("aqi-chart__legend-line");
+            break;
     }
 
     labelEl.prepend(iconEl);
@@ -119,13 +119,13 @@ export function pollutantChart(data, {
         const yRange = [height - marginBottom, marginTop];
 
         // Compute number of x axis ticks 
-        const xTicks = Math.min(width / 100, 6)
+        const xTicks = Math.min(width / 100, 6);
 
         // Compute axis font size
-        const axisFontSize =  height > 200 ? "1.5em" : "1em"
+        const axisFontSize =  height > 200 ? "1.5em" : "1em";
 
         // Compute label font size
-        const labelFontSize = height > 200 ? "1.75em" : "1em"
+        const labelFontSize = height > 200 ? "1.75em" : "1em";
 
         // Construct scales.
         const xScale = d3.scaleTime(xDomain, xRange);
@@ -215,8 +215,8 @@ export function aqiChart(aqiData, aqiDataLower, aqiDataUpper, tempData, tempData
         // Compute graph boundaries
         const marginLeft = width > 600 ? 75 : 50;
         const marginRight = width > 600 ? 75 : 50;
-        const marginTop = 0
-        const marginBottom = width > 600 ? 60 : 40
+        const marginTop = 0;
+        const marginBottom = width > 600 ? 60 : 40;
 
         // Compute dimensions of graph area
         const { graphWidth, graphHeight } = computeGraphAreaDimensions(height, width, marginTop, marginRight, marginBottom, marginLeft);
@@ -227,13 +227,13 @@ export function aqiChart(aqiData, aqiDataLower, aqiDataUpper, tempData, tempData
         const tempYRange = [marginTop + (graphHeight / 1.5), marginTop];
 
         // Compute number of x axis ticks
-        const xTicks = Math.min(width / 100, 6)
+        const xTicks = Math.min(width / 100, 6);
 
         // Compute axis font size
-        const axisFontSize = width > 600 ? "1.5em" : "1em"
+        const axisFontSize = width > 600 ? "1.5em" : "1em";
 
         // Compute label font size
-        const labelFontSize = width > 600 ? "1.75em" : "1em"
+        const labelFontSize = width > 600 ? "1.75em" : "1em";
 
         // Construct scales.
         const xScale = d3.scaleTime(xDomain, xRange);
