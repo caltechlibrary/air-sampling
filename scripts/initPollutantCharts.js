@@ -33,8 +33,8 @@ for(const pollutantWidgetEl of pollutantWidgetEls) {
 
     generatePollutantChart(pollutantWidgetEl, pollutantDataFormatted, pollutant, unit);
 
-    pollutantWidgetPanelEl.addEventListener("transitionend", () => {
-        if(pollutantWidgetEl.classList.contains("pollutant-widget--expanded")) {
+    pollutantWidgetPanelEl.addEventListener("transitionend", (event) => {
+        if(event.propertyName == "height" && pollutantWidgetEl.classList.contains("pollutant-widget--expanded")) {
             generatePollutantChart(pollutantWidgetEl, pollutantDataFormatted, pollutant, unit);
         }
     });
