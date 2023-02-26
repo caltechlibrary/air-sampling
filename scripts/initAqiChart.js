@@ -1,11 +1,13 @@
 import { fetchCSV } from "./modules/fetchHelpers.js";
 import parseTimeValueCSV from "./modules/parseTimeValueCSV.js";
 import hourStringToDateObject from "./modules/hourStringToDateObject.js";
-import { aqiChart }  from "./modules/charts.js";
+import { aqiChart, aqiLegend }  from "./modules/charts.js";
 
 const generateAqiChart = (aqiData, aqiDataLower, aqiDataUpper, tempData, tempDataLower, tempDataUpper) => {
     const chartContainer = document.querySelector(".aqi-chart");
     const chartWidth = chartContainer.offsetWidth
+
+    const chartLegend = aqiLegend()
 
     const chartSVG = aqiChart(aqiData, aqiDataLower, aqiDataUpper, tempData, tempDataLower, tempDataUpper, {
         height: 400,
@@ -14,7 +16,7 @@ const generateAqiChart = (aqiData, aqiDataLower, aqiDataUpper, tempData, tempDat
 
     chartSVG.classList.add("aqi-chart__svg");
 
-    chartContainer.replaceChildren(chartSVG);
+    chartContainer.replaceChildren(chartLegend, chartSVG);
 }
 
 const res = await Promise.all([

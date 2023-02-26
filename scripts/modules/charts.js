@@ -42,23 +42,6 @@ function constructLabel(title, fontSize) {
         .text(title);
 }
 
-function constructLegendSquare(x, y, height, width, fill) {
-    return d3.create("svg:rect")
-        .attr("x", x)
-        .attr("y", y)
-        .attr("height", height)
-        .attr("width", width)
-        .attr("fill", fill);
-}
-
-function constructLegendText(x, y, text) {
-    return d3.create("svg:text")
-        .attr("x", x)
-        .attr("y", y)
-        .attr("alignment-baseline", "middle")
-        .text(text);
-}
-
 function constructLine(stroke, lineGenerator, data) {
     return d3.create("svg:path")
         .attr("fill", "none")
@@ -81,6 +64,29 @@ function constructArea(color, areaGenerator, lowerData, upperData) {
         .attr("fill", color)
         .attr("opacity", 0.2)
         .attr("d", areaGenerator(data));
+}
+
+function constructLegendLabel(title, iconColor, iconType) {
+    const labelEl = document.createElement("span");
+    labelEl.classList.add("aqi-chart__legend-label");
+    labelEl.textContent = title;
+
+    const iconEl = document.createElement("span");
+    iconEl.classList.add("aqi-chart__legend-icon");
+    iconEl.style.background = iconColor;
+
+    switch(iconType) {
+        case "swatch":
+            iconEl.classList.add("aqi-chart__legend-swatch")
+            break
+        case "line":
+            iconEl.classList.add("aqi-chart__legend-line")
+            break
+    }
+
+    labelEl.prepend(iconEl);
+
+    return labelEl;
 }
 
 export function pollutantChart(data, {
@@ -198,7 +204,7 @@ export function aqiChart(aqiData, aqiDataLower, aqiDataUpper, tempData, tempData
         // Compute graph boundaries
         const marginLeft = width > 600 ? 75 : 50;
         const marginRight = width > 600 ? 75 : 50;
-        const marginTop = 20
+        const marginTop = 0
         const marginBottom = width > 600 ? 60 : 40
 
         // Compute dimensions of graph area
@@ -292,27 +298,7 @@ export function aqiChart(aqiData, aqiDataLower, aqiDataUpper, tempData, tempData
             .call(g => g.append("g")
                 .attr("transform", `translate(${marginRight / 1.5}, ${marginTop + (graphHeight / 2)}), rotate(270)`)
                 .append(() => tempLabel.node())
-                    .attr("fill", tempColor));
-
-        // Render legend
-        svg.append("g")
-            .attr("transform", `translate(${marginLeft + (graphWidth / 4)}, 0)`)
-            .attr("font-size", "0.75em")
-            .attr("font-family", "sans-serif")
-            .call(g => g.append("rect")
-                .attr("height", 20)
-                .attr("width", graphWidth / 1.33)
-                .attr("fill", "#fff")
-                .attr("stroke", "#000"))
-            .call(g => g.append(() => constructLegendSquare(5, 3.5, 13, 40, aqiColor).node()))
-            .call(g => g.append(() => constructLegendText(50, 10, "Previous 7 day AQI").node()))
-            .call(g => g.append(() => constructLegendSquare(165, 9, 2, 40, aqiColor).node()))
-            .call(g => g.append(() => constructLegendText(210, 10, "Current day AQI").node()))
-            .call(g => g.append(() => constructLegendSquare(310, 3.5, 13, 40, tempColor).node()))
-            .call(g => g.append(() => constructLegendText(355, 10, "Previous 7 day Temp").node()))
-            .call(g => g.append(() => constructLegendSquare(480, 9, 2, 40, tempColor).node()))
-            .call(g => g.append(() => constructLegendText(525, 10, "Current day Temp").node()));
-        
+                    .attr("fill", tempColor));       
 
         // Render graph data.
         svg.append(() => constructLine(aqiColor, aqiLine, aqiData).node());
@@ -323,4 +309,19 @@ export function aqiChart(aqiData, aqiDataLower, aqiDataUpper, tempData, tempData
         svg.append(() => constructArea(tempColor, tempArea, tempDataLower, tempDataUpper).node());
 
         return svg.node();
+}
+
+export function aqiLegend() {
+    const legendEl = document.createElement("div");
+
+    legendEl.classList.add("aqi-chart__legend");
+
+    const prevAqiLabelEl = constructLegendLabel("Previous 7 day AQI", "#eb0000", "swatch");
+    const currAqiLabelEl = constructLegendLabel("Current day AQI", "#eb0000", "line");
+    const prevTempLabelEl = constructLegendLabel("Previous 7 day Temp", "#0000ff", "swatch");
+    const currTempLabelEl = constructLegendLabel("Current day Temp", "#0000ff", "line");
+
+    legendEl.append(prevAqiLabelEl, currAqiLabelEl, prevTempLabelEl, currTempLabelEl);
+
+    return legendEl;
 }
