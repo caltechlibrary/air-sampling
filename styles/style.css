@@ -730,7 +730,6 @@ Blocks
     flex: 1;
     height: 100%;
     background: #fff;
-    overflow: auto;
 }
 
 @media (min-width:800px) {
@@ -739,16 +738,10 @@ Blocks
         top: -3.5rem;
         height: calc(100% + 3.5rem);
     }
-
-    .pollutant-widget--expanded .pollutant-widget__chart-container {
-        min-width: 16rem;
-    }
 }
 
 .pollutant-widget__chart {
     display: block;
-    height: 100%;
-    width: auto;
 }
 
 /* page */

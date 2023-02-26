@@ -90,10 +90,6 @@ function constructLegendLabel(title, iconColor, iconType) {
 }
 
 export function pollutantChart(data, {
-    marginTop = 20, // top margin, in pixels
-    marginRight = 30, // right margin, in pixels
-    marginBottom = 60, // bottom margin, in pixels
-    marginLeft = 75, // left margin, in pixels
     width = 1000, // outer width, in pixels
     height = 270, // outer height, in pixels`
     color = "black", // stroke color of line
@@ -109,12 +105,27 @@ export function pollutantChart(data, {
         const xDomain = d3.extent(X);
         const yDomain = [d3.min(Y) - 0.5, d3.max(Y) + 0.5];
 
+        // Compute graph boundaries.
+        const marginLeft = width > 600 ? 75 : 50;
+        const marginRight = 20;
+        const marginTop = 20;
+        const marginBottom = width > 600 ? 60 : 40;
+
         // Compute dimensions of graph area
         const { graphWidth, graphHeight } = computeGraphAreaDimensions(height, width, marginTop, marginRight, marginBottom, marginLeft);
 
         // Compute default ranges.
         const xRange = [marginLeft, width - marginRight];
         const yRange = [height - marginBottom, marginTop];
+
+        // Compute number of x axis ticks 
+        const xTicks = Math.min(width / 100, 6)
+
+        // Compute axis font size
+        const axisFontSize =  width > 600 ? "1.5em" : "1em"
+
+        // Compute label font size
+        const labelFontSize = width > 600 ? "1.75em" : "1em"
 
         // Construct scales.
         const xScale = d3.scaleTime(xDomain, xRange);
@@ -124,7 +135,7 @@ export function pollutantChart(data, {
         const customTimeFormat = date => date.toLocaleString("en-US", { timeZone: "America/Los_Angeles", timeStyle: "short" });
 
         // Construct axes.
-        const xAxis = d3.axisBottom(xScale).tickFormat((xTick, i) => i % 2 == 0 ? customTimeFormat(xTick) : "");
+        const xAxis = d3.axisBottom(xScale).tickFormat((xTick, i) => i % 2 == 0 ? customTimeFormat(xTick) : "").ticks(xTicks);
         const yAxis = d3.axisLeft(yScale).ticks(3).tickSize(0);
 
         // Construct a line generator.
@@ -137,8 +148,8 @@ export function pollutantChart(data, {
         const [pollutantChem, pollutantSub] = pollutant.split(/(\d.*)/, 2);
         
         // Construct chart labels
-        const labelX = constructLabel("Local time Los Angeles", "1.75em")
-        const labelY = constructLabel(pollutantChem, "1.75em")
+        const labelX = constructLabel("Local time Los Angeles", labelFontSize)
+        const labelY = constructLabel(pollutantChem, labelFontSize)
             .call(t => t.append("tspan")
                 .attr("baseline-shift", "sub")
                 .text(pollutantSub))
@@ -152,7 +163,7 @@ export function pollutantChart(data, {
             .call(xAxis)
             .call(g => g.select(".domain").remove())
             .call(g => g.selectAll(".tick text")
-                .attr("font-size", "1.5em"))
+                .attr("font-size", axisFontSize))
             .call(g => g.selectAll(".tick:nth-child(even) line")
                 .attr("y2", 0))
             .call(g => g.selectAll(".tick line").clone()
@@ -168,7 +179,7 @@ export function pollutantChart(data, {
             .call(yAxis)
             .call(g => g.select(".domain").remove())
             .call(g => g.selectAll(".tick text")
-                .attr("font-size", "1.5em"))
+                .attr("font-size", axisFontSize))
             .call(g => g.selectAll(".tick line").clone()
                 .attr("x2", graphWidth)
                 .attr("stroke-opacity", 0.1))
