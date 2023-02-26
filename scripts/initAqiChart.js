@@ -5,12 +5,13 @@ import { aqiChart, aqiLegend }  from "./modules/charts.js";
 
 const generateAqiChart = (aqiData, aqiDataLower, aqiDataUpper, tempData, tempDataLower, tempDataUpper) => {
     const chartContainer = document.querySelector(".aqi-chart");
+    const chartHeight = window.innerWidth > 600 ? 400 : 300
     const chartWidth = chartContainer.offsetWidth
 
     const chartLegend = aqiLegend()
 
     const chartSVG = aqiChart(aqiData, aqiDataLower, aqiDataUpper, tempData, tempDataLower, tempDataUpper, {
-        height: 400,
+        height: chartHeight,
         width: chartWidth
     });
 
