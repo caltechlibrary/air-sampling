@@ -106,10 +106,10 @@ export function pollutantChart(data, {
         const yDomain = [d3.min(Y) - 0.5, d3.max(Y) + 0.5];
 
         // Compute graph boundaries.
-        const marginLeft = width > 600 ? 75 : 50;
+        const marginLeft = height > 200 ? 75 : 50;
         const marginRight = 20;
         const marginTop = 20;
-        const marginBottom = width > 600 ? 60 : 40;
+        const marginBottom = height > 200 ? 60 : 40;
 
         // Compute dimensions of graph area
         const { graphWidth, graphHeight } = computeGraphAreaDimensions(height, width, marginTop, marginRight, marginBottom, marginLeft);
@@ -122,10 +122,10 @@ export function pollutantChart(data, {
         const xTicks = Math.min(width / 100, 6)
 
         // Compute axis font size
-        const axisFontSize =  width > 600 ? "1.5em" : "1em"
+        const axisFontSize =  height > 200 ? "1.5em" : "1em"
 
         // Compute label font size
-        const labelFontSize = width > 600 ? "1.75em" : "1em"
+        const labelFontSize = height > 200 ? "1.75em" : "1em"
 
         // Construct scales.
         const xScale = d3.scaleTime(xDomain, xRange);
