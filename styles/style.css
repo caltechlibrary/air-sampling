@@ -726,21 +726,21 @@ Blocks
     }    
 }
 
-.pollutant-widget__chart-container {
+.pollutant-widget__chart {
     flex: 1;
     height: 100%;
     background: #fff;
 }
 
 @media (min-width:800px) {
-    .pollutant-widget__chart-container {
+    .pollutant-widget__chart {
         position: relative;
         top: -3.5rem;
         height: calc(100% + 3.5rem);
     }
 }
 
-.pollutant-widget__chart {
+.pollutant-widget__chart-svg {
     display: block;
 }
 
