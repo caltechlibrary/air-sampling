@@ -23,6 +23,7 @@ const generatePollutantChart = (pollutantWidgetEl, pollutantData, pollutant, uni
 const pollutantWidgetEls = document.querySelectorAll(".pollutant-widget");
 
 for(const pollutantWidgetEl of pollutantWidgetEls) {
+    const pollutantWidgetPanelEl = pollutantWidgetEl.querySelector(".pollutant-widget__panel")
     const pollutant = pollutantWidgetEl.getAttribute("data-pollutant");
     const unit = pollutantWidgetEl.getAttribute("data-unit");
 
@@ -32,7 +33,7 @@ for(const pollutantWidgetEl of pollutantWidgetEls) {
 
     generatePollutantChart(pollutantWidgetEl, pollutantDataFormatted, pollutant, unit);
 
-    pollutantWidgetEl.addEventListener("transitionend", () => {
+    pollutantWidgetPanelEl.addEventListener("transitionend", () => {
         if(pollutantWidgetEl.classList.contains("pollutant-widget--expanded")) {
             generatePollutantChart(pollutantWidgetEl, pollutantDataFormatted, pollutant, unit);
         }
