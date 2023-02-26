@@ -33,10 +33,14 @@ for(const pollutantWidgetEl of pollutantWidgetEls) {
     generatePollutantChart(pollutantWidgetEl, pollutantDataFormatted, pollutant, unit);
 
     pollutantWidgetEl.addEventListener("transitionend", () => {
-        generatePollutantChart(pollutantWidgetEl, pollutantDataFormatted, pollutant, unit);
+        if(pollutantWidgetEl.classList.contains("pollutant-widget--expanded")) {
+            generatePollutantChart(pollutantWidgetEl, pollutantDataFormatted, pollutant, unit);
+        }
     })
 
     window.addEventListener("resize", () => {
-        generatePollutantChart(pollutantWidgetEl, pollutantDataFormatted, pollutant, unit);
+        if(pollutantWidgetEl.classList.contains("pollutant-widget--expanded")) {
+            generatePollutantChart(pollutantWidgetEl, pollutantDataFormatted, pollutant, unit);
+        }
     })
 }
