@@ -671,6 +671,15 @@ Blocks
     color: #fff;
 }
 
+.pollutant-widget--data-unavailable .pollutant-widget__aqi {
+    height: unset;
+    width: unset;
+}
+
+.pollutant-widget--data-unavailable .pollutant-widget__aqi-text {
+    display: none;
+}
+
 @media (max-width:799px) {
     .pollutant-widget__concentration-label {
         text-align: right;
