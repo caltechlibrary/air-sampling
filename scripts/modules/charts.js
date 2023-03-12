@@ -164,7 +164,7 @@ export function pollutantChart(data, {
             .call(g => g.select(".domain").remove())
             .call(g => g.selectAll(".tick text")
                 .attr("font-size", axisFontSize))
-            .call(g => g.selectAll(".tick:nth-child(even) line")
+            .call(g => g.selectAll(".tick:nth-child(even) line").size() > 1 && g.selectAll(".tick:nth-child(even) line")
                 .attr("y2", 0))
             .call(g => g.selectAll(".tick line").clone()
                 .attr("y2", -graphHeight)
