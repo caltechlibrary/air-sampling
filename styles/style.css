@@ -708,16 +708,10 @@ Blocks
 }
 
 .pollutant-widget--expanded .pollutant-widget__panel {
-    height: 6.25rem;
+    height: 9.875rem;
     opacity: 1;
     visibility: visible;
     transition: height 1s, opacity 0.25s 0.5s;
-}
-
-@media (min-width:800px) {
-    .pollutant-widget--expanded .pollutant-widget__panel {
-        height: 9.875rem;
-    }
 }
 
 .pollutant-widget__warning {
