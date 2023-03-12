@@ -209,7 +209,7 @@ export function aqiChart(aqiData, aqiDataLower, aqiDataUpper, tempData, tempData
             luxon.DateTime.fromObject({hour: 0}, { zone: "America/Los_Angeles" }).toJSDate(), 
             luxon.DateTime.fromObject({hour: 24}, { zone: "America/Los_Angeles" }).toJSDate()
         ];
-        const aqiYDomain = [d3.min(aqiY), d3.max(aqiY) + 10];
+        const aqiYDomain = [d3.min(aqiY) - 5, d3.max(aqiY) + 10];
         const tempYDomain = [d3.min(tempY) - 10, d3.max(tempY) + 5];
 
         // Compute graph boundaries
