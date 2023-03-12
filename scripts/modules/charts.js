@@ -135,7 +135,7 @@ export function pollutantChart(data, {
         const customTimeFormat = date => date.toLocaleString("en-US", { timeZone: "America/Los_Angeles", timeStyle: "short" });
 
         // Construct axes.
-        const xAxis = d3.axisBottom(xScale).tickFormat((xTick, i) => i % 2 == 0 ? customTimeFormat(xTick) : "").ticks(xTicks);
+        const xAxis = d3.axisBottom(xScale).tickFormat((xTick, i, xTicks) => xTicks.length == 2 || i % 2 == 0 ? customTimeFormat(xTick) : "").ticks(xTicks);
         const yAxis = d3.axisLeft(yScale).ticks(3).tickSize(0);
 
         // Construct a line generator.
