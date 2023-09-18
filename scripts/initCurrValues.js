@@ -13,11 +13,13 @@ function displayAqiWidgetData(value, condition) {
     let aqiWidgetEl = document.querySelector(".aqi-widget");
     let valueEl = document.querySelector(".aqi-widget__value");
     let descriptionEl = document.querySelector(".aqi-widget__condition-value");
+    let aqiMeterEl = document.querySelector(".aqi-widget__meter");
     let inidicatorEl = document.getElementById("aqi-widget__meter-indicator");
 
     aqiWidgetEl.classList.add(`aqi-widget--${condition.toLowerCase().split(" ").join("-")}`);
     valueEl.textContent = value;
     descriptionEl.textContent = condition;
+    aqiMeterEl.setAttribute("aria-label", `Current AQI value falls within the "${condition}" category.`)
     inidicatorEl.setAttribute("x", `${(value / 500) * 100}%`);
     inidicatorEl.setAttribute("visibility", "visible");
 };
