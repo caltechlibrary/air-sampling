@@ -18,6 +18,7 @@ Blocks
 - card: component used to display aqi widget, live cam, and resources widget.
 - top-container: container that wraps aqi, live cam, and (on desktop screen sizes) resources cards.
 - aqi-chart: chart that contains aqi/temperature history.
+- aqi-table: table that contains aqi chart data in tabular form.
 - pollutant-widget: accordion widget used to display individual pollutant values.
 - page: container used to wrap site.
 */
@@ -551,6 +552,34 @@ Blocks
 
 .aqi-chart__legend-line {
     height: 2px;
+}
+
+/* aqi-table */
+.aqi-table {
+    padding: 8px 14px;
+    color: #000;
+    font-family: Arial;
+}
+
+@media (min-width:800px) {
+    .aqi-table {
+        padding: 12px 16px;
+    }
+}
+
+.aqi-table__table {
+    border-collapse: collapse;
+    width: 100%
+}
+
+.aqi-table__table-cell {
+    border: 1px solid #000;
+    padding: 8px 0px;
+    text-align: center;
+}
+
+.aqi-table__table-cell--header {
+    background: #efefef;
 }
 
 /* pollutant-widget */
