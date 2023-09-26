@@ -4,12 +4,18 @@ import subprocess
 import pathlib
 import yaml
 import json
+import argparse
 
 outDir = "site"
+dummyDataDir = "dummy"
 stylesDir = "styles"
 scriptsDir = "scripts"
 imagesDir = "img"
 conditionsDir = "conditions"
+
+argParser = argparse.ArgumentParser()
+argParser.add_argument("--dummy", action="store_true", help="set a flag to include dummy data")
+args = argParser.parse_args()
 
 # Create output site directory
 if os.path.isdir(outDir): shutil.rmtree(outDir)
@@ -17,10 +23,9 @@ os.makedirs(outDir)
 shutil.copytree(imagesDir, f"{outDir}/{imagesDir}")
 shutil.copytree(stylesDir, f"{outDir}/{stylesDir}")
 shutil.copytree(scriptsDir, f"{outDir}/{scriptsDir}")
-shutil.copytree("dummy-area-data", f"{outDir}/dummy-area-data")
-shutil.copyfile("air-values.json", f"{outDir}/air-values.json")
-shutil.copyfile("air-data.txt", f"{outDir}/air-data.txt")
 shutil.copyfile("google9c66b3b3d14f628e.html", f"{outDir}/google9c66b3b3d14f628e.html")
+
+if args.dummy: shutil.copytree("dummy", f"{outDir}/{dummyDataDir}")
 
 # Build pollutant condition mapping
 conditions = {}
