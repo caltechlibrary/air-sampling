@@ -18,7 +18,6 @@ Blocks
 - card: component used to display aqi widget, live cam, and resources widget.
 - top-container: container that wraps aqi, live cam, and (on desktop screen sizes) resources cards.
 - aqi-chart: chart that contains aqi/temperature history.
-- aqi-table: table that contains aqi chart data in tabular form.
 - pollutant-widget: accordion widget used to display individual pollutant values.
 - page: container used to wrap site.
 */
@@ -504,11 +503,11 @@ Blocks
 }
 
 /* aqi-chart */
-.aqi-chart__svg {
+.aqi-chart__chart-svg {
     display: block;
 }
 
-.aqi-chart__legend {
+.aqi-chart__chart-legend {
     margin-left: auto;
     width: fit-content;
     border: 1px solid #000;
@@ -523,62 +522,85 @@ Blocks
 }
 
 @media (min-width:600px) {
-    .aqi-chart__legend {
+    .aqi-chart__chart-legend {
         font-size: 1em;
     }
 }
 
-.aqi-chart__legend-label {
+.aqi-chart__chart-legend-label {
     display: flex;
     align-items: center;
     gap: 8px;
     white-space: nowrap;
 }
 
-.aqi-chart__legend-icon {
+.aqi-chart__chart-legend-icon {
     height: 16px;
     width: 16px;
 }
 
 @media (min-width:600px) {
-    .aqi-chart__legend-icon {
+    .aqi-chart__chart-legend-icon {
         width: 40px
     }
 }
 
-.aqi-chart__legend-swatch {
+.aqi-chart__chart-legend-swatch {
     height: 16px;
 }
 
-.aqi-chart__legend-line {
+.aqi-chart__chart-legend-line {
     height: 2px;
 }
 
-/* aqi-table */
-.aqi-table {
+.aqi-chart__table-toggle-btn {
+    margin: 0 0 12px auto;
+    border: none;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    background: none;
+    color: inherit;
+    font-size: inherit;
+}
+
+.aqi-chart__table-toggle-btn-icon {
+    margin: 0 8px 0 0;
+    width: 1.25em;
+    height: 1.25em;
+    fill: #262223;
+}
+
+.aqi-chart__table-toggle-btn[aria-expanded='true'] .aqi-chart__table-toggle-btn-icon {
+    transform: rotate(90deg);
+}
+
+.aqi-chart__table {
+    display: none;
+    width: 100%;
     padding: 8px 14px;
+    border-collapse: collapse;
     color: #000;
     font-family: Arial;
 }
 
 @media (min-width:800px) {
-    .aqi-table {
+    .aqi-chart__table {
         padding: 12px 16px;
     }
 }
 
-.aqi-table__table {
-    border-collapse: collapse;
-    width: 100%
+.aqi-chart__table--expanded {
+    display: table;
 }
 
-.aqi-table__table-cell {
+.aqi-chart__table-cell {
     border: 1px solid #000;
     padding: 8px 0px;
     text-align: center;
 }
 
-.aqi-table__table-cell--header {
+.aqi-chart__table-cell--header {
     background: #efefef;
 }
 

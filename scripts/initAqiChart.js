@@ -14,7 +14,7 @@ const DATA_LABELS = {
 }
 
 const generateAqiChart = (aqiData, aqiDataLower, aqiDataUpper, tempData, tempDataLower, tempDataUpper) => {
-    const chartContainer = document.querySelector(".aqi-chart");
+    const chartContainer = document.querySelector(".aqi-chart__chart-container");
     const chartHeight = window.innerWidth > 600 ? 400 : 300;
     const chartWidth = chartContainer.offsetWidth;
 
@@ -25,18 +25,16 @@ const generateAqiChart = (aqiData, aqiDataLower, aqiDataUpper, tempData, tempDat
         width: chartWidth
     });
 
-    chartLegend.classList.add("aqi-chart__legend");
+    chartLegend.classList.add("aqi-chart__chart-legend");
 
-    chartSVG.classList.add("aqi-chart__svg");
+    chartSVG.classList.add("aqi-chart__chart-svg");
 
     chartContainer.replaceChildren(chartLegend, chartSVG);
 }
 
 const generateAqiTable = (aggregateData, dataLabels) => {
-    let tableContainer = document.querySelector(".aqi-table")
-
-    let table = document.createElement("table")
-    table.classList.add("aqi-table__table")
+    let table = document.querySelector(".aqi-chart__table")
+    table.id = "aqi-table"
 
     let tableHeader = document.createElement("tr")
     let tableBody = new DocumentFragment()
@@ -47,7 +45,7 @@ const generateAqiTable = (aggregateData, dataLabels) => {
     // Create table header
     tableColumns.forEach(column => {
         let tableHeaderCell = document.createElement("th");
-        tableHeaderCell.classList.add("aqi-table__table-cell", "aqi-table__table-cell--header")
+        tableHeaderCell.classList.add("aqi-chart__table-cell", "aqi-chart__table-cell--header")
 
         tableHeaderCell.setAttribute("scope", "col");
         tableHeaderCell.innerText = dataLabels[column];
@@ -60,7 +58,7 @@ const generateAqiTable = (aggregateData, dataLabels) => {
         let row = document.createElement("tr");
         tableColumns.forEach(column => {
             let cell = document.createElement("td")
-            cell.classList.add("aqi-table__table-cell")
+            cell.classList.add("aqi-chart__table-cell")
 
             let content = datum[column]
 
@@ -73,8 +71,6 @@ const generateAqiTable = (aggregateData, dataLabels) => {
 
     table.appendChild(tableHeader);
     table.appendChild(tableBody);
-
-    tableContainer.appendChild(table);
 }
 
 const res = await Promise.all([
@@ -111,5 +107,20 @@ generateAqiChart(aqiData, aqiDataLower, aqiDataUpper, tempData, tempDataLower, t
 window.addEventListener('resize', () => {
     generateAqiChart(aqiData, aqiDataLower, aqiDataUpper, tempData, tempDataLower, tempDataUpper);
 });
+
+const dataTableToggleBtn = document.querySelector(".aqi-chart__table-toggle-btn");
+
+dataTableToggleBtn.addEventListener("click", () => {
+    const dataTable = document.querySelector(".aqi-chart__table");
+    const dataTableToggleBtn = document.querySelector(".aqi-chart__table-toggle-btn");
+
+    if(dataTableToggleBtn.getAttribute("aria-expanded") == "false") {
+        dataTable.classList.add("aqi-chart__table--expanded");
+        dataTableToggleBtn.setAttribute("aria-expanded", "true");
+    } else {
+        dataTable.classList.remove("aqi-chart__table--expanded");
+        dataTableToggleBtn.setAttribute("aria-expanded", "false");
+    }
+})
 
 generateAqiTable(csvDataAggregated, DATA_LABELS)

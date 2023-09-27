@@ -68,19 +68,19 @@ function constructArea(color, areaGenerator, lowerData, upperData) {
 
 function constructLegendLabel(title, iconColor, iconType) {
     const labelEl = document.createElement("span");
-    labelEl.classList.add("aqi-chart__legend-label");
+    labelEl.classList.add("aqi-chart__chart-legend-label");
     labelEl.textContent = title;
 
     const iconEl = document.createElement("span");
-    iconEl.classList.add("aqi-chart__legend-icon");
+    iconEl.classList.add("aqi-chart__chart-legend-icon");
     iconEl.style.background = iconColor;
 
     switch(iconType) {
         case "swatch":
-            iconEl.classList.add("aqi-chart__legend-swatch");
+            iconEl.classList.add("aqi-chart__chart-legend-swatch");
             break;
         case "line":
-            iconEl.classList.add("aqi-chart__legend-line");
+            iconEl.classList.add("aqi-chart__chart-legend-line");
             break;
     }
 
