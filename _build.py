@@ -38,4 +38,7 @@ with open(f"{outDir}/conditions.json", "w", encoding="utf-8") as conditionFile:
     json.dump(conditions, conditionFile)
 
 # Create index page
-subprocess.run(["pandoc", "--from=markdown", "--to=html", f"--output={outDir}/index.html", "--template=templates/index.html", "index.md"])
+cmdArgs = ["pandoc", "--from=markdown", "--to=html", f"--output={outDir}/index.html", "--template=templates/index.html"]
+if (args.dummy): cmdArgs.append(f"--metadata=dummy")
+cmdArgs.append("index.md")
+subprocess.run(cmdArgs)
