@@ -1,6 +1,8 @@
 import { fetchJSON } from "./modules/fetchHelpers.js";
 import getAqiCondition from "./modules/getAqiCondition.js";
 
+const DUMMY = document.documentElement.hasAttribute("data-dummy")
+
 function initializeHeader(timestamp) {
     let dateEl = document.querySelector(".header__date");
     let date = new Date(timestamp * 1000);
@@ -54,12 +56,13 @@ function displayFailedPollutantWidget(pollutant) {
     aqiEl.textContent = "Not available";
 };
 
+const api = DUMMY ? "dummy/values.json" : "https://z44g6g2rrl.execute-api.us-west-2.amazonaws.com/test/get_air"
 
 let response;
 
 try {
     response = await Promise.all([
-        fetchJSON("https://z44g6g2rrl.execute-api.us-west-2.amazonaws.com/test/get_air"), 
+        fetchJSON(api), 
         fetchJSON("conditions.json")
     ]);
 } catch(error) {
