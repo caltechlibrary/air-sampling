@@ -330,6 +330,8 @@ export function aqiLegend() {
     const currTempLabelEl = constructLegendLabel("Current day Temp", "#0000ff", "line");
 
     legendEl.append(prevAqiLabelEl, currAqiLabelEl, prevTempLabelEl, currTempLabelEl);
+    legendEl.setAttribute("role", "img")
+    legendEl.setAttribute("aria-label", "Legend for AQI and Temperature chart. Tabular data is available below.")
 
     return legendEl;
 }
