@@ -100,7 +100,7 @@ const csvDataAggregated = aqiData.map((aqiDatum, i) => (
         tempDataLower: tempDataLower[i].value,
         tempDataUpper: tempDataUpper[i].value
     }
-))
+    )).sort((a, b) => a.time - b.time)
 
 generateAqiChart(aqiData, aqiDataLower, aqiDataUpper, tempData, tempDataLower, tempDataUpper);
 
