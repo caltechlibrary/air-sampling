@@ -39,7 +39,7 @@ function displayFailedAqiWidget() {
 function displayPollutantWidgetData(pollutant, concentration, aqi, condition, warning) {
     let pollutantWidgetEl = document.querySelector(`.pollutant-widget[data-pollutant='${pollutant}']`);
     let aqiEl = pollutantWidgetEl.querySelector(".pollutant-widget__aqi");
-    let concentrationEl = pollutantWidgetEl.querySelector(".pollutant-widget__concentration");
+    let concentrationEl = pollutantWidgetEl.querySelector(".pollutant-widget__concentration-text");
     let warningTextEl = pollutantWidgetEl.querySelector(".pollutant-widget__warning-text");
 
     pollutantWidgetEl.classList.add(`pollutant-widget--${condition.toLowerCase().split(" ").join("-")}`);

@@ -1,25 +1,25 @@
 <div class="pollutant-widget page__pollutant-widget" data-pollutant="${it.formula}" data-unit="${it.unit}">
-    <div class="pollutant-widget__top-container">
-        <h2 class="pollutant-widget__header pollutant-widget__label">
-            <button class="pollutant-widget__toggle-btn" aria-controls="${it.formula}-panel" aria-expanded="false">
-                <span class="pollutant-widget__toggle-icon">${svg/triangle.svg()}</span>
-                <span>${it.name}</span>
-            </button>
-        </h2>
-        <p class="pollutant-widget__aqi-label pollutant-widget__label">
-            <span class="pollutant-widget__aqi"></span>
-            <span class="pollutant-widget__aqi-text">AQI</span>
-        </p>
-        <p class="pollutant-widget__concentration-label pollutant-widget__label">
-            <span class="pollutant-widget__label-sr-text">Current ${it.name} concentration</span>
-            <span class="pollutant-widget__concentration"></span>
-            ${it.unit}
-        </p>
-    </div>
-    <div id="${it.formula}-panel" class="pollutant-widget__panel">
-        <div class="pollutant-widget__warning">
+    <div class="pollutant-widget__info-container">
+        <div class="pollutant-widget__header-container">
+            <h2 class="pollutant-widget__header-item pollutant-widget__header-label">
+                <button class="pollutant-widget__toggle-btn" aria-controls="${it.name}-warning ${it.name}-chart" aria-expanded="false">
+                    <span class="pollutant-widget__toggle-icon">${svg/triangle.svg()}</span>
+                    <span>${it.name}</span>
+                </button>
+            </h2>
+            <p class="pollutant-widget__header-item pollutant-widget__aqi-label">
+                <span class="pollutant-widget__aqi"></span>
+                <span class="pollutant-widget__aqi-text">AQI</span>
+            </p>
+            <p class="pollutant-widget__header-item pollutant-widget__concentration-label">
+                <span class="pollutant-widget__concentration-sr-text">Current ${it.name} concentration</span>
+                <span class="pollutant-widget__concentration-text"></span>
+                ${it.unit}
+            </p>
+        </div>
+        <div id="${it.name}-warning"  class="pollutant-widget__warning-container">
             <p class="pollutant-widget__warning-text"></p>
         </div>
-        <div class="pollutant-widget__chart" tabindex="0"></div>
     </div>
+    <div id="${it.name}-chart" class="pollutant-widget__chart-container"></div>
 </div>

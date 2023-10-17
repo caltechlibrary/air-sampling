@@ -4,9 +4,9 @@ import hourStringToDateObject from "./modules/hourStringToDateObject.js";
 import { pollutantChart } from "./modules/charts.js";
 
 const generatePollutantChart = (pollutantWidgetEl, pollutantData, pollutant, unit) => {
-    const chartContainer = pollutantWidgetEl.querySelector(".pollutant-widget__chart");
-    const chartHeight = chartContainer.offsetHeight;
+    const chartContainer = pollutantWidgetEl.querySelector(".pollutant-widget__chart-container");
     const chartWidth = chartContainer.offsetWidth;
+    const chartHeight = chartContainer.offsetHeight;
 
     const chartSVG = pollutantChart(pollutantData, {
         height: chartHeight,
@@ -15,15 +15,13 @@ const generatePollutantChart = (pollutantWidgetEl, pollutantData, pollutant, uni
         unit
     });
 
-    chartSVG.classList.add("pollutant-widget__chart-svg");
-
     chartContainer.replaceChildren(chartSVG);
 }
 
 const pollutantWidgetEls = document.querySelectorAll(".pollutant-widget");
 
 for(const pollutantWidgetEl of pollutantWidgetEls) {
-    const pollutantWidgetPanelEl = pollutantWidgetEl.querySelector(".pollutant-widget__panel");
+    const pollutantWidgetToggleEl = pollutantWidgetEl.querySelector(".pollutant-widget__toggle-btn");
     const pollutant = pollutantWidgetEl.getAttribute("data-pollutant");
     const unit = pollutantWidgetEl.getAttribute("data-unit");
 
@@ -31,9 +29,13 @@ for(const pollutantWidgetEl of pollutantWidgetEls) {
     const pollutantData = parseTimeValueCSV(pollutantDataCSVString);
     const pollutantDataFormatted = pollutantData.map(datum => ({ ...datum, time: hourStringToDateObject(datum.time) }));
 
-    generatePollutantChart(pollutantWidgetEl, pollutantDataFormatted, pollutant, unit);
+    pollutantWidgetToggleEl.addEventListener("click", () => {
+        if(window.innerWidth < 800 && pollutantWidgetEl.classList.contains("pollutant-widget--expanded")) {
+            generatePollutantChart(pollutantWidgetEl, pollutantDataFormatted, pollutant, unit);
+        }
+    });
 
-    pollutantWidgetPanelEl.addEventListener("transitionend", (event) => {
+    pollutantWidgetEl.addEventListener("transitionend", (event) => {
         if(event.propertyName == "height" && pollutantWidgetEl.classList.contains("pollutant-widget--expanded")) {
             generatePollutantChart(pollutantWidgetEl, pollutantDataFormatted, pollutant, unit);
         }
