@@ -308,6 +308,10 @@ Blocks
     word-wrap: break-word;
 }
 
+.resources-widget__link sub {
+    line-height: 0;
+}
+
 .resources-widget__headline-img {
     margin-right: 16px;
     width: 45%;
