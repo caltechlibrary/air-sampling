@@ -363,15 +363,15 @@ Blocks
 /* footer */
 .footer {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+    gap: 3rem;
 }
 
 @media (min-width: 800px) {
     .footer {
-        justify-content: center;
-        gap: 128px;
+        gap: 7rem;
     }
 }
 
