@@ -50,3 +50,13 @@ if (args.dummy): pandocCmd.append(f"--metadata=dummy")
 pandocCmd.append("index.md")
 
 subprocess.run(pandocCmd)
+
+# Create AQI Data page
+pandocCmd = []
+pandocCmd.append("pandoc")
+pandocCmd.append("--from=markdown")
+pandocCmd.append("--to=html")
+pandocCmd.append(f"--output={outDir}/aqi-data.html")
+pandocCmd.append("--template=templates/aqi-data.html")
+pandocCmd.append("aqi-data.md")
+subprocess.run(pandocCmd)
