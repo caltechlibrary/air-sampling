@@ -19,7 +19,7 @@ def process_value(value, item, body):
 
     conversion = {"O3": Decimal("1000"), "CO": Decimal("1000")}
 
-    if body[value] != "NaN":
+    if body[value] != "nan":
 
         measurement = Decimal(str(body[value]))
 
@@ -34,6 +34,9 @@ def process_value(value, item, body):
             aqiv = (mapping[value], measurement)
 
         return aqiv
+        
+    else:
+        item[value] = "nan"
 
 
 values = [
