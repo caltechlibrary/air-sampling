@@ -12,6 +12,7 @@ stylesDir = "styles"
 scriptsDir = "scripts"
 imagesDir = "img"
 conditionsDir = "conditions"
+pagesDir = "pages"
 
 argParser = argparse.ArgumentParser()
 argParser.add_argument("--dummy", action="store_true", help="set a flag to include dummy data")
@@ -47,7 +48,7 @@ pandocCmd.append("--template=templates/index.html")
 
 if (args.dummy): pandocCmd.append(f"--metadata=dummy")
 
-pandocCmd.append("index.md")
+pandocCmd.append(f"{pagesDir}/index.md")
 
 subprocess.run(pandocCmd)
 
@@ -58,5 +59,5 @@ pandocCmd.append("--from=markdown")
 pandocCmd.append("--to=html")
 pandocCmd.append(f"--output={outDir}/aqi-data.html")
 pandocCmd.append("--template=templates/aqi-data.html")
-pandocCmd.append("aqi-data.md")
+pandocCmd.append(f"{pagesDir}/aqi-data.md")
 subprocess.run(pandocCmd)
