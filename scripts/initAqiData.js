@@ -67,7 +67,7 @@ for(let prop in csvDataAggregated[0]) { tableColumns.push(prop) }
 // Create table header
 tableColumns.forEach(column => {
     let tableHeaderCell = document.createElement("th");
-    tableHeaderCell.classList.add("aqi-table__cell", "aqi-table-cell--header")
+    tableHeaderCell.classList.add("aqi-table__cell", "aqi-table__cell--header")
 
     tableHeaderCell.setAttribute("scope", "col");
     tableHeaderCell.innerText = DATA_LABELS[column];
