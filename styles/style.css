@@ -558,57 +558,6 @@ Blocks
     height: 2px;
 }
 
-.aqi-chart__table-toggle-btn {
-    margin: 0 0 12px auto;
-    border: none;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    background: none;
-    color: inherit;
-    font-size: inherit;
-}
-
-.aqi-chart__table-toggle-btn-icon {
-    margin: 0 8px 0 0;
-    width: 1.25em;
-    height: 1.25em;
-    fill: #262223;
-}
-
-.aqi-chart__table-toggle-btn[aria-expanded='true'] .aqi-chart__table-toggle-btn-icon {
-    transform: rotate(90deg);
-}
-
-.aqi-chart__table {
-    display: none;
-    width: 100%;
-    padding: 8px 14px;
-    border-collapse: collapse;
-    color: #000;
-    font-family: Arial;
-}
-
-@media (min-width:800px) {
-    .aqi-chart__table {
-        padding: 12px 16px;
-    }
-}
-
-.aqi-chart__table--expanded {
-    display: table;
-}
-
-.aqi-chart__table-cell {
-    border: 1px solid #000;
-    padding: 8px 0px;
-    text-align: center;
-}
-
-.aqi-chart__table-cell--header {
-    background: #efefef;
-}
-
 /* pollutant-widget */
 .pollutant-widget {
     box-shadow: 0px 0px 10px #00000033;
