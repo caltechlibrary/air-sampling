@@ -59,5 +59,9 @@ pandocCmd.append("--from=markdown")
 pandocCmd.append("--to=html")
 pandocCmd.append(f"--output={outDir}/aqi-data.html")
 pandocCmd.append("--template=templates/aqi-data.html")
+
+if (args.dummy): pandocCmd.append(f"--metadata=dummy")
+
 pandocCmd.append(f"{pagesDir}/aqi-data.md")
+
 subprocess.run(pandocCmd)
