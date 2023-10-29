@@ -4,7 +4,7 @@ import hourStringToDateObject from "./modules/hourStringToDateObject.js";
 import { pollutantChart } from "./modules/charts.js";
 
 const generatePollutantChart = (pollutantWidgetEl, pollutantData, pollutant, unit) => {
-    const chartContainer = pollutantWidgetEl.querySelector(".pollutant-widget__chart-container");
+    const chartContainer = pollutantWidgetEl.querySelector(".pollutant-widget__chart");
     const chartWidth = chartContainer.offsetWidth;
     const chartHeight = chartContainer.offsetHeight;
 
@@ -14,6 +14,8 @@ const generatePollutantChart = (pollutantWidgetEl, pollutantData, pollutant, uni
         pollutant,
         unit
     });
+
+    chartSVG.classList.add("pollutant-widget__chart-svg")
 
     chartContainer.replaceChildren(chartSVG);
 }

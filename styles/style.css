@@ -762,7 +762,9 @@ Blocks
 
 .pollutant-widget__chart-container {
     flex: 1 1 10rem;
-    background: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
     opacity: 0;
     visibility: hidden;
 }
@@ -778,6 +780,21 @@ Blocks
 .pollutant-widget--expanded .pollutant-widget__chart-container {
     opacity: 1;
     visibility: visible;
+}
+
+.pollutant-widget__chart {
+    flex: 1;
+    min-height: 0;
+    background: #fff;
+}
+
+.pollutant-widget__chart-svg {
+    display: block;
+}
+
+.pollutant-widget__chart-data-link {
+    display: flex;
+    justify-content: flex-end;
 }
 
 /* aqi-table */
