@@ -65,3 +65,70 @@ if (args.dummy): pandocCmd.append(f"--metadata=dummy")
 pandocCmd.append(f"{pagesDir}/aqi-data.md")
 
 subprocess.run(pandocCmd)
+
+# Create Pollutant Data pages
+
+pandocCmd = []
+pandocCmd.append("pandoc")
+pandocCmd.append("--from=markdown")
+pandocCmd.append("--to=html")
+pandocCmd.append(f"--output={outDir}/OZONE-data.html")
+pandocCmd.append("--template=templates/pollutant-data.html")
+
+if (args.dummy): pandocCmd.append(f"--metadata=dummy")
+
+pandocCmd.append(f"{pagesDir}/OZONE-data.md")
+
+subprocess.run(pandocCmd)
+
+pandocCmd = []
+pandocCmd.append("pandoc")
+pandocCmd.append("--from=markdown")
+pandocCmd.append("--to=html")
+pandocCmd.append(f"--output={outDir}/PM2.5-data.html")
+pandocCmd.append("--template=templates/pollutant-data.html")
+
+if (args.dummy): pandocCmd.append(f"--metadata=dummy")
+
+pandocCmd.append(f"{pagesDir}/PM2.5-data.md")
+
+subprocess.run(pandocCmd)
+
+pandocCmd = []
+pandocCmd.append("pandoc")
+pandocCmd.append("--from=markdown")
+pandocCmd.append("--to=html")
+pandocCmd.append(f"--output={outDir}/PM10-data.html")
+pandocCmd.append("--template=templates/pollutant-data.html")
+
+if (args.dummy): pandocCmd.append(f"--metadata=dummy")
+
+pandocCmd.append(f"{pagesDir}/PM10-data.md")
+
+subprocess.run(pandocCmd)
+
+pandocCmd = []
+pandocCmd.append("pandoc")
+pandocCmd.append("--from=markdown")
+pandocCmd.append("--to=html")
+pandocCmd.append(f"--output={outDir}/CO-data.html")
+pandocCmd.append("--template=templates/pollutant-data.html")
+
+if (args.dummy): pandocCmd.append(f"--metadata=dummy")
+
+pandocCmd.append(f"{pagesDir}/CO-data.md")
+
+subprocess.run(pandocCmd)
+
+pandocCmd = []
+pandocCmd.append("pandoc")
+pandocCmd.append("--from=markdown")
+pandocCmd.append("--to=html")
+pandocCmd.append(f"--output={outDir}/NO2-data.html")
+pandocCmd.append("--template=templates/pollutant-data.html")
+
+if (args.dummy): pandocCmd.append(f"--metadata=dummy")
+
+pandocCmd.append(f"{pagesDir}/NO2-data.md")
+
+subprocess.run(pandocCmd)
