@@ -257,7 +257,7 @@ export function aqiChart(aqiData, aqiDataLower, aqiDataUpper, tempData, tempData
         const tempArea = constructAreaGenerator(xScale, tempYScale);
 
         // Construct chart svg.
-        const svg = constructChartSvg(height, width, "Chart of various AQI and Temperature values over the past 24 hours. Tabular data is available below.");
+        const svg = constructChartSvg(height, width, "Chart of AQI and Temperature values over the past 24 hours.");
 
         // Construct labels.
         const xLabel = constructLabel("Local Time of Day (hrs)", labelFontSize);
