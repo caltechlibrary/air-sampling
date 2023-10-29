@@ -558,6 +558,11 @@ Blocks
     height: 2px;
 }
 
+.aqi-chart__data-link-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
 /* pollutant-widget */
 .pollutant-widget {
     box-shadow: 0px 0px 10px #00000033;

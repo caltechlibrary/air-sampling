@@ -18,6 +18,9 @@
     </div>
     <div class="aqi-chart page__aqi-chart">
       <div class="aqi-chart__chart-container"></div>
+      <div class="aqi-chart__data-link-container">
+        <a href="/aqi-data.html">AQI Data</a>
+      </div>
     </div>
     ${for(pollutants)}${it:pollutant-widget.html()}${endfor}
     <div class="page__resources-widget-container">${resources-widget.html()}</div>
