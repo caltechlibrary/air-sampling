@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US" ${if(dummy)}data-dummy${endif}>
+<html lang="en-US" data-formula=${formula} ${if(dummy)}data-dummy${endif}>
 
 <head>
   <meta charset="UTF-8">
@@ -16,7 +16,7 @@
   </main>
   ${footer.html()}
 
-  <script type="module" src="scripts/initAqiData.js"></script>
+  <script type="module" src="scripts/initPollutantData.js"></script>
 </body>
 
 </html>

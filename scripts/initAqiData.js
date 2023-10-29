@@ -56,7 +56,7 @@ const csvDataAggregated = aqiData.map((aqiDatum, i) => (
     }
 )).sort((a, b) => a.time - b.time);
 
-let table = document.querySelector(".aqi-table")
+let table = document.querySelector(".data-table")
 
 let tableHeader = document.createElement("tr")
 let tableBody = new DocumentFragment()
@@ -67,7 +67,7 @@ for(let prop in csvDataAggregated[0]) { tableColumns.push(prop) }
 // Create table header
 tableColumns.forEach(column => {
     let tableHeaderCell = document.createElement("th");
-    tableHeaderCell.classList.add("aqi-table__cell", "aqi-table__cell--header")
+    tableHeaderCell.classList.add("data-table__cell", "data-table__cell--header")
 
     tableHeaderCell.setAttribute("scope", "col");
     tableHeaderCell.innerText = DATA_LABELS[column];
@@ -80,7 +80,7 @@ csvDataAggregated.forEach(datum => {
     let row = document.createElement("tr");
     tableColumns.forEach(column => {
         let cell = document.createElement("td")
-        cell.classList.add("aqi-table__cell")
+        cell.classList.add("data-table__cell")
 
         let content = datum[column]
 
