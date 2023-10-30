@@ -1,6 +1,7 @@
 import { fetchCSV } from "./modules/fetchHelpers.js";
 import parseTimeValueCSV from "./modules/parseTimeValueCSV.js";
 import hourStringToDateObject from "./modules/hourStringToDateObject.js";
+import createDataTable from "./modules/createDataTable.js";
 
 const DATA_LABELS = {
     time: "Time",
@@ -12,6 +13,7 @@ const DATA_LABELS = {
     tempDataUpper: "Temp Upper"
 }
 
+const main = document.querySelector("main");
 const dummy = document.documentElement.hasAttribute("data-dummy")
 
 let res;
@@ -56,40 +58,6 @@ const csvDataAggregated = aqiData.map((aqiDatum, i) => (
     }
 )).sort((a, b) => a.time - b.time);
 
-let table = document.querySelector(".data-table")
+const table = createDataTable(csvDataAggregated, DATA_LABELS);
 
-let tableHeader = document.createElement("tr")
-let tableBody = new DocumentFragment()
-let tableColumns = [];
-
-for(let prop in csvDataAggregated[0]) { tableColumns.push(prop) }
-
-// Create table header
-tableColumns.forEach(column => {
-    let tableHeaderCell = document.createElement("th");
-    tableHeaderCell.classList.add("data-table__cell", "data-table__cell--header")
-
-    tableHeaderCell.setAttribute("scope", "col");
-    tableHeaderCell.innerText = DATA_LABELS[column];
-    
-    tableHeader.appendChild(tableHeaderCell);
-});
-
-// Create table body
-csvDataAggregated.forEach(datum => {
-    let row = document.createElement("tr");
-    tableColumns.forEach(column => {
-        let cell = document.createElement("td")
-        cell.classList.add("data-table__cell")
-
-        let content = datum[column]
-
-        cell.innerText = column == "time" ? cell.innerText = content.toLocaleTimeString() : content
-
-        row.appendChild(cell)
-    });
-    tableBody.appendChild(row)
-})
-
-table.appendChild(tableHeader);
-table.appendChild(tableBody);
+main.appendChild(table);
