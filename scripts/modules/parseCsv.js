@@ -1,4 +1,4 @@
-function parseTimeValueCSV(csv) {
+function parseCsv(csv) {
     const parsedCsv = [];
 
     const rows = csv.trim().split("\n");
@@ -15,4 +15,4 @@ function parseTimeValueCSV(csv) {
     return parsedCsv;
 };
 
-export default parseTimeValueCSV;
+export default parseCsv;

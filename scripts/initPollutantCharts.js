@@ -1,5 +1,5 @@
 import { fetchCSV } from "./modules/fetchHelpers.js";
-import parseTimeValueCSV from "./modules/parseTimeValueCSV.js";
+import parseCsv from "./modules/parseCsv.js";
 import hourStringToDateObject from "./modules/hourStringToDateObject.js";
 import { pollutantChart } from "./modules/charts.js";
 
@@ -28,7 +28,7 @@ for(const pollutantWidgetEl of pollutantWidgetEls) {
     const unit = pollutantWidgetEl.getAttribute("data-unit");
 
     const pollutantDataCSVString = await fetchCSV(`https://z44g6g2rrl.execute-api.us-west-2.amazonaws.com/test/get_air?graph=${pollutant}`);
-    const pollutantData = parseTimeValueCSV(pollutantDataCSVString);
+    const pollutantData = parseCsv(pollutantDataCSVString);
     const pollutantDataFormatted = pollutantData.map(datum => ({ ...datum, time: hourStringToDateObject(datum.time) }));
 
     pollutantWidgetToggleEl.addEventListener("click", () => {

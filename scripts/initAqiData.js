@@ -1,5 +1,5 @@
 import { fetchCSV } from "./modules/fetchHelpers.js";
-import parseTimeValueCSV from "./modules/parseTimeValueCSV.js";
+import parseCsv from "./modules/parseCsv.js";
 import hourStringToDateObject from "./modules/hourStringToDateObject.js";
 import createDataTable from "./modules/createDataTable.js";
 
@@ -38,7 +38,7 @@ if (dummy) {
     ]);
 }
 
-const csvData = res.map(parseTimeValueCSV);
+const csvData = res.map(parseCsv);
 
 const csvDataTimeFormatted = csvData.map(data => {
     return data.map(entry => ({ ...entry, time: hourStringToDateObject(entry.time) }));
