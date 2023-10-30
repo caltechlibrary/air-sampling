@@ -1,16 +1,18 @@
-import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7.7.0/+esm";
+function parseTimeValueCSV(csv) {
+    const parsedCsv = [];
 
-/**
- * Converts csv string of format "time,value" to
- * array of { time, value } objects.
- * 
- * @param {string} csvString CSV string of format "time,value"
- * @returns Array of { time, value } objects
- */
-function parseTimeValueCSV(csvString) {
-    const rows = d3.csvParseRows(csvString, d3.autoType);
+    const rows = csv.trim().split("\n");
 
-    return rows.map(([time, value]) => ({ time, value }));
+    for(const row of rows) {
+        const [time, value] = row.split(",");
+
+        parsedCsv.push({
+            time,
+            value: parseFloat(value)
+        })
+    }
+
+    return parsedCsv;
 };
 
 export default parseTimeValueCSV;
