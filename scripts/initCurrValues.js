@@ -1,7 +1,36 @@
 import { fetchJSON } from "./modules/fetchHelpers.js";
-import getAqiCondition from "./modules/getAqiCondition.js";
+const DUMMY = document.documentElement.hasAttribute("data-dummy");
 
-const DUMMY = document.documentElement.hasAttribute("data-dummy")
+function getCondition(aqi) {
+    let condition;
+
+    if(aqi <= 50) {
+        condition = "good";
+    } else if (aqi <= 100) {
+        condition = "moderate";
+    } else if (aqi <= 150) {
+        condition = "unhealthy-for-sensitive-groups";
+    } else if (aqi <= 200) {
+        condition = "unhealthy";
+    } else if (aqi <= 300) {
+        condition = "very-unhealthy";
+    } else {
+        condition = "hazardous"
+    }
+
+    return condition;
+}
+
+function conditionToText(condition) {
+    const words = condition.split("-");
+    const wordsCapitalized = [];
+
+    for(const word of words) {
+        wordsCapitalized.push(word.charAt(0).toUpperCase() + word.substring(1));
+    }
+
+    return wordsCapitalized.join(" ");
+}
 
 function initializeHeader(timestamp) {
     let dateEl = document.querySelector(".header__date");
@@ -17,10 +46,11 @@ function displayAqiWidgetData(value, condition) {
     let descriptionEl = document.querySelector(".aqi-widget__condition-value");
     let aqiMeterEl = document.querySelector(".aqi-widget__meter");
     let inidicatorEl = document.getElementById("aqi-widget__meter-indicator");
+    let conditionText = conditionToText(condition);
 
-    aqiWidgetEl.classList.add(`aqi-widget--${condition.toLowerCase().split(" ").join("-")}`);
+    aqiWidgetEl.classList.add(`aqi-widget--${condition}`);
     valueEl.textContent = value;
-    descriptionEl.textContent = condition;
+    descriptionEl.textContent = conditionText;
     aqiMeterEl.setAttribute("aria-label", `Current AQI value falls within the "${condition}" category.`)
     inidicatorEl.setAttribute("x", `${(value / 500) * 100}%`);
     inidicatorEl.setAttribute("visibility", "visible");
@@ -42,7 +72,7 @@ function displayPollutantWidgetData(pollutant, concentration, aqi, condition, wa
     let concentrationEl = pollutantWidgetEl.querySelector(".pollutant-widget__concentration-text");
     let warningTextEl = pollutantWidgetEl.querySelector(".pollutant-widget__warning-text");
 
-    pollutantWidgetEl.classList.add(`pollutant-widget--${condition.toLowerCase().split(" ").join("-")}`);
+    pollutantWidgetEl.classList.add(`pollutant-widget--${condition}`);
     concentrationEl.textContent = concentration;
     aqiEl.textContent = aqi;
     warningTextEl.textContent = warning;
@@ -71,14 +101,14 @@ const pollutantWidgetEls = document.querySelectorAll(".pollutant-widget");
 if(response) {
     initializeHeader(response.time);
 
-    displayAqiWidgetData(response.aqi, getAqiCondition(response.aqi));
+    displayAqiWidgetData(response.aqi, getCondition(response.aqi));
 
     for(let pollutantWidgetEl of pollutantWidgetEls) {
         const pollutant = pollutantWidgetEl.getAttribute("data-pollutant");
         const concentration = response[pollutant];
         const aqi = response[`${pollutant}_aqi`];
-        const condition = getAqiCondition(aqi);
-        const warning = pollutantWidgetEl.getAttribute(`data-${condition.toLocaleLowerCase().replace(" ", "-")}`);
+        const condition = getCondition(aqi);
+        const warning = pollutantWidgetEl.getAttribute(`data-${condition}`);
         displayPollutantWidgetData(pollutant, concentration, aqi, condition, warning);
     }
 } else {
