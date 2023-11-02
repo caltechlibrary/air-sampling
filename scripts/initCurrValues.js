@@ -67,16 +67,18 @@ function displayFailedAqiWidget() {
     conditionEl.textContent = "Not available";
 };
 
-function displayPollutantWidgetData(pollutant, concentration, aqi, condition, warning) {
+function displayPollutantWidgetData(pollutant, concentration, aqi, condition) {
     let pollutantWidgetEl = document.querySelector(`.pollutant-widget[data-pollutant='${pollutant}']`);
     let aqiEl = pollutantWidgetEl.querySelector(".pollutant-widget__aqi");
     let concentrationEl = pollutantWidgetEl.querySelector(".pollutant-widget__concentration-text");
     let warningTextEl = pollutantWidgetEl.querySelector(".pollutant-widget__warning-text");
 
+    let warningText = pollutantWidgetEl.getAttribute(`data-${condition}`);
+
     pollutantWidgetEl.classList.add(`pollutant-widget--${condition}`);
     concentrationEl.textContent = concentration;
     aqiEl.textContent = aqi;
-    warningTextEl.textContent = warning;
+    warningTextEl.textContent = warningText;
 };
 
 function displayFailedPollutantWidget(pollutant) {
@@ -107,8 +109,7 @@ if(data) {
         const concentration = data[pollutant];
         const aqi = data[`${pollutant}_aqi`];
         const condition = getCondition(aqi);
-        const warning = pollutantWidgetEl.getAttribute(`data-${condition}`);
-        displayPollutantWidgetData(pollutant, concentration, aqi, condition, warning);
+        displayPollutantWidgetData(pollutant, concentration, aqi, condition);
     }
 } else {
     displayFailedAqiWidget();
