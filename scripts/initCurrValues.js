@@ -87,27 +87,25 @@ function displayFailedPollutantWidget(pollutant) {
     aqiEl.textContent = "Not available";
 };
 
-const api = DUMMY ? "dummy/values.json" : "https://z44g6g2rrl.execute-api.us-west-2.amazonaws.com/test/get_air"
-
-let response;
+let data;
 
 try {
-    response = await fetchJSON(api)
+    data = await fetchJSON(DUMMY ? "dummy/values.json" : "https://z44g6g2rrl.execute-api.us-west-2.amazonaws.com/test/get_air");
 } catch(error) {
     console.log(error);
 }
 
 const pollutantWidgetEls = document.querySelectorAll(".pollutant-widget");
 
-if(response) {
-    initializeHeader(response.time);
+if(data) {
+    initializeHeader(data.time);
 
-    displayAqiWidgetData(response.aqi, getCondition(response.aqi));
+    displayAqiWidgetData(data.aqi, getCondition(data.aqi));
 
     for(let pollutantWidgetEl of pollutantWidgetEls) {
         const pollutant = pollutantWidgetEl.getAttribute("data-pollutant");
-        const concentration = response[pollutant];
-        const aqi = response[`${pollutant}_aqi`];
+        const concentration = data[pollutant];
+        const aqi = data[`${pollutant}_aqi`];
         const condition = getCondition(aqi);
         const warning = pollutantWidgetEl.getAttribute(`data-${condition}`);
         displayPollutantWidgetData(pollutant, concentration, aqi, condition, warning);
