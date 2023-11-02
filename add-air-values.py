@@ -1,69 +1,38 @@
-import boto3
+aimport boto3
 import json
-import aqi
 from decimal import *
 
 dynamodb = boto3.resource("dynamodb")
 table = dynamodb.Table("air-sampling-table")
 
 
-def process_value(value, item, body):
+def process_value(value, measurement, item):
 
     mapping = {
-        "NO2": aqi.POLLUTANT_NO2_1H,
-        "O3": aqi.POLLUTANT_O3_8H,
-        "CO": aqi.POLLUTANT_CO_8H,
-        "PM2.5": aqi.POLLUTANT_PM25,
-        "PM10": aqi.POLLUTANT_PM10,
+        "CO_AQI_30": "CO_aqi",
+        "AQI_30": "aqi",
+        "PM2.5_AQI_30": "PM2.5_aqi",
+        "O3_AQI_30": "O3_aqi",
+        "NO2_AQI_30": "NO2_aqi",
+        "PM10_AQI_30": "PM10_aqi",
     }
 
-    conversion = {"O3": Decimal("1000"), "CO": Decimal("1000")}
-
-    if body[value] != "nan":
-
-        measurement = Decimal(str(body[value]))
-
+    if measurement != "nan":
+        measurement = Decimal(str(measurement))
+        
+    if value in mapping:
+        item[mapping[value]] = measurement
+    else:
         item[value] = measurement
 
-        if value in conversion:
-            measurement = measurement / conversion[value]
-
-        aqiv = None
-        if value in mapping:
-            item[value + "_aqi"] = aqi.to_iaqi(mapping[value], measurement)
-            aqiv = (mapping[value], measurement)
-
-        return aqiv
-        
-    else:
-        item[value] = "nan"
-
-
-values = [
-    "time",
-    "temp",
-    "pressure",
-    "NOy",
-    "NO",
-    "NO2",
-    "O3",
-    "SO2",
-    "CO",
-    "PM2.5",
-    "PM10",
-]
 
 
 def lambda_handler(event, context):
     if event["resource"] == "/submit":
         body = json.loads(event["body"])
-        item = {"date": body["date"]}
-        to_aqi = []
-        for value in values:
-            aqiv = process_value(value, item, body)
-            if aqiv:
-                to_aqi.append(aqiv)
-        item["aqi"] = aqi.to_aqi(to_aqi)
+        item = {"date": body.pop("date")}
+        for value in body:
+            process_value(value,body[value],item)
         table.put_item(Item=item)
         return {"statusCode": 200, "body": json.dumps("Data accepted!")}
 
@@ -72,3 +41,4 @@ if __name__ == "__main__":
     with open("test.json", "r") as infile:
         data = json.load(infile)
         lambda_handler(data, "")
+
