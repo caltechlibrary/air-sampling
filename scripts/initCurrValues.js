@@ -41,20 +41,21 @@ function initializeHeader(timestamp) {
     dateEl.textContent = `${day} ${time}`;
 };
 
-function displayAqiWidgetData(value, condition) {
+function displayAqiWidgetData(aqi) {
     let aqiWidgetEl = document.querySelector(".aqi-widget");
     let valueEl = document.querySelector(".aqi-widget__value");
     let descriptionEl = document.querySelector(".aqi-widget__condition-value");
     let aqiMeterEl = document.querySelector(".aqi-widget__meter");
     let inidicatorEl = document.getElementById("aqi-widget__meter-indicator");
 
+    let condition = getCondition(aqi);
     let conditionText = conditionToText(condition);
 
     aqiWidgetEl.classList.add(`aqi-widget--${condition}`);
-    valueEl.textContent = value;
+    valueEl.textContent = aqi;
     descriptionEl.textContent = conditionText;
     aqiMeterEl.setAttribute("aria-label", `Current AQI value falls within the "${condition}" category.`)
-    inidicatorEl.setAttribute("x", `${(value / 500) * 100}%`);
+    inidicatorEl.setAttribute("x", `${(aqi / 500) * 100}%`);
     inidicatorEl.setAttribute("visibility", "visible");
 };
 
@@ -68,12 +69,13 @@ function displayFailedAqiWidget() {
     conditionEl.textContent = "Not available";
 };
 
-function displayPollutantWidgetData(pollutant, concentration, aqi, condition) {
+function displayPollutantWidgetData(pollutant, concentration, aqi) {
     let pollutantWidgetEl = document.querySelector(`.pollutant-widget[data-pollutant='${pollutant}']`);
     let aqiEl = pollutantWidgetEl.querySelector(".pollutant-widget__aqi");
     let concentrationEl = pollutantWidgetEl.querySelector(".pollutant-widget__concentration-text");
     let warningTextEl = pollutantWidgetEl.querySelector(".pollutant-widget__warning-text");
 
+    let condition = getCondition(aqi);
     let warningText = pollutantWidgetEl.getAttribute(`data-${condition}`);
 
     pollutantWidgetEl.classList.add(`pollutant-widget--${condition}`);
@@ -103,14 +105,14 @@ const pollutantWidgetEls = document.querySelectorAll(".pollutant-widget");
 if(data) {
     initializeHeader(data.time);
 
-    displayAqiWidgetData(data.aqi, getCondition(data.aqi));
+    displayAqiWidgetData(data.aqi);
 
     for(let pollutantWidgetEl of pollutantWidgetEls) {
         const pollutant = pollutantWidgetEl.getAttribute("data-pollutant");
         const concentration = data[pollutant];
         const aqi = data[`${pollutant}_aqi`];
         const condition = getCondition(aqi);
-        displayPollutantWidgetData(pollutant, concentration, aqi, condition);
+        displayPollutantWidgetData(pollutant, concentration, aqi);
     }
 } else {
     displayFailedAqiWidget();
