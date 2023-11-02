@@ -47,6 +47,7 @@ function displayAqiWidgetData(value, condition) {
     let descriptionEl = document.querySelector(".aqi-widget__condition-value");
     let aqiMeterEl = document.querySelector(".aqi-widget__meter");
     let inidicatorEl = document.getElementById("aqi-widget__meter-indicator");
+
     let conditionText = conditionToText(condition);
 
     aqiWidgetEl.classList.add(`aqi-widget--${condition}`);
