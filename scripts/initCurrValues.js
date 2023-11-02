@@ -1,4 +1,5 @@
 import { fetchJSON } from "./modules/fetchHelpers.js";
+
 const DUMMY = document.documentElement.hasAttribute("data-dummy");
 
 function getCondition(aqi) {
