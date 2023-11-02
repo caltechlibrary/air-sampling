@@ -111,7 +111,6 @@ if(data) {
         const pollutant = pollutantWidgetEl.getAttribute("data-pollutant");
         const concentration = data[pollutant];
         const aqi = data[`${pollutant}_aqi`];
-        const condition = getCondition(aqi);
         displayPollutantWidgetData(pollutant, concentration, aqi);
     }
 } else {
