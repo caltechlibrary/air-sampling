@@ -61,10 +61,7 @@ const api = DUMMY ? "dummy/values.json" : "https://z44g6g2rrl.execute-api.us-wes
 let response;
 
 try {
-    response = await Promise.all([
-        fetchJSON(api), 
-        fetchJSON("conditions.json")
-    ]);
+    response = await fetchJSON(api)
 } catch(error) {
     console.log(error);
 }
@@ -72,18 +69,16 @@ try {
 const pollutantWidgetEls = document.querySelectorAll(".pollutant-widget");
 
 if(response) {
-    const [currValues, conditions] = response; 
+    initializeHeader(response.time);
 
-    initializeHeader(currValues.time);
-
-    displayAqiWidgetData(currValues.aqi, getAqiCondition(currValues.aqi));
+    displayAqiWidgetData(response.aqi, getAqiCondition(response.aqi));
 
     for(let pollutantWidgetEl of pollutantWidgetEls) {
         const pollutant = pollutantWidgetEl.getAttribute("data-pollutant");
-        const concentration = currValues[pollutant];
-        const aqi = currValues[`${pollutant}_aqi`];
+        const concentration = response[pollutant];
+        const aqi = response[`${pollutant}_aqi`];
         const condition = getAqiCondition(aqi);
-        const warning = conditions[pollutant][condition];
+        const warning = pollutantWidgetEl.getAttribute(`data-${condition.toLocaleLowerCase().replace(" ", "-")}`);
         displayPollutantWidgetData(pollutant, concentration, aqi, condition, warning);
     }
 } else {

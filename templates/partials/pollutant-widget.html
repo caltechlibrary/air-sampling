@@ -1,4 +1,13 @@
-<div class="pollutant-widget page__pollutant-widget" data-pollutant="${it.formula}" data-unit="${it.unit}">
+<div
+    class="pollutant-widget page__pollutant-widget"
+    data-pollutant="${it.formula}"
+    data-unit="${it.unit}"
+    data-moderate="${it.conditions.moderate}"
+    data-unhealthy-for-sensitive-groups="${it.conditions.unhealthy-for-sensitive-groups}"
+    data-unhealthy="${it.conditions.unhealthy}"
+    data-very-unhealthy="${it.conditions.very-unhealthy}"
+    data-hazardous="${it.conditions.hazardous}"
+>
     <div class="pollutant-widget__info-container">
         <div class="pollutant-widget__header-container">
             <h2 class="pollutant-widget__header-item pollutant-widget__header-label">
