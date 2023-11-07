@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en-US" data-formula=${formula} ${if(dummy)}data-dummy${endif}>
+
+${partials/head.html()}
+
+<body class="page">
+  ${partials/header.html()}
+  <main class="page__main" role="main">
+    <table>
+        <tr>
+            <th scope="col">AQI</th>
+            <th scope="col">O3 (ppbv)</th>
+            <th scope="col">PM2.5 (ug/m3)</th>
+            <th scope="col">PM10 (ug/m3)</th>
+            <th scope="col">CO (ppbv)</th>
+            <th scope="col">NO2 (ppbv)</th>
+        </tr>
+        <tr>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td>50</td>
+            <td>54</td>
+            <td>12</td>
+            <td>54</td>
+            <td>4400</td>
+            <td>53</td>
+        </tr>
+        <tr>
+            <td>100</td>
+            <td>100</td>
+            <td>35.4</td>
+            <td>154</td>
+            <td>9400</td>
+            <td>100</td>
+        </tr>
+        <tr>
+            <td>150</td>
+            <td>164</td>
+            <td>55.4</td>
+            <td>254</td>
+            <td>12400</td>
+            <td>360</td>
+        </tr>
+        <tr>
+            <td>200</td>
+            <td>204</td>
+            <td>150.4</td>
+            <td>354</td>
+            <td>15400</td>
+            <td>649</td>
+        </tr>
+        <tr>
+            <td>300</td>
+            <td>404</td>
+            <td>250.4</td>
+            <td>424</td>
+            <td>30400</td>
+            <td>149</td>
+        </tr>
+        <tr>
+            <td>400</td>
+            <td>504</td>
+            <td>350.4</td>
+            <td>504</td>
+            <td>40400</td>
+            <td>1649</td>
+        </tr>
+        <tr>
+            <td>500</td>
+            <td>604</td>
+            <td>500.4</td>
+            <td>604</td>
+            <td>50400</td>
+            <td>2049</td>
+        </tr>
+    </table>
+    ${body}
+  </main>
+  ${partials/footer.html()}
+</body>
+
+</html>

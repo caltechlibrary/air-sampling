@@ -14,6 +14,8 @@ useful-links:
     title: About Carbon Monoxide (CO) Pollution
   - link: https://www.epa.gov/no2-pollution
     title: About Nitrogen Dioxide (NO~2~) Pollution
+  - link: how-is-aqi-defined-here.html
+    title: How is AQI Defined Here?
 pollutants: 
   - name: OZONE
     formula: O3
