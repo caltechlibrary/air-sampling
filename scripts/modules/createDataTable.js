@@ -14,7 +14,7 @@ function createDataTable(data, labels) {
     for(const column of columns) {
         const headerCell = document.createElement("th");
 
-        headerCell.classList.add("data-table__cell", "data-table__cell--header");
+        headerCell.classList.add("table__cell", "table__cell--header");
         headerCell.setAttribute("scope", "col");
         headerCell.innerText = labels[column];
         
@@ -31,7 +31,7 @@ function createDataTable(data, labels) {
             const cell = document.createElement("td");
             const content = datum[column]
 
-            cell.classList.add("data-table__cell");
+            cell.classList.add("table__cell");
 
             if(column === "time") {
                 cell.innerText = content.toLocaleTimeString();

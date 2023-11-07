@@ -805,13 +805,13 @@ Blocks
     font-family: Arial;
 }
 
-.data-table__cell {
+.table__cell {
     border: 1px solid #000;
     padding: 0.5rem 1rem;
     text-align: center;
 }
 
-.data-table__cell--header {
+.table__cell--header {
     background: #efefef;
 }
 
