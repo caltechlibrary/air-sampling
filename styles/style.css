@@ -820,6 +820,7 @@ Blocks
     margin: 32px auto;
     max-width: 93rem;
     padding: 0 16px;
+    font-family: Arial;
 }
 
 @media (min-width:600px) {
