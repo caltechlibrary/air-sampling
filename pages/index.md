@@ -17,7 +17,8 @@ useful-links:
   - link: how-is-aqi-defined-here.html
     title: How is AQI Defined Here?
 pollutants: 
-  - name: OZONE
+  - title: OZONE
+    name: OZONE
     formula: O3
     unit: ppbv
     conditions:
@@ -26,7 +27,8 @@ pollutants:
       unhealthy: People with lung disease (such as asthma), children, older adults, people who are active outdoors (including outdoor workers), people with certain genetic variants, and people with diets limited in certain nutrients should avoid prolonged or heavy outdoor exertion; everyone else should reduce prolonged or heavy outdoor exertion.
       very-unhealthy: People with lung disease (such as asthma), children, older adults, people who are active outdoors (including outdoor workers), people with certain genetic variants, and people with diets limited in certain nutrients should avoid all outdoor exertion; everyone else should reduce outdoor exertion.
       hazardous: Everyone should avoid all outdoor exertion.
-  - name: PM2.5
+  - title: PM~2.5~
+    name: PM2.5
     formula: PM2.5
     unit: μg/m³
     conditions:
@@ -35,7 +37,8 @@ pollutants:
       unhealthy: People with heart or lung disease, older adults, children, and people of lower socioeconomic status should avoid prolonged or heavy exertion; everyone else should reduce prolonged or heavy exertion.
       very-unhealthy: People with heart or lung disease, older adults, children, and people of lower socioeconomic status should avoid all physical activity outdoors. Everyone else should avoid prolonged or heavy exertion.
       hazardous: Everyone should avoid all physical activity outdoors; people with heart or lung disease, older adults, children, and people of lower socioeconomic status should remain indoors and keep activity levels low.
-  - name: PM10
+  - title: PM~10~
+    name: PM10
     formula: PM10
     unit: μg/m³
     conditions:
@@ -44,7 +47,8 @@ pollutants:
       unhealthy: People with heart or lung disease, older adults, children, and people of lower socioeconomic status should avoid prolonged or heavy exertion; everyone else should reduce prolonged or heavy exertion.
       very-unhealthy: People with heart or lung disease, older adults, children, and people of lower socioeconomic status should avoid all physical activity outdoors. Everyone else should avoid prolonged or heavy exertion.
       hazardous: Everyone should avoid all physical activity outdoors; people with heart or lung disease, older adults, children, and people of lower socioeconomic status should remain indoors and keep activity levels low.
-  - name: CO
+  - title: CO
+    name: CO
     formula: CO
     unit: ppbv
     conditions:
@@ -52,7 +56,8 @@ pollutants:
       unhealthy: People with heart disease, such as angina, should limit Moderate exertion and avoid sources of CO, such as heavy traffic.
       very-unhealthy: People with heart disease, such as angina, should avoid exertion and sources of CO, such as heavy traffic.
       hazardous: People with heart disease, such as angina, should avoid exertion and sources of CO, such as heavy traffic; everyone else should limit heavy exertion.
-  - name: NO2
+  - title: NO~2~
+    name: NO2
     formula: NO2
     unit: ppb
     conditions:

@@ -13,7 +13,7 @@
             <h2 class="pollutant-widget__header-item pollutant-widget__header-label">
                 <button class="pollutant-widget__toggle-btn" aria-controls="${it.name}-warning ${it.name}-chart" aria-expanded="false">
                     <span class="pollutant-widget__toggle-icon">${svg/triangle.svg()}</span>
-                    <span>${it.name}</span>
+                    <span>${it.title}</span>
                 </button>
             </h2>
             <p class="pollutant-widget__header-item pollutant-widget__aqi-label">
@@ -21,7 +21,7 @@
                 <span class="pollutant-widget__aqi-text">AQI</span>
             </p>
             <p class="pollutant-widget__header-item pollutant-widget__concentration-label">
-                <span class="pollutant-widget__concentration-sr-text">Current ${it.name} concentration</span>
+                <span class="pollutant-widget__concentration-sr-text">Current ${it.title} concentration</span>
                 <span class="pollutant-widget__concentration-text"></span>
                 ${it.unit}
             </p>
@@ -33,7 +33,7 @@
     <div id="${it.name}-chart" class="pollutant-widget__chart-container">
         <div class="pollutant-widget__chart"></div>
         <div class="pollutant-widget__chart-data-link">
-            <a href="${it.name}-data.html">${it.name} Data</a>
+            <a href="${it.name}-data.html">${it.title} Data</a>
         </div>
     </div>
 </div>
