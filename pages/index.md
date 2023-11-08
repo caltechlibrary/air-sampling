@@ -19,7 +19,7 @@ useful-links:
 pollutants: 
   - name: OZONE
     formula: O3
-    unit: pppv
+    unit: ppbv
     conditions:
       moderate: Unusually sensitive people should consider reducing prolonged or heavy outdoor exertion.
       unhealthy-for-sensitive-groups: People with lung disease (such as asthma), children, older adults, people who are active outdoors (including outdoor workers), people with certain genetic variants, and people with diets limited in certain nutrients should reduce prolonged or heavy outdoor exertion.
