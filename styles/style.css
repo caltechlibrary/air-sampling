@@ -19,8 +19,9 @@ Blocks
 - top-container: container that wraps aqi, live cam, and (on desktop screen sizes) resources cards.
 - aqi-chart: chart that contains aqi/temperature history.
 - pollutant-widget: accordion widget used to display individual pollutant values.
-- data-table: Data page data table
+- data-table: data page data table.
 - page: container used to wrap site.
+- global: global styles.
 */
 
 /* header */
@@ -307,10 +308,6 @@ Blocks
     text-decoration: none;
     line-height: 1.5;
     word-wrap: break-word;
-}
-
-.resources-widget__link sub {
-    line-height: 0;
 }
 
 .resources-widget__headline-img {
@@ -873,4 +870,9 @@ Blocks
         min-width: 16rem;
         max-width: 48%;
     }
+}
+
+/* global */
+sub {
+    line-height: 0;
 }
