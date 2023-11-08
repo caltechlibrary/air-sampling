@@ -59,7 +59,7 @@ pollutants:
   - title: NO~2~
     name: NO2
     formula: NO2
-    unit: ppb
+    unit: ppbv
     conditions:
       moderate: Unusually sensitive individuals should consider limiting prolonged exertion especially near busy roads.
       unhealthy-for-sensitive-groups: People with asthma, children and older adults should limit prolonged exertion especially near busy roads.
