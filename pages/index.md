@@ -9,7 +9,7 @@ useful-links:
   - link: https://www.epa.gov/ground-level-ozone-pollution
     title: About Ozone (O~3~) Pollution
   - link: https://www.epa.gov/pm-pollution
-    title: About PM (PM2.5; PM10) Pollution
+    title: About PM (PM~2.5~; PM~10~) Pollution
   - link: https://www.epa.gov/co-pollution/basic-information-about-carbon-monoxide-co-outdoor-air-pollution
     title: About Carbon Monoxide (CO) Pollution
   - link: https://www.epa.gov/no2-pollution
