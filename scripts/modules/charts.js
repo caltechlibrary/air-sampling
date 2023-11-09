@@ -21,10 +21,10 @@ function constructLineGenerator(xScale, yScale) {
 
 function constructAreaGenerator(xScale, yScale) {
     return d3.area()
-        .x(d => xScale(d.time))
-        .y0(d => yScale(d.lower))
-        .y1(d => yScale(d.upper))
-        .defined(d => !isNaN(d.lower) && !isNaN(d.upper));
+        .x(d => xScale(d[0]))
+        .y0(d => yScale(d[1]))
+        .y1(d => yScale(d[2]))
+        .defined(d => !isNaN(d[1]) && !isNaN(d[2]));
 }
 
 function constructChartSvg(height, width, label) {
@@ -53,17 +53,11 @@ function constructLine(stroke, lineGenerator, data) {
         .attr("d", lineGenerator(data));
 }
 
-function constructArea(color, areaGenerator, lowerData, upperData) {
-    const data = lowerData.map((d, i) => ({
-        time: d.time,
-        lower: d.value,
-        upper: upperData[i].value
-    }));
-
+function constructArea(color, areaGenerator, bandsData) {
     return d3.create("svg:path")
         .attr("fill", color)
         .attr("opacity", 0.2)
-        .attr("d", areaGenerator(data));
+        .attr("d", areaGenerator(bandsData));
 }
 
 function constructLegendLabel(title, iconColor, iconType) {
@@ -193,16 +187,16 @@ export function pollutantChart(data, {
         return svg.node();
 }
 
-export function aqiChart(aqiData, aqiDataLower, aqiDataUpper, tempData, tempDataLower, tempDataUpper, {
+export function aqiChart(aqiData, aqiBandsData, tempData, tempBandsData, {
     width = 1000, // outer width, in pixels
     height = 270, // outer height, in pixels
     aqiColor = "#eb0000", // color of aqi data line
     tempColor = "#0000ff" // color of temp data line
     } = {}) {
 
-        // Compute values.
-        const aqiY = d3.map(aqiData, d => d.value);
-        const tempY = d3.map(tempData, d => d.value);
+        // Compute all values for domain calculation.
+        const aqiY = [...d3.map(aqiData, d => d.value), ...d3.map(aqiBandsData, d => d[1]), ...d3.map(aqiBandsData, d => d[2])];
+        const tempY = [...d3.map(tempData, d => d.value), ...d3.map(tempBandsData, d => d[1]), ...d3.map(tempBandsData, d => d[2])];
 
         // Compute default domains.
         const xDomain = [
@@ -316,8 +310,8 @@ export function aqiChart(aqiData, aqiDataLower, aqiDataUpper, tempData, tempData
         svg.append(() => constructLine(tempColor, tempLine, tempData).node());
 
         // Render area graph data.
-        svg.append(() => constructArea(aqiColor, aqiArea, aqiDataLower, aqiDataUpper).node());
-        svg.append(() => constructArea(tempColor, tempArea, tempDataLower, tempDataUpper).node());
+        svg.append(() => constructArea(aqiColor, aqiArea, aqiBandsData).node());
+        svg.append(() => constructArea(tempColor, tempArea, tempBandsData).node());
 
         return svg.node();
 }

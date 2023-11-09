@@ -1,16 +1,16 @@
-import { fetchCSV } from "./modules/fetchHelpers.js";
+import { fetchCSV, fetchJSON } from "./modules/fetchHelpers.js";
 import parseCsv from "./modules/parseCsv.js";
 import hourStringToDateObject from "./modules/hourStringToDateObject.js";
 import { aqiChart, aqiLegend }  from "./modules/charts.js";
 
-const generateAqiChart = (aqiData, aqiDataLower, aqiDataUpper, tempData, tempDataLower, tempDataUpper) => {
+const generateAqiChart = (aqiData, aqiBandsData, tempData, tempBandsData) => {
     const chartContainer = document.querySelector(".aqi-chart__chart-container");
     const chartHeight = window.innerWidth > 600 ? 400 : 300;
     const chartWidth = chartContainer.offsetWidth;
 
     const chartLegend = aqiLegend();
 
-    const chartSVG = aqiChart(aqiData, aqiDataLower, aqiDataUpper, tempData, tempDataLower, tempDataUpper, {
+    const chartSVG = aqiChart(aqiData, aqiBandsData, tempData, tempBandsData, {
         height: chartHeight,
         width: chartWidth
     });
@@ -24,23 +24,19 @@ const generateAqiChart = (aqiData, aqiDataLower, aqiDataUpper, tempData, tempDat
 
 const res = await Promise.all([
     fetchCSV("https://z44g6g2rrl.execute-api.us-west-2.amazonaws.com/test/get_air?graph=aqi"),
-    fetchCSV("https://z44g6g2rrl.execute-api.us-west-2.amazonaws.com/test/get_air?graph=aqi_lower"),
-    fetchCSV("https://z44g6g2rrl.execute-api.us-west-2.amazonaws.com/test/get_air?graph=aqi_upper"),
     fetchCSV("https://z44g6g2rrl.execute-api.us-west-2.amazonaws.com/test/get_air?graph=temp"),
-    fetchCSV("https://z44g6g2rrl.execute-api.us-west-2.amazonaws.com/test/get_air?graph=temp_lower"),
-    fetchCSV("https://z44g6g2rrl.execute-api.us-west-2.amazonaws.com/test/get_air?graph=temp_upper")
+    fetchJSON("https://z44g6g2rrl.execute-api.us-west-2.amazonaws.com/test/get_air?graph=bands")
 ]);
 
-const csvData = res.map(parseCsv);
+const [aqiCsv, tempCsv, bandsData] = res;
 
-const csvDataTimeFormatted = csvData.map(data => {
-    return data.map(entry => ({ ...entry, time: hourStringToDateObject(entry.time) }));
-});
+const aqiData = parseCsv(aqiCsv).map(row => ({ ...row, time: hourStringToDateObject(row.time) }));
+const tempData = parseCsv(tempCsv).map(row => ({ ...row, time: hourStringToDateObject(row.time) }));
+const aqiBandsData = bandsData["time_AQI"].map(entry => [ new Date(entry[0] * 1000), entry[1], entry[2] ]);
+const tempBandsData = bandsData["time_T"].map(entry => [ new Date(entry[0] * 1000), entry[1], entry[2] ]);
 
-const [aqiData, aqiDataLower, aqiDataUpper, tempData, tempDataLower, tempDataUpper] = csvDataTimeFormatted;
-
-generateAqiChart(aqiData, aqiDataLower, aqiDataUpper, tempData, tempDataLower, tempDataUpper);
+generateAqiChart(aqiData, aqiBandsData, tempData, tempBandsData);
 
 window.addEventListener('resize', () => {
-    generateAqiChart(aqiData, aqiDataLower, aqiDataUpper, tempData, tempDataLower, tempDataUpper);
+    generateAqiChart(aqiData, aqiBandsData, tempData, tempBandsData);
 });
