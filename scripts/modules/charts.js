@@ -83,7 +83,7 @@ function constructLegendLabel(title, iconColor, iconType) {
     return labelEl;
 }
 
-export function pollutantChart(data, {
+export function pollutantChart(data, bandsData, {
     width = 1000, // outer width, in pixels
     height = 270, // outer height, in pixels`
     color = "black", // stroke color of line
@@ -91,9 +91,9 @@ export function pollutantChart(data, {
     unit, // chart unit
     } = {}) {
 
-        // Compute values.
+        // Compute all values for domain calculation.
         const X = d3.map(data, d => d.time);
-        const Y = d3.map(data, d => d.value);
+        const Y = [...d3.map(data, d => d.value), ...d3.map(bandsData, d => d.lower), ...d3.map(bandsData, d => d.upper)];
 
         // Compute default domains.
         const xDomain = d3.extent(X);
@@ -134,6 +134,9 @@ export function pollutantChart(data, {
 
         // Construct a line generator.
         const line = constructLineGenerator(xScale, yScale);
+
+        // Construct an area generator.
+        const area = constructAreaGenerator(xScale, yScale);
 
         // Construct chart svg
         const svg = constructChartSvg(height, width, `Chart of recent ${pollutant} values.`);
@@ -183,6 +186,9 @@ export function pollutantChart(data, {
 
         // Render graph data.
         svg.append(() => constructLine(color, line, data).node());
+
+        // Render area graph data.
+        svg.append(() => constructArea(color, area, bandsData).node());
 
         return svg.node();
 }
