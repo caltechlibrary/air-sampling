@@ -17,7 +17,7 @@ useful-links:
   - link: how-is-aqi-defined-here.html
     title: How is AQI Defined Here?
 pollutants: 
-  - title: OZONE
+  - title: O~3~
     name: OZONE
     formula: O3
     unit: ppbv
