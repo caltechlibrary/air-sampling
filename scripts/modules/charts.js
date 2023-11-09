@@ -21,10 +21,10 @@ function constructLineGenerator(xScale, yScale) {
 
 function constructAreaGenerator(xScale, yScale) {
     return d3.area()
-        .x(d => xScale(d[0]))
-        .y0(d => yScale(d[1]))
-        .y1(d => yScale(d[2]))
-        .defined(d => !isNaN(d[1]) && !isNaN(d[2]));
+        .x(d => xScale(d.time))
+        .y0(d => yScale(d.lower))
+        .y1(d => yScale(d.upper))
+        .defined(d => !isNaN(d.lower) && !isNaN(d.upper));
 }
 
 function constructChartSvg(height, width, label) {
@@ -195,8 +195,8 @@ export function aqiChart(aqiData, aqiBandsData, tempData, tempBandsData, {
     } = {}) {
 
         // Compute all values for domain calculation.
-        const aqiY = [...d3.map(aqiData, d => d.value), ...d3.map(aqiBandsData, d => d[1]), ...d3.map(aqiBandsData, d => d[2])];
-        const tempY = [...d3.map(tempData, d => d.value), ...d3.map(tempBandsData, d => d[1]), ...d3.map(tempBandsData, d => d[2])];
+        const aqiY = [...d3.map(aqiData, d => d.value), ...d3.map(aqiBandsData, d => d.lower), ...d3.map(aqiBandsData, d => d.upper)];
+        const tempY = [...d3.map(tempData, d => d.value), ...d3.map(tempBandsData, d => d.lower), ...d3.map(tempBandsData, d => d.upper)];
 
         // Compute default domains.
         const xDomain = [

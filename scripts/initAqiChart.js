@@ -1,5 +1,6 @@
 import { fetchCSV, fetchJSON } from "./modules/fetchHelpers.js";
 import parseCsv from "./modules/parseCsv.js";
+import parseBands from "./modules/parseBands.js"
 import hourStringToDateObject from "./modules/hourStringToDateObject.js";
 import { aqiChart, aqiLegend }  from "./modules/charts.js";
 
@@ -32,8 +33,8 @@ const [aqiCsv, tempCsv, bandsData] = res;
 
 const aqiData = parseCsv(aqiCsv).map(row => ({ ...row, time: hourStringToDateObject(row.time) }));
 const tempData = parseCsv(tempCsv).map(row => ({ ...row, time: hourStringToDateObject(row.time) }));
-const aqiBandsData = bandsData["time_AQI"].map(entry => [ new Date(entry[0] * 1000), entry[1], entry[2] ]);
-const tempBandsData = bandsData["time_T"].map(entry => [ new Date(entry[0] * 1000), entry[1], entry[2] ]);
+const aqiBandsData = parseBands(bandsData.time_AQI);
+const tempBandsData = parseBands(bandsData.time_T);
 
 generateAqiChart(aqiData, aqiBandsData, tempData, tempBandsData);
 
