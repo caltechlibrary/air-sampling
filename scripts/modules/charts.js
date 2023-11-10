@@ -92,11 +92,13 @@ export function pollutantChart(data, bandsData, {
     } = {}) {
 
         // Compute all values for domain calculation.
-        const X = d3.map(data, d => d.time);
         const Y = [...d3.map(data, d => d.value), ...d3.map(bandsData, d => d.lower), ...d3.map(bandsData, d => d.upper)];
 
         // Compute default domains.
-        const xDomain = d3.extent(X);
+        const xDomain = [
+            luxon.DateTime.fromObject({hour: 0}, { zone: "America/Los_Angeles" }).toJSDate(), 
+            luxon.DateTime.fromObject({hour: 24}, { zone: "America/Los_Angeles" }).toJSDate()
+        ];
         const yDomain = [d3.min(Y) - 0.5, d3.max(Y) + 0.5];
 
         // Compute graph boundaries.
@@ -126,10 +128,10 @@ export function pollutantChart(data, bandsData, {
         const yScale = d3.scaleLinear(yDomain, yRange);
 
         // Construct custom time format.
-        const customTimeFormat = date => date.toLocaleString("en-US", { timeZone: "America/Los_Angeles", timeStyle: "short" });
+        const customTimeFormat = date => date.toLocaleString("en-US", { timeZone: "America/Los_Angeles", hour12: false, hour: "numeric" });
 
         // Construct axes.
-        const xAxis = d3.axisBottom(xScale).tickFormat((xTick, i, xTicks) => xTicks.length == 2 || i % 2 == 0 ? customTimeFormat(xTick) : "").ticks(xTicks);
+        const xAxis = d3.axisBottom(xScale).tickFormat(customTimeFormat).ticks(xTicks);
         const yAxis = d3.axisLeft(yScale).ticks(3).tickSize(0);
 
         // Construct a line generator.
