@@ -6,7 +6,7 @@ function createDataTable(data, labels) {
     table.classList.add("data-table");
 
     // Create columns
-    for(const key in data[0]) {
+    for(const key of Object.keys(labels)) {
         columns.push(key);
     }
 
@@ -36,7 +36,7 @@ function createDataTable(data, labels) {
             if(column === "time") {
                 cell.innerText = content.toLocaleTimeString();
             } else {
-                cell.innerText = content;
+                cell.innerText = content ?? "NA";
             }
 
             row.appendChild(cell)

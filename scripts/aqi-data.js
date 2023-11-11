@@ -1,6 +1,8 @@
-import { fetchCSV } from "./modules/fetchHelpers.js";
+import { fetchCSV, fetchJSON } from "./modules/fetchHelpers.js";
 import parseCsv from "./modules/parseCsv.js";
+import parseBands from "./modules/parseBands.js"
 import hourStringToDateObject from "./modules/hourStringToDateObject.js";
+import aggreageData from "./modules/aggregateData.js"
 import createDataTable from "./modules/createDataTable.js";
 
 const DATA_LABELS = {
@@ -30,34 +32,31 @@ if (dummy) {
 } else {
     res = await Promise.all([
         fetchCSV("https://z44g6g2rrl.execute-api.us-west-2.amazonaws.com/test/get_air?graph=aqi"),
-        fetchCSV("https://z44g6g2rrl.execute-api.us-west-2.amazonaws.com/test/get_air?graph=aqi_lower"),
-        fetchCSV("https://z44g6g2rrl.execute-api.us-west-2.amazonaws.com/test/get_air?graph=aqi_upper"),
         fetchCSV("https://z44g6g2rrl.execute-api.us-west-2.amazonaws.com/test/get_air?graph=temp"),
-        fetchCSV("https://z44g6g2rrl.execute-api.us-west-2.amazonaws.com/test/get_air?graph=temp_lower"),
-        fetchCSV("https://z44g6g2rrl.execute-api.us-west-2.amazonaws.com/test/get_air?graph=temp_upper")
+        fetchJSON("https://z44g6g2rrl.execute-api.us-west-2.amazonaws.com/test/get_air?graph=bands")
     ]);
 }
 
-const csvData = res.map(parseCsv);
+const [aqiCsv, tempCsv, bandsData] = res;
 
-const csvDataTimeFormatted = csvData.map(data => {
-    return data.map(entry => ({ ...entry, time: hourStringToDateObject(entry.time) }));
-});
+const aqiData = parseCsv(aqiCsv).map(row => ({ ...row, time: hourStringToDateObject(row.time) }));
+const tempData = parseCsv(tempCsv).map(row => ({ ...row, time: hourStringToDateObject(row.time) }));
+const aqiBandsData = parseBands(bandsData.time_AQI).map(entry => ({ ...entry, time: new Date(entry.time), }));
+const tempBandsData = parseBands(bandsData.time_T).map(entry => ({ ...entry, time: new Date(entry.time), }));
+const aqiDataLower = aqiBandsData.map(entry => ({ time: entry.time, value: entry.lower }));
+const aqiDataUpper = aqiBandsData.map(entry => ({ time: entry.time, value: entry.upper }));
+const tempDataLower = tempBandsData.map(entry => ({ time: entry.time, value: entry.lower }));
+const tempDataUpper = tempBandsData.map(entry => ({ time: entry.time, value: entry.upper }));
 
-const [aqiData, aqiDataLower, aqiDataUpper, tempData, tempDataLower, tempDataUpper] = csvDataTimeFormatted;
+const dataAggregated = aggreageData({
+    aqiData,
+    aqiDataLower,
+    aqiDataUpper,
+    tempData,
+    tempDataLower,
+    tempDataUpper,
+})
 
-const csvDataAggregated = aqiData.map((aqiDatum, i) => (
-    {
-        time: aqiDatum.time,
-        aqiData: aqiData[i].value,
-        aqiDataLower: aqiDataLower[i].value,
-        aqiDataUpper: aqiDataUpper[i].value,
-        tempData: tempData[i].value,
-        tempDataLower: tempDataLower[i].value,
-        tempDataUpper: tempDataUpper[i].value
-    }
-)).sort((a, b) => a.time - b.time);
-
-const table = createDataTable(csvDataAggregated, DATA_LABELS);
+const table = createDataTable(dataAggregated, DATA_LABELS);
 
 main.appendChild(table);
