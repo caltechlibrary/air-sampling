@@ -194,7 +194,7 @@ export function aqiChart(aqiData, aqiBandsData, tempData, tempBandsData, {
         // Compute graph boundaries
         const marginLeft = width > 600 ? 75 : 50;
         const marginRight = width > 600 ? 75 : 50;
-        const marginTop = 0;
+        const marginTop = 20;
         const marginBottom = width > 600 ? 60 : 40;
 
         // Compute dimensions of graph area
