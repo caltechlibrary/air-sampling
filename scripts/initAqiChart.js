@@ -2,25 +2,23 @@ import { fetchCSV, fetchJSON } from "./modules/fetchHelpers.js";
 import parseCsv from "./modules/parseCsv.js";
 import parseBands from "./modules/parseBands.js"
 import hourStringToDateObject from "./modules/hourStringToDateObject.js";
-import { aqiChart, aqiLegend }  from "./modules/charts.js";
+import { aqiChart }  from "./modules/charts.js";
 
 const generateAqiChart = (aqiData, aqiBandsData, tempData, tempBandsData) => {
     const chartContainer = document.querySelector(".aqi-chart__chart-container");
+    const prevChartSvg = document.querySelector(".aqi-chart__chart-svg");
     const chartHeight = window.innerWidth > 600 ? 400 : 300;
     const chartWidth = chartContainer.offsetWidth;
-
-    const chartLegend = aqiLegend();
 
     const chartSVG = aqiChart(aqiData, aqiBandsData, tempData, tempBandsData, {
         height: chartHeight,
         width: chartWidth
     });
 
-    chartLegend.classList.add("aqi-chart__chart-legend");
-
     chartSVG.classList.add("aqi-chart__chart-svg");
 
-    chartContainer.replaceChildren(chartLegend, chartSVG);
+    prevChartSvg?.remove();
+    chartContainer.append(chartSVG);
 }
 
 const res = await Promise.all([

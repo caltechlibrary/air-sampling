@@ -11,7 +11,26 @@ ${partials/head.html()}
       <div class="top-container__item">${partials/cam-widget.html()}</div>
     </div>
     <div class="aqi-chart page__aqi-chart">
-      <div class="aqi-chart__chart-container"></div>
+      <div class="aqi-chart__chart-container">
+        <div class="aqi-chart__chart-legend">
+          <span class="aqi-chart__chart-legend-label aqi-chart__chart-legend-label--aqi">
+            <span class="aqi-chart__chart-legend-icon aqi-chart__chart-legend-swatch"></span>
+            Previous 7 day AQI
+          </span>
+          <span class="aqi-chart__chart-legend-label aqi-chart__chart-legend-label--aqi">
+            <span class="aqi-chart__chart-legend-icon aqi-chart__chart-legend-line"></span>
+            Current day AQI
+          </span>
+          <span class="aqi-chart__chart-legend-label aqi-chart__chart-legend-label--temp">
+            <span class="aqi-chart__chart-legend-icon aqi-chart__chart-legend-swatch"></span>
+            Previous 7 day Temp
+          </span>
+          <span class="aqi-chart__chart-legend-label aqi-chart__chart-legend-label--temp">
+            <span class="aqi-chart__chart-legend-icon aqi-chart__chart-legend-line"></span>
+            Current day Temp
+          </span>
+        </div>
+      </div>
       <div class="aqi-chart__data-link-container">
         <a href="aqi-data.html">AQI Data</a>
       </div>

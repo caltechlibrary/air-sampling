@@ -547,6 +547,14 @@ Blocks
     }
 }
 
+.aqi-chart__chart-legend-label--aqi .aqi-chart__chart-legend-icon {
+    background: #eb0000;
+}
+
+.aqi-chart__chart-legend-label--temp .aqi-chart__chart-legend-icon {
+    background: #0000ff;
+}
+
 .aqi-chart__chart-legend-swatch {
     height: 16px;
 }

@@ -60,29 +60,6 @@ function constructArea(color, areaGenerator, bandsData) {
         .attr("d", areaGenerator(bandsData));
 }
 
-function constructLegendLabel(title, iconColor, iconType) {
-    const labelEl = document.createElement("span");
-    labelEl.classList.add("aqi-chart__chart-legend-label");
-    labelEl.textContent = title;
-
-    const iconEl = document.createElement("span");
-    iconEl.classList.add("aqi-chart__chart-legend-icon");
-    iconEl.style.background = iconColor;
-
-    switch(iconType) {
-        case "swatch":
-            iconEl.classList.add("aqi-chart__chart-legend-swatch");
-            break;
-        case "line":
-            iconEl.classList.add("aqi-chart__chart-legend-line");
-            break;
-    }
-
-    labelEl.prepend(iconEl);
-
-    return labelEl;
-}
-
 export function pollutantChart(data, bandsData, {
     width = 1000, // outer width, in pixels
     height = 270, // outer height, in pixels`
@@ -322,18 +299,4 @@ export function aqiChart(aqiData, aqiBandsData, tempData, tempBandsData, {
         svg.append(() => constructArea(tempColor, tempArea, tempBandsData).node());
 
         return svg.node();
-}
-
-export function aqiLegend() {
-    const legendEl = document.createElement("div");
-    const prevAqiLabelEl = constructLegendLabel("Previous 7 day AQI", "#eb0000", "swatch");
-    const currAqiLabelEl = constructLegendLabel("Current day AQI", "#eb0000", "line");
-    const prevTempLabelEl = constructLegendLabel("Previous 7 day Temp", "#0000ff", "swatch");
-    const currTempLabelEl = constructLegendLabel("Current day Temp", "#0000ff", "line");
-
-    legendEl.append(prevAqiLabelEl, currAqiLabelEl, prevTempLabelEl, currTempLabelEl);
-    legendEl.setAttribute("role", "img")
-    legendEl.setAttribute("aria-label", "Legend for AQI and Temperature chart. Tabular data is available below.")
-
-    return legendEl;
 }
