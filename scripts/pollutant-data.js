@@ -1,4 +1,5 @@
-import { fetchCSV, fetchJSON } from "./modules/fetchHelpers.js";
+import fetchJSON from "./modules/fetchJSON.js";
+import fetchCSV from "./modules/fetchCSV.js";
 import parseCsv from "./modules/parseCsv.js";
 import parseBands from "./modules/parseBands.js";
 import aggreageData from "./modules/aggregateData.js";

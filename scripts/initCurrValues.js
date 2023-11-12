@@ -1,4 +1,4 @@
-import { fetchJSON } from "./modules/fetchHelpers.js";
+import fetchJSON from "./modules/fetchJSON.js";
 
 const DUMMY = document.documentElement.hasAttribute("data-dummy");
 
