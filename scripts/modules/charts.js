@@ -124,7 +124,7 @@ export function pollutantChart(data, bandsData, {
         const [pollutantChem, pollutantSub] = pollutant.split(/(\d.*)/, 2);
         
         // Construct chart labels
-        const labelX = constructLabel("Local time Los Angeles", labelFontSize)
+        const labelX = constructLabel("Local Time Los Angeles (hrs)", labelFontSize)
         const labelY = constructLabel(pollutantChem, labelFontSize)
             .call(t => t.append("tspan")
                 .attr("baseline-shift", "sub")
@@ -239,7 +239,7 @@ export function aqiChart(aqiData, aqiBandsData, tempData, tempBandsData, {
         const svg = constructChartSvg(height, width, "Chart of AQI and Temperature values over the past 24 hours.");
 
         // Construct labels.
-        const xLabel = constructLabel("Local Time of Day (hrs)", labelFontSize);
+        const xLabel = constructLabel("Local Time Los Angeles (hrs)", labelFontSize);
         const aqiLabel = constructLabel("AQI", labelFontSize);
         const tempLabel = constructLabel("Temperature (C)", labelFontSize);
 
