@@ -31,6 +31,16 @@
         </div>
     </div>
     <div id="${it.name}-chart" class="pollutant-widget__chart-container">
+        <div class="pollutant-widget__chart-legend">
+            <span class="pollutant-widget__chart-legend-label">
+              <span class="pollutant-widget__chart-legend-icon pollutant-widget__chart-legend-swatch"></span>
+              <span>Previous 7 day ${it.title}</span>
+            </span>
+            <span class="pollutant-widget__chart-legend-label">
+              <span class="pollutant-widget__chart-legend-icon pollutant-widget__chart-legend-line"></span>
+              <span>Current day ${it.title}</span>
+            </span>
+        </div>
         <div class="pollutant-widget__chart"></div>
         <div class="pollutant-widget__chart-data-link">
             <a href="${it.name}-data.html">${it.title} Data</a>

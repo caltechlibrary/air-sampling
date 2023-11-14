@@ -598,7 +598,7 @@ Blocks
 
 @media (min-width:800px) {
     .pollutant-widget--expanded {
-        height: 14.875rem;
+        height: 17rem;
     }
 }
 
@@ -769,11 +769,9 @@ Blocks
     flex: 1 1 10rem;
     display: flex;
     flex-direction: column;
-    gap: 0.5em;
     opacity: 0;
     visibility: hidden;
 }
-
 
 @media (min-width:800px) {
     .pollutant-widget__chart-container {
@@ -790,7 +788,57 @@ Blocks
 .pollutant-widget__chart {
     flex: 1;
     min-height: 0;
+    margin-bottom: 0.5em;
     background: #fff;
+}
+
+.pollutant-widget__chart-legend {
+    position: relative;
+    margin-left: auto;
+    width: fit-content;
+    border: 1px solid #000;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 4px 12px;
+    font-size: 0.8em;
+    font-family: sans-serif;
+    background: #fff;
+    box-shadow: 1px 1px #000;
+}
+
+@media (min-width:600px) {
+    .pollutant-widget__chart-legend {
+        font-size: 1em;
+    }
+}
+
+.pollutant-widget__chart-legend-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+}
+
+.pollutant-widget__chart-legend-icon {
+    height: 16px;
+    width: 16px;
+    background: #000;
+}
+
+@media (min-width:600px) {
+    .pollutant-widget__chart-legend-icon {
+        width: 40px
+    }
+}
+
+.pollutant-widget__chart-legend-swatch {
+    height: 16px;
+}
+
+.pollutant-widget__chart-legend-line {
+    height: 2px;
 }
 
 .pollutant-widget__chart-svg {
