@@ -127,9 +127,10 @@ export function pollutantChart(data, bandsData, {
         const labelX = constructLabel("Local Time Los Angeles (hrs)", labelFontSize)
         const labelY = constructLabel(pollutantChem, labelFontSize)
             .call(t => t.append("tspan")
-                .attr("baseline-shift", "sub")
+                .attr("dy", "5px")
                 .text(pollutantSub))
             .call(t => t.append("tspan")
+                .attr("dy", "-5px")
                 .attr("dx", "8px")
                 .text(`(${unit})`));
         
