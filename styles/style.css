@@ -293,8 +293,8 @@ Blocks
 
 .resources-widget__header {
     margin: 0 0 12px;
-    font-size: inherit;
-    font-weight: 100;
+    font-size: 1.5em;
+    font-weight: normal;
 }
 
 .resources-widget__links-list {
