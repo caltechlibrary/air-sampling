@@ -116,6 +116,8 @@ async function initCurrentValues() {
 }
 
 async function initAqiChart(bandsData) {
+    const aqiChartEl = document.querySelector(".aqi-chart");
+
     const [aqiCsv, tempCsv] = await Promise.all([
         fetchCSV("https://z44g6g2rrl.execute-api.us-west-2.amazonaws.com/test/get_air?graph=aqi"),
         fetchCSV("https://z44g6g2rrl.execute-api.us-west-2.amazonaws.com/test/get_air?graph=temp"),
@@ -146,6 +148,8 @@ async function initAqiChart(bandsData) {
 
     generateAqiChart();
     window.addEventListener('resize', generateAqiChart);
+
+    aqiChartEl.classList.add("aqi-chart--initialized");
 }
 
 async function initPollutantChart(bandsData, pollutantWidgetEl) {

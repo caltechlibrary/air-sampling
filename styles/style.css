@@ -505,6 +505,14 @@ Blocks
 }
 
 /* aqi-chart */
+.aqi-chart {
+    visibility: hidden;
+}
+
+.aqi-chart--initialized {
+    visibility: visible;
+}
+
 .aqi-chart__chart-svg {
     display: block;
 }
