@@ -58,60 +58,75 @@ function onResize() {
 }
 
 async function initCurrentValues() {
-    const data = await fetchJSON("https://z44g6g2rrl.execute-api.us-west-2.amazonaws.com/test/get_air");
-
-    // Init header
-    const dateEl = document.querySelector(".header__date");
-    const date = new Date(data.time * 1000);
-    const time = date.toLocaleTimeString("en-US", { hour12: true, timeStyle: "short" });
-    const day = date.toLocaleDateString("en-US", { dateStyle: "medium" });
-    dateEl.textContent = `${day} ${time}`;
-
-    // Init aqi widget
     const aqiWidgetEl = document.querySelector(".aqi-widget");
     const valueEl = document.querySelector(".aqi-widget__value");
-    const descriptionEl = document.querySelector(".aqi-widget__condition-value");
-    const aqiMeterEl = document.querySelector(".aqi-widget__meter");
-    const inidicatorEl = document.getElementById("aqi-widget__meter-indicator");
 
-    const condition = getCondition(data.aqi);
-    const conditionFormatted = formatCondition(condition);
+    try {
+        const data = await fetchJSON("https://z44g6g2rrl.execute-api.us-west-2.amazonaws.com/test/get_air");
 
-    aqiWidgetEl.classList.add(`aqi-widget--${condition}`);
-    valueEl.textContent = data.aqi;
-    descriptionEl.textContent = conditionFormatted;
-    aqiMeterEl.setAttribute("aria-label", `Current AQI value falls within the "${condition}" category.`);
-    inidicatorEl.setAttribute("x", `${(data.aqi / 500) * 100}%`);
-    inidicatorEl.setAttribute("visibility", "visible");
+        // Init header
+        const dateEl = document.querySelector(".header__date");
+        const date = new Date(data.time * 1000);
+        const time = date.toLocaleTimeString("en-US", { hour12: true, timeStyle: "short" });
+        const day = date.toLocaleDateString("en-US", { dateStyle: "medium" });
+        dateEl.textContent = `${day} ${time}`;
 
-    // Init pollutant widgets
-    const pollutantWidgetEls = document.querySelectorAll(".pollutant-widget");
+        // Init aqi widget
+        const descriptionEl = document.querySelector(".aqi-widget__condition-value");
+        const aqiMeterEl = document.querySelector(".aqi-widget__meter");
+        const inidicatorEl = document.getElementById("aqi-widget__meter-indicator");
 
-    for(const pollutantWidgetEl of pollutantWidgetEls) {
-        const pollutant = pollutantWidgetEl.getAttribute("data-pollutant");
-        const concentration = data[pollutant];
-        const aqi = data[`${pollutant}_aqi`];
+        if(data.aqi) {
+            const condition = getCondition(data.aqi);
+            const conditionFormatted = formatCondition(condition);
 
-        if(aqi) {
-            const aqiLabelEl = pollutantWidgetEl.querySelector(".pollutant-widget__aqi-label");
-            const aqiEl = pollutantWidgetEl.querySelector(".pollutant-widget__aqi");
-            const warningTextEl = pollutantWidgetEl.querySelector(".pollutant-widget__warning-text");
+            aqiWidgetEl.classList.add(`aqi-widget--${condition}`);
+            valueEl.textContent = data.aqi;
+            descriptionEl.textContent = conditionFormatted;
+            aqiMeterEl.setAttribute("aria-label", `Current AQI value falls within the "${condition}" category.`);
+            inidicatorEl.setAttribute("x", `${(data.aqi / 500) * 100}%`);
 
-            const condition = getCondition(aqi);
-            const warningText = pollutantWidgetEl.getAttribute(`data-${condition}`);
-
-            pollutantWidgetEl.classList.add(`pollutant-widget--${condition}`);
-            aqiEl.textContent = aqi;
-            aqiLabelEl.classList.add("pollutant-widget__aqi-label--initialized");
-            warningTextEl.textContent = warningText;
+            aqiWidgetEl.classList.add("aqi-widget--initialized");
+        } else {
+            aqiWidgetEl.classList.add(`aqi-widget--not-available`);
+            valueEl.textContent = "N/A";
         }
 
-        if(concentration) {
-            const concentrationEl = pollutantWidgetEl.querySelector(".pollutant-widget__concentration-text");
+        // Init pollutant widgets
+        const pollutantWidgetEls = document.querySelectorAll(".pollutant-widget");
 
-            concentrationEl.textContent = concentration;
-            concentrationEl.classList.add("pollutant-widget__aqi-label--initialized");
+        for(const pollutantWidgetEl of pollutantWidgetEls) {
+            const pollutant = pollutantWidgetEl.getAttribute("data-pollutant");
+            const concentration = data[pollutant];
+            const aqi = data[`${pollutant}_aqi`];
+
+            if(aqi) {
+                const aqiLabelEl = pollutantWidgetEl.querySelector(".pollutant-widget__aqi-label");
+                const aqiEl = pollutantWidgetEl.querySelector(".pollutant-widget__aqi");
+                const warningTextEl = pollutantWidgetEl.querySelector(".pollutant-widget__warning-text");
+
+                const condition = getCondition(aqi);
+                const warningText = pollutantWidgetEl.getAttribute(`data-${condition}`);
+
+                pollutantWidgetEl.classList.add(`pollutant-widget--${condition}`);
+                aqiEl.textContent = aqi;
+                aqiLabelEl.classList.add("pollutant-widget__aqi-label--initialized");
+                warningTextEl.textContent = warningText;
+            }
+
+            if(concentration) {
+                const concentrationEl = pollutantWidgetEl.querySelector(".pollutant-widget__concentration-text");
+
+                concentrationEl.textContent = concentration;
+                concentrationEl.classList.add("pollutant-widget__aqi-label--initialized");
+            }
         }
+        
+    } catch (error) {
+        console.error(error);
+
+        aqiWidgetEl.classList.add(`aqi-widget--not-available`);
+        valueEl.textContent = "N/A";
     }
 }
 

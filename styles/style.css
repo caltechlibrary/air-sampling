@@ -119,6 +119,8 @@ Blocks
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background: #f2f2f2;
+    color: #033c49;
 }
 
 .aqi-widget--good .aqi-widget__main-content-container {
@@ -152,6 +154,7 @@ Blocks
 }
 
 .aqi-widget__title {
+    visibility: hidden;
     position: absolute;
     top: 4%;
     right: 4%;
@@ -178,6 +181,10 @@ Blocks
     }
 }
 
+.aqi-widget--initialized .aqi-widget__title, .aqi-widget--not-available .aqi-widget__title {
+    visibility: visible;
+}
+
 .aqi-widget__value-label {
     width: 80%;
     font-weight: 600;
@@ -191,14 +198,18 @@ Blocks
     fill: #fff;
 }
 
+.aqi-widget--not-available .aqi-widget__value-label {
+    fill: #033c49;
+}
+
 .aqi-widget__value {
     text-anchor: middle;
     dominant-baseline: central;
     font-size: 50px;
 }
 
-.aqi-widget--data-unavailable .aqi-widget__value {
-    font-size: 12px;
+.aqi-widget--not-available .aqi-widget__value {
+    font-size: 45px;
 }
 
 .aqi-widget__condition-label {
@@ -209,11 +220,8 @@ Blocks
     gap: 8px;
 }
 
-.aqi-widget--data-unavailable .aqi-widget__condition-label {
-    display: none;
-}
-
 .aqi-widget__condition-caption {
+    visibility: hidden;
     font-size: 0.8em;
 }
 
@@ -221,6 +229,10 @@ Blocks
     .aqi-widget__condition-caption {
         font-size: 1em;
     }
+}
+
+.aqi-widget--initialized .aqi-widget__condition-caption {
+    visibility: visible;
 }
 
 .aqi-widget__condition-value {
@@ -238,6 +250,14 @@ Blocks
     .aqi-widget__condition-value {
         font-size: 1.5em;
     }
+}
+
+.aqi-widget__meter {
+    visibility: hidden;
+}
+
+.aqi-widget--initialized .aqi-widget__meter {
+    visibility: visible;
 }
 
 /* cam-widget */

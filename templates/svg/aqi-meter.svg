@@ -17,7 +17,7 @@
 	</defs>
 	<g>
 		<path transform="translate(0 2.75)" width="345" height="23.5" d="m6 0h333a6 6 45 0 1 6 6v11.5a6 6 135 0 1-6 6h-333a6 6 45 0 1-6-6v-11.5a6 6 135 0 1 6-6z" fill="url(#linearGradient6550)" fill-rule="evenodd" stroke-width="1.2435"/>
-		<rect id="aqi-widget__meter-indicator" transform="translate(-2.45)" x="-1%" y=".49889" width="4.9052" height="28.002" fill="#fff" fill-rule="evenodd" stroke="#000" stroke-width=".99779" visibility="hidden"/>
+		<rect id="aqi-widget__meter-indicator" transform="translate(-2.45)" x="-1%" y=".49889" width="4.9052" height="28.002" fill="#fff" fill-rule="evenodd" stroke="#000" stroke-width=".99779"/>
 		<g fill="#033c49" font-family="Arial" font-size="16px">
 			<text x="-0.6640625" y="47.902592" style="line-height:1.25" xml:space="preserve" role="presentation" aria-hidden="true"><tspan x="-0.6640625" y="47.902592" role="presentation" aria-hidden="true">0</tspan></text>
 			<text x="159.29359" y="47.902592" style="line-height:1.25" xml:space="preserve" role="presentation" aria-hidden="true"><tspan x="159.29359" y="47.902592" role="presentation" aria-hidden="true">250</tspan></text>
