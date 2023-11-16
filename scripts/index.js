@@ -88,21 +88,30 @@ async function initCurrentValues() {
     const pollutantWidgetEls = document.querySelectorAll(".pollutant-widget");
 
     for(const pollutantWidgetEl of pollutantWidgetEls) {
-        const aqiEl = pollutantWidgetEl.querySelector(".pollutant-widget__aqi");
-        const concentrationEl = pollutantWidgetEl.querySelector(".pollutant-widget__concentration-text");
-        const warningTextEl = pollutantWidgetEl.querySelector(".pollutant-widget__warning-text");
-
         const pollutant = pollutantWidgetEl.getAttribute("data-pollutant");
         const concentration = data[pollutant];
         const aqi = data[`${pollutant}_aqi`];
-    
-        const condition = getCondition(aqi);
-        const warningText = pollutantWidgetEl.getAttribute(`data-${condition}`);
-    
-        pollutantWidgetEl.classList.add(`pollutant-widget--${condition}`);
-        concentrationEl.textContent = concentration;
-        aqiEl.textContent = aqi;
-        warningTextEl.textContent = warningText;
+
+        if(aqi) {
+            const aqiLabelEl = pollutantWidgetEl.querySelector(".pollutant-widget__aqi-label");
+            const aqiEl = pollutantWidgetEl.querySelector(".pollutant-widget__aqi");
+            const warningTextEl = pollutantWidgetEl.querySelector(".pollutant-widget__warning-text");
+
+            const condition = getCondition(aqi);
+            const warningText = pollutantWidgetEl.getAttribute(`data-${condition}`);
+
+            pollutantWidgetEl.classList.add(`pollutant-widget--${condition}`);
+            aqiEl.textContent = aqi;
+            aqiLabelEl.classList.add("pollutant-widget__aqi-label--initialized");
+            warningTextEl.textContent = warningText;
+        }
+
+        if(concentration) {
+            const concentrationEl = pollutantWidgetEl.querySelector(".pollutant-widget__concentration-text");
+
+            concentrationEl.textContent = concentration;
+            concentrationEl.classList.add("pollutant-widget__aqi-label--initialized");
+        }
     }
 }
 

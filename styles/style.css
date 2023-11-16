@@ -668,10 +668,15 @@ Blocks
 }
 
 .pollutant-widget__aqi-label {
+    visibility: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 0.75em;
+}
+
+.pollutant-widget__aqi-label--initialized {
+    visibility: visible;
 }
 
 .pollutant-widget__aqi {
@@ -731,14 +736,18 @@ Blocks
     overflow:hidden;
 }
 
+.pollutant-widget__concentration-label {
+    visibility: hidden;
+}
+
 @media (max-width:799px) {
     .pollutant-widget__concentration-label {
         text-align: right;
     }
 }
 
-.pollutant-widget--data-unavailable .pollutant-widget__concentration-label {
-    display: none;
+.pollutant-widget__concentration-label--initialized {
+    visibility: visible;
 }
 
 .pollutant-widget__warning-container {
