@@ -865,6 +865,7 @@ Blocks
 }
 
 .table__cell--header {
+    max-width: 11em;
     background: #efefef;
 }
 
