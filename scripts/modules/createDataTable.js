@@ -3,7 +3,7 @@ function createDataTable(data, labels) {
     const header = document.createElement("tr");
     const columns = [];
 
-    table.classList.add("data-table");
+    table.classList.add("table");
 
     // Create columns
     for(const key of Object.keys(labels)) {
