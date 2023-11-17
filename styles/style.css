@@ -20,6 +20,7 @@ Blocks
 - aqi-chart: chart that contains aqi/temperature history.
 - pollutant-widget: accordion widget used to display individual pollutant values.
 - table: data page data table.
+- aqi-definition-table: aqi definition table on "How is AQI Defined Here?" page.
 - page: container used to wrap site.
 - global: global styles.
 */
@@ -904,6 +905,37 @@ Blocks
 .table__cell--header {
     max-width: 11em;
     background: #efefef;
+}
+
+/* aqi-definition-table */
+.aqi-definition-table__cell--good {
+    background: #00e400;
+    color: #000;
+}
+
+.aqi-definition-table__cell--moderate {
+    background: #ffff00;
+    color: #000;
+}
+
+.aqi-definition-table__cell--unhealthy-for-sensitive-groups {
+    background: #ff7e00;
+    color: #000;
+}
+
+.aqi-definition-table__cell--unhealthy {
+    background: #ff0000;
+    color: #000;
+}
+
+.aqi-definition-table__cell--very-unhealthy {
+    background: #8f3f97;
+    color: #fff;
+}
+
+.aqi-definition-table__cell--hazardous {
+    background: #7e0023;
+    color: #fff;
 }
 
 /* page */

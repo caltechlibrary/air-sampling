@@ -6,7 +6,7 @@ ${partials/head.html()}
 <body class="page">
   ${partials/header.html()}
   <main class="page__main" role="main">
-    <table class="table">
+    <table class="table aqi-definition-table">
         <tr>
             <td></td>
             <th scope="col" class="table__cell table__cell--header">AQI</th>
@@ -17,7 +17,7 @@ ${partials/head.html()}
             <th scope="col" class="table__cell table__cell--header">NO<sub>2</sub> (ppbv)</th>
         </tr>
         <tr>
-            <th scope="row" class="table__cell table__cell--header">Good</th>
+            <th scope="row" class="table__cell table__cell--header aqi-definition-table__cell--good">Good</th>
             <td class="table__cell">0</td>
             <td class="table__cell">0</td>
             <td class="table__cell">0</td>
@@ -26,7 +26,7 @@ ${partials/head.html()}
             <td class="table__cell">0</td>
         </tr>
         <tr>
-            <th scope="row" class="table__cell table__cell--header">Moderate</th>
+            <th scope="row" class="table__cell table__cell--header aqi-definition-table__cell--moderate">Moderate</th>
             <td class="table__cell">50</td>
             <td class="table__cell">54</td>
             <td class="table__cell">12</td>
@@ -35,7 +35,7 @@ ${partials/head.html()}
             <td class="table__cell">53</td>
         </tr>
         <tr>
-            <th scope="row" class="table__cell table__cell--header">Unhealthy for Sensitive Groups</th>
+            <th scope="row" class="table__cell table__cell--header aqi-definition-table__cell--unhealthy-for-sensitive-groups">Unhealthy for Sensitive Groups</th>
             <td class="table__cell">100</td>
             <td class="table__cell">100</td>
             <td class="table__cell">35.4</td>
@@ -44,7 +44,7 @@ ${partials/head.html()}
             <td class="table__cell">100</td>
         </tr>
         <tr>
-            <th scope="row" class="table__cell table__cell--header">Unhealthy</th>
+            <th scope="row" class="table__cell table__cell--header aqi-definition-table__cell--unhealthy">Unhealthy</th>
             <td class="table__cell">150</td>
             <td class="table__cell">164</td>
             <td class="table__cell">55.4</td>
@@ -53,7 +53,7 @@ ${partials/head.html()}
             <td class="table__cell">360</td>
         </tr>
         <tr>
-            <th scope="row" class="table__cell table__cell--header">Very Unhealthy</th>
+            <th scope="row" class="table__cell table__cell--header aqi-definition-table__cell--very-unhealthy">Very Unhealthy</th>
             <td class="table__cell">200</td>
             <td class="table__cell">204</td>
             <td class="table__cell">150.4</td>
@@ -63,7 +63,7 @@ ${partials/head.html()}
         </tr>
         <tbody>
             <tr>
-                <th scope="rowgroup" rowspan="3" class="table__cell table__cell--header">Hazardous</th>
+                <th scope="rowgroup" rowspan="3" class="table__cell table__cell--header aqi-definition-table__cell--hazardous">Hazardous</th>
                 <td class="table__cell">300</td>
                 <td class="table__cell">404</td>
                 <td class="table__cell">250.4</td>
