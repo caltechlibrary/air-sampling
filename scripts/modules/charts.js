@@ -3,7 +3,15 @@
 // https://observablehq.com/@d3/line-chart
 
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7.7.0/+esm";
-import * as luxon from "https://cdn.jsdelivr.net/npm/luxon@3.2.1/+esm"
+
+function getXDomain() {
+    const prevMidnight = new Date();
+    prevMidnight.setHours(0, 0, 0, 0);
+    const nextMidnight = new Date();
+    nextMidnight.setHours(24, 0, 0, 0);
+
+    return [prevMidnight, nextMidnight];
+}
 
 function computeGraphAreaDimensions(height, width, marginTop, marginRight, marginBottom, marginLeft) {
     const graphWidth = width - marginLeft - marginRight;
@@ -72,10 +80,7 @@ export function pollutantChart(data, bandsData, {
         const Y = [...d3.map(data, d => d.value), ...d3.map(bandsData, d => d.lower), ...d3.map(bandsData, d => d.upper)];
 
         // Compute default domains.
-        const xDomain = [
-            luxon.DateTime.fromObject({hour: 0}, { zone: "America/Los_Angeles" }).toJSDate(), 
-            luxon.DateTime.fromObject({hour: 24}, { zone: "America/Los_Angeles" }).toJSDate()
-        ];
+        const xDomain = getXDomain();
         const yDomain = [d3.min(Y) - 0.5, d3.max(Y) + 0.5];
 
         // Compute graph boundaries.
@@ -185,10 +190,7 @@ export function aqiChart(aqiData, aqiBandsData, tempData, tempBandsData, {
         const tempY = [...d3.map(tempData, d => d.value), ...d3.map(tempBandsData, d => d.lower), ...d3.map(tempBandsData, d => d.upper)];
 
         // Compute default domains.
-        const xDomain = [
-            luxon.DateTime.fromObject({hour: 0}, { zone: "America/Los_Angeles" }).toJSDate(), 
-            luxon.DateTime.fromObject({hour: 24}, { zone: "America/Los_Angeles" }).toJSDate()
-        ];
+        const xDomain = getXDomain();
         const aqiYDomain = [d3.min(aqiY) - 5, d3.max(aqiY) + 10];
         const tempYDomain = [d3.min(tempY) - 10, d3.max(tempY) + 5];
 

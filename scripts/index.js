@@ -1,7 +1,6 @@
 import fetchJSON from "./modules/fetchJSON.js";
 import fetchCSV from "./modules/fetchCSV.js";
 import parseCsv from "./modules/parseCsv.js";
-import hourStringToDateObject from "./modules/hourStringToDateObject.js";
 import parseBands from "./modules/parseBands.js";
 import { aqiChart, pollutantChart } from "./modules/charts.js";
 
@@ -138,8 +137,8 @@ async function initAqiChart(bandsData) {
         fetchCSV("https://z44g6g2rrl.execute-api.us-west-2.amazonaws.com/test/get_air?graph=temp"),
     ]);
 
-    const aqiData = parseCsv(aqiCsv).map(row => ({ ...row, time: hourStringToDateObject(row.time) }));
-    const tempData = parseCsv(tempCsv).map(row => ({ ...row, time: hourStringToDateObject(row.time) }));
+    const aqiData = parseCsv(aqiCsv);
+    const tempData = parseCsv(tempCsv);
     const aqiBandsData = parseBands(bandsData.time_AQI);
     const tempBandsData = parseBands(bandsData.time_T);
 
@@ -176,7 +175,7 @@ async function initPollutantChart(bandsData, pollutantWidgetEl) {
 
     const pollutantCsv = await fetchCSV(`https://z44g6g2rrl.execute-api.us-west-2.amazonaws.com/test/get_air?graph=${pollutant}`);
 
-    const pollutantData = parseCsv(pollutantCsv).map(row => ({ ...row, time: hourStringToDateObject(row.time) }));
+    const pollutantData = parseCsv(pollutantCsv);
     const pollutantBandsData = parseBands(bandsData[`time_${pollutant.replace(".", "")}`]);
 
     function generatePollutantChart() {

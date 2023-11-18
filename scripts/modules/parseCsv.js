@@ -1,3 +1,5 @@
+import parseTime from "./parseTime.js";
+
 function parseCsv(csv) {
     const parsedCsv = [];
 
@@ -7,7 +9,7 @@ function parseCsv(csv) {
         const [time, value] = row.split(",");
 
         parsedCsv.push({
-            time,
+            time: parseTime(time),
             value: parseFloat(value)
         })
     }
