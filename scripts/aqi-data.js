@@ -2,7 +2,6 @@ import fetchJSON from "./modules/fetchJSON.js";
 import fetchCSV from "./modules/fetchCSV.js";
 import parseCsv from "./modules/parseCsv.js";
 import parseBands from "./modules/parseBands.js"
-import hourStringToDateObject from "./modules/hourStringToDateObject.js";
 import aggreageData from "./modules/aggregateData.js"
 import createDataTable from "./modules/createDataTable.js";
 
@@ -40,10 +39,11 @@ if (dummy) {
 
 const [aqiCsv, tempCsv, bandsData] = res;
 
-const aqiData = parseCsv(aqiCsv).map(row => ({ ...row, time: hourStringToDateObject(row.time) }));
-const tempData = parseCsv(tempCsv).map(row => ({ ...row, time: hourStringToDateObject(row.time) }));
-const aqiBandsData = parseBands(bandsData.time_AQI).map(entry => ({ ...entry, time: new Date(entry.time), }));
-const tempBandsData = parseBands(bandsData.time_T).map(entry => ({ ...entry, time: new Date(entry.time), }));
+const aqiData = parseCsv(aqiCsv);
+const tempData = parseCsv(tempCsv);
+const aqiBandsData = parseBands(bandsData.time_AQI);
+const tempBandsData = parseBands(bandsData.time_T);
+
 const aqiDataLower = aqiBandsData.map(entry => ({ time: entry.time, value: entry.lower }));
 const aqiDataUpper = aqiBandsData.map(entry => ({ time: entry.time, value: entry.upper }));
 const tempDataLower = tempBandsData.map(entry => ({ time: entry.time, value: entry.lower }));

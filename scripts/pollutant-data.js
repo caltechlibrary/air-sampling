@@ -3,7 +3,6 @@ import fetchCSV from "./modules/fetchCSV.js";
 import parseCsv from "./modules/parseCsv.js";
 import parseBands from "./modules/parseBands.js";
 import aggreageData from "./modules/aggregateData.js";
-import hourStringToDateObject from "./modules/hourStringToDateObject.js";
 import createDataTable from "./modules/createDataTable.js";
 
 const DATA_LABELS = {
@@ -19,8 +18,8 @@ const main = document.querySelector("main");
 const pollutantCsv = await fetchCSV(`https://z44g6g2rrl.execute-api.us-west-2.amazonaws.com/test/get_air?graph=${formula}`);
 const bandsData = await fetchJSON("https://z44g6g2rrl.execute-api.us-west-2.amazonaws.com/test/get_air?graph=bands");
 
-const pollutantData = parseCsv(pollutantCsv).map(datum => ({ ...datum, time: hourStringToDateObject(datum.time) }));
-const pollutantBandsData = parseBands(bandsData[`time_${formula.replace(".", "")}`]).map(entry => ({ ...entry, time: new Date(entry.time), }));
+const pollutantData = parseCsv(pollutantCsv);
+const pollutantBandsData = parseBands(bandsData[`time_${formula.replace(".", "")}`]);
 const pollutantDataLower = pollutantBandsData.map(entry => ({ time: entry.time, value: entry.lower }));
 const pollutantDataUpper = pollutantBandsData.map(entry => ({ time: entry.time, value: entry.upper }));
 
