@@ -255,6 +255,7 @@ Blocks
 
 .aqi-widget__meter {
     visibility: hidden;
+    overflow: visible;
 }
 
 .aqi-widget--initialized .aqi-widget__meter {
