@@ -110,7 +110,7 @@ export function pollutantChart(data, bandsData, {
         const yScale = d3.scaleLinear(yDomain, yRange);
 
         // Construct custom time format.
-        const customTimeFormat = date => date.toLocaleString("en-US", { timeZone: "America/Los_Angeles", hour12: false, hour: "numeric" });
+        const customTimeFormat = date => date.toLocaleString("en-US", { hour12: false, hour: "numeric" });
 
         // Construct axes.
         const xAxis = d3.axisBottom(xScale).tickFormat(customTimeFormat).ticks(xTicks);
@@ -223,7 +223,7 @@ export function aqiChart(aqiData, aqiBandsData, tempData, tempBandsData, {
         const tempYScale = d3.scaleLinear(tempYDomain, tempYRange);
 
         // Construct custom time format.
-        const customTimeFormat = date => date.toLocaleString("en-US", { timeZone: "America/Los_Angeles", hour12: false, hour: "numeric" });
+        const customTimeFormat = date => date.toLocaleString("en-US", { hour12: false, hour: "numeric" });
 
         // Construct axes.
         const xAxis = d3.axisBottom(xScale).tickFormat(customTimeFormat).ticks(xTicks);
