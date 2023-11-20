@@ -1,4 +1,4 @@
-name: Render
+name: Render and Publish
 
 on:
   push:
@@ -12,6 +12,18 @@ on:
         required: false
         default: 'Manual trigger'
 
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
 jobs:
   Render:
     runs-on: ubuntu-20.04
@@ -19,19 +31,20 @@ jobs:
       image: docker://pandoc/ubuntu:2.13
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Set up Python 3.7
         uses: actions/setup-python@v2
         with:
           python-version: '3.7'
       - name: Render
         run: python _build.py
-      - name: Update
-        run: apt-get update 
-      - name: Git
-        run: apt-get -y install git
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./site
+          # Upload entire repository
+          path: './site'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
