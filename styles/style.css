@@ -929,7 +929,9 @@ Blocks
     max-width: 93rem;
     padding: 0 16px;
     font-family: Arial;
-    /* -webkit-text-size-adjust: 100% */
+
+    text-size-adjust: none;
+    -webkit-text-size-adjust: none;
 }
 
 @media (min-width:600px) {

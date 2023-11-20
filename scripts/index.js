@@ -110,7 +110,7 @@ async function initCurrentValues() {
                 pollutantWidgetEl.classList.add(`pollutant-widget--${condition}`);
                 aqiEl.textContent = aqi;
                 aqiLabelEl.classList.add("pollutant-widget__aqi-label--initialized");
-                warningTextEl.textContent = warningText;
+                warningTextEl.textContent = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In porta vulputate ex at pretium. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam lorem sapien.";
             }
 
             if(!isNaN(concentration)) {
