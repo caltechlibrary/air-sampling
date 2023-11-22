@@ -35,8 +35,10 @@ function createDataTable(data, labels) {
 
             if(column === "time") {
                 cell.innerText = content.toLocaleTimeString();
+            } else if(isNaN(content) || content === null || content === undefined) {
+                cell.innerText = "NA";
             } else {
-                cell.innerText = content ?? "NA";
+                cell.innerText = content;
             }
 
             row.appendChild(cell)
