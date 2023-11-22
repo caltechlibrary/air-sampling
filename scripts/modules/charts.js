@@ -2,7 +2,7 @@
 // Released under the ISC license.
 // https://observablehq.com/@d3/line-chart
 
-import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7.7.0/+esm";
+import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
 function getXDomain() {
     const prevMidnight = new Date();
