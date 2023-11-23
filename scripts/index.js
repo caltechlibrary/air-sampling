@@ -102,7 +102,6 @@ async function initCurrentValues() {
             if(aqi !== undefined && aqi !== null && !isNaN(aqi)) {
                 const aqiLabelEl = pollutantWidgetEl.querySelector(".pollutant-widget__aqi-label");
                 const aqiEl = pollutantWidgetEl.querySelector(".pollutant-widget__aqi");
-                const warningTextEl = pollutantWidgetEl.querySelector(".pollutant-widget__warning-text");
 
                 const condition = getCondition(aqi);
                 const warningText = pollutantWidgetEl.getAttribute(`data-${condition}`);
@@ -110,7 +109,12 @@ async function initCurrentValues() {
                 pollutantWidgetEl.classList.add(`pollutant-widget--${condition}`);
                 aqiEl.textContent = aqi;
                 aqiLabelEl.classList.add("pollutant-widget__aqi-label--initialized");
-                warningTextEl.textContent = warningText;
+
+                if(warningText) {
+                    const warningTextEl = pollutantWidgetEl.querySelector(".pollutant-widget__warning-text");
+
+                    warningTextEl.textContent = `${pollutant} levels are: ${warningText}`;
+                }
             }
 
             if(concentration !== undefined && concentration !== null && !isNaN(concentration)) {
