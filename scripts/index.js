@@ -96,6 +96,7 @@ async function initCurrentValues() {
 
         for(const pollutantWidgetEl of pollutantWidgetEls) {
             const pollutant = pollutantWidgetEl.getAttribute("data-pollutant");
+            const pollutantTitle = pollutantWidgetEl.getAttribute("data-title");
             const concentration = data[pollutant];
             const aqi = data[`${pollutant}_aqi`];
 
@@ -113,7 +114,7 @@ async function initCurrentValues() {
                 if(warningText) {
                     const warningTextEl = pollutantWidgetEl.querySelector(".pollutant-widget__warning-text");
 
-                    warningTextEl.textContent = `${pollutant} levels are: ${warningText}`;
+                    warningTextEl.textContent = `${pollutantTitle} levels are: ${warningText}`;
                 }
             }
 
