@@ -114,10 +114,11 @@ async function initCurrentValues() {
             }
 
             if(!isNaN(concentration)) {
+                const concentrationLabelEl = pollutantWidgetEl.querySelector(".pollutant-widget__concentration-label");
                 const concentrationEl = pollutantWidgetEl.querySelector(".pollutant-widget__concentration-text");
 
                 concentrationEl.textContent = concentration;
-                concentrationEl.classList.add("pollutant-widget__aqi-label--initialized");
+                concentrationLabelEl.classList.add("pollutant-widget__concentration-label--initialized");
             }
         }
         
