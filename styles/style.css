@@ -125,8 +125,10 @@ Blocks
 }
 
 .aqi-widget--good .aqi-widget__main-content-container {
-    background: #00e400;
-    color: #000;
+    /*background: #00e400;/*
+    /*color: #000;/*
+    background: #808080;
+    color: #808080;
 }
 
 .aqi-widget--moderate .aqi-widget__main-content-container {
