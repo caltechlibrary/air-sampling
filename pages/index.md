@@ -33,20 +33,20 @@ pollutants:
     unit: μg/m³
     conditions:
       moderate: Unusually sensitive people should consider reducing prolonged or heavy exertion.
-      unhealthy-for-sensitive-groups: People with heart or lung disease, older adults, children, and people of lower socioeconomic status should reduce prolonged or heavy exertion.
-      unhealthy: People with heart or lung disease, older adults, children, and people of lower socioeconomic status should avoid prolonged or heavy exertion; everyone else should reduce prolonged or heavy exertion.
-      very-unhealthy: People with heart or lung disease, older adults, children, and people of lower socioeconomic status should avoid all physical activity outdoors. Everyone else should avoid prolonged or heavy exertion.
-      hazardous: Everyone should avoid all physical activity outdoors; people with heart or lung disease, older adults, children, and people of lower socioeconomic status should remain indoors and keep activity levels low.
+      unhealthy-for-sensitive-groups: People with heart or lung disease, older adults, and children should avoid prolonged or heavy exertion; everyone else should reduce prolonged or heavy exertion
+      unhealthy: People with heart or lung disease, older adults, and children should avoid prolonged or heavy exertion; everyone else should reduce prolonged or heavy exertion; everyone else should reduce prolonged or heavy exertion.
+      very-unhealthy: People with heart or lung disease, older adults, and children status should avoid all physical activity outdoors. Everyone else should avoid prolonged or heavy exertion.
+      hazardous: Everyone should avoid all physical activity outdoors; people with heart or lung disease, older adults, and children should remain indoors and keep activity levels low.
   - title: PM~10~
     name: PM10
     formula: PM10
     unit: μg/m³
     conditions:
       moderate: Unusually sensitive people should consider reducing prolonged or heavy exertion.
-      unhealthy-for-sensitive-groups: People with heart or lung disease, older adults, children, and people of lower socioeconomic status should reduce prolonged or heavy exertion.
-      unhealthy: People with heart or lung disease, older adults, children, and people of lower socioeconomic status should avoid prolonged or heavy exertion; everyone else should reduce prolonged or heavy exertion.
-      very-unhealthy: People with heart or lung disease, older adults, children, and people of lower socioeconomic status should avoid all physical activity outdoors. Everyone else should avoid prolonged or heavy exertion.
-      hazardous: Everyone should avoid all physical activity outdoors; people with heart or lung disease, older adults, children, and people of lower socioeconomic status should remain indoors and keep activity levels low.
+      unhealthy-for-sensitive-groups: People with heart or lung disease, older adults, and children should avoid prolonged or heavy exertion; everyone else should reduce prolonged or heavy exertion.
+      unhealthy: People with heart or lung disease, older adults, and children should avoid prolonged or heavy exertion; everyone else should reduce prolonged or heavy exertion.
+      very-unhealthy: People with heart or lung disease, older adults, and children should avoid all physical activity outdoors. Everyone else should avoid prolonged or heavy exertion.
+      hazardous: Everyone should avoid all physical activity outdoors; people with heart or lung disease, older adults, and children should remain indoors and keep activity levels low.
   - title: CO
     name: CO
     formula: CO
