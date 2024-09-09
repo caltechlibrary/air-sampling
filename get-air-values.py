@@ -73,7 +73,7 @@ def lambda_handler(event, context):
             data = scan["Items"][0]
             export = {}
             for value in data:
-                if value != "date":
+                if value not in ["date","AQI_30_PRI"]:
                     if data[value] =='nan':
                         export[value] = None
                     else:
