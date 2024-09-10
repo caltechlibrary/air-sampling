@@ -1,4 +1,4 @@
-aimport boto3
+import boto3
 import json
 from decimal import *
 
@@ -17,8 +17,9 @@ def process_value(value, measurement, item):
         "PM10_AQI_30": "PM10_aqi",
     }
 
-    if measurement != "nan":
-        measurement = Decimal(str(measurement))
+    if value != "AQI_30_PRI":
+        if measurement != "nan":
+            measurement = Decimal(str(measurement))
         
     if value in mapping:
         item[mapping[value]] = measurement
