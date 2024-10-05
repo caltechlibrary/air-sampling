@@ -243,6 +243,22 @@ Blocks
     visibility: visible;
 }
 
+
+.aqi-widget__primary-pollutant-value {
+    visibility: hidden;
+    font-size: 0.8em;
+}
+
+@media (min-width: 600px) {
+    .aqi-widget__primary-pollutant-value {
+        font-size: 1em;
+    }
+}
+
+.aqi-widget--initialized .aqi-widget__primary-pollutant-value {
+    visibility: visible;
+}
+
 .aqi-widget__condition-caption {
     visibility: hidden;
     font-size: 0.8em;
@@ -275,22 +291,7 @@ Blocks
     }
 }
 
-.aqi-widget__primary-pollutant-value {
-    font-size: 1.15em;
-    font-weight: 600;
-}
 
-@media (min-width: 1100px) {
-    .aqi-widget__primary-pollutant-value {
-        font-size: 1.125em;
-    }
-}
-
-@media (min-width: 1440px) {
-    .aqi-widget__primary-pollutant-value {
-        font-size: 1.5em;
-    }
-}
 
 .aqi-widget__meter {
     visibility: hidden;
