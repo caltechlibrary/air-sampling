@@ -59,7 +59,7 @@ function onResize() {
 async function initCurrentValues() {
     const aqiWidgetEl = document.querySelector(".aqi-widget");
     const valueEl = document.querySelector(".aqi-widget__value");
-    const primaryPollutantEl = document.querySelector("aqi-widget__primary-pollutant-value")
+    const primaryPollutantEl = document.querySelector(".aqi-widget__primary-pollutant-value")
 
     try {
         const data = await fetchJSON("https://z44g6g2rrl.execute-api.us-west-2.amazonaws.com/test/get_air");
@@ -83,8 +83,11 @@ async function initCurrentValues() {
 
             aqiWidgetEl.classList.add(`aqi-widget--${condition}`);
             valueEl.textContent = data.aqi;
-            primaryPollutantEl = data.AQI_30_PRI;
+            let pollutant = data.AQI_30_PRI;
 
+            let formattedPollutant = pollutant.replace(/(\d+(\.\d+)?)/g, '<sub>$1</sub>');
+
+            primaryPollutantEl.innerHTML = formattedPollutant;
             descriptionEl.textContent = conditionFormatted;
             aqiMeterEl.setAttribute("aria-label", `Current AQI value falls within the "${condition}" category.`);
             inidicatorEl.setAttribute("x", `${(data.aqi / 500) * 100}%`);
@@ -93,7 +96,7 @@ async function initCurrentValues() {
         } else {
             aqiWidgetEl.classList.add(`aqi-widget--not-available`);
             valueEl.textContent = "N/A";
-            primaryPollutantEl = "N/A";
+            primaryPollutantEl.textContent = "N/A";
         }
 
 
@@ -138,6 +141,7 @@ async function initCurrentValues() {
 
         aqiWidgetEl.classList.add(`aqi-widget--not-available`);
         valueEl.textContent = "N/A";
+        primaryPollutantEl.textContent = "N/A";
     }
 }
 
