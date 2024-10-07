@@ -125,7 +125,7 @@ Blocks
 }
 
 .aqi-widget--good .aqi-widget__main-content-container {
-    background: #00e400; 
+    background: #00e400;
     color: #000;
     /* background: #808080; */
     /* color: #808080;  */
@@ -184,7 +184,8 @@ Blocks
     }
 }
 
-.aqi-widget--initialized .aqi-widget__title, .aqi-widget--not-available .aqi-widget__title {
+.aqi-widget--initialized .aqi-widget__title,
+.aqi-widget--not-available .aqi-widget__title {
     visibility: visible;
 }
 
@@ -193,11 +194,15 @@ Blocks
     font-weight: 600;
 }
 
-.aqi-widget--good .aqi-widget__value-label, .aqi-widget--moderate .aqi-widget__value-label, .aqi-widget--unhealthy-for-sensitive-groups .aqi-widget__value-label, .aqi-widget--unhealthy .aqi-widget__value-label {
+.aqi-widget--good .aqi-widget__value-label,
+.aqi-widget--moderate .aqi-widget__value-label,
+.aqi-widget--unhealthy-for-sensitive-groups .aqi-widget__value-label,
+.aqi-widget--unhealthy .aqi-widget__value-label {
     fill: #000;
 }
 
-.aqi-widget--very-unhealthy .aqi-widget__value-label, .aqi-widget--hazardous .aqi-widget__value-label {
+.aqi-widget--very-unhealthy .aqi-widget__value-label,
+.aqi-widget--hazardous .aqi-widget__value-label {
     fill: #fff;
 }
 
@@ -221,6 +226,37 @@ Blocks
     flex-direction: column;
     align-items: center;
     gap: 8px;
+}
+
+.aqi-widget__primary-pollutant-caption {
+    visibility: hidden;
+    font-size: 0.8em;
+}
+
+@media (min-width: 600px) {
+    .aqi-widget__primary-pollutant-caption {
+        font-size: 1em;
+    }
+}
+
+.aqi-widget--initialized .aqi-widget__primary-pollutant-caption {
+    visibility: visible;
+}
+
+
+.aqi-widget__primary-pollutant-value {
+    visibility: hidden;
+    font-size: 0.8em;
+}
+
+@media (min-width: 600px) {
+    .aqi-widget__primary-pollutant-value {
+        font-size: 1em;
+    }
+}
+
+.aqi-widget--initialized .aqi-widget__primary-pollutant-value {
+    visibility: visible;
 }
 
 .aqi-widget__condition-caption {
@@ -254,6 +290,8 @@ Blocks
         font-size: 1.5em;
     }
 }
+
+
 
 .aqi-widget__meter {
     visibility: hidden;
@@ -426,7 +464,7 @@ Blocks
 @media (max-width:599px) {
     .card--min-mobile {
         padding-bottom: 40%;
-    } 
+    }
 }
 
 @media (min-width:600px) {
@@ -507,7 +545,8 @@ Blocks
 
 @media (min-width:1440px) {
     .top-container__item {
-        min-width: 25rem;;
+        min-width: 25rem;
+        ;
     }
 }
 
@@ -743,12 +782,12 @@ Blocks
 }
 
 .pollutant-widget__concentration-sr-text {
-    position:absolute;
-    left:-10000px;
-    top:auto;
-    width:1px;
-    height:1px;
-    overflow:hidden;
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
 }
 
 .pollutant-widget__concentration-label {
