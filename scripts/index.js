@@ -76,8 +76,7 @@ async function initCurrentValues() {
         const aqiMeterEl = document.querySelector(".aqi-widget__meter");
         const inidicatorEl = document.getElementById("aqi-widget__meter-indicator");
 
-
-        if (!isNaN(data.aqi)) {
+        if (!(isNaN(data.aqi) || data.aqi === null || data.aqi === undefined)){
             const condition = getCondition(data.aqi);
             const conditionFormatted = formatCondition(condition);
 
