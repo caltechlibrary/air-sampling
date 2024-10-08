@@ -1,27 +1,19 @@
 Caltech Air Quality Portal
 =====================================================
 
-This repository holds the source code for the Caltech Air Quality portal.
+This repository holds the source code for the Caltech Air Quality portal [aq.caltech.edu](https://aq.caltech.edu) and [breathe.caltech.edu](https://breathe.caltech.edu).
 
 
 Table of contents
 -----------------
 
-* [Introduction](#introduction)
 * [Installation](#installation)
 * [Usage](#usage)
-* [Known issues and limitations](#known-issues-and-limitations)
 * [Getting help](#getting-help)
 * [Contributing](#contributing)
 * [License](#license)
 * [Authors and history](#authors-and-history)
 * [Acknowledgments](#authors-and-acknowledgments)
-
-
-Introduction
-------------
-
-
 
 
 Installation
@@ -69,8 +61,14 @@ second and 100,000 requests per day, add air-sampling with stage test, and then
 attach the Testing API key we created earlier. If you go to the api stage you
 should see a Invoke URL. 
 
+In order to serve multiple domains, we use a standard S3 bucket and Cloudfront distribution on AWS. Each commit to this repo triggers a 
+GitHub action which builds the site and transfers the contents to the S3 bucket.
+
 Usage
 -----
+
+You can render the site on a local machine by typing `python _build.py`. Pandoc (2.13+) is required to be available to render the site. 
+The site will be built in the sites directory. 
 
 You can submit sampling data at:
 
@@ -79,15 +77,9 @@ https://URL.execute-api.us-west-2.amazonaws.com/test/add-air-bands -H
 "x-api-key: KEY" --request POST -d
 @citaqs_pkt.txt```
 
-You can submit are sampling bands (one per day) at 
+You can submit air sampling bands (one per day) at 
 
 ```curl https://URL.execute-api.us-west-2.amazonaws.com/test/add-air-bands -H "x-api-key: KEY" --request POST -d @citaqs_band_pkt.txt```
-
-
-Known issues and limitations
-----------------------------
-
-
 
 
 Getting help
@@ -105,7 +97,7 @@ Contributions are accepted via pull request.
 License
 -------
 
-Software produced by the Caltech Library is Copyright (C) 2022, Caltech.  This software is freely distributed under a BSD/MIT type license.  Please see the [LICENSE](LICENSE) file for more information.
+Software produced by the Caltech Library is Copyright (C) 2022-24, Caltech.  This software is freely distributed under a BSD/MIT type license.  Please see the [LICENSE](LICENSE) file for more information.
 
 
 Authors and history
