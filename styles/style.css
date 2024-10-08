@@ -221,7 +221,8 @@ Blocks
 }
 
 .aqi-widget__condition-label {
-    margin: 0;
+    margin: 1.5em;
+    margin-top: 0px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -252,6 +253,7 @@ Blocks
 @media (min-width: 600px) {
     .aqi-widget__primary-pollutant-value {
         font-size: 1em;
+        font-weight: 600;
     }
 }
 
