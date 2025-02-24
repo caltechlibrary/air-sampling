@@ -16,7 +16,7 @@ jobs:
   Render:
     runs-on: ubuntu-24.04
     container: 
-      image: docker://pandoc/ubuntu:2.13
+      image: docker://pandoc/core:3.6-ubuntu
     steps:
       - name: Checkout
         uses: actions/checkout@v4
