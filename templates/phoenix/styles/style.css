@@ -1,0 +1,1035 @@
+/* 
+- Single column mobile layout: 0px - 600px
+- Hybrid mobile/desktop layout: 600px - 1100px
+- Normal desktop layout: 1100px
+*/
+
+/* 
+CSS is written using BEM methodology (https://en.bem.info/methodology/). Order of classes does matter. This is
+because BEM blocks can be redefined at different layers. For example: .header could be redefined at .page level as
+.page__header. 
+
+Blocks
+- header: banner at top of site.
+- aqi-widget: widget used to display current aqi value.
+- cam-widget: widget used to display live cam feed.
+- resources-widget: widget used to display headlines/useful links.
+- footer: footer at bottom of site.
+- card: component used to display aqi widget, live cam, and resources widget.
+- top-container: container that wraps aqi, live cam, and (on desktop screen sizes) resources cards.
+- aqi-chart: chart that contains aqi/temperature history.
+- pollutant-widget: accordion widget used to display individual pollutant values.
+- table: data page data table.
+- aqi-definition-table: aqi definition table on "How is AQI Defined Here?" page.
+- page: container used to wrap site.
+- global: global styles.
+*/
+
+/* header */
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: Arial;
+    gap: 12px;
+}
+
+@media (min-width: 600px) {
+    .header {
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 26px;
+    }
+}
+
+@media (min-width: 1100px) {
+    .header {
+        gap: 48px;
+    }
+}
+
+.header__caltech-logo {
+    width: 7.875em;
+    height: auto;
+}
+
+@media (min-width: 800px) {
+    .header__caltech-logo {
+        width: 10em;
+    }
+}
+
+@media (min-width: 1100px) {
+    .header__caltech-logo {
+        width: 11.75em;
+    }
+}
+
+.header__title {
+    margin: 0;
+    font-size: 2em;
+    font-weight: 100;
+    line-height: 1;
+    color: #033C49;
+    text-align: center;
+}
+
+@media (min-width: 800px) {
+    .header__title {
+        font-size: 2.5em;
+    }
+}
+
+@media (min-width: 1100px) {
+    .header__title {
+        font-size: 3.25em;
+    }
+}
+
+.header__date {
+    margin: 16px 0 0 0;
+    font-size: 0.875em;
+    white-space: nowrap;
+    color: #033C49;
+}
+
+@media (min-width: 600px) {
+    .header__date {
+        margin: 0 0 0 auto;
+        color: #595959;
+    }
+}
+
+@media (min-width: 800px) {
+    .header__date {
+        font-size: 1em;
+    }
+}
+
+@media (min-width: 1100px) {
+    .header__date {
+        font-size: 1.125em;
+    }
+}
+
+/* aqi-widget */
+.aqi-widget__main-content-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #f2f2f2;
+    color: #033c49;
+}
+
+.aqi-widget--good .aqi-widget__main-content-container {
+    background: #00e400;
+    color: #000;
+    /* background: #808080; */
+    /* color: #808080;  */
+}
+
+.aqi-widget--moderate .aqi-widget__main-content-container {
+    background: #ffff00;
+    color: #000;
+}
+
+.aqi-widget--unhealthy-for-sensitive-groups .aqi-widget__main-content-container {
+    background: #ff7e00;
+    color: #000;
+}
+
+.aqi-widget--unhealthy .aqi-widget__main-content-container {
+    background: #ff0000;
+    color: #000;
+}
+
+.aqi-widget--very-unhealthy .aqi-widget__main-content-container {
+    background: #8f3f97;
+    color: #fff;
+}
+
+.aqi-widget--hazardous .aqi-widget__main-content-container {
+    background: #7e0023;
+    color: #fff;
+}
+
+.aqi-widget__title {
+    visibility: hidden;
+    position: absolute;
+    top: 4%;
+    right: 4%;
+    margin: 0;
+    font-size: 1.875em;
+    font-weight: 100;
+}
+
+@media (min-width: 600px) {
+    .aqi-widget__title {
+        font-size: 1.5em;
+    }
+}
+
+@media (min-width: 1100px) {
+    .aqi-widget__title {
+        font-size: 1.875em;
+    }
+}
+
+@media (min-width: 1440px) {
+    .aqi-widget__title {
+        font-size: 2.5em;
+    }
+}
+
+.aqi-widget--initialized .aqi-widget__title,
+.aqi-widget--not-available .aqi-widget__title {
+    visibility: visible;
+}
+
+.aqi-widget__value-label {
+    width: 80%;
+    font-weight: 600;
+}
+
+.aqi-widget--good .aqi-widget__value-label,
+.aqi-widget--moderate .aqi-widget__value-label,
+.aqi-widget--unhealthy-for-sensitive-groups .aqi-widget__value-label,
+.aqi-widget--unhealthy .aqi-widget__value-label {
+    fill: #000;
+}
+
+.aqi-widget--very-unhealthy .aqi-widget__value-label,
+.aqi-widget--hazardous .aqi-widget__value-label {
+    fill: #fff;
+}
+
+.aqi-widget--not-available .aqi-widget__value-label {
+    fill: #033c49;
+}
+
+.aqi-widget__value {
+    text-anchor: middle;
+    dominant-baseline: central;
+    font-size: 50px;
+}
+
+.aqi-widget--not-available .aqi-widget__value {
+    font-size: 45px;
+}
+
+.aqi-widget__condition-label {
+    margin: 1.5em;
+    margin-top: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.aqi-widget__primary-pollutant-caption {
+    visibility: hidden;
+    font-size: 0.8em;
+}
+
+@media (min-width: 600px) {
+    .aqi-widget__primary-pollutant-caption {
+        font-size: 1em;
+    }
+}
+
+.aqi-widget--initialized .aqi-widget__primary-pollutant-caption {
+    visibility: visible;
+}
+
+
+.aqi-widget__primary-pollutant-value {
+    visibility: hidden;
+    font-size: 0.8em;
+}
+
+@media (min-width: 600px) {
+    .aqi-widget__primary-pollutant-value {
+        font-size: 1em;
+        font-weight: 600;
+    }
+}
+
+.aqi-widget--initialized .aqi-widget__primary-pollutant-value {
+    visibility: visible;
+}
+
+.aqi-widget__condition-caption {
+    visibility: hidden;
+    font-size: 0.8em;
+}
+
+@media (min-width: 600px) {
+    .aqi-widget__condition-caption {
+        font-size: 1em;
+    }
+}
+
+.aqi-widget--initialized .aqi-widget__condition-caption {
+    visibility: visible;
+}
+
+.aqi-widget__condition-value {
+    font-size: 1.15em;
+    font-weight: 600;
+}
+
+@media (min-width: 1100px) {
+    .aqi-widget__condition-value {
+        font-size: 1.125em;
+    }
+}
+
+@media (min-width: 1440px) {
+    .aqi-widget__condition-value {
+        font-size: 1.5em;
+    }
+}
+
+
+
+.aqi-widget__meter {
+    visibility: hidden;
+    overflow: visible;
+}
+
+.aqi-widget--initialized .aqi-widget__meter {
+    visibility: visible;
+}
+
+/* cam-widget */
+.cam-widget__img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+.cam-widget__header-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cam-widget__header {
+    margin: 0;
+    font-size: 1.15em;
+    font-weight: 600;
+    color: #033c49;
+}
+
+@media (min-width: 600px) {
+    .cam-widget__header {
+        font-size: 1.625em;
+    }
+}
+
+/* resources-widget */
+.resources-widget__main-content-container {
+    padding: 5%;
+    display: flex;
+    flex-direction: column;
+    background: #f2f2f2;
+    font-size: 0.875em;
+}
+
+@media (min-width: 1100px) {
+    .resources-widget__main-content-container {
+        font-size: 1em;
+    }
+}
+
+.resources-widget__headlines-container {
+    flex: 1;
+}
+
+.resources-widget__header {
+    margin: 0 0 12px;
+    font-size: 1.5em;
+    font-weight: normal;
+}
+
+.resources-widget__links-list {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.resources-widget__link {
+    color: inherit;
+    text-decoration: none;
+    line-height: 1.5;
+    word-wrap: break-word;
+}
+
+.resources-widget__headline-img {
+    margin-right: 16px;
+    width: 45%;
+    height: auto;
+    float: left;
+}
+
+.resources-widget__divider {
+    flex: 0 0 auto;
+    margin: 16px 0;
+    width: 100%;
+    height: 2px;
+    background: #d4d4d4;
+}
+
+.resources-widget__links-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.resources-widget__download-link-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width:599px) {
+    .resources-widget__download-link-container {
+        background: #f2f2f2;
+        box-shadow: 0px 0px 10px #00000033;
+    }
+}
+
+.resources-widget__download-link {
+    font-size: 1.15em;
+    font-weight: 600;
+    color: #033c49;
+    text-align: center;
+    text-decoration: none;
+}
+
+@media (min-width: 600px) {
+    .resources-widget__download-link {
+        font-size: 1.625em;
+    }
+}
+
+/* footer */
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 3rem;
+}
+
+@media (min-width: 800px) {
+    .footer {
+        gap: 7rem;
+    }
+}
+
+.footer_img {
+    width: 8em;
+}
+
+@media (min-width: 600px) {
+    .footer_img {
+        width: 13em;
+    }
+}
+
+@media (min-width: 800px) {
+    .footer_img {
+        width: 15em;
+    }
+}
+
+@media (min-width: 1440px) {
+    .footer_img {
+        width: 17em;
+    }
+}
+
+/* card */
+.card {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: max(102.5%, 21rem);
+    font-family: Arial;
+}
+
+@media (max-width:599px) {
+    .card--min-mobile {
+        padding-bottom: 40%;
+    }
+}
+
+@media (min-width:600px) {
+    .card {
+        padding-bottom: 102.5%;
+    }
+}
+
+.card__component-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.card__main-component {
+    flex: 0 0 85%;
+    order: 0;
+    box-sizing: border-box;
+    border-radius: 3%;
+    overflow: auto;
+    box-shadow: 0px 0px 10px #00000033;
+}
+
+@media (max-width:599px) {
+    .card--min-mobile .card__main-component {
+        flex: 0 0 100%;
+    }
+}
+
+.card__sub-component {
+    flex: 1;
+    order: 1;
+    border-radius: 8px;
+}
+
+@media (max-width:599px) {
+    .card--min-mobile .card__sub-component {
+        display: none;
+    }
+}
+
+/* top-container */
+.top-container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+@media (min-width:600px) {
+    .top-container {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 24px 4%;
+    }
+}
+
+.top-container__item {
+    flex: 1;
+}
+
+@media (min-width:600px) {
+    .top-container__item {
+        flex: 0 0 48%;
+        margin: auto;
+        min-width: 16rem;
+    }
+}
+
+@media (min-width:1100px) {
+    .top-container__item {
+        flex: 0 0 30.66%;
+        min-width: 20rem;
+    }
+}
+
+@media (min-width:1440px) {
+    .top-container__item {
+        min-width: 25rem;
+        ;
+    }
+}
+
+/* aqi-chart */
+.aqi-chart {
+    visibility: hidden;
+}
+
+.aqi-chart--initialized {
+    visibility: visible;
+}
+
+.aqi-chart__chart-svg {
+    display: block;
+}
+
+.aqi-chart__chart-legend {
+    margin-left: auto;
+    width: fit-content;
+    border: 1px solid #000;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 4px 12px;
+    font-size: 0.8em;
+    font-family: sans-serif;
+    box-shadow: 1px 1px #000;
+}
+
+@media (min-width:600px) {
+    .aqi-chart__chart-legend {
+        font-size: 1em;
+    }
+}
+
+.aqi-chart__chart-legend-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+}
+
+.aqi-chart__chart-legend-icon {
+    height: 16px;
+    width: 16px;
+}
+
+@media (min-width:600px) {
+    .aqi-chart__chart-legend-icon {
+        width: 40px
+    }
+}
+
+.aqi-chart__chart-legend-label--aqi .aqi-chart__chart-legend-icon {
+    background: #eb0000;
+}
+
+.aqi-chart__chart-legend-label--temp .aqi-chart__chart-legend-icon {
+    background: #0000ff;
+}
+
+.aqi-chart__chart-legend-swatch {
+    height: 16px;
+}
+
+.aqi-chart__chart-legend-line {
+    height: 2px;
+}
+
+.aqi-chart__data-link-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* pollutant-widget */
+.pollutant-widget {
+    box-shadow: 0px 0px 10px #00000033;
+    border-radius: 8px;
+    box-sizing: border-box;
+    height: 5rem;
+    background: #efefef;
+    padding: 8px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    font-family: Arial;
+    color: #033C49;
+    overflow: auto hidden;
+}
+
+@media (min-width:800px) {
+    .pollutant-widget {
+        flex-direction: row;
+        padding: 12px 16px;
+        transition: height 1s;
+    }
+}
+
+.pollutant-widget--expanded {
+    height: auto;
+}
+
+@media (min-width:800px) {
+    .pollutant-widget--expanded {
+        height: 17rem;
+    }
+}
+
+.pollutant-widget__info-container {
+    display: flex;
+    flex-direction: column;
+}
+
+@media (min-width:800px) {
+    .pollutant-widget__info-container {
+        width: 27.1875rem;
+    }
+}
+
+.pollutant-widget__header-container {
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 0.875em;
+    overflow: auto;
+}
+
+@media (min-width:800px) {
+    .pollutant-widget__header-container {
+        height: 3.5rem;
+        gap: 64px;
+        font-size: 1.075em;
+    }
+}
+
+.pollutant-widget__header-item {
+    flex: 1;
+    margin: 0;
+    white-space: nowrap;
+}
+
+.pollutant-widget__header-label {
+    font-size: inherit;
+}
+
+.pollutant-widget__toggle-btn {
+    margin: 0;
+    border: none;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: none;
+    color: inherit;
+    font-size: inherit;
+}
+
+.pollutant-widget__toggle-icon {
+    width: 1.25em;
+    height: 1.25em;
+}
+
+@media (min-width:800px) {
+    .pollutant-widget__toggle-icon {
+        transition: transform 1s;
+    }
+}
+
+.pollutant-widget--expanded .pollutant-widget__toggle-icon {
+    transform: rotate(90deg);
+}
+
+.pollutant-widget__aqi-label {
+    visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.75em;
+}
+
+.pollutant-widget__aqi-label--initialized {
+    visibility: visible;
+}
+
+.pollutant-widget__aqi {
+    height: 2.5em;
+    width: 2.5em;
+    border-radius: 8px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pollutant-widget--good .pollutant-widget__aqi {
+    background: #00e400;
+    color: #000;
+}
+
+.pollutant-widget--moderate .pollutant-widget__aqi {
+    background: #ffff00;
+    color: #000;
+}
+
+.pollutant-widget--unhealthy-for-sensitive-groups .pollutant-widget__aqi {
+    background: #ff7e00;
+    color: #000;
+}
+
+.pollutant-widget--unhealthy .pollutant-widget__aqi {
+    background: #ff0000;
+    color: #000;
+}
+
+.pollutant-widget--very-unhealthy .pollutant-widget__aqi {
+    background: #8f3f97;
+    color: #fff;
+}
+
+.pollutant-widget--hazardous .pollutant-widget__aqi {
+    background: #7e0023;
+    color: #fff;
+}
+
+.pollutant-widget--data-unavailable .pollutant-widget__aqi {
+    height: unset;
+    width: unset;
+}
+
+.pollutant-widget--data-unavailable .pollutant-widget__aqi-text {
+    display: none;
+}
+
+.pollutant-widget__concentration-sr-text {
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+.pollutant-widget__concentration-label {
+    visibility: hidden;
+}
+
+@media (max-width:799px) {
+    .pollutant-widget__concentration-label {
+        text-align: right;
+    }
+}
+
+.pollutant-widget__concentration-label--initialized {
+    visibility: visible;
+}
+
+.pollutant-widget__warning-container {
+    flex: 1;
+    color: #000;
+    overflow: auto;
+    opacity: 0;
+    visibility: hidden;
+}
+
+@media (min-width:800px) {
+    .pollutant-widget__warning-container {
+        padding: 0px 44px;
+        transition: opacity 1s, visibility 1s;
+    }
+}
+
+.pollutant-widget--expanded .pollutant-widget__warning-container {
+    opacity: 1;
+    visibility: visible;
+}
+
+.pollutant-widget__warning-text {
+    margin: 0;
+}
+
+.pollutant-widget__chart-container {
+    flex: 1 1 13rem;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    visibility: hidden;
+}
+
+@media (min-width:800px) {
+    .pollutant-widget__chart-container {
+        flex: 1;
+        transition: opacity 1s, visibility 1s;
+    }
+}
+
+.pollutant-widget--expanded .pollutant-widget__chart-container {
+    opacity: 1;
+    visibility: visible;
+}
+
+.pollutant-widget__chart {
+    flex: 1;
+    min-height: 0;
+    margin-bottom: 0.5em;
+    background: #fff;
+}
+
+.pollutant-widget__chart-legend {
+    position: relative;
+    margin-left: auto;
+    width: fit-content;
+    border: 1px solid #000;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 4px 12px;
+    font-size: 0.8em;
+    font-family: sans-serif;
+    background: #fff;
+    box-shadow: 1px 1px #000;
+}
+
+@media (min-width:600px) {
+    .pollutant-widget__chart-legend {
+        font-size: 1em;
+    }
+}
+
+.pollutant-widget__chart-legend-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+}
+
+.pollutant-widget__chart-legend-icon {
+    height: 16px;
+    width: 16px;
+    background: #000;
+}
+
+@media (min-width:600px) {
+    .pollutant-widget__chart-legend-icon {
+        width: 40px
+    }
+}
+
+.pollutant-widget__chart-legend-swatch {
+    height: 16px;
+}
+
+.pollutant-widget__chart-legend-line {
+    height: 2px;
+}
+
+.pollutant-widget__chart-svg {
+    display: block;
+}
+
+.pollutant-widget__chart-data-link {
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* table */
+.table {
+    padding: 8px 14px;
+    border-collapse: collapse;
+    color: #000;
+    font-family: Arial;
+}
+
+.table__cell {
+    border: 1px solid #000;
+    padding: 0.5rem 1rem;
+    text-align: center;
+}
+
+.table__cell--header {
+    max-width: 11em;
+    background: #efefef;
+}
+
+/* aqi-definition-table */
+.aqi-definition-table__cell--good {
+    background: #00e400;
+    color: #000;
+}
+
+.aqi-definition-table__cell--moderate {
+    background: #ffff00;
+    color: #000;
+}
+
+.aqi-definition-table__cell--unhealthy-for-sensitive-groups {
+    background: #ff7e00;
+    color: #000;
+}
+
+.aqi-definition-table__cell--unhealthy {
+    background: #ff0000;
+    color: #000;
+}
+
+.aqi-definition-table__cell--very-unhealthy {
+    background: #8f3f97;
+    color: #fff;
+}
+
+.aqi-definition-table__cell--hazardous {
+    background: #7e0023;
+    color: #fff;
+}
+
+/* page */
+.page {
+    margin: 32px auto;
+    max-width: 93rem;
+    padding: 0 16px;
+    font-family: Arial;
+
+    text-size-adjust: none;
+    -webkit-text-size-adjust: none;
+}
+
+@media (min-width:600px) {
+    .page {
+        margin: 52px auto;
+    }
+}
+
+.page__header {
+    margin-bottom: 12px;
+}
+
+@media (min-width:600px) {
+    .page__header {
+        margin-bottom: 58px;
+    }
+}
+
+.page__main {
+    margin-bottom: 32px;
+}
+
+.page__top-container {
+    margin-bottom: 24px;
+}
+
+@media (min-width:600px) {
+    .page__top-container {
+        margin-bottom: 36px;
+    }
+}
+
+.page__aqi-chart {
+    margin-bottom: 24px;
+}
+
+@media (min-width:600px) {
+    .page__aqi-chart {
+        margin-bottom: 36px;
+    }
+}
+
+.page__pollutant-widget {
+    margin-bottom: 16px;
+}
+
+@media (min-width:600px) and (max-width:1099px) {
+    .page__resources-widget-container {
+        margin: auto;
+        min-width: 16rem;
+        max-width: 48%;
+    }
+}
+
+/* global */
+sub {
+    line-height: 0;
+}

@@ -23,6 +23,9 @@ Installation
 
 Install [Pandoc](https://pandoc.org/installing.html) and [Python 3](https://www.python.org/downloads/).
 
+If you want to try running the site locally, install
+[webserver](https://caltechlibrary.github.io/wsfn/INSTALL.html).
+
 Run the build script using:
 
 ```
@@ -32,6 +35,10 @@ python _build.py
 ```
 
 This will create a `site/` directory with the built site.
+
+You can preview the site by going to the `site/` directory and typing
+`webserver start`. Then open a browser and go to `http://localhost:8000`.
+
 
 ## Real-time data infrastructure
 
