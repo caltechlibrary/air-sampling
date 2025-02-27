@@ -26,7 +26,7 @@ Install [Pandoc](https://pandoc.org/installing.html) and [Python 3](https://www.
 If you want to try running the site locally, install
 [webserver](https://caltechlibrary.github.io/wsfn/INSTALL.html).
 
-Run the build script using:
+Run the build script in the `air-sampling` repository directory by typing:
 
 ```
 python3 _build.py
@@ -36,11 +36,12 @@ python _build.py
 
 This will create a `site/` directory with the built site.
 
-You can preview the site by going to the `site/` directory and typing
-`webserver start`. Then open a browser and go to `http://localhost:8000`.
+You can preview the site by typing `webserver start site`. Then open a browser and go to `http://localhost:8000`.
 
 
 ## Real-time data infrastructure
+
+This documentation is if you want to re-create the existing real-time data infrastructure.
 
 Create an Amazon Dynamo DB table called air-sampling-table with primary key
 'date' with type string and sort key called `time` with type number. The default settings are fine. 
@@ -85,11 +86,7 @@ should see a Invoke URL.
 In order to serve multiple domains, we use a standard S3 bucket and Cloudfront distribution on AWS. Each commit to this repo triggers a 
 GitHub action which builds the site and transfers the contents to the S3 bucket.
 
-Usage
------
-
-You can render the site on a local machine by typing `python _build.py`. Pandoc (2.13+) is required to be available to render the site. 
-The site will be built in the sites directory. 
+### Adding real-time data
 
 You can submit sampling data at:
 
@@ -118,7 +115,7 @@ Contributions are accepted via pull request.
 License
 -------
 
-Software produced by the Caltech Library is Copyright (C) 2022-24, Caltech.  This software is freely distributed under a BSD/MIT type license.  Please see the [LICENSE](LICENSE) file for more information.
+Software produced by the Caltech Library is Copyright (C) 2022-25, Caltech.  This software is freely distributed under a BSD/MIT type license.  Please see the [LICENSE](LICENSE) file for more information.
 
 
 Authors and history
