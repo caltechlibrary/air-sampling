@@ -1,0 +1,19 @@
+<div class="card aqi-widget">
+    <div class="card__component-container">
+        <div class="card__main-component aqi-widget__main-content-container">
+            <h2 class="aqi-widget__title">AQI</h2>
+            <svg viewBox="0 0 80 60" class="aqi-widget__value-label">
+                <text x="50%" y="50%" class="aqi-widget__value"></text>
+            </svg>
+            <p class="aqi-widget__condition-label">
+                <span class="aqi-widget__condition-caption">Current Air Quality</span>
+                <span class="aqi-widget__condition-value"></span>
+                <span class="aqi-widget__primary-pollutant-caption">Primary Pollutant</span>
+                <span class="aqi-widget__primary-pollutant-value"></span>
+            </p>
+        </div>
+        <div class="card__sub-component">
+            ${svg/aqi-meter.svg()}
+        </div>
+    </div>
+</div>

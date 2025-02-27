@@ -1,0 +1,31 @@
+<div class="card resources-widget">
+    <div class="card__component-container">
+        <div class="card__main-component resources-widget__main-content-container">
+            <!-- <div class="resources-widget__headlines-container">
+                <h2 class="resources-widget__header">HEADLINES</h2>
+                <a class="resources-widget__link" href="${headline.link}">
+                    <img 
+                        class="resources-widget__headline-img" 
+                        src="${headline.img}" 
+                        alt="${headline.alt}" 
+                        width="1600" 
+                        height="811"
+                    >
+                    ${headline.title}
+                </a>
+            </div>
+            <div class="resources-widget__divider"></div> -->
+            <div class="resources-widget__links-container">
+                <h2 class="resources-widget__header">Useful Links</h2>
+                <ul class="resources-widget__links-list">
+                    ${for(useful-links)}
+                        <li><a class="resources-widget__link" href="${it.link}" target="_blank">${it.title}</a></li>
+                    ${endfor}
+                </ul>
+            </div>
+        </div>
+        <!--<div class="card__sub-component resources-widget__download-link-container">-->
+        <!--    <a class="resources-widget__download-link" href="">DOWNLOAD DATA</a>-->
+        <!--</div>-->
+    </div>
+</div>

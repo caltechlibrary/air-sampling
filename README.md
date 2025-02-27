@@ -19,6 +19,20 @@ Table of contents
 Installation
 ------------
 
+## Building the site
+
+Install [Pandoc](https://pandoc.org/installing.html) and [Python 3](https://www.python.org/downloads/).
+
+Run the build script using:
+
+```
+python3 _build.py
+# or (depending on python configuration)
+python _build.py
+```
+
+This will create a `site/` directory with the built site.
+
 ## Real-time data infrastructure
 
 Create an Amazon Dynamo DB table called air-sampling-table with primary key

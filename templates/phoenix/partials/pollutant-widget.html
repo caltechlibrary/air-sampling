@@ -1,0 +1,49 @@
+<div
+    class="pollutant-widget page__pollutant-widget"
+    data-pollutant="${it.formula}"
+    data-unit="${it.unit}"
+    data-moderate="${it.conditions.moderate}"
+    data-unhealthy-for-sensitive-groups="${it.conditions.unhealthy-for-sensitive-groups}"
+    data-unhealthy="${it.conditions.unhealthy}"
+    data-very-unhealthy="${it.conditions.very-unhealthy}"
+    data-hazardous="${it.conditions.hazardous}"
+>
+    <div class="pollutant-widget__info-container">
+        <div class="pollutant-widget__header-container">
+            <h2 class="pollutant-widget__header-item pollutant-widget__header-label">
+                <button class="pollutant-widget__toggle-btn" aria-controls="${it.name}-warning ${it.name}-chart" aria-expanded="false">
+                    <span class="pollutant-widget__toggle-icon">${svg/triangle.svg()}</span>
+                    <span>${it.title}</span>
+                </button>
+            </h2>
+            <p class="pollutant-widget__header-item pollutant-widget__aqi-label">
+                <span class="pollutant-widget__aqi"></span>
+                <span class="pollutant-widget__aqi-text">AQI</span>
+            </p>
+            <p class="pollutant-widget__header-item pollutant-widget__concentration-label">
+                <span class="pollutant-widget__concentration-sr-text">Current ${it.title} concentration</span>
+                <span class="pollutant-widget__concentration-text"></span>
+                ${it.unit}
+            </p>
+        </div>
+        <div id="${it.name}-warning"  class="pollutant-widget__warning-container">
+            <p class="pollutant-widget__warning-text"></p>
+        </div>
+    </div>
+    <div id="${it.name}-chart" class="pollutant-widget__chart-container">
+        <div class="pollutant-widget__chart-legend">
+            <span class="pollutant-widget__chart-legend-label">
+              <span class="pollutant-widget__chart-legend-icon pollutant-widget__chart-legend-swatch"></span>
+              <span>Previous 7 day ${it.title}</span>
+            </span>
+            <span class="pollutant-widget__chart-legend-label">
+              <span class="pollutant-widget__chart-legend-icon pollutant-widget__chart-legend-line"></span>
+              <span>Current day ${it.title}</span>
+            </span>
+        </div>
+        <div class="pollutant-widget__chart"></div>
+        <div class="pollutant-widget__chart-data-link">
+            <a href="${it.name}-data.html">${it.title} Data</a>
+        </div>
+    </div>
+</div>
