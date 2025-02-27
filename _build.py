@@ -31,12 +31,15 @@ args = argParser.parse_args()
 # Create output site directory
 if os.path.isdir(outDir): shutil.rmtree(outDir)
 os.makedirs(outDir)
-os.makedirs(f"{outDir}/phoenix")
 shutil.copytree(imagesDir, f"{outDir}/{imagesDir}")
 shutil.copytree(stylesDir, f"{outDir}/{stylesDir}")
 shutil.copytree(scriptsDir, f"{outDir}/{scriptsDir}")
 shutil.copyfile("google9c66b3b3d14f628e.html", f"{outDir}/google9c66b3b3d14f628e.html")
 shutil.copyfile("favicon.ico", f"{outDir}/favicon.ico")
+
+# Do the same for phoenix
+os.makedirs(f"{outDir}/phoenix")
+shutil.copytree(f"templates/phoenix/{stylesDir}", f"{outDir}/phoenix/{stylesDir}")
 
 if args.dummy: shutil.copytree("dummy", f"{outDir}/{dummyDataDir}")
 
