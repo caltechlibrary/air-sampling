@@ -39,6 +39,7 @@ shutil.copyfile("favicon.ico", f"{outDir}/favicon.ico")
 
 # Do the same for phoenix
 os.makedirs(f"{outDir}/phoenix")
+os.makedirs(f"{outDir}/phoenix/about")
 shutil.copytree(f"templates/phoenix/{stylesDir}", f"{outDir}/phoenix/{stylesDir}")
 
 if args.dummy: shutil.copytree("dummy", f"{outDir}/{dummyDataDir}")
@@ -52,3 +53,4 @@ buildPage("CO-data", "pollutant-data")
 buildPage("NO2-data", "pollutant-data")
 buildPage("how-is-aqi-defined-here", "how-is-aqi-defined-here")
 buildPage("phoenix/index", "phoenix/index")
+buildPage("phoenix/about/index", "phoenix/about")
