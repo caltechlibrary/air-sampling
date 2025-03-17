@@ -1,8 +1,50 @@
-<header role="banner" class="header page__header">
-    <a class="header__homepage-link" href="/">
-        <img class="header__caltech-logo" src="/img/caltech-logo.png" alt="Caltech Logo" width="1486" height="360">
-    </a>
-    <h1 class="header__title">${title}</h1>
-    <span style="font-size: 24px;"><b>P</b>ost-fire airborne <b>H</b>azard <b>O</b>bservation <b>E</b>nvironmental <b>N</b>etwork for <b>I</b>ntegrated <b>X</b>posure-monitoring</span>
-    <p class="header__date"></p>
+<!-- Navigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid px-0">
+        <!-- Logo and Brand on far left side -->
+        <a class="navbar-brand d-flex align-items-center ms-0 ps-2" href="#">
+            <!-- <img src="/api/placeholder/200/200" alt="Logo" class="d-inline-block align-text-top"> -->
+            <!-- <img class="d-inline-block align-text-top" src="/img/caltech-logo.png" alt="Caltech Logo" width="1486" height="360"> -->
+            <img class="d-inline-block align-text-top" src="/img/caltech-logo.png" alt="Caltech Logo">
+            <span class="ms-1 d-flex align-items-center" style="font-size: 1.75rem; font-weight: bold; line-height: 1; height: 40px;">PHOENIX</span>
+        </a>
+        
+        <!-- Hamburger menu for mobile -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <!-- Nav links on right side -->
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Data</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">FAQs</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<header role="banner" class="text-center py-4">
+    <div class="container-xl">
+        <div class="mb-4">
+            <h1 class="phoenix-title">PHOENIX</h1>
+            <span class="phoenix-title" style="font-size: 24px; display: block; margin-bottom: 1.5rem;"><b>P</b>ost-fire airborne <b>H</b>azard <b>O</b>bservation <b>E</b>nvironmental <b>N</b>etwork for <b>I</b>ntegrated <b>X</b>posure-monitoring</span>
+            <div class="px-md-5 px-3">
+                <p class="fs-5 mb-0"><b>Caltech, in partnership with Altadena and Pasadena community members, is establishing an air quality monitoring network focused on measuring airborne dust and ash in and around the burned areas of Altadena.</b> <b>As of March 17, 2025, we have set up 18 out of 25 sensors</b>.</p>
+                <div class="mt-4 text-center">
+                    <a href="#sensor-map" class="btn" style="background-color: rgba(178, 24, 43, 1); border-color: rgba(178, 24, 43, 1); color: white;">View PHOENIX map</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </header>

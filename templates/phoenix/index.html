@@ -3,15 +3,48 @@
 
 ${partials/head.html()}
 
-<body class="page">
+<body>
   ${partials/header.html()}
-  <main class="page__main" role="main">
-    ${body}
-    <div style="display: flex; justify-content: center; align-items: center; width: 100%; margin: 0; padding: 0;">
-      <iframe src="https://app.quant-aq.com/s/phoenix" width="100%" height="600" style="border: 0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  <main role="main">
+    <div class="container-xl py-4">
+      <div class="row">
+        <!-- Text content (${body}) - Takes 2/3 of width on medium screens and up -->
+        <div class="col-12 col-md-8 mb-4 mb-md-0">          
+          <div class="custom-bg mb-4 p-4">
+            <h4 class="fw-bold mb-3">Why PHOENIX?</h4>
+            
+            <h5 class="fw-bold mb-3">Where does the air quality information displayed in weather apps on smart phones come from?</h5>
+            <ul class="fs-5">
+              <li class="mb-2">Most of the data is reported by the US EPA via <a href="https://fire.airnow.gov/#12.59/34.18457/-118.10415" target="_blank">airnow.gov</a>. This uses official sensors operated by the South Coast Air Quality Management District (<a href="https://www.aqmd.gov/" target="_blank">AQMD</a>), but these data are obtained in only a few locations in the county.</li>
+              <li class="mb-3">EPA augments the official data with observations from citizen scientists who have deployed low-cost sensors at their homes, for example, sensors from <a href="https://map.purpleair.com/air-quality-standards-us-epa-aqi?opt=%2F1%2Flp%2Fa10%2Fp604800%2FcC0#1.04/0/-30" target="_blank">PurpleAir</a>.</li>
+            </ul>
+            
+            <h5 class="fw-bold mb-3">What about after the 2025 Eaton Canyon fire?</h5>
+            <p class="fs-5 mb-0">Unfortunately, most of the low-cost sensors that were reporting data from Altadena were lost in the fire.</p>
+          </div>
+          
+          <div class="custom-bg">
+            <h4 class="fw-bold mb-3">Our goal</h4>
+            <p class="fs-5 mb-1">To fill in this gap, Caltech together with community members, including many of the public and private schools as well as business owners have deployed particulate sensors across Altadena. The data from these sensors is available to everyone.</p>
+            <p class="fs-5 mb-0">In the near future, Caltech scientists will provide additional analysis from the larger network that highlight dust events due to disturbance in the Altadena fire zone. However, we are releasing the sensor data now, to provide information to the public much like the information that was available before the fire from the EPA and PurpleAir.</p>
+          </div>
+        </div>
+        
+        <!-- Image - Takes 1/3 of width on medium screens and up -->
+        <div class="col-12 col-md-4 d-flex align-items-center justify-content-center">
+          <img class="img-fluid rounded" src="/img/device_image.jpg" alt="Georgia Tech logo">
+        </div>
+      </div>
+    </div>
+    
+    <div class="container-fluid p-0">
+      <div id="sensor-map" style="display: flex; justify-content: center; align-items: center; width: 100%; margin: 0; padding: 0;">
+        <iframe src="https://app.quant-aq.com/s/phoenix" width="100%" height="600" style="border: 0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
     </div>
   </main>
   ${partials/footer.html()}
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 
 </html>
