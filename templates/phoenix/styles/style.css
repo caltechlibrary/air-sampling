@@ -72,14 +72,6 @@ body {
       margin-bottom: 300px; /* Adjust based on your footer's height */
 }
        
-.sticky-footer {
-     position: absolute;
-     bottom: 0;
-     width: 100%;
-     background-color: #f8f9fa;
-     padding: 20px 0;
-     border-top: 1px solid #e7e7e7;
-}
          
 .footer-links {
     display: flex;
@@ -108,49 +100,24 @@ body {
 }
          
 .footer_img {
-    height: 80px;
     width: auto;
     filter: grayscale(30%);
     transition: filter 0.3s;
 }
  
-.footer_img.gps-logo {
-    height: 110px;
-}
- 
-.footer_img.gatech-logo {
-    height: 50px;
-}
- 
-.footer_img.quantaq-logo {
-    height: 50px;
-}
          
 .footer_img:hover {
     filter: grayscale(0%);
 }
-         
-@media (max-width: 768px) {
-    .footer-logos {
-                 gap: 15px;
+
+.footer_img {
+    object-fit: contain;
+    aspect-ratio: 1/1;
+    max-width: 100%;
+    height: auto;
+    gap: 15px;
              }
     
-             .footer_img {
-                 height: 65px;
-             }
-             
-             .footer_img.gps-logo {
-                 height: 90px;
-             }
- 
-             .footer_img.gatech-logo {
-                 height: 40px;
-             }
- 
-             .footer_img.quantaq-logo {
-                 height: 40px;
-             }
-}
  
 /* Add this to your stylesheet after Bootstrap loads */
 @media (min-width: 576px) {
