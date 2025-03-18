@@ -25,6 +25,21 @@ Blocks
 - global: global styles.
 */
 
+
+/* navbar */
+.navbar-brand img {
+    height: 22px;
+    margin-right: 10px;
+    }
+         
+.nav-link {
+    font-weight: 500;
+    }
+         
+.nav-link:hover {
+    color: #0d6efd !important;
+}
+
 /* header */
 .header {
     display: flex;
@@ -968,20 +983,12 @@ Blocks
 
 /* page */
 .page {
-    margin: 32px auto;
-    max-width: 93rem;
-    padding: 0 16px;
     font-family: Arial;
 
     text-size-adjust: none;
     -webkit-text-size-adjust: none;
 }
 
-@media (min-width:600px) {
-    .page {
-        margin: 52px auto;
-    }
-}
 
 .page__header {
     margin-bottom: 12px;
@@ -994,6 +1001,7 @@ Blocks
 }
 
 .page__main {
+    padding: 0 16px;
     margin-bottom: 32px;
 }
 
