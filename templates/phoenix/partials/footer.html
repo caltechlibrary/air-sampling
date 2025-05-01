@@ -33,4 +33,123 @@
             </a>
         </div>
     </div>
+    <script>
+// Define the available months
+const months = [
+  { name: 'March 2025', url: 'https://caltechlibrary.github.io/air-sampling/phoenix/maps/2025-03.html' },
+  { name: 'April 2025', url: 'https://caltechlibrary.github.io/air-sampling/phoenix/maps/2025-04.html' },
+  { name: 'May 2025', url: 'https://caltechlibrary.github.io/air-sampling/phoenix/maps/2025-05.html' },
+  { name: 'June 2025', url: 'https://caltechlibrary.github.io/air-sampling/phoenix/maps/2025-06.html' },
+  { name: 'July 2025', url: 'https://caltechlibrary.github.io/air-sampling/phoenix/maps/2025-07.html' }
+];
+
+// Initialize with the current month (May 2025 as default)
+let currentMonthIndex = 2; // Index for May 2025
+
+// Function to update the iframe and pagination
+function updateMonthView() {
+  // Update iframe source
+  const iframe = document.querySelector('iframe');
+  iframe.src = months[currentMonthIndex].url;
+  
+  // Get pagination elements
+  const pagination = document.querySelector('.pagination');
+  const prevButton = pagination.querySelector('li:first-child');
+  const nextButton = pagination.querySelector('li:last-child');
+  
+  // Clear existing month links (except first and last items which are prev/next buttons)
+  while (pagination.children.length > 2) {
+    pagination.removeChild(pagination.children[1]);
+  }
+  
+  // Create and add month links
+  months.forEach((month, index) => {
+    const li = document.createElement('li');
+    li.className = 'page-item';
+    if (index === currentMonthIndex) {
+      li.classList.add('active');
+      li.setAttribute('aria-current', 'page');
+    }
+    
+    const a = document.createElement('a');
+    a.className = 'page-link';
+    a.href = '#';
+    a.textContent = month.name;
+    a.addEventListener('click', (event) => {
+      event.preventDefault();
+      currentMonthIndex = index;
+      updateMonthView();
+    });
+    
+    li.appendChild(a);
+    pagination.insertBefore(li, nextButton);
+  });
+  
+  // Update previous button state
+  if (currentMonthIndex === 0) {
+    prevButton.classList.add('disabled');
+  } else {
+    prevButton.classList.remove('disabled');
+    const prevLink = prevButton.querySelector('a');
+    prevLink.addEventListener('click', (event) => {
+      event.preventDefault();
+      if (currentMonthIndex > 0) {
+        currentMonthIndex--;
+        updateMonthView();
+      }
+    });
+  }
+  
+  // Update next button state
+  if (currentMonthIndex === months.length - 1) {
+    nextButton.classList.add('disabled');
+  } else {
+    nextButton.classList.remove('disabled');
+    const nextLink = nextButton.querySelector('a');
+    nextLink.addEventListener('click', (event) => {
+      event.preventDefault();
+      if (currentMonthIndex < months.length - 1) {
+        currentMonthIndex++;
+        updateMonthView();
+      }
+    });
+  }
+}
+
+// Initialize the page
+document.addEventListener('DOMContentLoaded', () => {
+  // Clean up initial pagination (assuming we start with the template you provided)
+  const pagination = document.querySelector('.pagination');
+  const prevButton = pagination.querySelector('li:first-child');
+  const activeButton = pagination.querySelector('li.active');
+  const nextButton = pagination.querySelector('li:last-child');
+  
+  // Keep only the previous and next buttons
+  if (activeButton) {
+    pagination.removeChild(activeButton);
+  }
+  
+  // Set up event listeners for prev/next buttons
+  const prevLink = prevButton.querySelector('a');
+  prevLink.addEventListener('click', (event) => {
+    event.preventDefault();
+    if (currentMonthIndex > 0) {
+      currentMonthIndex--;
+      updateMonthView();
+    }
+  });
+  
+  const nextLink = nextButton.querySelector('a');
+  nextLink.addEventListener('click', (event) => {
+    event.preventDefault();
+    if (currentMonthIndex < months.length - 1) {
+      currentMonthIndex++;
+      updateMonthView();
+    }
+  });
+  
+  // Initialize the view
+  updateMonthView();
+});
+    </script>
 </footer>
