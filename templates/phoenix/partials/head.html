@@ -8,107 +8,98 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <!-- Monthly Pager -->
     <script>
-        // Define the available months
-        const months = [
-        { name: 'March 2025', url: 'https://caltechlibrary.github.io/air-sampling/phoenix/maps/2025-03.html' },
-        { name: 'April 2025', url: 'https://caltechlibrary.github.io/air-sampling/phoenix/maps/2025-04.html' },
-        { name: 'May 2025', url: 'https://caltechlibrary.github.io/air-sampling/phoenix/maps/2025-05.html' },
-        { name: 'June 2025', url: 'https://caltechlibrary.github.io/air-sampling/phoenix/maps/2025-06.html' },
-        { name: 'July 2025', url: 'https://caltechlibrary.github.io/air-sampling/phoenix/maps/2025-07.html' }
+      const startMonth = '2025-03';
+      const endMonth = '2025-07';
+    
+      function generateMonthList(start, end) {
+        const months = [];
+        const startDate = new Date(start + '-01');
+        const endDate = new Date(end + '-01');
+    
+        const monthNames = [
+          'January', 'February', 'March', 'April', 'May', 'June',
+          'July', 'August', 'September', 'October', 'November', 'December'
         ];
-
-        // Initialize with the actual current month based on system date
-        let currentMonthIndex;
-
-        // Function to determine the correct month index based on current date
-        function getCurrentMonthIndex() {
+    
+        let current = new Date(startDate);
+        while (current <= endDate) {
+          const year = current.getFullYear();
+          const month = current.getMonth();
+          const monthStr = String(month + 1).padStart(2, '0');
+          months.push({
+            name: `${monthNames[month]} ${year}`,
+            url: `https://caltechlibrary.github.io/air-sampling/phoenix/maps/${year}-${monthStr}.html`,
+            year,
+            month
+          });
+          current.setMonth(current.getMonth() + 1);
+        }
+    
+        return months;
+      }
+    
+      const months = generateMonthList(startMonth, endMonth);
+    
+      function getCurrentMonthIndex() {
         const today = new Date();
         const currentYear = today.getFullYear();
-        const currentMonth = today.getMonth(); // 0-indexed (0 = January)
-        
-        // Only select months between March 2025 (2-indexed) and July 2025 (6-indexed)
-        if (currentYear === 2025 && currentMonth >= 2 && currentMonth <= 6) {
-            // If we're in the year 2025 and between March and July
-            return currentMonth - 2; // Convert from 0-indexed month to our array index
-        } else if (currentYear < 2025 || (currentYear === 2025 && currentMonth < 2)) {
-            // If we're before March 2025, select March 2025 (first available)
-            return 0;
-        } else {
-            // If we're after July 2025, select July 2025 (last available)
-            return months.length - 1;
+        const currentMonth = today.getMonth(); // 0-indexed
+    
+        for (let i = 0; i < months.length; i++) {
+          if (months[i].year === currentYear && months[i].month === currentMonth) {
+            return i;
+          }
         }
-        }
-
-        // Set the current month index
-        currentMonthIndex = getCurrentMonthIndex();
-
-        // Function to update the iframe and pagination
-        function updateMonthView() {
-        // Update iframe source
+    
+        // Default to first or last if out of range
+        if (today < new Date(startMonth + '-01')) return 0;
+        return months.length - 1;
+      }
+    
+      let currentMonthIndex = getCurrentMonthIndex();
+    
+      function updateMonthView() {
         const iframe = document.querySelector('iframe');
         iframe.src = months[currentMonthIndex].url;
-        
-        // Get pagination elements
+    
         const pagination = document.querySelector('.pagination');
         const prevButton = pagination.querySelector('li:first-child');
         const currentMonthButton = pagination.querySelector('li:nth-child(2)');
         const nextButton = pagination.querySelector('li:last-child');
-        
-        // Update current month link text
+    
         const currentMonthLink = currentMonthButton.querySelector('a');
         currentMonthLink.textContent = months[currentMonthIndex].name;
-        
-        // Update previous button state
-        if (currentMonthIndex === 0) {
-            prevButton.classList.add('disabled');
-        } else {
-            prevButton.classList.remove('disabled');
-        }
-        
-        // Update next button state
-        if (currentMonthIndex === months.length - 1) {
-            nextButton.classList.add('disabled');
-        } else {
-            nextButton.classList.remove('disabled');
-        }
-        }
-
-        // Function to handle previous month navigation
-        function navigateToPreviousMonth(event) {
+    
+        prevButton.classList.toggle('disabled', currentMonthIndex === 0);
+        nextButton.classList.toggle('disabled', currentMonthIndex === months.length - 1);
+      }
+    
+      function navigateToPreviousMonth(event) {
         event.preventDefault();
         if (currentMonthIndex > 0) {
-            currentMonthIndex--;
-            updateMonthView();
+          currentMonthIndex--;
+          updateMonthView();
         }
-        }
-
-        // Function to handle next month navigation
-        function navigateToNextMonth(event) {
+      }
+    
+      function navigateToNextMonth(event) {
         event.preventDefault();
         if (currentMonthIndex < months.length - 1) {
-            currentMonthIndex++;
-            updateMonthView();
+          currentMonthIndex++;
+          updateMonthView();
         }
-        }
-
-        // Initialize the page
-        document.addEventListener('DOMContentLoaded', () => {
-        // Get pagination elements
+      }
+    
+      document.addEventListener('DOMContentLoaded', () => {
         const pagination = document.querySelector('.pagination');
-        const prevButton = pagination.querySelector('li:first-child');
-        const currentMonthButton = pagination.querySelector('li.active');
-        const nextButton = pagination.querySelector('li:last-child');
-        
-        // Set up event listeners for prev/next buttons
-        const prevLink = prevButton.querySelector('a');
+        const prevLink = pagination.querySelector('li:first-child a');
+        const nextLink = pagination.querySelector('li:last-child a');
+    
         prevLink.addEventListener('click', navigateToPreviousMonth);
-        
-        const nextLink = nextButton.querySelector('a');
         nextLink.addEventListener('click', navigateToNextMonth);
-        
-        // Initialize the view
+    
         updateMonthView();
-        });
+      });
     </script>
     <!-- Matomo -->
     <script>
