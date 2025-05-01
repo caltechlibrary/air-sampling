@@ -19,7 +19,6 @@ focused on measuring airborne dust and ash in and around the burned areas of Alt
 <div style="justify-content: center; align-items: center; width: 100%; margin: 0; padding: 0;">
   <iframe width="100%" height="600" style="border: 0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 </div>
-
 <nav aria-label="Monthly map navigation">
   <ul class="pagination pagination-lg justify-content-center">
     <li class="page-item disabled">
