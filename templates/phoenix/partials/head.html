@@ -8,77 +8,17 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <!-- Monthly Pager -->
     <script>
-        // Configure the first and last months (format: [year, month] where month is 1-indexed)
-        const firstAvailableMonth = [2025, 3]; // March 2025
-        const lastAvailableMonth = [2025, 7];  // July 2025
+        // Define the available months
+        const months = [
+        { name: 'March 2025', url: 'https://caltechlibrary.github.io/air-sampling/phoenix/maps/2025-03.html' },
+        { name: 'April 2025', url: 'https://caltechlibrary.github.io/air-sampling/phoenix/maps/2025-04.html' },
+        { name: 'May 2025', url: 'https://caltechlibrary.github.io/air-sampling/phoenix/maps/2025-05.html' },
+        { name: 'June 2025', url: 'https://caltechlibrary.github.io/air-sampling/phoenix/maps/2025-06.html' },
+        { name: 'July 2025', url: 'https://caltechlibrary.github.io/air-sampling/phoenix/maps/2025-07.html' }
+        ];
 
-        // Base URL pattern for the maps (replace month in format YYYY-MM)
-        const urlPattern = 'https://caltechlibrary.github.io/air-sampling/phoenix/maps/YYYY-MM.html';
-
-        // Function to generate month array from first to last month
-        function generateMonthsArray() {
-        const months = [];
-        let currentYear = firstAvailableMonth[0];
-        let currentMonth = firstAvailableMonth[1];
-        
-        const endYear = lastAvailableMonth[0];
-        const endMonth = lastAvailableMonth[1];
-        
-        // Generate all months between start and end (inclusive)
-        while (currentYear < endYear || (currentYear === endYear && currentMonth <= endMonth)) {
-            // Create month label
-            const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 
-                                'July', 'August', 'September', 'October', 'November', 'December'];
-            const monthName = `${monthNames[currentMonth - 1]} ${currentYear}`;
-            
-            // Create URL with proper formatting
-            const monthStr = currentMonth.toString().padStart(2, '0');
-            const url = urlPattern.replace('YYYY', currentYear).replace('MM', monthStr);
-            
-            months.push({ name: monthName, url: url });
-            
-            // Move to next month
-            currentMonth++;
-            if (currentMonth > 12) {
-            currentMonth = 1;
-            currentYear++;
-            }
-        }
-        
-        return months;
-        }
-
-        // Generate months array
-        const months = generateMonthsArray();
-
-        // Function to determine the correct month index based on current date
-        function getCurrentMonthIndex() {
-        const today = new Date();
-        const currentYear = today.getFullYear();
-        const currentMonth = today.getMonth() + 1; // Convert to 1-indexed
-        
-        // Check if current date is within range
-        if ((currentYear > firstAvailableMonth[0] || 
-            (currentYear === firstAvailableMonth[0] && currentMonth >= firstAvailableMonth[1])) &&
-            (currentYear < lastAvailableMonth[0] || 
-            (currentYear === lastAvailableMonth[0] && currentMonth <= lastAvailableMonth[1]))) {
-            
-            // Calculate total months between first available month and current month
-            let yearDiff = currentYear - firstAvailableMonth[0];
-            let monthDiff = currentMonth - firstAvailableMonth[1];
-            return yearDiff * 12 + monthDiff;
-        } else if (currentYear < firstAvailableMonth[0] || 
-                    (currentYear === firstAvailableMonth[0] && currentMonth < firstAvailableMonth[1])) {
-            // Before first available month
-            return 0;
-        } else {
-            // After last available month
-            return months.length - 1;
-        }
-        }
-
-        // Initialize with the current month based on system date
-        let currentMonthIndex = getCurrentMonthIndex();
+        // Initialize with the current month (May 2025 as default)
+        let currentMonthIndex = 2; // Index for May 2025
 
         // Function to update the iframe and pagination
         function updateMonthView() {
