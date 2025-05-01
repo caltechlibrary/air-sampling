@@ -8,144 +8,82 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <!-- Monthly Pager -->
     <script>
-        // Define the available months dynamically based on configuration
-        const firstAvailableMonth = [2025, 3]; // March 2025
-        const lastAvailableMonth = [2025, 7];  // July 2025
+        // Set the first and last month (format: YYYY-MM)
+        const firstMonth = '2025-03';
+        const lastMonth = '2025-07';
 
-        // Base URL pattern for the maps (replace month in format YYYY-MM)
-        const urlPattern = 'https://caltechlibrary.github.io/air-sampling/phoenix/maps/YYYY-MM.html';
+        // Helper to generate month names and URLs
+        function generateMonths(start, end) {
+            const months = [];
+            const startDate = new Date(start + '-01');
+            const endDate = new Date(end + '-01');
 
-        // Function to generate month array from first to last month
-        function generateMonthsArray() {
-        const months = [];
-        let currentYear = firstAvailableMonth[0];
-        let currentMonth = firstAvailableMonth[1];
-        
-        const endYear = lastAvailableMonth[0];
-        const endMonth = lastAvailableMonth[1];
-        
-        // Generate all months between start and end (inclusive)
-        while (currentYear < endYear || (currentYear === endYear && currentMonth <= endMonth)) {
-            // Create month label
-            const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 
-                                'July', 'August', 'September', 'October', 'November', 'December'];
-            const monthName = `${monthNames[currentMonth - 1]} ${currentYear}`;
-            
-            // Create URL with proper formatting
-            const monthStr = currentMonth.toString().padStart(2, '0');
-            const url = urlPattern.replace('YYYY', currentYear).replace('MM', monthStr);
-            
-            months.push({ name: monthName, url: url });
-            
-            // Move to next month
-            currentMonth++;
-            if (currentMonth > 12) {
-            currentMonth = 1;
-            currentYear++;
+            const monthNames = [
+            'January', 'February', 'March', 'April', 'May', 'June',
+            'July', 'August', 'September', 'October', 'November', 'December'
+            ];
+
+            let current = new Date(startDate);
+            while (current <= endDate) {
+            const year = current.getFullYear();
+            const month = current.getMonth();
+            const monthStr = String(month + 1).padStart(2, '0');
+            months.push({
+                name: `${monthNames[month]} ${year}`,
+                url: `https://caltechlibrary.github.io/air-sampling/phoenix/maps/${year}-${monthStr}.html`
+            });
+            current.setMonth(current.getMonth() + 1);
             }
-        }
-        
-        return months;
-        }
 
-        // Generate months array
-        const months = generateMonthsArray();
-
-        // Function to determine the correct month index based on current date
-        function getCurrentMonthIndex() {
-        const today = new Date();
-        const currentYear = today.getFullYear();
-        const currentMonth = today.getMonth() + 1; // Convert to 1-indexed
-        
-        // Check if current date is within range
-        if ((currentYear > firstAvailableMonth[0] || 
-            (currentYear === firstAvailableMonth[0] && currentMonth >= firstAvailableMonth[1])) &&
-            (currentYear < lastAvailableMonth[0] || 
-            (currentYear === lastAvailableMonth[0] && currentMonth <= lastAvailableMonth[1]))) {
-            
-            // Calculate total months between first available month and current month
-            let yearDiff = currentYear - firstAvailableMonth[0];
-            let monthDiff = currentMonth - firstAvailableMonth[1];
-            return yearDiff * 12 + monthDiff;
-        } else if (currentYear < firstAvailableMonth[0] || 
-                    (currentYear === firstAvailableMonth[0] && currentMonth < firstAvailableMonth[1])) {
-            // Before first available month
-            return 0;
-        } else {
-            // After last available month
-            return months.length - 1;
-        }
+            return months;
         }
 
-        // Initialize with the current month based on system date
-        let currentMonthIndex = getCurrentMonthIndex();
+        const months = generateMonths(firstMonth, lastMonth);
 
-        // Function to update the iframe and pagination
+        // Set default to the last month in the range
+        let currentMonthIndex = months.length - 1;
+
         function updateMonthView() {
-        // Update iframe source
-        const iframe = document.querySelector('iframe');
-        iframe.src = months[currentMonthIndex].url;
-        
-        // Get pagination elements
-        const pagination = document.querySelector('.pagination');
-        const prevButton = pagination.querySelector('li:first-child');
-        const currentMonthButton = pagination.querySelector('li:nth-child(2)');
-        const nextButton = pagination.querySelector('li:last-child');
-        
-        // Update current month link text
-        const currentMonthLink = currentMonthButton.querySelector('a');
-        currentMonthLink.textContent = months[currentMonthIndex].name;
-        
-        // Update previous button state
-        if (currentMonthIndex === 0) {
-            prevButton.classList.add('disabled');
-        } else {
-            prevButton.classList.remove('disabled');
-        }
-        
-        // Update next button state
-        if (currentMonthIndex === months.length - 1) {
-            nextButton.classList.add('disabled');
-        } else {
-            nextButton.classList.remove('disabled');
-        }
+            const iframe = document.querySelector('iframe');
+            iframe.src = months[currentMonthIndex].url;
+
+            const pagination = document.querySelector('.pagination');
+            const prevButton = pagination.querySelector('li:first-child');
+            const currentMonthButton = pagination.querySelector('li:nth-child(2)');
+            const nextButton = pagination.querySelector('li:last-child');
+
+            const currentMonthLink = currentMonthButton.querySelector('a');
+            currentMonthLink.textContent = months[currentMonthIndex].name;
+
+            prevButton.classList.toggle('disabled', currentMonthIndex === 0);
+            nextButton.classList.toggle('disabled', currentMonthIndex === months.length - 1);
         }
 
-        // Function to handle previous month navigation
         function navigateToPreviousMonth(event) {
-        event.preventDefault();
-        if (currentMonthIndex > 0) {
+            event.preventDefault();
+            if (currentMonthIndex > 0) {
             currentMonthIndex--;
             updateMonthView();
-        }
+            }
         }
 
-        // Function to handle next month navigation
         function navigateToNextMonth(event) {
-        event.preventDefault();
-        if (currentMonthIndex < months.length - 1) {
+            event.preventDefault();
+            if (currentMonthIndex < months.length - 1) {
             currentMonthIndex++;
             updateMonthView();
-        }
+            }
         }
 
-        // Initialize the page
         document.addEventListener('DOMContentLoaded', () => {
-        // Get pagination elements
-        const pagination = document.querySelector('.pagination');
-        const prevButton = pagination.querySelector('li:first-child');
-        const currentMonthButton = pagination.querySelector('li.active');
-        const nextButton = pagination.querySelector('li:last-child');
-        
-        // Set up event listeners for prev/next buttons
-        const prevLink = prevButton.querySelector('a');
-        prevLink.addEventListener('click', navigateToPreviousMonth);
-        
-        const nextLink = nextButton.querySelector('a');
-        nextLink.addEventListener('click', navigateToNextMonth);
-        
-        // Initialize the view
-        updateMonthView();
+            const pagination = document.querySelector('.pagination');
+            const prevLink = pagination.querySelector('li:first-child a');
+            const nextLink = pagination.querySelector('li:last-child a');
+
+            prevLink.addEventListener('click', navigateToPreviousMonth);
+            nextLink.addEventListener('click', navigateToNextMonth);
+
+            updateMonthView();
         });
     </script>
     <!-- Matomo -->

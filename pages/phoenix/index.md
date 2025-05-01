@@ -26,7 +26,7 @@ focused on measuring airborne dust and ash in and around the burned areas of Alt
       <a class="page-link" aria-label="Previous"><i class="bi bi-caret-left-fill"></i></a>
     </li>
     <li class="page-item active" aria-current="page">
-      <a class="page-link" href="#">May 2025</a>
+      <a class="page-link" href="#">Current Month</a>
     </li>
     <li class="page-item">
       <a class="page-link" href="#" aria-label="Next"><i class="bi bi-caret-right-fill"></i></a>
