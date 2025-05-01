@@ -24,18 +24,18 @@ concurrency:
 
 jobs:
   Render:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     container: 
-      image: docker://pandoc/ubuntu:2.13
+      image: docker://pandoc/core:3.6-ubuntu
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          ref: test
-      - name: Set up Python 3.9
-        uses: actions/setup-python@v4
+          ref: 'test'
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
         with:
-          python-version: '3.9'
+          python-version: '3.12'
       - name: Render
         run: python _build.py
       - name: Setup Pages
