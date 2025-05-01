@@ -8,11 +8,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <!-- Monthly Pager -->
     <script>
-        // Set the first and last month (format: YYYY-MM)
         const firstMonth = '2025-03';
         const lastMonth = '2025-07';
 
-        // Helper to generate month names and URLs
         function generateMonths(start, end) {
             const months = [];
             const startDate = new Date(start + '-01');
@@ -39,8 +37,6 @@
         }
 
         const months = generateMonths(firstMonth, lastMonth);
-
-        // Set default to the last month in the range
         let currentMonthIndex = months.length - 1;
 
         function updateMonthView() {
