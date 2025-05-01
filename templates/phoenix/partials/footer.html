@@ -50,7 +50,7 @@ const CONFIG = {
   iframe: 'iframe',
   pagination: '.pagination',
   prevButton: 'li:first-child',
-  currentButton: 'li:nth-child(2)',
+  currentButton: 'li.active', // Changed to target the active class directly
   nextButton: 'li:last-child'
 };
 
@@ -139,6 +139,16 @@ class MonthlyPager {
     this.elements.pagination = document.querySelector(this.config.pagination);
     this.elements.prevButton = this.elements.pagination.querySelector(this.config.prevButton);
     this.elements.currentButton = this.elements.pagination.querySelector(this.config.currentButton);
+    
+    // If the 'active' button is not the currentButton (which would be the case with your initial HTML),
+    // we need to handle it differently
+    if (!this.elements.currentButton.classList.contains('active')) {
+      const activeButton = this.elements.pagination.querySelector('li.active');
+      if (activeButton) {
+        this.elements.currentButton = activeButton;
+      }
+    }
+    
     this.elements.nextButton = this.elements.pagination.querySelector(this.config.nextButton);
     
     // Set up event listeners
