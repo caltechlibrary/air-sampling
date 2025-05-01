@@ -17,7 +17,8 @@ title: PHOENIX
 focused on measuring airborne dust and ash in and around the burned areas of Altadena.**
 
 <div style="justify-content: center; align-items: center; width: 100%; margin: 0; padding: 0;">
-  <iframe src="https://app.quant-aq.com/s/phoenix" width="100%" height="600" style="border: 0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  <iframe
+  src="https://caltechlibrary.github.io/air-sampling/phoenix/maps/2025-05.html" width="100%" height="600" style="border: 0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 </div>
 
 :::::
