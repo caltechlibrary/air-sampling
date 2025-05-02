@@ -80,3 +80,4 @@ __pycache__
 # Project-specific things to ignore:
 # .............................................................................
 site
+phoenix-maps
