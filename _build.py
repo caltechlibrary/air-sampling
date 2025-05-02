@@ -43,7 +43,6 @@ os.makedirs(f"{outDir}/phoenix/about")
 os.makedirs(f"{outDir}/phoenix/data")
 os.makedirs(f"{outDir}/phoenix/faq")
 shutil.copytree(f"templates/phoenix/{stylesDir}", f"{outDir}/phoenix/{stylesDir}")
-shutil.copytree(f"templates/phoenix/maps", f"{outDir}/phoenix/maps")
 
 if args.dummy: shutil.copytree("dummy", f"{outDir}/{dummyDataDir}")
 
