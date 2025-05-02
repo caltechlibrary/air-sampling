@@ -32,9 +32,7 @@ Last updated: May 1, 2025
   <li class="page-item">
     <a class="page-link" href="#" aria-label="Next"><i class="bi bi-caret-right-fill"></i></a>
   </li>
-  <li class="page-item active" aria-current="page">
-    <a class="live-button btn btn-primary" href="#"></a>
-  </li>
+  <a class="live-button btn btn-primary" href="#">Live</a>
 </ul>
 </nav>
 
