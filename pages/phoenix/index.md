@@ -34,6 +34,14 @@ Last updated: May 1, 2025
   </li>
 </ul>
 </nav>
+<nav aria-label="Live map">
+<ul class="live pagination-lg justify-content-center">
+  <li class="page-item active" aria-current="page">
+    <a class="page-link" href="#"></a>
+  </li>
+</ul>
+</nav>
+
 
 :::::
 
