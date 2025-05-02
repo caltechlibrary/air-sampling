@@ -33,7 +33,9 @@ Last updated: May 1, 2025
     <a class="page-link" href="#" aria-label="Next"><i class="bi bi-caret-right-fill"></i></a>
   </li>
 </ul>
+<ul class="justify-content-center">
 <a class="live-button btn btn-primary" href="#">Live</a>
+</ul>
 </nav>
 
 
