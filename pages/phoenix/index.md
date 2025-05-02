@@ -17,8 +17,21 @@ title: PHOENIX
 focused on measuring airborne dust and ash in and around the burned areas of Altadena.**
 
 <div style="justify-content: center; align-items: center; width: 100%; margin: 0; padding: 0;">
-  <iframe src="https://app.quant-aq.com/s/phoenix" width="100%" height="600" style="border: 0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  <iframe width="100%" height="600" style="border: 0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 </div>
+<nav aria-label="Monthly map navigation">
+<ul class="pagination pagination-lg justify-content-center">
+  <li class="page-item disabled">
+    <a class="page-link" href="#" aria-label="Previous"><i class="bi bi-caret-left-fill"></i></a>
+  </li>
+  <li class="page-item active" aria-current="page">
+    <a class="page-link" href="#"></a>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="#" aria-label="Next"><i class="bi bi-caret-right-fill"></i></a>
+  </li>
+</ul>
+</nav>
 
 :::::
 
