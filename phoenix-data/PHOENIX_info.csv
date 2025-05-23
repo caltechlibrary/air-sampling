@@ -1,0 +1,30 @@
+,PHOENIX_ID,QuantAQ_ID,DATETIME installed (mm/dd/yy hh:mm),LAT,LON,Address,site description,link to data,Owner,contact,notes
+,PHOENIX-MET-01,MOD-00860,2/23/25 16:54,34.17073,-118.08654,"3151 E Villa Knolls Dr, Pasadena, CA 91107",fence,https://app.quant-aq.com/device/MOD-00860,Mike Brown,,
+,PHOENIX-MET-02,MOD-00861,2/23/25 12:06,34.20873,-118.16427,"4140 Canyon Crest Rd, Altadena, CA 91001",fence,https://app.quant-aq.com/device/MOD-00861,Coleen Roehl,,
+,PHOENIX-MET-03,MOD-00862,2/28/25 10:20,34.18712,-118.15935,"2408 Lincoln Ave, Altadena, CA 91001",pole,https://app.quant-aq.com/device/MOD-00862,Honeybee Robotics,Jack Marmarian 626-429-4629,Coleen's contact
+,PHOENIX-MET-04,MOD-00863,2/25/25 11:31,34.18915,-118.13718,"600 E Mariposa St, Altadena, CA 91001",roof,https://app.quant-aq.com/device/MOD-00863,Altadena Library,Daniel Madariaga 626-341-4247,
+,PHOENIX-01,MOD-PM-01526,2/23/25 10:09,34.17978,-118.11506,"1723 Morada Pl, Altadena, CA 91001",roof,https://app.quant-aq.com/device/MOD-PM-01526,Claire Harlow,,Jess Adkin's neighbor
+,PHOENIX-02,MOD-PM-01527,2/25/25 10:00,34.18724,-118.11556,"1704 Braeburn Rd, Altadena, CA 91001",roof,https://app.quant-aq.com/device/MOD-PM-01527,Richard  ,,Paul's neighbor's sister husband
+,PHOENIX-03,MOD-PM-01528,2/26/25 14:34,34.1858,-118.15108,"2329 Fair Oaks Ave, Altadena, CA 91001",roof,https://app.quant-aq.com/device/MOD-PM-01528,Altadena Ale House,Gail Casburn 626-354-3562,Coleen's contact
+,PHOENIX-04,MOD-PM-01529,2/28/25 14:40,34.17244,-118.11878,"1505 E Howard St, Pasadena, CA 91104",roof ,https://app.quant-aq.com/device/MOD-PM-01529,EF academy ,,
+moved PHOENIX 5 to Caltech Hall,PHOENIX-05,MOD-PM-01530,3/18/25 15:20,34.13685,-118.12608,"1200 E California Blvd, Pasadena, CA 91125",pole,,,,
+,PHOENIX-06,MOD-PM-01531,3/1/25 14:01,34.18366,-118.11379,"1787 Meadowbrook Rd, Altadena, CA 91001",roof,https://app.quant-aq.com/device/MOD-PM-01531,Leslie Maxfield ,626-240-8200,Coleen's friend
+,PHOENIX-07,MOD-PM-01532,3/4/25 12:01,34.18999,-118.12929,"1050 E Altadena Dr, Altadena, CA 91001",roof ,https://app.quant-aq.com/device/MOD-PM-01532,St. Mark's Preschool,,
+,PHOENIX-08,MOD-PM-01533,3/4/25 9:47,34.17732,-118.13167,"1840 Lake Ave, Altadena, CA 91001",roof with 10ft pole,https://app.quant-aq.com/device/MOD-PM-01533,St. Elizabeth School,,
+,PHOENIX-09,MOD-PM-01534,3/5/25 10:57,34.2012,-118.14462,3281 N Fair Oaks Ave,slanted roof - adapted wooden pallet,https://app.quant-aq.com/device/MOD-PM-01534,"Rigo, Rosie and Nancy",,Coleen's friends
+we took down because of cellular issues,PHOENIX-10,MOD-PM-01535,3/8/25 14:55,34.19166,-118.10687,"2666 Bowring Dr, Altadena, CA 91001",roof,https://app.quant-aq.com/device/MOD-PM-01535,John Hall,,
+,PHOENIX-11,MOD-PM-01536,3/10/25 12:47,34.19698,-118.12631,"1168 Mt Lowe Dr, Altadena, CA 91001",roof with 10ft pole,https://app.quant-aq.com/device/MOD-PM-01536,Darren,,
+,PHOENIX-GA-01,MOD-PM-00001,3/10/25 15:33,34.1905,-118.14946,"2615 N Fair Oaks Ave, Altadena, CA 91001",roof,,Peter- Johnny's liquor. ,,
+set this up on Caltech roof March 18,PHOENIX-GA-02,MOD-PM-00002,3/24/25 14:58,34.1918,-118.15478,"270 W Harriet St, Altadena, CA 91001",roof with 10ft pole,,Pablo (Paul) Huffsteter,626-639-9128,Coleen's contact through Sarah Parker
+,PHOENIX-GA-03,MOD-PM-00003,3/15/25 11:23,34.18059,-118.12559,"1216 Sonoma Dr, Altadena, CA 91001",slanted roof - adapted wooden pallet,,Brian & Mipa,,
+Eliot Arts Magnet School,PHOENIX-GA-04,MOD-PM-00005,3/19/25 15:03,34.18324,-118.13086,"2184 Lake Ave, Altadena, CA 91001",roof,,,,
+Odyssey Charter School,PHOENIX-GA-05,MOD-PM-00006,3/19/25 15:48,34.2002387,-118.1610734,"725 W Altadena Dr, Altadena, CA 91001",pole ,,,,
+Odyssey Charter School - South,PHOENIX-GA-06,MOD-PM-00015,3/19/25 13:50,34.19761,-118.14851,"119 W Palm St, Altadena, CA 91001",pole,,,,
+,PHOENIX-GA-07,MOD-PM-00016,3/23/25 11:07,34.18924,-118.12357,"2523 N Holliston Ave, Altadena, CA 91001",pole,,Eric,,found him through Richard
+,PHOENIX-JPL-12,MOD-00106,3/7/25 9:03,34.1994,-118.1732,"Jet Propulsion Laboratory, 4800 Oak Grove Dr, La Cañada Flintridge, CA 91011",roof,,JPL- Sina,,
+set this up on Caltech on March 18,PHOENIX-ASCENT,MOD-PM-00280,3/28/25 9:00,34.2008314,-118.1358294,"3323 N Marengo Ave, Altadena, CA 91001",2nd floor patio with 10ft pole,,"Eric Moses, 310-770-1007",,
+was set to ET on QA for half a day before switching to PT,PHOENIX-CRESTVIEW,MOD-PM-01551,3/17/25 17:22,34.19489,-118.17995,"140 Foothill Blvd STE A, La Cañada Flintridge, CA 91011",pole,https://app.quant-aq.com/device/MOD-PM-01551,,,
+,PHOENIX-HPA ,MOD-PM-01558,4/16/25 10:19,34.1746,-118.0921,"1720 Kinneloa Canyon Rd, Pasadena, CA 91107",roof,https://app.quant-aq.com/device-settings/MOD-PM-01558,High Point Academy,Joey Campanella ,
+,PHOENIX_HabreLab_588,MOD-00588,3/21/25 15:09,34.1834,-118.161,"505 W Woodbury Rd, Altadena, CA 91001",roof,https://app.quant-aq.com/device-settings/MOD-00588,Mantech - Sina and Rima,,
+,PHOENIX_Calabasas_PW1,MOD-00885,4/3/25 11:48,34.1422,-118.7108,"5100 Parkville Rd, Calabasas, CA 91301",no idea,,Rima,,
+,PHOENIX-PPHD,MOD-PM-01553,4/2/25 9:43,34.1774,-118.1512,"1845 N Fair Oaks Ave, Pasadena, CA 91103",roof,,Manuel Carmona,,
