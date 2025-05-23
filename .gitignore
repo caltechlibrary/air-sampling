@@ -81,3 +81,5 @@ __pycache__
 # .............................................................................
 site
 phoenix-maps
+phoenix-data/output_json
+phoenix-data/data

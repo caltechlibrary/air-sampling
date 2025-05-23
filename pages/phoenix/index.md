@@ -18,6 +18,8 @@ focused on measuring airborne dust and ash in and around the burned areas of Alt
 
 Last updated: May 1, 2025
 
+This is a test map. The data has not been verified and may be incorrect.
+
 <div style="justify-content: center; align-items: center; width: 100%; margin: 0; padding: 0;">
   <iframe width="100%" height="600" style="border: 0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 </div>
