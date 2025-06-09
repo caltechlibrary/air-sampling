@@ -25,6 +25,11 @@ Blocks
 - global: global styles.
 */
 
+figure {
+    max-width: 80%;
+    height: auto;
+}
+
 blockquote {
     background-color: #E6E6FA;
     padding: 15px;
