@@ -2,6 +2,8 @@
 title: PHOENIX Findings
 ---
 
+::::: {.container-xl .py-5}
+
 # Initial findings from PHOENIX:
 
 1.  Dust levels across the zone are generally low and do not exceed EPA regulatory limits (24-hour averages of PM<sub>2.5</sub> and PM<sub>10</sub> are both within good and moderate levels).
@@ -32,3 +34,4 @@ ppm.](/img/phoenix_findings_figure_02_dust_samples.png "Lead levels in dust alon
 > windows and doors, using proper wet methods for cleaning their homes and increasing the frequency of cleaning — especially for people with young children and pets.
 >
 
+:::::
