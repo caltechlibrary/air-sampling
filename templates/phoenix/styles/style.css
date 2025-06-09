@@ -25,6 +25,10 @@ Blocks
 - global: global styles.
 */
 
+li {
+    font-size: 20 px;
+}
+
 figure img {
     max-width: 95%;
     height: auto;
