@@ -26,7 +26,7 @@ ppm.](/img/phoenix_findings_figure_02_dust_samples.png "Lead levels in dust alon
 
 4.  While we cannot directly connect the PM<sub>10</sub> to the road dust, our observations suggest that resuspension of Pb-containing dust could be occurring, especially in the early morning. This raises concern that occupied properties along these roadways may be experiencing continuing contamination.
 
-> {style="background-color:#E6E6FA; padding: 15px; border-radius: 8px; font-size: 20px; line-height: 1.6;"}
+> 
 > We do not know the source of the elevated PM<sub>10</sub> or the dust we have sampled along the roadway. We suggest that LA County undertake a study to evaluate the source(s) and causes for elevated levels. 
 > These potentially include street sweeping with insufficient dust control; resuspension of dust deposited during the night by the morning traffic; or emissions from uncovered and dirty trucks arriving in the morning.
 >
