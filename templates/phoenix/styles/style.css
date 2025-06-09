@@ -25,8 +25,8 @@ Blocks
 - global: global styles.
 */
 
-figure {
-    max-width: 80%;
+figure img {
+    max-width: 95%;
     height: auto;
 }
 
