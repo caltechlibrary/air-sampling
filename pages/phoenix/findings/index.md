@@ -10,10 +10,10 @@ title: PHOENIX Findings
 
 2.  Elevated dust levels are observed along major N-S roadways often in the early morning. As an example, __Figure 1__ shows data from one of our sensors on N. Fair Oaks Avenue.
 
-![__Figure 1__ Particulate matter (PM10) concentrations in μg/m3 recorded
-every minute throughout the day from February 26th to April 27th 2025 by a
-PHOENIX sensor located on N. Fair Oaks Avenue. Colors represent different PM10
-concentration levels.](/img/phoenix_findings_figure_01.png "Particulate matter concentrations on N. Fair Oaks Avenue.")
+![__Figure 1__ Particulate matter (PM<sub>10</sub>) concentrations in
+μg/m<sup>3</sup> recorded every minute throughout the day from February 26th to April 27th 2025 by a
+PHOENIX sensor located on N. Fair Oaks Avenue. Colors represent different
+PM<sub>10</sub> concentration levels.](/img/phoenix_findings_figure_01.png "Particulate matter concentrations on N. Fair Oaks Avenue.")
 
 3. To better understand the composition of the road dust in these areas, we collected dust samples on April 22nd along N. Fair Oaks Avenue in Altadena. These samples were analyzed using Inductively Coupled Plasma Mass Spectrometry at Caltech. 
 Our preliminary findings indicate elevated levels of lead (Pb) in most samples (see __Figure 2__). Notably, six out of ten samples exceeded 80 ppm which is the California Human Health Screening Level (CHHSL) for residential soil.
