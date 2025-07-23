@@ -16,8 +16,7 @@ title: PHOENIX
 **Caltech, in partnership with Altadena and Pasadena community members, has established an air quality monitoring network of 28 sensors,
 focused on measuring airborne dust and ash in and around the burned areas of Altadena.**
 
-Last updated: May 23, 2025
-
+<!--
 <div style="justify-content: center; align-items: center; width: 100%; margin: 0; padding: 0;">
   <iframe width="100%" height="600" style="border: 0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 </div>
@@ -37,7 +36,10 @@ Last updated: May 23, 2025
 <a class="live-button btn btn-primary" href="#">Live</a>
 </ul>
 </nav>
-
+-->
+<div style="justify-content: center; align-items: center; width: 100%; margin: 0; padding: 0;">
+  <iframe src="https://app.quant-aq.com/s/phoenix" width="100%" height="600" style="border: 0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</div>
 
 :::::
 
