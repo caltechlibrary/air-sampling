@@ -29,4 +29,4 @@ jobs:
         uses: EndBug/add-and-commit@v9
         with:
           message: 'Add updated plot file'
-          add: 'bokeh_plot.html'
+          add: 'phoenix-data/bokeh_plot.html'
