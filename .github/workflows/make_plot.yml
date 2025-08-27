@@ -1,0 +1,31 @@
+name: Make Plot
+
+on:
+  push:
+    branches: main
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: 'Reason'
+        required: false
+        default: 'Manual trigger'
+
+jobs:
+  Render:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+      - name: change directory
+        run: cd phoenix-data
+      - name: Install the project
+        run: uv sync --locked --all-extras   
+      - name: Render
+        run: uv run make_plot.py
+       - name: Commit CFF
+        uses: EndBug/add-and-commit@v9
+        with:
+          message: 'Add updated plot file'
+          add: 'bokeh_plot.html'
