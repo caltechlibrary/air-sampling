@@ -28,7 +28,8 @@ epa_colors = {
 start = datetime.strptime('2025-02-23T10-00-00',"%Y-%m-%dT%H-%M-%S")
 end = datetime.strptime('2025-08-25T11-20-00',"%Y-%m-%dT%H-%M-%S")
 
-slider = DatetimeRangeSlider(start=start, end=end, value=(start,end), title="Time of measurement")
+slider = DatetimeRangeSlider(start=start, end=end, value=(start,end),
+                             step=600000, title="Time of measurement")
 callback = CustomJS(args=dict(source=source, slider=slider), code="""
         function timestampToFilename(timestamp) {
         // Accepts Date object, string, or number
@@ -113,3 +114,4 @@ layout = column(p, slider)
 #show(layout)
 output_file('bokeh_plot.html')
 save(layout)
+print("Plot saved to bokeh_plot.html")
