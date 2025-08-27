@@ -24,7 +24,7 @@ jobs:
         run: uv sync --locked --all-extras   
       - name: Render
         run: uv run make_plot.py
-       - name: Commit CFF
+      - name: Commit CFF
         uses: EndBug/add-and-commit@v9
         with:
           message: 'Add updated plot file'
