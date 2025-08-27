@@ -13,15 +13,14 @@ on:
 jobs:
   Render:
     runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: ./phoenix-data
     steps:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Install uv
         uses: astral-sh/setup-uv@v6
-      - name: change directory
-        run: cd phoenix-data
-      - name: ls
-        run: ls
       - name: Install the project
         run: uv sync --locked --all-extras   
       - name: Render
