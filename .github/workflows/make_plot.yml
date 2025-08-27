@@ -20,6 +20,8 @@ jobs:
         uses: astral-sh/setup-uv@v6
       - name: change directory
         run: cd phoenix-data
+      - name: ls
+        run: ls
       - name: Install the project
         run: uv sync --locked --all-extras   
       - name: Render
