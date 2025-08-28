@@ -4,8 +4,19 @@ from bokeh.layouts import column
 from bokeh.io import output_notebook
 from pyproj import Transformer
 from datetime import datetime
+import s3fs
 
-source = AjaxDataSource(data_url="https://z44g6g2rrl.execute-api.us-west-2.amazonaws.com/test/phoenix/2025-08-25T10-00-00.json", polling_interval=None, mode='replace')
+s3 = s3fs.S3FileSystem(anon=False)
+
+bucket = 'caltech-phoenix-data'
+
+with s3.open(f"{bucket}/latest.txt", "r") as file:
+    timestamp = file.read().strip()
+
+source =
+AjaxDataSource(data_url=f"https://z44g6g2rrl.execute-api.us-west-2.amazonaws.com/test/phoenix/{timestamp}.json", polling_interval=None, mode='replace')
+
+
 
 # --- Step 1: Define EPA colors (both PM10 and PM2.5) ---
 epa_labels = {
@@ -26,7 +37,7 @@ epa_colors = {
 }
 
 start = datetime.strptime('2025-02-23T10-00-00',"%Y-%m-%dT%H-%M-%S")
-end = datetime.strptime('2025-08-25T11-20-00',"%Y-%m-%dT%H-%M-%S")
+end = datetime.strptime(timestamp,"%Y-%m-%dT%H-%M-%S")
 
 slider = DatetimeRangeSlider(start=start, end=end, value=(start,end),
                              step=600000, title="Time of measurement")
@@ -60,14 +71,14 @@ slider.js_on_change('value', callback)
 # Set up figure - using the formatted time string for the title
 p = figure(x_axis_type="mercator", y_axis_type="mercator",x_range=(-13100000, -13200000),
            y_range=(4040000, 4060000),
-               width=900, height=700, title=f"PM10 (Hexagons) + PM2.5 (Circles) ")
+               width=900, height=700 )
 p.add_tile("CartoDB.Positron")
 
 # Color mappers
 color_mapper_pm10 = CategoricalColorMapper(factors=list(epa_colors.keys()), palette=list(epa_colors.values()))
 color_mapper_pm25 = CategoricalColorMapper(factors=list(epa_colors.keys()), palette=list(epa_colors.values()))
     
- # Draw PM10 hexagons
+# Draw PM10 hexagons
 p.scatter(x='x', y='y', size=30, source=source,
               marker='hex',
               color={'field': 'category_10', 'transform': color_mapper_pm10},

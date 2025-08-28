@@ -58,6 +58,7 @@ for filen in files:
     })
 
     # Iterate over each group and save as a JSON file dropna(subset=['epa_category_10','epa_category_25'])
+    largest = '1900-01-01'
     for timestamp, group in grouped.iterrows():
         json_data = {
         "x": group["x"],
@@ -72,8 +73,13 @@ for filen in files:
         # Write the JSON file
         #with open(os.path.join(output_dir, filename), "w") as json_file:
         #We're just going to upload current date files
-        today = datetime.date.today().strftime("%Y-%m-%d")
+        today = datetime.date.today() - datetime.timedelta(1) 
+        today = today.strftime("%Y-%m-%d")
         date = timestamp.split("T")[0]
         if date == today:
+            if timestamp > largest:
+                largest = timestamp
             with s3.open(f"{bucket}/{filename}", "w") as json_file:
                 json.dump(json_data, json_file, indent=4)
+        with s3.open(f"{bucket}/latest.txt", "w") as file:
+            file.write(largest)
