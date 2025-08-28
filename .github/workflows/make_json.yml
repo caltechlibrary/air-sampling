@@ -1,4 +1,4 @@
-name: Make Plot
+name: Make Json Files
 
 on:
   push:
