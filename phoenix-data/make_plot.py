@@ -13,8 +13,7 @@ bucket = 'caltech-phoenix-data'
 with s3.open(f"{bucket}/latest.txt", "r") as file:
     timestamp = file.read().strip()
 
-source =
-AjaxDataSource(data_url=f"https://z44g6g2rrl.execute-api.us-west-2.amazonaws.com/test/phoenix/{timestamp}.json", polling_interval=None, mode='replace')
+source = AjaxDataSource(data_url=f"https://z44g6g2rrl.execute-api.us-west-2.amazonaws.com/test/phoenix/{timestamp}.json", polling_interval=None, mode='replace')
 
 
 
