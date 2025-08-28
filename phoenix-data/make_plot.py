@@ -13,9 +13,9 @@ bucket = 'caltech-phoenix-data'
 with s3.open(f"{bucket}/latest.txt", "r") as file:
     timestamp = file.read().strip()
 
+print(f"Latest timestamp: {timestamp}")
+
 source = AjaxDataSource(data_url=f"https://z44g6g2rrl.execute-api.us-west-2.amazonaws.com/test/phoenix/{timestamp}.json", polling_interval=None, mode='replace')
-
-
 
 # --- Step 1: Define EPA colors (both PM10 and PM2.5) ---
 epa_labels = {
