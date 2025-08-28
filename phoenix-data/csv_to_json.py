@@ -73,7 +73,7 @@ for filen in files:
         # Write the JSON file
         #with open(os.path.join(output_dir, filename), "w") as json_file:
         #We're just going to upload current date files
-        today = datetime.date.today() - datetime.timedelta(1) 
+        today = datetime.date.today() - datetime.timedelta(2) 
         today = today.strftime("%Y-%m-%d")
         date = timestamp.split("T")[0]
         if date == today:
