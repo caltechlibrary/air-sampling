@@ -71,7 +71,11 @@ slider.js_on_change('value', callback)
 p = figure(x_axis_type="mercator", y_axis_type="mercator",x_range=(-13100000, -13200000),
            y_range=(4040000, 4060000),
                width=900, height=700 )
-p.add_tile("CartoDB.Positron")
+tile_source = WMTSTileSource(
+    url= "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}"
+
+)
+p.add_tile(tile_source)
 
 # Color mappers
 color_mapper_pm10 = CategoricalColorMapper(factors=list(epa_colors.keys()), palette=list(epa_colors.values()))
