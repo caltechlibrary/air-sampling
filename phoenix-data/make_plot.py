@@ -88,9 +88,7 @@ p.scatter(x='x', y='y', size=20, source=source,
               marker='circle',
               color={'field': 'category_25', 'transform': color_mapper_pm25},
               fill_alpha=1, line_color='black', line_width=1.5, legend_label="PM₂₋₅ (circles)")
-p.legend.location = "top_left"
-p.legend.glyph_width = 50
-p.legend.glyph_height = 50
+p.legend.visible=False 
 
 # Dummy glpyhs for legend
 legend_items = []
