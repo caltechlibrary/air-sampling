@@ -71,5 +71,9 @@ for filen in files:
         filename = f"{timestamp}.json"
         # Write the JSON file
         #with open(os.path.join(output_dir, filename), "w") as json_file:
-        with s3.open(f"{bucket}/{filename}", "w") as json_file:
-            json.dump(json_data, json_file, indent=4)
+        #We're just going to upload current date files
+        today = datetime.date.today().strftime("%Y-%m-%d")
+        date = timestamp.split("T")[0]
+        if date == today:
+            with s3.open(f"{bucket}/{filename}", "w") as json_file:
+                json.dump(json_data, json_file, indent=4)
