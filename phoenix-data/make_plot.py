@@ -1,4 +1,4 @@
-from bokeh.models import AjaxDataSource, HoverTool, CategoricalColorMapper, DatetimeRangeSlider, CustomJS, LegendItem, Legend
+from bokeh.models import AjaxDataSource, HoverTool, CategoricalColorMapper, DatetimeRangeSlider, CustomJS, LegendItem, Legend,  WMTSTileSource
 from bokeh.plotting import figure, output_file, save, show
 from bokeh.layouts import column
 from bokeh.io import output_notebook
