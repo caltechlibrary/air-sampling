@@ -23,7 +23,7 @@ jobs:
         uses: astral-sh/setup-uv@v6
       - name: Install the project
         run: uv sync --locked --all-extras   
-      - name: Render plot
+      - name: Make json files
         run: uv run csv_to_json.py
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.PHOENIX_AWS_ACCESS_KEY_ID }}
