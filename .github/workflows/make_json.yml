@@ -24,9 +24,7 @@ jobs:
       - name: Install the project
         run: uv sync --locked --all-extras   
       - name: Render plot
-        run: uv run make_plot.py
-      - name: Commit plot
-        uses: EndBug/add-and-commit@v9
-        with:
-          message: 'Add updated plot file'
-          add: 'phoenix-data/bokeh_plot.html'
+        run: uv run csv_to_json.py
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.PHOENIX_AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.PHOENIX_AWS_SECRET_ACCESS_KEY }}
