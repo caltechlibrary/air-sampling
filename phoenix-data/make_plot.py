@@ -129,3 +129,30 @@ layout = column(p, slider)
 output_file('bokeh_plot.html')
 save(layout)
 print("Plot saved to bokeh_plot.html")
+
+with open("bokeh_plot.html") as infile:
+    content = file.read()
+    new = '''
+    </script>
+    <script type="text/javascript">
+      // Initialize slider title after Bokeh loads
+      setTimeout(function() {
+        const doc = Bokeh.documents[0];
+        if (doc) {
+          const slider = doc.get_model_by_id('p1004');
+          if (slider) {
+            function pad(n){ return String(n).padStart(2,'0'); }
+            function formatDate(ms){
+              const d = new Date(ms);
+              return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
+            }
+            slider.title = `Time of measurement: ${formatDate(slider.value)}`;
+          }
+        }
+      }, 100);
+    </script>
+    '''
+    result = new.join(s.rsplit('</script>', 1))
+
+with open("bokeh_plot.html", "w") as outfile:
+    outfile.write(result)
