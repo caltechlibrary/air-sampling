@@ -152,7 +152,7 @@ with open("bokeh_plot.html") as infile:
       }, 100);
     </script>
     '''
-    result = new.join(s.rsplit('</script>', 1))
+    result = new.join(content.rsplit('</script>', 1))
 
 with open("bokeh_plot.html", "w") as outfile:
     outfile.write(result)
