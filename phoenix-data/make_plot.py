@@ -131,7 +131,7 @@ save(layout)
 print("Plot saved to bokeh_plot.html")
 
 with open("bokeh_plot.html") as infile:
-    content = file.read()
+    content = infile.read()
     new = '''
     </script>
     <script type="text/javascript">
