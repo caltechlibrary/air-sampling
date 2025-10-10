@@ -1,0 +1,37 @@
+name: Make Plot
+
+on:
+  push:
+    branches: test
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: 'Reason'
+        required: false
+        default: 'Manual trigger'
+
+jobs:
+  Render:
+    runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: ./phoenix-data
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: 'test'
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+      - name: Install the project
+        run: uv sync --locked --all-extras   
+      - name: Render plot
+        run: uv run make_plot.py
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.PHOENIX_AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.PHOENIX_AWS_SECRET_ACCESS_KEY }}
+      - name: Commit plot
+        uses: EndBug/add-and-commit@v9
+        with:
+          message: 'Add updated plot file'
+          add: 'phoenix-data/bokeh_plot.html'
