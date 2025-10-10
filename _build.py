@@ -44,6 +44,7 @@ os.makedirs(f"{outDir}/phoenix/data")
 os.makedirs(f"{outDir}/phoenix/faq")
 os.makedirs(f"{outDir}/phoenix/findings")
 shutil.copytree(f"templates/phoenix/{stylesDir}", f"{outDir}/phoenix/{stylesDir}")
+shutil.copyfile("phoenix-data/bokeh_plot.html", f"{outDir}/phoenix/map.html")
 
 if args.dummy: shutil.copytree("dummy", f"{outDir}/{dummyDataDir}")
 
