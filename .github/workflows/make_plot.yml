@@ -28,6 +28,7 @@ jobs:
       - name: Render plot
         run: uv run make_plot.py
         env:
+          BOKEH_RESOURCES: 'inline'
           AWS_ACCESS_KEY_ID: ${{ secrets.PHOENIX_AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.PHOENIX_AWS_SECRET_ACCESS_KEY }}
       - name: Commit plot
