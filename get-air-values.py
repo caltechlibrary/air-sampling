@@ -52,7 +52,7 @@ def lambda_handler(event, context):
                     else:
                         value = line[metric]
                     time = line["time"]
-                    time = datetime.datetime.fromtimestamp(time).time()
+                    time = datetime.datetime.fromtimestamp(float(time)).time()
                     data = data + f"{time},{value}\n"
                 return {
                     "headers": {"Content-Type": "text/csv"},
